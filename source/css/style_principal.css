@@ -1,0 +1,37 @@
+.hero {
+  height: 89vh;
+  width: 100%;
+  min-width: 250px;
+  background-image: url(https://uneg.edu.mx/wp-content/uploads/2021/12/9.-Que-es-la-licenciatura-en-finanzas-min-scaled.jpg);
+  background-size: cover;
+  background-position: center;
+}
+#title{
+    color: aliceblue;
+}
+
+#nav-bar-main {
+    background-color: #0A2558;
+}
+.content{
+	position: absolute;
+	top: 50%;
+	left:27%;
+	transform: translateY(-50%);
+}
+.content h1{
+	color: white;
+    text-shadow: -6px 2px 0px #111324;
+	margin: 10px 0px 20px;
+	font-size: 75px;
+}
+.content h3{
+	color: rgb(14, 12, 12);
+	font-size: 25px;
+	margin-bottom: 10px;
+}
+.content h4{
+	color: rgba(2, 46, 74, 0.8);
+    letter-spacing: 2px;
+	font-size: 50px;
+}
