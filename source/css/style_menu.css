@@ -6,7 +6,9 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
-
+#icon_bank{
+  margin-left: 10px;
+}
 /* #settings {
 	margin-left: 20px;
 	margin-right: 20px;
