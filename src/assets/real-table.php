@@ -36,7 +36,7 @@ require('./views/header.php');
             </div>
         </div>
 
-        <div class="d-flex align-align-items-center justify-content-center pt-3">
+        <div class="d-flex align-align-items-center justify-content-center py-3">
             <div class="g-4 col-8">
                 <div class="bg-light rounded h-100 p-4">
                     <h6 class="mb-4">Transacciones</h6>

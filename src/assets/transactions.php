@@ -25,7 +25,7 @@ require('./views/header.php');
 
                 <div class="px-4 h-100">
                     <div class="d-flex m-n2">
-                        <button type="button" class="btn btn-primary m-2 ms-2"><i class="fa fa-plus"></i></button>
+                        <a href="./create-transaction.php" class="btn btn-primary m-2 ms-2"><i class="fa fa-plus"></i></a>
 
                         <input class="form-control m-2 ms-2 w-25" type="text" placeholder="Buscar">
                         <div class=" position-absolute end-0 mx-4">
@@ -48,7 +48,7 @@ require('./views/header.php');
                                     <tr>
                                         <th scope="col"></th>
                                         <th scope="col">Monto</th>
-                                        <th scope="col">Razon</th>
+                                        <th scope="col">Descripcion</th>
                                         <th scope="col">Fuente</th>
                                         <th scope="col">Referencia</th>
                                         <th scope="col">Fecha</th>

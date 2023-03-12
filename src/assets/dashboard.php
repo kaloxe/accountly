@@ -37,7 +37,7 @@ require('./views/header.php');
                     <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                         <i class="fa fa-chart-bar fa-3x text-primary"></i>
                         <div class="ms-3 mx-auto">
-                            <p class="mb-2">Gastos semanales</p>
+                            <p class="mb-2">Deudas</p>
                             <h6 class="mb-0">$1234</h6>
                         </div>
                     </div>
@@ -47,7 +47,7 @@ require('./views/header.php');
                         <i class="fa fa-couch fa-3x text-primary"></i>
                         <!-- <i class="fa-solid fa-couch"></i> -->
                         <div class="ms-3 mx-auto">
-                            <p class="mb-2">Capital</p>
+                            <p class="mb-2">Patrimonio</p>
                             <h6 class="mb-0">$1234</h6>
                         </div>
                     </div>
@@ -57,7 +57,7 @@ require('./views/header.php');
                         <i class="fa fa-piggy-bank fa-3x text-primary"></i>
                         <!-- <i class="fa-duotone fa-piggy-bank"></i> -->
                         <div class="ms-3 mx-auto">
-                            <p class="mb-2">Saldo total</p>
+                            <p class="mb-2">Saldo</p>
                             <h6 class="mb-0">$1234</h6>
                         </div>
                     </div>
