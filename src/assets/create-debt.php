@@ -23,25 +23,38 @@ require('./views/header.php');
             <div class="d-flex align-items-center justify-content-center row g-4">
 
                 <div class="col-sm-12 col-xl-7">
+                    <div class="formulario__mensaje p-1 text-center mb-2 pb-5" id="formulario__mensaje">
+                        <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Rellene el formulario correctamente. </p>
+                    </div>
+
                     <div class="bg-light rounded h-100 p-4">
                         <div class="d-flex">
                             <a class="ps-5 pe-3" href="./debt.php"><i class="fa fa-arrow-left"></i></a>
                             <h6 class="mb-4">Registrar deuda</h6>
                         </div>
 
-                        <form class="px-5">
+                        <form class="px-3" id="formulario">
 
-                            <div class="mb-3">
-                                <label for="exampleInputPassword1" class="form-label">Monto</label>
-                                <input type="number" class="form-control" id="exampleInputPassword1">
+                            <div class="mb-2" id="grupo__monto">
+                                <div class="formulario__grupo-input">
+                                    <label for="monto">Monto</label>
+                                    <input type="text" class="form-control formulario__input" name="monto" id="monto" placeholder="">
+                                    <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                                </div>
                             </div>
 
-                            <div class="mb-3">
-                                <label for="exampleInputPassword1" class="form-label">Descripcion</label>
-                                <textarea class="form-control" id="exampleInputPassword1"></textarea>
+                            <div class="mb-2" id="grupo__descripcion">
+                                <div class="formulario__grupo-input">
+                                    <label for="descripcion">Descripcion</label>
+                                    <textarea class="form-control formulario__input" name="descripcion" id="descripcion" placeholder="" rows="5"></textarea>
+                                    <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                                </div>
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Registrar</button>
+                            <div class="d-flex align-items-center justify-content-center formulario__grupo formulario__grupo-btn-enviar">
+                                <button type="submit" class="btn btn-primary mt-2 py-2 w-50">Registrar</button>
+                            </div>
+                            <p class="formulario__mensaje-exito pt-2" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
                         </form>
                     </div>
                 </div>
@@ -55,6 +68,8 @@ require('./views/header.php');
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 </div>
+
+<script src="./js/validate-create-debt.js"></script>
 
 <?php
 require('./views/footer.php');

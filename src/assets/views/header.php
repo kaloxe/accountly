@@ -29,6 +29,8 @@
 
     <!-- Template Stylesheet -->
     <link href="/accountly/src/assets/css/style.css" rel="stylesheet">
+
+    <link href="/accountly/src/assets/css/estilos.css" rel="stylesheet">
 </head>
 
 <body>

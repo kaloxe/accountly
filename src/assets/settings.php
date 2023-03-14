@@ -55,22 +55,42 @@ require('./views/header.php');
                 </div>
 
                 <div class="col-sm-12 col-xl-7">
+                    <div class="formulario__mensaje p-1 text-center mb-2 pb-5" id="formulario__mensaje">
+                        <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Rellene el formulario correctamente. </p>
+                    </div>
+
                     <div class="bg-light rounded h-100 p-4">
                         <h6 class="mb-4">Cambiar contraseña</h6>
-                        <form>
-                            <div class="mb-3">
-                                <label for="exampleInputPassword1" class="form-label">Vieja contraseña</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1">
+                        <form id="formulario">
+                            <div class="mb-2" id="grupo__oldPassword">
+                                <div class="formulario__grupo-input">
+                                    <label for="oldPassword">Vieja contraseña</label>
+                                    <input type="password" class="form-control formulario__input" name="oldPassword" id="oldPassword" placeholder="">
+                                    <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="exampleInputPassword1" class="form-label">Nueva contraseña</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1">
+
+                            <div class="mb-2" id="grupo__password">
+                                <div class="formulario__grupo-input">
+                                    <label for="password">Nueva contraseña</label>
+                                    <input type="password" class="form-control formulario__input" name="password" id="password" placeholder="">
+                                    <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="exampleInputPassword1" class="form-label">Confirme nueva contraseña</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1">
+
+                            <div class="mb-2" id="grupo__password2">
+                                <div class="formulario__grupo-input">
+                                    <label for="password2">Repita la nueva contraseña</label>
+                                    <input type="password" class="form-control formulario__input" name="password2" id="password2" placeholder="">
+                                    <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                                </div>
                             </div>
-                            <button type="submit" class="btn btn-primary">Actualizar</button>
+
+                            <div class="d-flex align-items-center justify-content-center formulario__grupo formulario__grupo-btn-enviar">
+                                <input type="button" class="btn btn-primary mt-2 py-2 w-50" id="submitPassword" value="Actualizar">
+                            </div>
+                            <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
+
                         </form>
                     </div>
                 </div>
@@ -85,6 +105,8 @@ require('./views/header.php');
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 </div>
+
+<script src="./js/validate-settings.js"></script>
 
 <?php
 require('./views/footer.php');
