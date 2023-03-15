@@ -39,7 +39,7 @@ require('./views/header.php');
                                 <div class="formulario__grupo-input">
                                     <label for="nombre">Nombre del deposito</label>
                                     <input type="text" class="form-control formulario__input" name="nombre" id="nombre" placeholder="">
-                                    <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                                    <p class="formulario__input-error">El campo debe tener de 4 a 40 caracteres, solo se aceptan letras y numeros.</p>
                                 </div>
                             </div>
 
@@ -47,7 +47,7 @@ require('./views/header.php');
                                 <div class="formulario__grupo-input">
                                     <label for="monto">Monto</label>
                                     <input type="text" class="form-control formulario__input" name="monto" id="monto" placeholder="">
-                                    <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                                    <p class="formulario__input-error">Solo se aceptan numeros y decimales separados por coma o punto.</p>
                                 </div>
                             </div>
 

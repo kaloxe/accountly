@@ -34,7 +34,7 @@ require('./views/header.php');
                                 <div class="formulario__grupo-input">
                                     <label for="descripcion">Desde</label>
                                     <input type="date" class="form-control formulario__input" name="fecha" id="fecha" placeholder="">
-                                    <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                                    <p class="formulario__input-error">La fecha no puede superar la actual</p>
                                 </div>
                             </div>
 
@@ -42,7 +42,7 @@ require('./views/header.php');
                                 <div class="formulario__grupo-input">
                                     <label for="fecha2">Hasta</label>
                                     <input type="date" class="form-control formulario__input" name="fecha2" id="fecha2" placeholder="">
-                                    <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                                    <p class="formulario__input-error">La fecha no puede superar la actual ni puede ser anterior a la del campo de arriba.</p>
                                 </div>
                             </div>
 
@@ -55,7 +55,7 @@ require('./views/header.php');
                                         <option value="Ingreso">Ingreso</option>
                                         <option value="Egreso">Egreso</option>
                                     </select>
-                                    <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                                    <p class="formulario__input-error">Seleccione una opcion de las cuentas filtrar.</p>
                                 </div>
                             </div>
 

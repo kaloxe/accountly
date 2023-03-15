@@ -62,12 +62,12 @@ require('./views/header.php');
                     <div class="bg-light rounded h-100 p-4">
                         <h6 class="mb-4">Cambiar contraseña</h6>
                         <form id="formulario">
-                            
+
                             <div class="mb-2" id="grupo__oldPassword">
                                 <div class="formulario__grupo-input">
                                     <label for="oldPassword">Vieja contraseña</label>
                                     <input type="password" class="form-control formulario__input" name="oldPassword" id="oldPassword" placeholder="">
-                                    <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                                    <p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos.</p>
                                 </div>
                             </div>
 
@@ -75,7 +75,7 @@ require('./views/header.php');
                                 <div class="formulario__grupo-input">
                                     <label for="password">Nueva contraseña</label>
                                     <input type="password" class="form-control formulario__input" name="password" id="password" placeholder="">
-                                    <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                                    <p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos.</p>
                                 </div>
                             </div>
 
@@ -83,7 +83,7 @@ require('./views/header.php');
                                 <div class="formulario__grupo-input">
                                     <label for="password2">Repita la nueva contraseña</label>
                                     <input type="password" class="form-control formulario__input" name="password2" id="password2" placeholder="">
-                                    <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                                    <p class="formulario__input-error">Ambas contraseñas deben ser iguales.</p>
                                 </div>
                             </div>
 

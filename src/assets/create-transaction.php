@@ -41,7 +41,7 @@ require('./views/header.php');
                                         <option value="Ingreso">Ingreso</option>
                                         <option value="Egreso">Egreso</option>
                                     </select>
-                                    <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                                    <p class="formulario__input-error">Seleccione una cuenta a registrar la transaccion.</p>
                                 </div>
                             </div>
 
@@ -49,7 +49,7 @@ require('./views/header.php');
                                 <div class="formulario__grupo-input">
                                     <label for="monto">Monto</label>
                                     <input type="text" class="form-control formulario__input" name="monto" id="monto" placeholder="">
-                                    <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                                    <p class="formulario__input-error">Solo puede escribir numeros separados por punto o coma decimal.</p>
                                 </div>
                             </div>
 
@@ -57,7 +57,7 @@ require('./views/header.php');
                                 <div class="formulario__grupo-input">
                                     <label for="descripcion">Descripcion</label>
                                     <input type="text" class="form-control formulario__input" name="descripcion" id="descripcion" placeholder="">
-                                    <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                                    <p class="formulario__input-error">El campo debe tener de 4 a 40 caracteres, solo se aceptan letras y numeros.</p>
                                 </div>
                             </div>
 
@@ -69,7 +69,7 @@ require('./views/header.php');
                                         <option value="Ingreso">Paypal</option>
                                         <option value="Egreso">Banesco</option>
                                     </select>
-                                    <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                                    <p class="formulario__input-error">Seleccione un deposito al que se se registrara el la transaccion.</p>
                                 </div>
                             </div>
 
@@ -77,7 +77,7 @@ require('./views/header.php');
                                 <div class="formulario__grupo-input">
                                     <label for="descripcion">Referencia</label>
                                     <input type="text" class="form-control formulario__input" name="referencia" id="referencia" placeholder="">
-                                    <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                                    <p class="formulario__input-error">Solo puede ingresarse numeros y solo desde 4 a 16 caracteres.</p>
                                 </div>
                             </div>
 
@@ -85,7 +85,7 @@ require('./views/header.php');
                                 <div class="formulario__grupo-input">
                                     <label for="descripcion">Fecha</label>
                                     <input type="date" class="form-control formulario__input" name="fecha" id="fecha" placeholder="">
-                                    <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                                    <p class="formulario__input-error">La fecha no puede superar a la fecha actual.</p>
                                 </div>
                             </div>
 
