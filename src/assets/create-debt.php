@@ -52,7 +52,7 @@ require('./views/header.php');
                             </div>
 
                             <div class="d-flex align-items-center justify-content-center formulario__grupo formulario__grupo-btn-enviar">
-                                <button type="submit" class="btn btn-primary mt-2 py-2 w-50">Registrar</button>
+                                <input type="button" class="btn btn-primary mt-2 py-2 w-50" id="submit" value="Registrar">
                             </div>
                             <p class="formulario__mensaje-exito pt-2" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
                         </form>

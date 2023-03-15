@@ -36,7 +36,7 @@ require('./views/header.php');
 
                             <div class="mb-2" id="grupo__cuenta">
                                 <div class="formulario__grupo-input">
-                                    <select class="form-select mb-3 formulario__input" name="cuenta" id="cuenta" aria-label="Default select example">
+                                    <select class="form-select formulario__input" name="cuenta" id="cuenta" aria-label="Default select example">
                                         <option value="" selected>Seleccione cuenta</option>
                                         <option value="Ingreso">Ingreso</option>
                                         <option value="Egreso">Egreso</option>
@@ -64,7 +64,7 @@ require('./views/header.php');
                             <div class="mb-2" id="grupo__fuente">
                                 <div class="formulario__grupo-input">
                                     <label for="fuente">Fuente</label>
-                                    <select class="form-select mb-3 formulario__input" name="fuente" id="fuente" aria-label="Default select example">
+                                    <select class="form-select formulario__input" name="fuente" id="fuente" aria-label="Default select example">
                                         <option value="" selected>Seleccione deposito</option>
                                         <option value="Ingreso">Paypal</option>
                                         <option value="Egreso">Banesco</option>
@@ -90,7 +90,7 @@ require('./views/header.php');
                             </div>
 
                             <div class="d-flex align-items-center justify-content-center formulario__grupo formulario__grupo-btn-enviar">
-                                <button type="submit" class="btn btn-primary mt-2 py-2 w-50">Registrar</button>
+                                <input type="button" class="btn btn-primary mt-2 py-2 w-50" id="submit" value="Registrar">
                             </div>
                             <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
                         </form>

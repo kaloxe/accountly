@@ -22,7 +22,7 @@ require('./views/header.php');
         <div class="container-fluid py-4 px-4">
             <div class="d-flex align-items-center justify-content-center row g-4">
 
-                <div class="col-sm-12 col-xl-7">
+                <!-- <div class="col-sm-12 col-xl-7">
                     <div class="bg-light rounded h-100 p-4">
                         <h6 class="mb-4">Correos</h6>
                         <form>
@@ -52,7 +52,7 @@ require('./views/header.php');
                             </div>
                         </form>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="col-sm-12 col-xl-7">
                     <div class="formulario__mensaje p-1 text-center mb-2 pb-5" id="formulario__mensaje">
@@ -62,6 +62,7 @@ require('./views/header.php');
                     <div class="bg-light rounded h-100 p-4">
                         <h6 class="mb-4">Cambiar contraseña</h6>
                         <form id="formulario">
+                            
                             <div class="mb-2" id="grupo__oldPassword">
                                 <div class="formulario__grupo-input">
                                     <label for="oldPassword">Vieja contraseña</label>

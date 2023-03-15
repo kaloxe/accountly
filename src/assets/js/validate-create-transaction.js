@@ -1,4 +1,5 @@
 const formulario = document.getElementById("formulario");
+const submit = document.getElementById("submit");
 const inputs = document.querySelectorAll("#formulario input");
 const selects = document.querySelectorAll("#formulario select");
 
@@ -9,12 +10,12 @@ var yyyy = today.getFullYear();
 today = yyyy + "-" + mm + "-" + dd;
 
 const expresiones = {
-  cuenta: /^[0-9a-zA-ZÀ-ÿ\s]{3,40}$/, // Letras, numeros, guion y guion_bajo
+  cuenta: /^[0-9a-zA-ZÀ-ÿ\s]{3,16}$/, // Letras, numeros, guion y guion_bajo
   monto: /^[0-9]+([\,\.][0-9]+)?$/, // 7 a 14 numeros.
   descripcion: /^[0-9a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-  fuente: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
+  fuente: /^[a-zA-ZÀ-ÿ\s]{3,16}$/, // Letras y espacios, pueden llevar acentos.
   referencia: /^\d{4,16}$/, // 7 a 14 numeros.
-  fecha: /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/
+  fecha: /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/,
 };
 
 const campos = {
@@ -56,11 +57,13 @@ const validarFormulario = (e) => {
 
 const validarCampo = (expresion, input, campo) => {
   if (expresion.test(input.value)) {
+    document.getElementById(`${campo}`).classList.remove("form-control-error");
     document
       .querySelector(`#grupo__${campo} .formulario__input-error`)
       .classList.remove("formulario__input-error-activo");
     campos[campo] = true;
   } else {
+    document.getElementById(`${campo}`).classList.add("form-control-error");
     document
       .querySelector(`#grupo__${campo} .formulario__input-error`)
       .classList.add("formulario__input-error-activo");
@@ -78,7 +81,7 @@ selects.forEach((select) => {
   select.addEventListener("change", validarFormulario);
 });
 
-formulario.addEventListener("submit", (e) => {
+submit.addEventListener("click", (e) => {
   e.preventDefault();
 
   if (
@@ -106,6 +109,17 @@ formulario.addEventListener("submit", (e) => {
         .classList.remove("formulario__mensaje-exito-activo");
     }, 5000);
   } else {
+    Object.keys(campos).forEach((campo) => {
+      
+      if (!campos[campo]) {
+        document
+          .getElementById(`${campo}`)
+          .classList.add("form-control-error");
+        document
+          .querySelector(`#grupo__${campo} .formulario__input-error`)
+          .classList.add("formulario__input-error-activo");
+      }
+    });
     document
       .getElementById("formulario__mensaje")
       .classList.add("formulario__mensaje-activo");

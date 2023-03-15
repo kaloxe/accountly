@@ -1,4 +1,5 @@
 const formulario = document.getElementById("formulario");
+const submit = document.getElementById("submit");
 const inputs = document.querySelectorAll("#formulario input");
 const selects = document.querySelectorAll("#formulario select");
 
@@ -17,7 +18,6 @@ const expresiones = {
 
 const campos = {
   cuenta: false,
-  cuenta2: false,
   fecha: false,
   fecha2: false,
 };
@@ -53,11 +53,13 @@ const validarFormulario = (e) => {
 
 const validarCampo = (expresion, input, campo) => {
   if (expresion.test(input.value)) {
+    document.getElementById(`${campo}`).classList.remove("form-control-error");
     document
       .querySelector(`#grupo__${campo} .formulario__input-error`)
       .classList.remove("formulario__input-error-activo");
     campos[campo] = true;
   } else {
+    document.getElementById(`${campo}`).classList.add("form-control-error");
     document
       .querySelector(`#grupo__${campo} .formulario__input-error`)
       .classList.add("formulario__input-error-activo");
@@ -70,11 +72,13 @@ const validarfecha2 = () => {
   const inputFecha2 = document.getElementById("fecha2");
 
   if (inputFecha1.value <= inputFecha2.value) {
+    document.getElementById(`fecha2`).classList.remove("form-control-error");
     document
       .querySelector(`#grupo__fecha2 .formulario__input-error`)
       .classList.remove("formulario__input-error-activo");
     campos["fecha2"] = true;
   } else {
+    document.getElementById(`fecha2`).classList.add("form-control-error");
     document
       .querySelector(`#grupo__fecha2 .formulario__input-error`)
       .classList.add("formulario__input-error-activo");
@@ -92,7 +96,7 @@ selects.forEach((select) => {
   select.addEventListener("change", validarFormulario);
 });
 
-formulario.addEventListener("submit", (e) => {
+submit.addEventListener("click", (e) => {
   e.preventDefault();
 
   if (campos.cuenta && campos.fecha && campos.fecha2) {
@@ -110,6 +114,14 @@ formulario.addEventListener("submit", (e) => {
         .classList.remove("formulario__mensaje-exito-activo");
     }, 5000);
   } else {
+    Object.keys(campos).forEach((campo) => {
+      if (!campos[campo]) {
+        document.getElementById(`${campo}`).classList.add("form-control-error");
+        document
+          .querySelector(`#grupo__${campo} .formulario__input-error`)
+          .classList.add("formulario__input-error-activo");
+      }
+    });
     document
       .getElementById("formulario__mensaje")
       .classList.add("formulario__mensaje-activo");
