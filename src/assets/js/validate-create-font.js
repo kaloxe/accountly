@@ -48,6 +48,23 @@ submit.addEventListener("click", (e) => {
   e.preventDefault();
 
   if (campos.nombre && campos.monto) {
+
+    const nombre = document.getElementById("nombre").value;
+    const monto = document.getElementById("monto").value;
+    let data = {
+      action: "create_font",
+      nombre: nombre,
+      monto: monto
+    }
+    fetch('controllers/controller.php', {
+      "method": 'POST',
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      "body": JSON.stringify(data)
+    }).then( res => res.text())
+      .then( dat => console.log(dat))
+
     campos.nombre = false;
     campos.monto = false;
     formulario.reset();

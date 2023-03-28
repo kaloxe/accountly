@@ -78,7 +78,7 @@ require('./views/header.php');
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 </div>
 
-<script src="./js/validate-report.js"></script>
+<script src="/accountly/src/assets/js/validate-report.js"></script>
 <!-- <script src="./js/validate-report2.js"></script> -->
 
 <?php
