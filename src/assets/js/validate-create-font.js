@@ -56,7 +56,7 @@ submit.addEventListener("click", (e) => {
       nombre: nombre,
       monto: monto
     }
-    fetch('controllers/controller.php', {
+    fetch('/accountly/server/controllers/controllerFont.php', {
       "method": 'POST',
       "headers": {
         "Content-Type": "application/json; charset=utf-8"
