@@ -1,5 +1,9 @@
 <?php
+require('./../server/db/db.php');
+require('./../server/models/class_rest.php');
 require('./views/header.php');
+
+$datos = Rest::readFonts($connection);
 ?>
 
 <div class="container-xxl position-relative bg-white d-flex p-0">
@@ -37,9 +41,9 @@ require('./views/header.php');
                             <div class="mb-2" id="grupo__cuenta">
                                 <div class="formulario__grupo-input">
                                     <select class="form-select formulario__input" name="cuenta" id="cuenta" aria-label="Default select example">
-                                        <option value="" selected>Seleccione cuenta</option>
-                                        <option value="Ingreso">Ingreso</option>
-                                        <option value="Egreso">Egreso</option>
+                                        <option selected>Seleccione cuenta</option>
+                                        <option value="1">Ingreso</option>
+                                        <option value="2">Egreso</option>
                                     </select>
                                     <p class="formulario__input-error">Seleccione una cuenta a registrar la transaccion.</p>
                                 </div>
@@ -65,9 +69,10 @@ require('./views/header.php');
                                 <div class="formulario__grupo-input">
                                     <label for="fuente">Fuente</label>
                                     <select class="form-select formulario__input" name="fuente" id="fuente" aria-label="Default select example">
-                                        <option value="" selected>Seleccione deposito</option>
-                                        <option value="Ingreso">Paypal</option>
-                                        <option value="Egreso">Banesco</option>
+                                        <option selected>Seleccione deposito</option>
+                                        <?php foreach($datos as $font) {   ?>
+                                            <option value="<?php echo $font['id_font'] ?>"><?php echo $font['name_font'] ?></option>
+                                        <?php } ?>
                                     </select>
                                     <p class="formulario__input-error">Seleccione un deposito al que se se registrara el la transaccion.</p>
                                 </div>

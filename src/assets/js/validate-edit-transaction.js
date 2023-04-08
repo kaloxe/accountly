@@ -2,11 +2,38 @@ const formulario = document.getElementById("formulario");
 const submit = document.getElementById("submit");
 const inputs = document.querySelectorAll("#formulario input");
 const selects = document.querySelectorAll("#formulario select");
+let index;
+let font;
+
+function openModal(id) {
+  index = {
+    action: "read_transaction",
+    id: id,
+  };
+  fetch("/accountly/server/controllers/controllerTransaction.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+    },
+    body: JSON.stringify(index),
+  })
+    .then((res) => res.json())
+    .then((dat) => {
+      console.log(dat);
+      //corregir despues
+      document.getElementById("cuenta").value = dat.id_management;
+      document.getElementById("monto").value = dat.amount;
+      document.getElementById("descripcion").value = dat.description;
+      document.getElementById("fuente").value = dat.id_font;
+      document.getElementById("referencia").value = dat.reference;
+      document.getElementById("fecha").value = dat.date;
+    });
+}
 
 let today = new Date();
-var dd = today.getDate();
-var mm = today.getMonth() + 1;
-var yyyy = today.getFullYear();
+let dd = today.getDate();
+let mm = today.getMonth() + 1;
+let yyyy = today.getFullYear();
 today = yyyy + "-" + mm + "-" + dd;
 
 const expresiones = {
@@ -19,12 +46,12 @@ const expresiones = {
 };
 
 const campos = {
-  cuenta: false,
-  monto: false,
-  descripcion: false,
-  fuente: false,
-  referencia: false,
-  fecha: false,
+  cuenta: true,
+  monto: true,
+  descripcion: true,
+  fuente: true,
+  referencia: true,
+  fecha: true,
 };
 
 const validarFormulario = (e) => {
@@ -98,15 +125,15 @@ submit.addEventListener("click", (e) => {
     const fuente = document.getElementById("fuente").value;
     const referencia = document.getElementById("referencia").value;
     const fecha = document.getElementById("fecha").value;
-
     let data = {
-      action: "create_transaction",
+      action: "update_transaction",
+      id: index.id,
       cuenta: cuenta,
       monto: monto,
       descripcion: descripcion,
       fuente: fuente,
       referencia: referencia,
-      fecha: fecha
+      fecha: fecha,
     };
     fetch("/accountly/server/controllers/controllerTransaction.php", {
       method: "POST",
@@ -118,13 +145,9 @@ submit.addEventListener("click", (e) => {
       .then((res) => res.text())
       .then((dat) => console.log(dat));
 
-    campos.cuenta = false;
-    campos.monto = false;
-    campos.descripcion = false;
-    campos.fuente = false;
-    campos.referencia = false;
-    campos.fecha = false;
-    formulario.reset();
+    // campos.nombre = false;
+    // campos.monto = false;
+    // formulario.reset();
 
     document
       .getElementById("formulario__mensaje-exito")

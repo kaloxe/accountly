@@ -1,5 +1,6 @@
 <?php
 require('./views/header.php');
+
 ?>
 
 <div class="container-xxl position-relative bg-white d-flex p-0">
@@ -20,13 +21,6 @@ require('./views/header.php');
         <!-- Navbar End -->
 
         <div class="d-flex align-items-center justify-content-center pt-4 px-4">
-
-            <div class="col-auto">
-
-            </div>
-            <div class="col-auto">
-
-            </div>
 
             <div class="bg-light rounded py-2 col-8">
 
@@ -72,36 +66,8 @@ require('./views/header.php');
                             </tbody>
                         </table>
                         <label class="col-12 text-center" id="lbl-total"></label>
-                        <!-- <table class="table text-center align-middle">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Saldo</th>
-                                    <th scope="col">Fuente</th>
-                                    <th scope="col">Accion</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">Bs 12.23</th>
-                                    <td>Banesco</td>
-                                    <td></a><a href="#" class="btn btn-sm btn-sm-square btn-success me-2"><i class="fa fa-pen"></i></a><input class="form-check-input my-2" type="checkbox"></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Bs 12.23</th>
-                                    <td>Mercantil</td>
-                                    <td></a><a href="#" class="btn btn-sm btn-sm-square btn-success me-2"><i class="fa fa-pen"></i></a><input class="form-check-input my-2" type="checkbox"></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Bs 12.23</th>
-                                    <td>Paypal</td>
-                                    <td></a><a href="#" class="btn btn-sm btn-sm-square btn-success me-2"><i class="fa fa-pen"></i></a><input class="form-check-input my-2" type="checkbox"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div class="text-end"><a href="">Mostrar todo</a></div> -->
 
                     </div>
-
                 </div>
 
                 <div class="d-flex align-items-center justify-content-center m-2" id="nav-paginacion"></div>
@@ -114,12 +80,74 @@ require('./views/header.php');
 
         <!-- Content End -->
 
+        <div class="modal fade text-start" id="editFontModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="col-12">
+                    <div class="formulario__mensaje p-1 text-center mb-2 pb-5" id="formulario__mensaje">
+                        <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Rellene el formulario correctamente. </p>
+                    </div>
+
+                    <div class="modal-content">
+                        <div class="bg-light rounded h-100 p-4">
+                            <div class="d-flex">
+                                <a class="ps-5 pe-3" href="./fonts.php"><i class="fa fa-arrow-left"></i></a>
+                                <h6 class="mb-4">Actualizar deposito</h6>
+                            </div>
+
+                            <form class="px-3" id="formulario">
+
+                                <div class="mb-2" id="grupo__nombre">
+                                    <div class="formulario__grupo-input">
+                                        <label for="nombre">Nombre del deposito</label>
+                                        <input type="text" class="form-control formulario__input" name="nombre" id="nombre" placeholder="" value="">
+                                        <p class="formulario__input-error">El campo debe tener de 4 a 40 caracteres, solo se aceptan letras y numeros.</p>
+                                    </div>
+                                </div>
+
+                                <div class="mb-2" id="grupo__monto">
+                                    <div class="formulario__grupo-input">
+                                        <label for="monto">Monto</label>
+                                        <input type="text" class="form-control formulario__input" name="monto" id="monto" placeholder="">
+                                        <p class="formulario__input-error">Solo se aceptan numeros y decimales separados por coma o punto.</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center justify-content-center formulario__grupo formulario__grupo-btn-enviar">
+                                    
+                                        <input type="button" class="btn btn-primary mt-2 py-2 w-50" id="submit" value="Actualizar">
+                                    
+
+                                </div>
+                                <p class="formulario__mensaje-exito pt-2" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
 
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
 
     <script>
+        function eliminar(id) {
+            let data = {
+                action: "delete_font",
+                id: id
+            }
+            fetch('/accountly/server/controllers/controllerFont.php', {
+                    "method": 'POST',
+                    "headers": {
+                        "Content-Type": "application/json; charset=utf-8"
+                    },
+                    "body": JSON.stringify(data)
+                }).then(res => res.text())
+                .then(dat => console.log(dat))
+        }
+
         /* Llamando a la función getData() */
         getData()
 
@@ -194,6 +222,7 @@ require('./views/header.php');
             getData()
         }
     </script>
+    <script src="./assets/js/validate-edit-font.js"></script>
 
     <?php
     require('./views/footer.php');

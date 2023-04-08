@@ -9,12 +9,12 @@
 require '../../server/db/db.php';
 
 /* Un arreglo de las columnas a mostrar en la tabla */
-$columns = ['id_font', 'id_user', 'name_font', 'amount'];
+$columns = ['id_transaction', 'id_management', 'id_font', 'reference', 'amount', 'date', 'description'];
 
 /* Nombre de la tabla */
-$table = "font";
+$table = "transaction";
 
-$id = 'id_font';
+$id = 'id_transaction';
 
 $campo = isset($_POST['campo']) ? $conn->real_escape_string($_POST['campo']) : null;
 
@@ -87,33 +87,45 @@ $output['totalFiltro'] = $totalFiltro;
 $output['data'] = '';
 $output['paginacion'] = '';
 
+function name($con, $id) {
+    $sqlName = "SELECT name_font FROM font WHERE id_font= $id";
+    $result = $con->query($sqlName);
+    $query = $con->prepare($sqlName);
+    $query->execute();
+
+    $font = $result->fetch_assoc();
+    $res = $font["name_font"];
+    return $res;
+}
+
 if ($num_rows > 0) {
     while ($row = $resultado->fetch_assoc()) {
         $output['data'] .= '<tr>';
         // $output['data'] .= '<td>' . $row['id_font'] . '</td>';
-        // $output['data'] .= '<td>' . $row['id_user'] . '</td>';
-        $output['data'] .= '<td>' . $row['name_font'] . '</td>';
         $output['data'] .= '<td>' . $row['amount'] . '</td>';
+        $output['data'] .= '<td>' . $row['description'] . '</td>';
+        $output['data'] .= '<td>' . name($conn, $row['id_font']) . '</td>';
+        $output['data'] .= '<td>' . $row['reference'] . '</td>';
+        $output['data'] .= '<td>' . $row['date'] . '</td>';
         $output['data'] .= '<td>
-        <a class="btn btn-warning btn-sm me-2" id="' . $row['id_font'] . '" name="editar" onclick="openModal(' . $row['id_font'] . ')" data-bs-toggle="modal" data-bs-target="#editFontModal"><i class="fa fa-pen"></i></a>
-        <a class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteFontModal' . $row['id_font'] . '"><i class="fa fa-trash me"></i></a>
+        <a class="btn btn-warning btn-sm me-2" id="' . $row['id_font'] . '" name="editar" onclick="openModal(' . $row['id_transaction'] . ')" data-bs-toggle="modal" data-bs-target="#editFontModal"><i class="fa fa-pen"></i></a>
+        <a class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteTransactionModal' . $row['id_transaction'] . '"><i class="fa fa-trash me"></i></a>
         </td>';
-        
-        
         $output['data'] .= '</tr>';
-        $output['data'] .= '<div class="modal fade" id="deleteFontModal' . $row['id_font'] . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Seguro que desea eliminar el deposito ' . $row['name_font'] . '?</h1>
-                        </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <a href="./fonts.php"><button type="button" class="btn btn-primary" onclick="eliminar(' . $row['id_font'] . ')">Eliminar</button></a>
+        $output['data'] .= '
+        <div class="modal fade" id="deleteTransactionModal' . $row['id_transaction'] . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+             <div class="modal-dialog modal-dialog-centered">
+                 <div class="modal-content">
+                     <div class="modal-header">
+                         <h1 class="modal-title fs-5" id="exampleModalLabel">Seguro que desea eliminar la transaccion?</h1>
+                         </div>
+                     <div class="modal-footer">
+                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                         <a href="./transactions.php"><button type="button" class="btn btn-primary" onclick="eliminar(' . $row['id_transaction'] . ')">Eliminar</button></a>
                         
-                    </div>
-                </div>
-            </div>
+                     </div>
+                 </div>
+             </div>
         </div>';
     }
 } else {

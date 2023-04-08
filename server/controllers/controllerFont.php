@@ -11,21 +11,26 @@ if (isset($_POST)) {
             $nombre = $user['nombre'];
             $monto = $user['monto'];
             $sql = "INSERT INTO `font`(`id_user`, `name_font`, `amount`) VALUES ('1', '$nombre', $monto)";
-            echo Rest::create($conn, $sql);
+            echo Rest::execute($conn, $sql);
             // echo json_encode($user);
             // echo json_encode($sql);
             break;
         case "read_font":
-            echo json_encode($user);
-            echo json_encode($user["nombre"]);
+            $id = $user['id'];
+            $sql = "SELECT `id_font`, `name_font`, `amount` FROM `font` WHERE `id_font`=$id";
+            echo Rest::readFont($conn, $sql);
             break;
         case "update_font":
-            echo json_encode($user);
-            echo json_encode($user["nombre"]);
+            $id = $user["id"];
+            $nombre = $user['nombre'];
+            $monto = $user['monto'];
+            $sql = "UPDATE `font` SET `name_font`='$nombre',`amount`=$monto WHERE `id_font`=$id";
+            echo Rest::execute($conn, $sql);
             break;
         case "delete_font":
-            echo json_encode($user);
-            echo json_encode($user["nombre"]);
+            $id = $user['id'];
+            $sql = "DELETE FROM `font` WHERE `font`.`id_font` = $id";
+            echo Rest::execute($conn, $sql);
             break;
         default:
             echo json_encode('hola');
