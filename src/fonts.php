@@ -123,9 +123,7 @@ require('./views/header.php');
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
 
         <!-- Back to Top -->

@@ -27,6 +27,25 @@ class Rest
     return json_encode($array);
   }
 
+  public static function readDebt($conn, $sql)
+  {
+    $result = $conn->query($sql);
+    $query = $conn->prepare($sql);
+    $query->execute();
+
+    $debt = $result->fetch_assoc();
+    $id_debt = $debt["id_debt"];
+    $description = $debt["description"];
+    $amount = $debt["amount"];
+    $array = array(
+      'id_debt' => $id_debt,
+      'description' => $description,
+      'amount' => $amount
+    );
+
+    return json_encode($array);
+  }
+
   public static function readTransaction($conn, $sql)
   {
     $result = $conn->query($sql);
