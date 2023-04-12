@@ -19,7 +19,6 @@ require('./views/header.php');
         <?php require('./views/nav-bar.php'); ?>
         <!-- Navbar End -->
 
-
         <!-- Sale & Revenue Start -->
         <div class="container-fluid pt-4 px-4">
             <div class="row g-4">
@@ -28,7 +27,7 @@ require('./views/header.php');
                         <i class="fa fa-money-bill fa-3x text-primary"></i>
                         <!-- <i class="fa-sharp fa-solid fa-money-bill"></i> -->
                         <div class="ms-3 mx-auto">
-                            <p class="mb-2">Precio de divisa</p>
+                            <p class="mb-2">Precio de divisa <?php echo $_SESSION['nickname']; ?></p>
                             <h6 class="mb-0">$1234</h6>
                         </div>
                     </div>
@@ -66,7 +65,7 @@ require('./views/header.php');
         </div>
         <!-- Sale & Revenue End -->
 
-        
+
         <div class="container-fluid pt-4 px-4">
             <div class="row g-4">
                 <div class="col-sm-12 col-xl-8">

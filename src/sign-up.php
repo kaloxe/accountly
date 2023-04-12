@@ -62,7 +62,7 @@ require('./views/header.php');
     </div>
     <!-- Sign Up End -->
 </div>
-<script src="./js/validate-sign-up.js"></script>
+<script src="./assets/js/validate-sign-up.js"></script>
 <?php
 require('./views/footer.php');
 ?>

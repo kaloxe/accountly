@@ -12,7 +12,7 @@ const campos = {
   usuario: false,
   correo: false,
   password: false,
-  password2: false
+  password2: false,
 };
 
 const validarFormulario = (e) => {
@@ -35,13 +35,13 @@ const validarFormulario = (e) => {
 
 const validarCampo = (expresion, input, campo) => {
   if (expresion.test(input.value)) {
-	document.getElementById(`${campo}`).classList.remove("form-control-error");
+    document.getElementById(`${campo}`).classList.remove("form-control-error");
     document
       .querySelector(`#grupo__${campo} .formulario__input-error`)
       .classList.remove("formulario__input-error-activo");
     campos[campo] = true;
   } else {
-	document.getElementById(`${campo}`).classList.add("form-control-error");
+    document.getElementById(`${campo}`).classList.add("form-control-error");
     document
       .querySelector(`#grupo__${campo} .formulario__input-error`)
       .classList.add("formulario__input-error-activo");
@@ -54,13 +54,13 @@ const validarPassword2 = () => {
   const inputPassword2 = document.getElementById("password2");
 
   if (inputPassword1.value !== inputPassword2.value) {
-	document.getElementById(`password2`).classList.add("form-control-error");
+    document.getElementById(`password2`).classList.add("form-control-error");
     document
       .querySelector(`#grupo__password2 .formulario__input-error`)
       .classList.add("formulario__input-error-activo");
     campos["password"] = false;
   } else {
-	document.getElementById(`password2`).classList.remove("form-control-error");
+    document.getElementById(`password2`).classList.remove("form-control-error");
     document
       .querySelector(`#grupo__password2 .formulario__input-error`)
       .classList.remove("formulario__input-error-activo");
@@ -76,6 +76,26 @@ inputs.forEach((input) => {
 submit.addEventListener("click", (e) => {
   e.preventDefault();
   if (campos.usuario && campos.password && campos.correo) {
+
+    const usuario = document.getElementById("usuario").value;
+    const correo = document.getElementById("correo").value;
+    const password = document.getElementById("password").value;
+    let data = {
+      action: "create_user",
+      usuario: usuario,
+      correo: correo,
+      password: password
+    };
+    fetch("/accountly/server/controllers/controllerSession.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.text())
+      .then((dat) => console.log(dat));
+
     campos.usuario = false;
     campos.correo = false;
     campos.password = false;

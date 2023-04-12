@@ -4,18 +4,18 @@ const inputs = document.querySelectorAll("#formulario input");
 
 const expresiones = {
   password: /^.{1,12}$/, // 4 a 12 digitos.
-  correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+  usuario:  /^[a-zA-Z0-9\_\-]{4,16}$/,
 };
 
 const campos = {
-  correo: false,
+  usuario: false,
   password: false
 };
 
 const validarFormulario = (e) => {
   switch (e.target.name) {
-    case "correo":
-      validarCampo(expresiones.correo, e.target, "correo");
+    case "usuario":
+      validarCampo(expresiones.usuario, e.target, "usuario");
       break;
     case "password":
       validarCampo(expresiones.password, e.target, "password");
@@ -46,8 +46,26 @@ inputs.forEach((input) => {
 
 submit.addEventListener("click", (e) => {
   e.preventDefault();
-  if (campos.password && campos.correo) {
-    campos.correo = false;
+  if (campos.password && campos.usuario) {
+
+    const usuario = document.getElementById("usuario").value;
+    const password = document.getElementById("password").value;
+    let data = {
+      action: "valid_user",
+      usuario: usuario,
+      password: password
+    };
+    fetch("/accountly/server/controllers/controllerSession.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((dat) => console.log(dat));
+    
+    campos.usuario = false;
     campos.password = false;
     formulario.reset();
 

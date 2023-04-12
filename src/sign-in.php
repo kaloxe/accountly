@@ -1,5 +1,10 @@
 <?php
 require('./views/header.php');
+require('/xampp/htdocs/accountly/server/controllers/controllerSession.php');
+
+// if (isset($_SESSION['object'])) {
+//     @header('Location: dashboard.php');
+// }
 ?>
 
 <div class="container-xxl position-relative bg-white d-flex p-0">
@@ -24,9 +29,9 @@ require('./views/header.php');
                     </div>
 
                     <form id="formulario">
-                        <div class="form-floating mb-2" id="grupo__correo">
-                            <input type="email" class="form-control formulario__grupo-input formulario__input" name="correo" id="correo" placeholder="">
-                            <label for="correo">Correo</label>
+                        <div class="form-floating mb-2" id="grupo__usuario">
+                            <input type="text" class="form-control formulario__grupo-input formulario__input" name="usuario" id="usuario" placeholder="">
+                            <label for="usuario">Correo</label>
                             <p class="formulario__input-error">El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.</p>
                         </div>
 
@@ -37,10 +42,10 @@ require('./views/header.php');
                         </div>
 
                         <div class="formulario__grupo formulario__grupo-btn-enviar mt-4">
-                            <input type="button" class="btn btn-primary py-3 w-100 mb-2" id="submit" value="Ingresar">
+                            <input type="button" class="btn btn-primary py-3 w-100 mb-2" id="submit" value="Iniciar">
                             <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
                         </div>
-                        
+
                     </form>
 
                     <p class="text-center mb-0">No tienes una cuenta? <a href="./sign-up.php">Registrarse</a></p>
@@ -51,7 +56,7 @@ require('./views/header.php');
     <!-- Sign In End -->
 </div>
 
-<script src="./js/validate-sign-in.js"></script>
+<script src="./assets/js/validate-sign-in.js"></script>
 
 <?php
 require('./views/footer.php');

@@ -1,3 +1,7 @@
+<?php
+// require("/xampp/htdocs/accountly/server/session/session.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
