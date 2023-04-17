@@ -10,7 +10,7 @@ const expresiones = {
 const campos = {
   oldPassword: false,
   password: false,
-  password2: false
+  password2: false,
 };
 
 const validarFormulario = (e) => {
@@ -71,19 +71,47 @@ inputs.forEach((input) => {
 
 submitPassword.addEventListener("click", (e) => {
   if (campos.oldPassword && campos.password && campos.password2) {
+    const password = document.getElementById("oldPassword").value;
+    const newPassword = document.getElementById("password").value;
+    let data = {
+      action: "change_password",
+      password: password,
+      newPassword: newPassword,
+    };
+    fetch("/accountly/server/controllers/controllerSession.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((dat) => {
+        if (dat.state) {
+          document
+            .getElementById("formulario__mensaje-exito")
+            .classList.add("formulario__mensaje-exito-activo");
+          setTimeout(() => {
+            document
+              .getElementById("formulario__mensaje-exito")
+              .classList.remove("formulario__mensaje-exito-activo");
+          }, 5000);
+        } else {
+          document
+            .getElementById("formulario__mensaje2")
+            .classList.add("formulario__mensaje-activo");
+          setTimeout(() => {
+            document
+              .getElementById("formulario__mensaje2")
+              .classList.remove("formulario__mensaje-activo");
+          }, 5000);
+        }
+      });
+
     campos.oldPassword = false;
     campos.password = false;
     campos.password2 = false;
     formulario.reset();
-
-    document
-      .getElementById("formulario__mensaje-exito")
-      .classList.add("formulario__mensaje-exito-activo");
-    setTimeout(() => {
-      document
-        .getElementById("formulario__mensaje-exito")
-        .classList.remove("formulario__mensaje-exito-activo");
-    }, 5000);
   } else {
     Object.keys(campos).forEach((campo) => {
       if (!campos[campo]) {

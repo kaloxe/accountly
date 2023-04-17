@@ -1,3 +1,6 @@
+<?php
+require("/xampp/htdocs/accountly/server/session/session.php");
+?>
 <!-- Sidebar Start -->
 <div class="sidebar pe-4 pb-3">
     <nav class="navbar bg-light navbar-light">
@@ -11,8 +14,8 @@
                 <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
             </div>
             <div class="ms-3">
-                <h6 class="mb-0">Administrador</h6>
-                <span>Admin</span>
+                <h6 class="mb-0"><?php echo $_SESSION['nickname']; ?></h6>
+                <span>Usuario</span>
             </div>
         </div>
 

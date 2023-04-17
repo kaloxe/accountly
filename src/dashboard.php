@@ -19,6 +19,19 @@ require('./views/header.php');
         <?php require('./views/nav-bar.php'); ?>
         <!-- Navbar End -->
 
+        <?php
+        include('/xampp/htdocs/accountly/server/simplehtmldom/simple_html_dom.php');
+        // Carga la página web que deseas analizar
+        $html = file_get_html('https://www.bancaynegocios.com');
+        //echo file_get_html('https://www.bcv.org.ve');
+
+        // Encuentra el título de la página web
+        $valorDolar = $html->find('.iedv tbody tr td', 2)->plaintext;
+
+        // Imprime el título en la pantalla
+        
+        ?>
+
         <!-- Sale & Revenue Start -->
         <div class="container-fluid pt-4 px-4">
             <div class="row g-4">
@@ -27,8 +40,8 @@ require('./views/header.php');
                         <i class="fa fa-money-bill fa-3x text-primary"></i>
                         <!-- <i class="fa-sharp fa-solid fa-money-bill"></i> -->
                         <div class="ms-3 mx-auto">
-                            <p class="mb-2">Precio de divisa <?php echo $_SESSION['nickname']; ?></p>
-                            <h6 class="mb-0">$1234</h6>
+                            <p class="mb-2">Precio del dolar</p>
+                            <h6 class="mb-0">$<?php echo $valorDolar; ?></h6>
                         </div>
                     </div>
                 </div>

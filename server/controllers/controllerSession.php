@@ -32,12 +32,26 @@ if (isset($_POST)) {
                     $_SESSION['nickname'] = $result["nickname"];
                     $_SESSION['email'] = $result["email"];
                     echo json_encode($result);
-                    // @header('Location: /accountly/src/dashboard.php');
                 } else {
                     echo json_encode($result);
                 }
-                // echo json_encode($result["nickname"]);
-
+                break;
+            case "change_password":
+                session_start();
+                $id = $_SESSION['id_user'];
+                $usuario = $_SESSION['nickname'];
+                $password = $user['password'];
+                $newPassword = $user['newPassword'];
+                $sql = "SELECT * FROM `user` WHERE `nickname`='$usuario' AND `password`='$password'";
+                $result = User::validUser($conn, $sql);
+                if ($result["state"]) {
+                    $sql = "UPDATE `user` SET `password`='$newPassword' WHERE `id_user`='$id'";
+                    // echo $id;
+                    echo Rest::execute($conn, $sql);
+                    echo json_encode($result);
+                } else {
+                    echo json_encode($result);
+                }
 
                 break;
             case "update_debt":

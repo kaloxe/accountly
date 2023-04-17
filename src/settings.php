@@ -1,5 +1,6 @@
 <?php
 require('./views/header.php');
+require('/xampp/htdocs/accountly/server/controllers/controllerSession.php');
 ?>
 
 <div class="container-xxl position-relative bg-white d-flex p-0">
@@ -57,6 +58,9 @@ require('./views/header.php');
                 <div class="col-sm-12 col-xl-7">
                     <div class="formulario__mensaje p-1 text-center mb-2 pb-5" id="formulario__mensaje">
                         <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Rellene el formulario correctamente. </p>
+                    </div>
+                    <div class="formulario__mensaje p-1 text-center mb-2 pb-5" id="formulario__mensaje2">
+                        <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Ingrese correctamente la contraseña </p>
                     </div>
 
                     <div class="bg-light rounded h-100 p-4">
