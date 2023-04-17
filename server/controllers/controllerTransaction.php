@@ -14,10 +14,14 @@ if (isset($_POST)) {
             $fuente = $user['fuente'];
             $referencia = $user['referencia'];
             $fecha =  $user['fecha'];
+            if($cuenta == 1) {
+                $sql1 = "UPDATE `font` SET `amount`=`amount`+$monto WHERE `id_font`=$fuente";
+            } else if($cuenta == 2) {
+                $sql1 = "UPDATE `font` SET `amount`=`amount`-$monto WHERE `id_font`=$fuente";
+            }
+            echo Rest::execute($conn, $sql1);
             $sql = "INSERT INTO `transaction`(`id_management`, `id_font`, `reference`, `amount`, `date`, `description`) VALUES ($cuenta, $fuente, $referencia, $monto, '$fecha', '$description')";
             echo Rest::execute($conn, $sql);
-            // echo json_encode($user);
-            // echo json_encode($sql);
             break;
         case "read_transaction":
             $id = $user['id'];

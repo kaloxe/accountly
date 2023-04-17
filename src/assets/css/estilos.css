@@ -1,3 +1,11 @@
+.count1 {
+  color: #1ed12d;
+}
+
+.count2 {
+  color: #d85555;
+}
+
 .form-control:focus {
   color: #757575;
   background-color: #fff;

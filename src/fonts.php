@@ -33,9 +33,9 @@ require('./views/header.php');
                         <div class="me-2">
                             <!-- <label for=" num_registros" class="form-label">Mostrar: </label> -->
                             <select class="form-select pe-4" name="num_registros" id="num_registros">
+                                <option value="5">5</option>
                                 <option value="10">10</option>
-                                <option value="25">25</option>
-                                <option value="50">50</option>
+                                <option value="20">20</option>
                                 <option value="100">100</option>
                             </select>
                         </div>

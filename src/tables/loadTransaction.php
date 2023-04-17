@@ -102,7 +102,7 @@ if ($num_rows > 0) {
     while ($row = $resultado->fetch_assoc()) {
         $output['data'] .= '<tr>';
         // $output['data'] .= '<td>' . $row['id_font'] . '</td>';
-        $output['data'] .= '<td>' . $row['amount'] . '</td>';
+        $output['data'] .= '<td class="count' . $row['id_management'] . '">' . $row['amount'] . '</td>';
         $output['data'] .= '<td>' . $row['description'] . '</td>';
         $output['data'] .= '<td>' . name($conn, $row['id_font']) . '</td>';
         $output['data'] .= '<td>' . $row['reference'] . '</td>';

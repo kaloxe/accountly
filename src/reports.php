@@ -4,14 +4,20 @@ require_once("/xampp/htdocs/accountly/server/db/db.php");
 
 $fecha1 = "";
 $fecha2 = "";
+$cuenta = (isset($_POST['cuenta']) ? $_POST['cuenta'] : null);
 $fecha_inicial = (isset($_POST['fecha']) ? $_POST['fecha'] : null);
 $fecha_final = (isset($_POST['fecha2']) ? $_POST['fecha2'] : null);
 if ($fecha_final != null && $fecha_inicial != null) {
     if ($fecha_inicial < $fecha_final) {
         $fecha1 = date_create($fecha_inicial);
         $fecha2 = date_create($fecha_final);
-        $sql = "SELECT * FROM transaction WHERE date BETWEEN '$fecha_inicial' and '$fecha_final'";
-        $sql1 = "SELECT count(id_transaction) FROM transaction WHERE date BETWEEN '$fecha_inicial' and '$fecha_final' ";
+        if ($cuenta == null || $cuenta == "0") {
+            $sql = "SELECT * FROM transaction WHERE date BETWEEN '$fecha_inicial' and '$fecha_final'";
+            $sql1 = "SELECT count(id_transaction) FROM transaction WHERE date BETWEEN '$fecha_inicial' and '$fecha_final' ";
+        } else {
+            $sql = "SELECT * FROM transaction WHERE id_management='$cuenta' and (date BETWEEN '$fecha_inicial' and '$fecha_final')";
+            $sql1 = "SELECT count(id_transaction) FROM transaction WHERE id_management='$cuenta' and (date BETWEEN '$fecha_inicial' and '$fecha_final')";
+        }
     }
 } else {
     $sql = "SELECT * FROM transaction";
@@ -80,9 +86,9 @@ function name($con, $id)
                                     <label for="cuenta">Cuenta</label>
                                     <select class="form-select formulario__input" name="cuenta" id="cuenta" aria-label="Default select example">
                                         <option value="" selected>Seleccione para totalizar</option>
-                                        <option value="Saldo">Saldo</option>
-                                        <option value="Ingreso">Ingreso</option>
-                                        <option value="Egreso">Egreso</option>
+                                        <option value="0">Saldo</option>
+                                        <option value="1">Ingreso</option>
+                                        <option value="2">Egreso</option>
                                     </select>
                                     <p class="formulario__input-error">Seleccione una opcion de las cuentas filtrar.</p>
                                 </div>

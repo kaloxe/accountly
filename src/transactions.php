@@ -36,9 +36,9 @@ $datos = Rest::readFonts($connection);
                         <div class="me-2">
                             <!-- <label for=" num_registros" class="form-label">Mostrar: </label> -->
                             <select class="form-select pe-4" name="num_registros" id="num_registros">
+                                <option value="5">5</option>
                                 <option value="10">10</option>
-                                <option value="25">25</option>
-                                <option value="50">50</option>
+                                <option value="20">20</option>
                                 <option value="100">100</option>
                             </select>
                         </div>
@@ -107,7 +107,7 @@ $datos = Rest::readFonts($connection);
                         <div class="mb-2" id="grupo__cuenta">
                                 <div class="formulario__grupo-input">
                                     <select class="form-select formulario__input" name="cuenta" id="cuenta" aria-label="Default select example">
-                                        <option selected>Seleccione cuenta</option>
+                                        <option value="" selected>Seleccione cuenta</option>
                                         <option value="1">Ingreso</option>
                                         <option value="2">Egreso</option>
                                     </select>
@@ -135,7 +135,7 @@ $datos = Rest::readFonts($connection);
                                 <div class="formulario__grupo-input">
                                     <label for="fuente">Fuente</label>
                                     <select class="form-select formulario__input" name="fuente" id="fuente" aria-label="Default select example">
-                                        <option selected>Seleccione deposito</option>
+                                        <option value="" selected>Seleccione deposito</option>
                                         <?php foreach($datos as $font) {   ?>
                                             <option value="<?php echo $font['id_font'] ?>"><?php echo $font['name_font'] ?></option>
                                         <?php } ?>
@@ -203,7 +203,6 @@ $datos = Rest::readFonts($connection);
     document.getElementById("num_registros").addEventListener("change", function() {
         getData()
     }, false)
-
 
     /* Peticion AJAX */
     function getData() {

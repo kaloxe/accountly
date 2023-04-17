@@ -10,8 +10,7 @@ var yyyy = today.getFullYear();
 today = yyyy + "-" + mm + "-" + dd;
 
 const expresiones = {
-  cuenta: /^[0-9a-zA-ZÀ-ÿ\s]{3,40}$/, // Letras, numeros, guion y guion_bajo
-  cuenta2: /^[0-9a-zA-ZÀ-ÿ\s]{3,40}$/, // Letras, numeros, guion y guion_bajo
+  cuenta: /^[0-9a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras, numeros, guion y guion_bajo
   fecha: /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/,
   fecha2: /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/,
 };
@@ -24,9 +23,6 @@ const campos = {
 
 const validarFormulario = (e) => {
   switch (e.target.name) {
-    case "cuenta2":
-      validarCampo(expresiones.cuenta2, e.target, "cuenta2");
-      break;
     case "cuenta":
       validarCampo(expresiones.cuenta, e.target, "cuenta");
       break;
