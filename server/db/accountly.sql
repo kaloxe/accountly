@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 12-04-2023 a las 22:00:30
+-- Tiempo de generación: 18-04-2023 a las 01:01:55
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -39,7 +39,9 @@ CREATE TABLE `debt` (
 --
 
 INSERT INTO `debt` (`id_debt`, `id_user`, `description`, `amount`) VALUES
-(5, 1, 'ahora si funciona como es', 12456);
+(5, 1, 'Cambures por pagar', 60),
+(6, 1, 'Prestamo del banco', 80),
+(7, 1, 'Telefono nuevo', 500);
 
 -- --------------------------------------------------------
 
@@ -59,12 +61,16 @@ CREATE TABLE `font` (
 --
 
 INSERT INTO `font` (`id_font`, `id_user`, `name_font`, `amount`) VALUES
-(74, 1, 'Bancog', 212.487),
-(77, 1, 'hola', 788546),
-(83, 1, '1234', 3245),
-(84, 1, '1234', 2135),
-(85, 1, 'fsdgsdfgsfgdsgfds', 312345),
-(86, 1, 'fsgfds', 1234);
+(77, 1, 'Amazon', 760),
+(87, 1, 'Mercantil', 500),
+(88, 1, 'BCV', 300),
+(89, 1, 'Tesoro', 360),
+(90, 1, 'Paypal', 200),
+(91, 1, 'AirTM', 600),
+(92, 1, 'Bancaribe', 225),
+(93, 1, 'PandG', 405),
+(94, 1, 'Cofee', 65),
+(95, 1, 'Remotask', 565);
 
 -- --------------------------------------------------------
 
@@ -106,7 +112,17 @@ CREATE TABLE `transaction` (
 --
 
 INSERT INTO `transaction` (`id_transaction`, `id_management`, `id_font`, `reference`, `amount`, `date`, `description`) VALUES
-(3, 2, 77, '78953', 123578, '2023-04-06', 'Hola que sae');
+(3, 2, 77, '78953', 123578, '2023-04-06', 'Hola que sae'),
+(5, 2, 87, '87795', 12.45, '2023-04-16', 'Pago de galleta'),
+(6, 1, 88, '55555', 50, '2023-04-15', 'Bono de Maduro'),
+(7, 1, 89, '123345', 120.12, '2023-04-17', 'Sueldo de la cooperativa'),
+(8, 2, 90, '8888', 45, '2023-04-11', 'Pago del Royale'),
+(9, 1, 94, '65656', 41, '2023-03-29', 'Venta de pelos'),
+(10, 2, 89, '898978', 12.45, '2023-04-05', 'Compra de abanos'),
+(11, 2, 87, '898947', 12.4, '2023-04-09', 'Compra de verduras'),
+(12, 1, 91, '236547', 46.5, '2023-04-05', 'Venta de oro'),
+(14, 1, 77, '4444', 10, '2023-04-17', 'Bono'),
+(15, 2, 77, '88895', 50, '2023-04-17', 'Multa');
 
 -- --------------------------------------------------------
 
@@ -127,7 +143,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id_user`, `nickname`, `email`, `password`) VALUES
 (1, 'admin', '', '123456'),
-(2, 'kaloxe24', 'carlossa@gmail.com', '12345');
+(2, 'kaloxe24', 'carlossa@gmail.com', '1234'),
+(3, 'obama', 'nigga@gmail.com', '123456');
 
 --
 -- Índices para tablas volcadas
@@ -175,25 +192,25 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `debt`
 --
 ALTER TABLE `debt`
-  MODIFY `id_debt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_debt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `font`
 --
 ALTER TABLE `font`
-  MODIFY `id_font` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id_font` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
 -- AUTO_INCREMENT de la tabla `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id_transaction` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_transaction` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
