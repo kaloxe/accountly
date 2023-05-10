@@ -1,5 +1,6 @@
 <?php
 
+require_once("class_database.php");
 class User
 {
     public static function validUser($conn, $sql)

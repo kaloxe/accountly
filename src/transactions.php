@@ -3,7 +3,6 @@ require('./../server/db/db.php');
 require('./../server/models/class_rest.php');
 require('./views/header.php');
 
-$datos = Rest::readFonts($connection);
 ?>
 
 <div class="container-xxl position-relative bg-white d-flex p-0">
@@ -12,7 +11,9 @@ $datos = Rest::readFonts($connection);
     <!-- Spinner End -->
 
     <!-- Sidebar Start -->
-    <?php require('./views/menu.php'); ?>
+    <?php require('./views/menu.php');
+    $datos = Rest::readFonts($id_user);
+    ?>
     <!-- Sidebar End -->
 
 
@@ -98,7 +99,7 @@ $datos = Rest::readFonts($connection);
                 <div class="modal-content">
                     <div class="bg-light rounded h-100 p-4">
                         <div class="d-flex">
-                            <a class="ps-5 pe-3" href="./fonts.php"><i class="fa fa-arrow-left"></i></a>
+                            <a class="ps-5 pe-3" href="./transactions.php"><i class="fa fa-arrow-left"></i></a>
                             <h6 class="mb-4">Actualizar Transaccion</h6>
                         </div>
 

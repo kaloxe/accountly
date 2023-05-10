@@ -1,18 +1,20 @@
 <?php
-
-class Rest
+require_once("class_database.php");
+class Rest extends database
 {
-  public static function execute($conn, $sql)
+  
+  public static function execute($sql)
   {
-    $query = $conn->prepare($sql);
+    $conn = new database();
+    $query = $conn->open()->prepare($sql);
+    // $query = $conn->prepare($sql);
     $query->execute();
   }
 
-  public static function readFont($conn, $sql)
+  public static function readFont($sql)
   {
-    $result = $conn->query($sql);
-    // $query = $conn->prepare($sql);
-    // $query->execute();
+    $conn = new database();
+    $result = $conn->openSQL()->query($sql);
 
     $font = $result->fetch_assoc();
     $id_font = $font["id_font"];
@@ -27,11 +29,10 @@ class Rest
     return json_encode($array);
   }
 
-  public static function readDebt($conn, $sql)
+  public static function readDebt($sql)
   {
-    $result = $conn->query($sql);
-    $query = $conn->prepare($sql);
-    $query->execute();
+    $conn = new database();
+    $result = $conn->openSQL()->query($sql);
 
     $debt = $result->fetch_assoc();
     $id_debt = $debt["id_debt"];
@@ -46,11 +47,10 @@ class Rest
     return json_encode($array);
   }
 
-  public static function readTransaction($conn, $sql)
+  public static function readTransaction($sql)
   {
-    $result = $conn->query($sql);
-    $query = $conn->prepare($sql);
-    $query->execute();
+    $conn = new database();
+    $result = $conn->openSQL()->query($sql);
 
     $tran = $result->fetch_assoc();
     $id_transaction = $tran["id_transaction"];
@@ -74,10 +74,11 @@ class Rest
     return json_encode($array);
   }
 
-  public static function readFonts($conn)
+  public static function readFonts($user_id)
   {
-    $sql = "SELECT * FROM font WHERE id_user = 1";
-    $query = $conn->prepare($sql);
+    $sql = "SELECT * FROM font WHERE id_user = $user_id";
+    $conn = new database();
+    $query = $conn->open()->prepare($sql);
     $query->execute();
     return $query;
   }

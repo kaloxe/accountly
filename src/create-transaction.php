@@ -3,7 +3,6 @@ require('./../server/db/db.php');
 require('./../server/models/class_rest.php');
 require('./views/header.php');
 
-$datos = Rest::readFonts($connection);
 ?>
 
 <div class="container-xxl position-relative bg-white d-flex p-0">
@@ -12,7 +11,9 @@ $datos = Rest::readFonts($connection);
     <!-- Spinner End -->
 
     <!-- Sidebar Start -->
-    <?php require('./views/menu.php'); ?>
+    <?php require('./views/menu.php');
+    $datos = Rest::readFonts($id_user);
+    ?>
     <!-- Sidebar End -->
 
 

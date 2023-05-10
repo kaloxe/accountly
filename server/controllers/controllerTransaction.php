@@ -14,19 +14,19 @@ if (isset($_POST)) {
             $fuente = $user['fuente'];
             $referencia = $user['referencia'];
             $fecha =  $user['fecha'];
-            if($cuenta == 1) {
+            if ($cuenta == 1) {
                 $sql1 = "UPDATE `font` SET `amount`=`amount`+$monto WHERE `id_font`=$fuente";
-            } else if($cuenta == 2) {
+            } else if ($cuenta == 2) {
                 $sql1 = "UPDATE `font` SET `amount`=`amount`-$monto WHERE `id_font`=$fuente";
             }
-            echo Rest::execute($conn, $sql1);
+            echo Rest::execute($sql1);
             $sql = "INSERT INTO `transaction`(`id_management`, `id_font`, `reference`, `amount`, `date`, `description`) VALUES ($cuenta, $fuente, $referencia, $monto, '$fecha', '$description')";
-            echo Rest::execute($conn, $sql);
+            echo Rest::execute($sql);
             break;
         case "read_transaction":
             $id = $user['id'];
             $sql = "SELECT `id_transaction`, `id_management`, `id_font`, `reference`, `amount`, `date`, `description` FROM `transaction` WHERE `id_transaction`=$id";
-            echo Rest::readTransaction($conn, $sql);
+            echo Rest::readTransaction($sql);
             break;
         case "update_transaction":
             $id = $user["id"];
@@ -37,12 +37,12 @@ if (isset($_POST)) {
             $referencia = $user['referencia'];
             $fecha = $user['fecha'];
             $sql = "UPDATE `transaction` SET `id_management`='$cuenta', `id_font`=$fuente, `reference`='$referencia', `amount`='$monto', `date`='$fecha', `description`='$descripcion' WHERE `id_transaction`=$id";
-            echo Rest::execute($conn, $sql);
+            echo Rest::execute($sql);
             break;
         case "delete_transaction":
             $id = $user['id'];
             $sql = "DELETE FROM `transaction` WHERE `transaction`.`id_transaction` = $id";
-            echo Rest::execute($conn, $sql);
+            echo Rest::execute($sql);
             break;
         default:
             echo json_encode('hola');

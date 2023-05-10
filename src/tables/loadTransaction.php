@@ -76,6 +76,7 @@ $totalFiltro = $row_filtro[0];
 
 /* Consulta para total de registro filtrados */
 $sqlTotal = "SELECT count($id) FROM $table ";
+//$sqlTotal = "SELECT count($id) FROM $table INNER JOIN font on $table.id_font=font.id_font WHERE id_user=$id_user";
 $resTotal = $conn->query($sqlTotal);
 $row_total = $resTotal->fetch_array();
 $totalRegistros = $row_total[0];
