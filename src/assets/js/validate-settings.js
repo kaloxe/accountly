@@ -70,6 +70,7 @@ inputs.forEach((input) => {
 });
 
 submitPassword.addEventListener("click", (e) => {
+  e.preventDefault();
   if (campos.oldPassword && campos.password && campos.password2) {
     const password = document.getElementById("oldPassword").value;
     const newPassword = document.getElementById("password").value;

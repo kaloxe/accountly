@@ -2,13 +2,13 @@
 require_once("class_database.php");
 class Rest extends database
 {
-  
   public static function execute($sql)
   {
     $conn = new database();
     $query = $conn->open()->prepare($sql);
-    // $query = $conn->prepare($sql);
     $query->execute();
+    $array = array('state' => true);
+    return json_encode($array);
   }
 
   public static function readFont($sql)
@@ -25,7 +25,6 @@ class Rest extends database
       'name_font' => $name_font,
       'amount' => $amount
     );
-
     return json_encode($array);
   }
 
@@ -43,7 +42,6 @@ class Rest extends database
       'description' => $description,
       'amount' => $amount
     );
-
     return json_encode($array);
   }
 

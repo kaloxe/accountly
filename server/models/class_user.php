@@ -1,14 +1,15 @@
 <?php
 
 require_once("class_database.php");
-class User
+class User extends database
 {
-    public static function validUser($conn, $sql)
+    public static function validUser($sql)
     {
-        $result = $conn->query($sql);
+        $conn = new database();
+        $result = $conn->openSQL()->query($sql);
 
         $user = $result->fetch_assoc();
-        if($user == null) {
+        if ($user == null) {
             $array = array('state' => false);
             return $array;
         } else {
@@ -25,6 +26,5 @@ class User
             );
             return $array;
         }
-        
     }
 }

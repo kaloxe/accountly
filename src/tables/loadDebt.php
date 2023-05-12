@@ -5,7 +5,7 @@
 * Team: Códigos de Programación
 */
 
-
+require("/xampp/htdocs/accountly/server/session/session.php");
 require '../../server/db/db.php';
 
 /* Un arreglo de las columnas a mostrar en la tabla */
@@ -20,10 +20,10 @@ $campo = isset($_POST['campo']) ? $conn->real_escape_string($_POST['campo']) : n
 
 
 /* Filtrado */
-$where = '';
+$where = 'WHERE id_user='. $id_user .'';
 
 if ($campo != null) {
-    $where = "WHERE (";
+    $where = "WHERE id_user=" . $id_user . " AND (";
 
     $cont = count($columns);
     for ($i = 0; $i < $cont; $i++) {
@@ -75,7 +75,7 @@ $row_filtro = $resFiltro->fetch_array();
 $totalFiltro = $row_filtro[0];
 
 /* Consulta para total de registro filtrados */
-$sqlTotal = "SELECT count($id) FROM $table ";
+$sqlTotal = "SELECT count($id) FROM $table WHERE id_user=". $id_user ."";
 $resTotal = $conn->query($sqlTotal);
 $row_total = $resTotal->fetch_array();
 $totalRegistros = $row_total[0];

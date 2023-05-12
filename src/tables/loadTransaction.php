@@ -5,11 +5,11 @@
 * Team: Códigos de Programación
 */
 
-
+require("/xampp/htdocs/accountly/server/session/session.php");
 require '../../server/db/db.php';
 
 /* Un arreglo de las columnas a mostrar en la tabla */
-$columns = ['id_transaction', 'id_management', 'id_font', 'reference', 'amount', 'date', 'description'];
+$columns = ['id_transaction', 'id_management', 'id_font', 'id_user', 'reference', 'amount', 'date', 'description'];
 
 /* Nombre de la tabla */
 $table = "transaction";
@@ -20,10 +20,11 @@ $campo = isset($_POST['campo']) ? $conn->real_escape_string($_POST['campo']) : n
 
 
 /* Filtrado */
-$where = '';
+//$where = '';
+$where = 'WHERE id_user='. $id_user .'';
 
 if ($campo != null) {
-    $where = "WHERE (";
+    $where = "WHERE id_user=" . $id_user . " AND (";
 
     $cont = count($columns);
     for ($i = 0; $i < $cont; $i++) {
@@ -58,10 +59,9 @@ if (isset($_POST['orderCol'])) {
     $sOrder = "ORDER BY " . $columns[intval($orderCol)] . ' ' . $oderType;
 }
 
-
 /* Consulta */
-$sql = "SELECT SQL_CALC_FOUND_ROWS " . implode(", ", $columns) . "
-FROM $table
+$sql = "SELECT SQL_CALC_FOUND_ROWS * 
+FROM $table INNER JOIN font on transaction.id_font=font.id_font
 $where
 $sOrder
 $sLimit";
@@ -75,7 +75,7 @@ $row_filtro = $resFiltro->fetch_array();
 $totalFiltro = $row_filtro[0];
 
 /* Consulta para total de registro filtrados */
-$sqlTotal = "SELECT count($id) FROM $table ";
+$sqlTotal = "SELECT count($id) FROM $table INNER JOIN font on transaction.id_font=font.id_font WHERE id_user=$id_user";
 //$sqlTotal = "SELECT count($id) FROM $table INNER JOIN font on $table.id_font=font.id_font WHERE id_user=$id_user";
 $resTotal = $conn->query($sqlTotal);
 $row_total = $resTotal->fetch_array();
