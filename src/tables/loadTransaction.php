@@ -9,7 +9,7 @@ require("/xampp/htdocs/accountly/server/session/session.php");
 require '../../server/db/db.php';
 
 /* Un arreglo de las columnas a mostrar en la tabla */
-$columns = ['id_transaction', 'id_management', 'id_font', 'id_user', 'reference', 'amount', 'date', 'description'];
+$columns = ['id_transaction', 'id_management', 'transaction.id_font', 'id_user', 'reference', 'transaction.amount', 'date', 'description'];
 
 /* Nombre de la tabla */
 $table = "transaction";
@@ -60,7 +60,7 @@ if (isset($_POST['orderCol'])) {
 }
 
 /* Consulta */
-$sql = "SELECT SQL_CALC_FOUND_ROWS * 
+$sql = "SELECT SQL_CALC_FOUND_ROWS " . implode(", ", $columns) . " 
 FROM $table INNER JOIN font on transaction.id_font=font.id_font
 $where
 $sOrder

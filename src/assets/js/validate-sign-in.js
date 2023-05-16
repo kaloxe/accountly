@@ -52,7 +52,7 @@ submit.addEventListener("click", (e) => {
     let data = {
       action: "valid_user",
       usuario: usuario,
-      password: password,
+      password: password
     };
     fetch("/accountly/server/controllers/controllerSession.php", {
       method: "POST",
@@ -63,20 +63,21 @@ submit.addEventListener("click", (e) => {
     })
       .then((res) => res.json())
       .then((dat) => {
-        if (dat.state) {
-          window.location.href = "/accountly/src/dashboard.php";
-        } else {
-          document
-            .getElementById("formulario__mensaje-exito")
-            .classList.add("formulario__mensaje-exito-activo");
-          setTimeout(() => {
+          console.log(dat);
+          if (dat.state) {
+            window.location.href = "/accountly/src/dashboard.php";
+          } else {
             document
               .getElementById("formulario__mensaje-exito")
-              .classList.remove("formulario__mensaje-exito-activo");
-          }, 5000);
-        }
+              .classList.add("formulario__mensaje-exito-activo");
+            setTimeout(() => {
+              document
+                .getElementById("formulario__mensaje-exito")
+                .classList.remove("formulario__mensaje-exito-activo");
+            }, 5000);
+          }
+          return true;
       });
-
     campos.usuario = false;
     campos.password = false;
     formulario.reset();

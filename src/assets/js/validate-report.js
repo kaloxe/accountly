@@ -93,22 +93,7 @@ selects.forEach((select) => {
 });
 
 submit.addEventListener("click", (e) => {
-  if (campos.cuenta && campos.fecha && campos.fecha2) {
-    formulario.submit();
-    // campos.cuenta = false;
-    // campos.fecha = false;
-    // campos.fecha2 = false;
-    // formulario.reset();
-
-    // document
-    //   .getElementById("formulario__mensaje-exito")
-    //   .classList.add("formulario__mensaje-exito-activo");
-    // setTimeout(() => {
-    //   document
-    //     .getElementById("formulario__mensaje-exito")
-    //     .classList.remove("formulario__mensaje-exito-activo");
-    // }, 5000);
-  } else {
+  if (!(campos.cuenta && campos.fecha && campos.fecha2)) {
     e.preventDefault();
     Object.keys(campos).forEach((campo) => {
       if (!campos[campo]) {

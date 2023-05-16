@@ -13,7 +13,6 @@ if (@$_SESSION['nickname']) {
     @header('Location: /accountly/src/sign-in.php');
 }
 
-
 if (isset($_GET['close_session'])) {
     session_unset();
     session_destroy();

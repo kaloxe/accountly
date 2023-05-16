@@ -1,40 +1,6 @@
 <?php
 require('./views/header.php');
 require_once("/xampp/htdocs/accountly/server/db/db.php");
-
-$fecha1 = "";
-$fecha2 = "";
-$cuenta = (isset($_POST['cuenta']) ? $_POST['cuenta'] : null);
-$fecha_inicial = (isset($_POST['fecha']) ? $_POST['fecha'] : null);
-$fecha_final = (isset($_POST['fecha2']) ? $_POST['fecha2'] : null);
-if ($fecha_final != null && $fecha_inicial != null) {
-    if ($fecha_inicial < $fecha_final) {
-        $fecha1 = date_create($fecha_inicial);
-        $fecha2 = date_create($fecha_final);
-        if ($cuenta == null || $cuenta == "0") {
-            $sql = "SELECT * FROM transaction WHERE date BETWEEN '$fecha_inicial' and '$fecha_final'";
-            $sql1 = "SELECT count(id_transaction) FROM transaction WHERE date BETWEEN '$fecha_inicial' and '$fecha_final' ";
-        } else {
-            $sql = "SELECT * FROM transaction WHERE id_management='$cuenta' and (date BETWEEN '$fecha_inicial' and '$fecha_final')";
-            $sql1 = "SELECT count(id_transaction) FROM transaction WHERE id_management='$cuenta' and (date BETWEEN '$fecha_inicial' and '$fecha_final')";
-        }
-    }
-} else {
-    $sql = "SELECT * FROM transaction";
-    $sql1 = "SELECT count(id_transaction) FROM transaction";
-}
-
-function name($con, $id)
-{
-    $sqlName = "SELECT name_font FROM font WHERE id_font= $id";
-    $result = $con->query($sqlName);
-    $query1 = $con->prepare($sqlName);
-    $query1->execute();
-
-    $font = $result->fetch_assoc();
-    $res = $font["name_font"];
-    return $res;
-}
 ?>
 
 <div class="container-xxl position-relative bg-white d-flex p-0">
@@ -43,7 +9,31 @@ function name($con, $id)
     <!-- Spinner End -->
 
     <!-- Sidebar Start -->
-    <?php require('./views/menu.php'); ?>
+    <?php require('./views/menu.php');
+    
+    $fecha1 = "";
+    $fecha2 = "";
+    $cuenta = (isset($_POST['cuenta']) ? $_POST['cuenta'] : null);
+    $fecha_inicial = (isset($_POST['fecha']) ? $_POST['fecha'] : null);
+    $fecha_final = (isset($_POST['fecha2']) ? $_POST['fecha2'] : null);
+    
+    if ($fecha_final != null && $fecha_inicial != null) {
+        if ($fecha_inicial < $fecha_final) {
+            $fecha1 = date_create($fecha_inicial);
+            $fecha2 = date_create($fecha_final);
+            if ($cuenta == null || $cuenta == "0") {
+                $sql = "SELECT * FROM transaction INNER JOIN font on font.id_font=transaction.id_font WHERE (date BETWEEN '$fecha_inicial' and '$fecha_final') AND id_user=$id_user";
+                $sql1 = "SELECT count(id_transaction) FROM transaction INNER JOIN font on font.id_font=transaction.id_font WHERE (date BETWEEN '$fecha_inicial' and '$fecha_final') AND id_user=$id_user";
+            } else {
+                $sql = "SELECT * FROM transaction INNER JOIN font on font.id_font=transaction.id_font WHERE id_management='$cuenta' and (date BETWEEN '$fecha_inicial' and '$fecha_final') AND id_user=$id_user";
+                $sql1 = "SELECT count(id_transaction) FROM transaction INNER JOIN font on font.id_font=transaction.id_font WHERE id_management='$cuenta' and (date BETWEEN '$fecha_inicial' and '$fecha_final') AND id_user=$id_user";
+            }
+        }
+    } else {
+        $sql = "SELECT * FROM transaction INNER JOIN font on font.id_font=transaction.id_font WHERE id_user=$id_user";
+        $sql1 = "SELECT count(id_transaction) FROM transaction INNER JOIN font on font.id_font=transaction.id_font WHERE id_user=$id_user";
+    }
+    ?>
     <!-- Sidebar End -->
 
 
@@ -63,7 +53,7 @@ function name($con, $id)
                     </div>
                     <div class="bg-light rounded h-100 p-4">
                         <h6 class="mb-4">Generar reporte de trasacciones</h6>
-                        <form class="px-3" id="formulario" action="./reports.php" method="post">
+                        <form class="px-3" id="formulario" action="./report_date_transaction.php" method="post">
 
                             <div class="mb-2" id="grupo__fecha">
                                 <div class="formulario__grupo-input">
@@ -112,11 +102,11 @@ function name($con, $id)
                                     <table class="table text-center align-middle">
                                         <thead>
                                             <?php
-
                                             $query = $connection->prepare($sql1);
                                             $query->execute();
                                             $res = $connection->query($sql1);
-                                            $result = $res->fetchColumn(); ?>
+                                            $result = $res->fetchColumn();
+                                            ?>
                                             <label for="">Total: <?php if ($result != null) {
                                                                         echo " " . $result;
                                                                     } else {
@@ -147,7 +137,7 @@ function name($con, $id)
                                                 $fecha = date("d-m-Y", strtotime($fecha_base)); ?>
                                                 <tr cedula_paciente="paciente_<?php echo $cita["id_transaction"]; ?>">
                                                     <td><?php echo $cita["amount"]; ?> </td>
-                                                    <td><?php echo name($conn, $cita['id_font']); ?> </td>
+                                                    <td><?php echo $cita["name_font"]; ?> </td>
                                                     <td><?php echo $cita["reference"]; ?> </td>
                                                     <td><?php echo $fecha; ?> </td>
                                                 </tr>

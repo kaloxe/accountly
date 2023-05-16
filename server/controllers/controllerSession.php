@@ -1,5 +1,5 @@
 <?php
-require("/xampp/htdocs/accountly/server/session/session.php");
+// require("/xampp/htdocs/accountly/server/session/session.php");
 require_once("/xampp/htdocs/accountly/server/models/class_rest.php");
 require_once("/xampp/htdocs/accountly/server/models/class_user.php");
 
@@ -16,6 +16,7 @@ if (isset($_POST)) {
                 echo Rest::execute($sql);
                 break;
             case "valid_user":
+                session_start();
                 $usuario = $user['usuario'];
                 $password = $user['password'];
                 $sql = "SELECT * FROM `user` WHERE `nickname`='$usuario' AND `password`='$password'";

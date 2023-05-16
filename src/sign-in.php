@@ -1,10 +1,15 @@
 <?php
 require('./views/header.php');
-require('/xampp/htdocs/accountly/server/controllers/controllerSession.php');
 
-// if (isset($_SESSION['object'])) {
-//     @header('Location: dashboard.php');
+// if (!isset($_SESSION)) {
+//     session_start();
 // }
+
+// if (@$_SESSION['nickname']) {
+//     // $object = $_SESSION['object'];
+//     @header('Location: /accountly/src/dashboard.php');
+// }
+
 ?>
 
 <div class="container-xxl position-relative bg-white d-flex p-0">

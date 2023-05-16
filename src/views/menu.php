@@ -25,8 +25,17 @@ require("/xampp/htdocs/accountly/server/session/session.php");
             <!-- <a href="./real-table.php" class="nav-item nav-link"><i class="fa fa-couch me-2"></i>Posesiones</a> -->
             <a href="./fonts.php" class="nav-item nav-link"><i class="fa fa-piggy-bank me-2"></i>Fuentes</a>
             <a href="./debt.php" class="nav-item nav-link"><i class="fa fa-check me-2"></i>Deudas</a>
-            <a href="./reports.php" class="nav-item nav-link"><i class="far fa-file-alt me-2"></i>Reportes</a>
             <a href="./settings.php" class="nav-item nav-link"><i class="far bi-gear-wide-connected me-2"></i>Configuracion</a>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Reportes</a>
+                <div class="dropdown-menu bg-transparent border-0">
+                    <a href="./report_date_transaction.php" class="dropdown-item">Fechas en transaccines</a>
+                    <a href="./report_last_week.php" class="dropdown-item">Gastos ultima semana</a>
+                    <a href="./report_total_dolar.php" class="dropdown-item">Saldo en dolar</a>
+                    <a href="./report_binnacle.php" class="dropdown-item">Bitacora</a>
+                    <a href="./report_total.php" class="dropdown-item">Totales</a>
+                </div>
+            </div>
         </div>
     </nav>
 </div>

@@ -29,7 +29,6 @@ require('./views/header.php');
         $valorDolar = $html->find('.iedv tbody tr td', 2)->plaintext;
 
         // Imprime el título en la pantalla
-        
         ?>
 
         <!-- Sale & Revenue Start -->
