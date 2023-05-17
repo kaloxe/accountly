@@ -113,13 +113,31 @@ require('./views/header.php');
                                 </div>
 
                                 <div class="d-flex align-items-center justify-content-center formulario__grupo formulario__grupo-btn-enviar">
-                                    
-                                        <input type="button" class="btn btn-primary mt-2 py-2 w-50" id="submit" value="Actualizar">
-                                    
+
+                                    <input type="button" class="btn btn-primary mt-2 py-2 w-50" id="submit" value="Actualizar">
+
 
                                 </div>
-                                <p class="formulario__mensaje-exito pt-2" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
+                                <p class="formulario__mensaje-exito pt-2" id="formulario__mensaje-exito">Actualizado exitosamente!</p>
                             </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade text-start" id="mensajed" tabindex="-1" aria-labelledby="mensajed" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="col-12">
+                    <div class="modal-content">
+                        <div class="bg-light rounded h-80 p-4">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <i class="fa fa-check fa-3x text-primary"></i>
+                                <!-- <i class="fa-solid fa-couch"></i> -->
+                                <div class="ms-3 mx-auto">
+                                    <h1>Registro eliminado</h1>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -143,7 +161,12 @@ require('./views/header.php');
                     },
                     "body": JSON.stringify(data)
                 }).then(res => res.text())
-                .then(dat => console.log(dat))
+                .then(dat => {
+                    setTimeout(() => {
+                        window.location.href = "/accountly/src/fonts.php";
+                    }, 2500);
+                    console.log(dat)
+                })
         }
 
         /* Llamando a la función getData() */

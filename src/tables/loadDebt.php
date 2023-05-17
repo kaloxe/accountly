@@ -20,7 +20,7 @@ $campo = isset($_POST['campo']) ? $conn->real_escape_string($_POST['campo']) : n
 
 
 /* Filtrado */
-$where = 'WHERE id_user='. $id_user .'';
+$where = 'WHERE id_user=' . $id_user . '';
 
 if ($campo != null) {
     $where = "WHERE id_user=" . $id_user . " AND (";
@@ -75,7 +75,7 @@ $row_filtro = $resFiltro->fetch_array();
 $totalFiltro = $row_filtro[0];
 
 /* Consulta para total de registro filtrados */
-$sqlTotal = "SELECT count($id) FROM $table WHERE id_user=". $id_user ."";
+$sqlTotal = "SELECT count($id) FROM $table WHERE id_user=" . $id_user . "";
 $resTotal = $conn->query($sqlTotal);
 $row_total = $resTotal->fetch_array();
 $totalRegistros = $row_total[0];
@@ -98,8 +98,8 @@ if ($num_rows > 0) {
         <a class="btn btn-warning btn-sm me-2" id="' . $row['id_debt'] . '" name="editar" onclick="openModal(' . $row['id_debt'] . ')" data-bs-toggle="modal" data-bs-target="#editDebtModal"><i class="fa fa-pen"></i></a>
         <a class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteDebtModal' . $row['id_debt'] . '"><i class="fa fa-trash me"></i></a>
         </td>';
-        
-        
+
+
         $output['data'] .= '</tr>';
         $output['data'] .= '<div class="modal fade" id="deleteDebtModal' . $row['id_debt'] . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
@@ -109,7 +109,7 @@ if ($num_rows > 0) {
                         </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <a href="./debt.php"><button type="button" class="btn btn-primary" onclick="eliminar(' . $row['id_debt'] . ')">Eliminar</button></a>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mensajed" data-bs-dismiss="modal" onclick="eliminar(' . $row['id_debt'] . ')">Eliminar</button>
                         
                     </div>
                 </div>

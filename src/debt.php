@@ -124,6 +124,24 @@ require('./views/header.php');
         </div>
     </div>
 
+    <div class="modal fade text-start" id="mensajed" tabindex="-1" aria-labelledby="mensajed" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="col-12">
+                <div class="modal-content">
+                    <div class="bg-light rounded h-80 p-4">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <i class="fa fa-check fa-3x text-primary"></i>
+                            <!-- <i class="fa-solid fa-couch"></i> -->
+                            <div class="ms-3 mx-auto">
+                                <h1>Registro eliminado</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 </div>
@@ -141,7 +159,12 @@ require('./views/header.php');
                 },
                 "body": JSON.stringify(data)
             }).then(res => res.text())
-            .then(dat => console.log(dat))
+            .then(dat => {
+                setTimeout(() => {
+                    window.location.href = "/accountly/src/debt.php";
+                }, 2500);
+                console.log(dat)
+            })
     }
 
     /* Llamando a la función getData() */

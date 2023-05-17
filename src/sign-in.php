@@ -1,15 +1,6 @@
 <?php
 require('./views/header.php');
 
-// if (!isset($_SESSION)) {
-//     session_start();
-// }
-
-// if (@$_SESSION['nickname']) {
-//     // $object = $_SESSION['object'];
-//     @header('Location: /accountly/src/dashboard.php');
-// }
-
 ?>
 
 <div class="container-xxl position-relative bg-white d-flex p-0">
