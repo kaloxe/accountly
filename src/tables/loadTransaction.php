@@ -122,7 +122,7 @@ if ($num_rows > 0) {
                          </div>
                      <div class="modal-footer">
                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                         <a href="./transactions.php"><button type="button" class="btn btn-primary" onclick="eliminar(' . $row['id_transaction'] . ')">Eliminar</button></a>
+                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mensajed" data-bs-dismiss="modal" onclick="eliminar(' . $row['id_transaction'] . ')">Eliminar</button>
                         
                      </div>
                  </div>

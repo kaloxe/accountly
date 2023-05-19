@@ -23,38 +23,6 @@ require('/xampp/htdocs/accountly/server/controllers/controllerSession.php');
         <div class="container-fluid py-4 px-4">
             <div class="d-flex align-items-center justify-content-center row g-4">
 
-                <!-- <div class="col-sm-12 col-xl-7">
-                    <div class="bg-light rounded h-100 p-4">
-                        <h6 class="mb-4">Correos</h6>
-                        <form>
-
-                            <div class="d-flex align-items-center border-bottom py-2">
-
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 align-items-center justify-content-between">
-                                        <span>alguien@gmial.com</span>
-                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center pt-2">
-
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 align-items-center justify-content-between">
-                                        <span>alguien@gmial.com</span>
-                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="d-flex mt-4">
-                                <input class="form-control" type="email" placeholder="Nuevo correo">
-                                <button type="button" class="btn btn-primary ms-2">Agregar</button>
-                            </div>
-                        </form>
-                    </div>
-                </div> -->
-
                 <div class="col-sm-12 col-xl-7">
                     <div class="formulario__mensaje p-1 text-center mb-2 pb-5" id="formulario__mensaje">
                         <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Rellene el formulario correctamente. </p>

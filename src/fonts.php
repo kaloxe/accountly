@@ -164,7 +164,7 @@ require('./views/header.php');
                 .then(dat => {
                     setTimeout(() => {
                         window.location.href = "/accountly/src/fonts.php";
-                    }, 2500);
+                    }, 1500);
                     console.log(dat)
                 })
         }

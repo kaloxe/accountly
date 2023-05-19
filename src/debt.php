@@ -162,7 +162,7 @@ require('./views/header.php');
             .then(dat => {
                 setTimeout(() => {
                     window.location.href = "/accountly/src/debt.php";
-                }, 2500);
+                }, 1500);
                 console.log(dat)
             })
     }
