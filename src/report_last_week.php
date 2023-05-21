@@ -41,7 +41,10 @@ require_once("/xampp/htdocs/accountly/server/db/db.php");
                     <div class="d-flex align-items-center justify-content-center pt-3">
                         <div class="g-4 col-12">
                             <div class="bg-light rounded h-100 p-4">
-                                <h6 class="mb-4">Gastos de la ultima semana</h6>
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h6 class="mb-4">Gastos de la ultima semana</h6>
+                                    <a href="/accountly/ReportesBaseDatos/reporte_last_week.php"><button type="button" name="pdf" class="btn btn-primary py-1 w-30">PDF</button></a>
+                                </div>
 
                                 <div class="table-responsive">
                                     <table class="table text-center align-middle">

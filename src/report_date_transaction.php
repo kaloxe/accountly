@@ -10,13 +10,16 @@ require_once("/xampp/htdocs/accountly/server/db/db.php");
 
     <!-- Sidebar Start -->
     <?php require('./views/menu.php');
-    
+
     $fecha1 = "";
     $fecha2 = "";
     $cuenta = (isset($_POST['cuenta']) ? $_POST['cuenta'] : null);
     $fecha_inicial = (isset($_POST['fecha']) ? $_POST['fecha'] : null);
     $fecha_final = (isset($_POST['fecha2']) ? $_POST['fecha2'] : null);
-    
+    $_SESSION["fecha_inicial"] = $fecha_inicial;
+    $_SESSION["fecha_final"] = $fecha_final;
+    $_SESSION["cuenta"] = $cuenta;
+
     if ($fecha_final != null && $fecha_inicial != null) {
         if ($fecha_inicial < $fecha_final) {
             $fecha1 = date_create($fecha_inicial);
@@ -96,7 +99,12 @@ require_once("/xampp/htdocs/accountly/server/db/db.php");
                     <div class="d-flex align-items-center justify-content-center pt-3">
                         <div class="g-4 col-12">
                             <div class="bg-light rounded h-100 p-4">
-                                <h6 class="mb-4">Transacciones</h6>
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h6 class="mb-4">Transacciones</h6>
+                                    <?php if (isset($_POST['cuenta'])) { ?>
+                                        <a href="/accountly/ReportesBaseDatos/reporte_transaction_date.php"><button type="button" name="pdf" class="btn btn-primary py-1 w-30">PDF</button></a>
+                                    <?php } ?>
+                                </div>
 
                                 <div class="table-responsive">
                                     <table class="table text-center align-middle">

@@ -12,11 +12,11 @@ require_once("/xampp/htdocs/accountly/server/db/db.php");
     <?php require('./views/menu.php');
 
     $cuenta = (isset($_POST['cuenta']) ? $_POST['cuenta'] : null);
-
+    $_SESSION["cuenta"] = $cuenta;
     switch ($cuenta) {
         case "0":
             $sql = "SELECT * FROM `font` WHERE id_user=$id_user UNION SELECT * FROM `debt` WHERE id_user=$id_user";
-            $sql1 = "SELECT SUM(t.cantidad) FROM (SELECT COUNT(id_font) as cantidad FROM `font` WHERE id_user=$id_user UNION SELECT COUNT(id_debt) as cantidad FROM `debt` WHERE id_user=$id_user) t";
+            $sql1 = "SELECT COUNT(t.cantidad) FROM (SELECT id_font as cantidad FROM `font` WHERE id_user=$id_user UNION SELECT id_debt as cantidad FROM `debt` WHERE id_user=$id_user) t";
             $sql2 = "SELECT SUM(t.cantidad) FROM (SELECT SUM(amount) as cantidad FROM `font` WHERE id_user=2 UNION SELECT -SUM(amount) as cantidad FROM `debt` WHERE id_user=$id_user) t";
             break;
         case "1":
@@ -31,7 +31,7 @@ require_once("/xampp/htdocs/accountly/server/db/db.php");
             break;
         default:
             $sql = "SELECT * FROM `font` WHERE id_user=$id_user UNION SELECT * FROM `debt` WHERE id_user=$id_user";
-            $sql1 = "SELECT SUM(t.cantidad) FROM (SELECT COUNT(id_font) as cantidad FROM `font` WHERE id_user=$id_user UNION SELECT COUNT(id_debt) as cantidad FROM `debt` WHERE id_user=$id_user) t";
+            $sql1 = "SELECT count(t.cantidad) FROM (SELECT id_font as cantidad FROM `font` WHERE id_user=$id_user UNION SELECT id_debt as cantidad FROM `debt` WHERE id_user=$id_user) t";
             $sql2 = "SELECT SUM(t.cantidad) FROM (SELECT SUM(amount) as cantidad FROM `font` WHERE id_user=2 UNION SELECT -SUM(amount) as cantidad FROM `debt` WHERE id_user=$id_user) t";
             break;
     }
@@ -80,7 +80,12 @@ require_once("/xampp/htdocs/accountly/server/db/db.php");
                     <div class="d-flex align-items-center justify-content-center pt-3">
                         <div class="g-4 col-12">
                             <div class="bg-light rounded h-100 p-4">
-                                <h6 class="mb-4">Transacciones</h6>
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h6 class="mb-4">Totales</h6>
+                                    <?php if (isset($_POST['cuenta'])) { ?>
+                                        <a href="/accountly/ReportesBaseDatos/reporte_total.php"><button type="button" name="pdf" class="btn btn-primary py-1 w-30">PDF</button></a>
+                                    <?php } ?>
+                                </div>
 
                                 <div class="table-responsive">
                                     <table class="table text-center align-middle">

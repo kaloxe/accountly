@@ -5,7 +5,8 @@ require_once("/xampp/htdocs/accountly/server/db/db.php");
 
 <div class="container-xxl position-relative bg-white d-flex p-0">
     <!-- Spinner Start -->
-    <?php // require('./views/spinner.php'); ?>
+    <?php // require('./views/spinner.php'); 
+    ?>
     <!-- Spinner End -->
 
     <!-- Sidebar Start -->
@@ -32,7 +33,10 @@ require_once("/xampp/htdocs/accountly/server/db/db.php");
                     <div class="d-flex align-items-center justify-content-center pt-3">
                         <div class="g-4 col-12">
                             <div class="bg-light rounded h-100 p-4">
-                                <h6 class="mb-4">Bitacora</h6>
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h6 class="mb-4">Bitacora</h6>
+                                    <a href="/accountly/ReportesBaseDatos/reporte_binnacle.php"><button type="button" name="pdf" class="btn btn-primary py-1 w-30">PDF</button></a>
+                                </div>
 
                                 <div class="table-responsive">
                                     <table class="table text-center align-middle">
@@ -62,7 +66,8 @@ require_once("/xampp/htdocs/accountly/server/db/db.php");
                                             $query->execute();
                                             while ($cita = $query->fetch(PDO::FETCH_ASSOC)) {
                                                 // $fecha_base = $cita["datetime"];
-                                                // $fecha = date("d-m-Y H:i:s", strtotime($fecha_base)); ?>
+                                                // $fecha = date("d-m-Y H:i:s", strtotime($fecha_base)); 
+                                            ?>
                                                 <tr>
                                                     <td><?php echo $cita["movement"]; ?> </td>
                                                     <td><?php echo $cita["datetime"]; ?> </td>
