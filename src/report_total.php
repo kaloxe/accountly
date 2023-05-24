@@ -22,7 +22,7 @@ require_once("/xampp/htdocs/accountly/server/db/db.php");
         case "1":
             $sql = "SELECT * FROM `font` WHERE id_user=$id_user";
             $sql1 = "SELECT count(id_font) FROM font WHERE  id_user=$id_user";
-            $sql2 = "SELECT SUM(amount) FROM `font` WHERE id_user=$id_user";
+            $sql2 = "SELECT SUM(amount) as amount FROM `font` WHERE id_user=$id_user";
             break;
         case "2":
             $sql = "SELECT description as name_font, amount FROM `debt` WHERE id_user=$id_user";

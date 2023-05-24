@@ -70,22 +70,18 @@ require('./views/header.php');
 
                             <!-- El id del cuerpo de la tabla. -->
                             <tbody id="content">
-
                             </tbody>
                         </table>
+                        
                         <label class="col-12 text-center" id="lbl-total"></label>
-
                     </div>
                 </div>
-
                 <div class="d-flex align-items-center justify-content-center m-2" id="nav-paginacion"></div>
                 <input type="hidden" id="pagina" value="1">
                 <input type="hidden" id="orderCol" value="0">
                 <input type="hidden" id="orderType" value="asc">
-
             </div>
         </div>
-
     </div>
     <!-- Content End -->
 

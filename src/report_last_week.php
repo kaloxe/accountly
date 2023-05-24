@@ -37,7 +37,6 @@ require_once("/xampp/htdocs/accountly/server/db/db.php");
             <div class="d-flex align-items-center justify-content-center row g-4">
 
                 <div class="col-sm-12 col-xl-7">
-
                     <div class="d-flex align-items-center justify-content-center pt-3">
                         <div class="g-4 col-12">
                             <div class="bg-light rounded h-100 p-4">
@@ -97,7 +96,6 @@ require_once("/xampp/htdocs/accountly/server/db/db.php");
                             </div>
                         </div>
                     </div>
-
                 </div>
 
 

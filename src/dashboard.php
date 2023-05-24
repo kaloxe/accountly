@@ -1,14 +1,42 @@
 <?php
 require('./views/header.php');
+require_once("/xampp/htdocs/accountly/server/db/db.php");
 ?>
 
 <div class="container-xxl position-relative bg-white d-flex p-0">
     <!-- Spinner Start -->
-    <?php require('./views/spinner.php'); ?>
+    <?php //require('./views/spinner.php'); 
+    ?>
     <!-- Spinner End -->
 
     <!-- Sidebar Start -->
-    <?php require('./views/menu.php'); ?>
+    <?php require('./views/menu.php');
+    $fecha_final = date("Y-m-d");
+    $fecha_inicial = date("Y-m-d", strtotime($fecha_final . "- 7 days"));
+    if ((isset($fecha_final)) && (isset($fecha_inicial))) {
+        if ($fecha_final != null && $fecha_inicial != null) {
+            $sql = "SELECT t.amount, id_transaction, f.id_font , name_font, reference, date FROM transaction t INNER JOIN font f on f.id_font=t.id_font WHERE (date BETWEEN '$fecha_inicial' and '$fecha_final') AND id_user=$id_user";
+            $sql1 = "SELECT count(id_transaction) FROM transaction t INNER JOIN font f on f.id_font=t.id_font WHERE (date BETWEEN '$fecha_inicial' and '$fecha_final') AND id_user=$id_user";
+        }
+    }
+    $sql2 = "SELECT SUM(amount) FROM `debt` WHERE id_user=$id_user";
+    $query2 = $connection->prepare($sql2);
+    $query2->execute();
+    $res2 = $connection->query($sql2);
+    $result2 = $res2->fetchColumn();
+
+    $sql3 = "SELECT SUM(amount) as amount FROM `font` WHERE id_user=$id_user";
+    $query3 = $connection->prepare($sql3);
+    $query3->execute();
+    $res3 = $connection->query($sql3);
+    $result3 = $res3->fetchColumn();
+
+    $sql4 = "SELECT SUM(t.cantidad) FROM (SELECT SUM(amount) as cantidad FROM `font` WHERE id_user=2 UNION SELECT -SUM(amount) as cantidad FROM `debt` WHERE id_user=$id_user) t";
+    $query4 = $connection->prepare($sql4);
+    $query4->execute();
+    $res4 = $connection->query($sql4);
+    $result4 = $res4->fetchColumn();
+    ?>
     <!-- Sidebar End -->
 
 
@@ -49,7 +77,7 @@ require('./views/header.php');
                         <i class="fa fa-chart-bar fa-3x text-primary"></i>
                         <div class="ms-3 mx-auto">
                             <p class="mb-2">Deudas</p>
-                            <h6 class="mb-0">$1234</h6>
+                            <h6 class="mb-0">$<?php echo $result2; ?></h6>
                         </div>
                     </div>
                 </div>
@@ -59,7 +87,7 @@ require('./views/header.php');
                         <!-- <i class="fa-solid fa-couch"></i> -->
                         <div class="ms-3 mx-auto">
                             <p class="mb-2">Patrimonio</p>
-                            <h6 class="mb-0">$1234</h6>
+                            <h6 class="mb-0">$<?php echo $result3; ?></h6>
                         </div>
                     </div>
                 </div>
@@ -69,7 +97,7 @@ require('./views/header.php');
                         <!-- <i class="fa-duotone fa-piggy-bank"></i> -->
                         <div class="ms-3 mx-auto">
                             <p class="mb-2">Saldo</p>
-                            <h6 class="mb-0">$1234</h6>
+                            <h6 class="mb-0">$<?php echo $result4; ?></h6>
                         </div>
                     </div>
                 </div>
@@ -77,91 +105,48 @@ require('./views/header.php');
         </div>
         <!-- Sale & Revenue End -->
 
-
         <div class="container-fluid pt-4 px-4">
             <div class="row g-4">
-                <div class="col-sm-12 col-xl-8">
+                <div class="col-sm-12 col-xl-12">
                     <div class="bg-light rounded p-4">
-                        <h6 class="mb-4">Transacciones recientes</h6>
-                        <table class="table">
+                        <h6 class="mb-4 table-responsive">Transacciones recientes</h6>
+                        <table class="table text-center align-middle">
                             <thead>
+                                <?php
+                                $query = $connection->prepare($sql1);
+                                $query->execute();
+                                $res = $connection->query($sql1);
+                                $result = $res->fetchColumn(); ?>
+                                <?php if ($result == 0 || $result == null) { ?>
+                                    <br><labeL for="">No existen registros recientemente</label>
+                                <?php  } ?>
+
                                 <tr>
-                                    <th scope="col"></th>
-                                    <th scope="col">Monto</th>
-                                    <th scope="col">Fecha</th>
-                                    <th scope="col">Fuente</th>
+                                    <!-- <th>#</th> -->
+                                    <th>Monto</th>
+                                    <th>Fuente</th>
+                                    <th>Referencia</th>
+                                    <th>Fecha</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>John</td>
-                                    <td>Doe</td>
-                                    <td>jhon@email.com</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>mark@email.com</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>jacob@email.com</td>
-                                </tr>
+                            <tbody class="table-group-divider">
+
+                                <?php
+                                $query = $connection->prepare($sql);
+                                $query->execute();
+                                while ($cita = $query->fetch(PDO::FETCH_ASSOC)) {
+                                    $fecha_base = $cita["date"];
+                                    $fecha = date("d-m-Y", strtotime($fecha_base)); ?>
+                                    <tr cedula_paciente="paciente_<?php echo $cita["id_transaction"]; ?>">
+                                        <td><?php echo $cita["amount"]; ?> </td>
+                                        <td><?php echo $cita["name_font"]; ?> </td>
+                                        <td><?php echo $cita["reference"]; ?> </td>
+                                        <td><?php echo $fecha; ?> </td>
+                                    </tr>
+                                <?php }
+                                ?>
                             </tbody>
                         </table>
-                    </div>
-                </div>
-
-                <div class="col-sm-12 col-md-6 col-xl-4">
-                    <div class="bg-light rounded p-4">
-                        <div class="d-flex align-items-center justify-content-between mb-2">
-                            <h6 class="mb-0">Fuentes</h6>
-                            <a href="">Show All</a>
-                        </div>
-                        <div class="d-flex align-items-center border-bottom py-3">
-                            <img class="flex-shrink-0" src="/accountly/src/assets/img/bank.svg" alt="" style="width: 40px; height: 40px;">
-                            <div class="w-100 ms-3">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h6 class="mb-0">Jhon Doe</h6>
-                                    <small>15 minutes ago</small>
-                                </div>
-                                <span>Short message goes here...</span>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center border-bottom py-3">
-                            <img class="flex-shrink-0" src="/accountly/src/assets/img/bank.svg" alt="" style="width: 40px; height: 40px;">
-                            <div class="w-100 ms-3">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h6 class="mb-0">Jhon Doe</h6>
-                                    <small>15 minutes ago</small>
-                                </div>
-                                <span>Short message goes here...</span>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center border-bottom py-3">
-                            <img class="flex-shrink-0" src="/accountly/src/assets/img/bank.svg" alt="" style="width: 40px; height: 40px;">
-                            <div class="w-100 ms-3">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h6 class="mb-0">Jhon Doe</h6>
-                                    <small>15 minutes ago</small>
-                                </div>
-                                <span>Short message goes here...</span>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center pt-3">
-                            <img class="flex-shrink-0" src="/accountly/src/assets/img/bank.svg" alt="" style="width: 40px; height: 40px;">
-                            <div class="w-100 ms-3">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h6 class="mb-0">Jhon Doe</h6>
-                                    <small>15 minutes ago</small>
-                                </div>
-                                <span>Short message goes here...</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
