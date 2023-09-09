@@ -14,7 +14,7 @@ class database
     function __construct()
     {
         date_default_timezone_set("America/Caracas");
-        $this->servidor = "localhost";
+        $this->servidor = "127.0.0.1:3366";
         $this->usuario = "root";
         $this->clave = "";
         $this->basedatos = "accountly";

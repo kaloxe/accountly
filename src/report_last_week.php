@@ -19,7 +19,7 @@ require_once("/xampp/htdocs/accountly/server/db/db.php");
         if ($fecha_final != null && $fecha_inicial != null) {
             $fecha1 = date_create($fecha_inicial);
             $fecha2 = date_create($fecha_final);
-            $sql = "SELECT t.amount, id_transaction, f.id_font , name_font, reference, date FROM transaction t INNER JOIN font f on f.id_font=t.id_font WHERE (date BETWEEN '$fecha_inicial' and '$fecha_final') AND id_user=$id_user AND id_management=2";
+            $sql = "SELECT t.amount, t.id_management ,t.id_transaction, f.id_font , f.name_font, t.reference, t.date FROM transaction t INNER JOIN font f on f.id_font=t.id_font WHERE (date BETWEEN '$fecha_inicial' and '$fecha_final') AND id_user=$id_user AND t.id_management=2";
             $sql1 = "SELECT count(id_transaction) FROM transaction t INNER JOIN font f on f.id_font=t.id_font WHERE (date BETWEEN '$fecha_inicial' and '$fecha_final') AND id_user=$id_user AND id_management=2";
         }
     }
@@ -83,7 +83,7 @@ require_once("/xampp/htdocs/accountly/server/db/db.php");
                                                 $fecha_base = $cita["date"];
                                                 $fecha = date("d-m-Y", strtotime($fecha_base)); ?>
                                                 <tr cedula_paciente="paciente_<?php echo $cita["id_transaction"]; ?>">
-                                                    <td><?php echo $cita["amount"]; ?> </td>
+                                                <td class="count<?php echo $cita['id_management']; ?>"><?php echo $cita["amount"]; ?> </td>
                                                     <td><?php echo $cita["name_font"]; ?> </td>
                                                     <td><?php echo $cita["reference"]; ?> </td>
                                                     <td><?php echo $fecha; ?> </td>

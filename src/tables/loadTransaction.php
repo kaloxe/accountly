@@ -9,7 +9,7 @@ require("/xampp/htdocs/accountly/server/session/session.php");
 require '../../server/db/db.php';
 
 /* Un arreglo de las columnas a mostrar en la tabla */
-$columns = ['id_transaction', 'id_management', 'transaction.id_font', 'id_user', 'reference', 'transaction.amount', 'date', 'description'];
+$columns = ['id_transaction', 'id_management', 'transaction.id_font', "font.name_font", 'id_user', 'reference', 'transaction.amount', 'date', 'description'];
 
 /* Nombre de la tabla */
 $table = "transaction";
@@ -88,16 +88,16 @@ $output['totalFiltro'] = $totalFiltro;
 $output['data'] = '';
 $output['paginacion'] = '';
 
-function name($con, $id) {
-    $sqlName = "SELECT name_font FROM font WHERE id_font= $id";
-    $result = $con->query($sqlName);
-    $query = $con->prepare($sqlName);
-    $query->execute();
+// function name($con, $id) {
+//     $sqlName = "SELECT name_font FROM font WHERE id_font= $id";
+//     $result = $con->query($sqlName);
+//     $query = $con->prepare($sqlName);
+//     $query->execute();
 
-    $font = $result->fetch_assoc();
-    $res = $font["name_font"];
-    return $res;
-}
+//     $font = $result->fetch_assoc();
+//     $res = $font["name_font"];
+//     return $res;
+// }
 
 if ($num_rows > 0) {
     while ($row = $resultado->fetch_assoc()) {
@@ -105,7 +105,7 @@ if ($num_rows > 0) {
         // $output['data'] .= '<td>' . $row['id_font'] . '</td>';
         $output['data'] .= '<td class="count' . $row['id_management'] . '">' . $row['amount'] . '</td>';
         $output['data'] .= '<td>' . $row['description'] . '</td>';
-        $output['data'] .= '<td>' . name($conn, $row['id_font']) . '</td>';
+        $output['data'] .= '<td>' . $row['name_font'] . '</td>';
         $output['data'] .= '<td>' . $row['reference'] . '</td>';
         $output['data'] .= '<td>' . $row['date'] . '</td>';
         $output['data'] .= '<td>

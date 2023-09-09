@@ -165,7 +165,7 @@ switch ($_SESSION["cuenta"]) {
 	case "0":
 		$sql = "SELECT * FROM `font` WHERE id_user=$id_user UNION SELECT * FROM `debt` WHERE id_user=$id_user";
 		$sql1 = "SELECT COUNT(t.cantidad) as count FROM (SELECT id_font as cantidad FROM `font` WHERE id_user=$id_user UNION SELECT id_debt as cantidad FROM `debt` WHERE id_user=$id_user) t";
-		$sql2 = "SELECT SUM(t.cantidad) as total FROM (SELECT SUM(amount) as cantidad FROM `font` WHERE id_user=2 UNION SELECT -SUM(amount) as cantidad FROM `debt` WHERE id_user=$id_user) t";
+		$sql2 = "SELECT SUM(t.cantidad) as total FROM (SELECT SUM(amount) as cantidad FROM `font` WHERE id_user=$id_user UNION SELECT -SUM(amount) as cantidad FROM `debt` WHERE id_user=$id_user) t";
 		break;
 	case "1":
 		$sql = "SELECT * FROM `font` WHERE id_user=$id_user";
@@ -180,7 +180,7 @@ switch ($_SESSION["cuenta"]) {
 	default:
 		$sql = "SELECT * FROM `font` WHERE id_user=$id_user UNION SELECT * FROM `debt` WHERE id_user=$id_user";
 		$sql1 = "SELECT count(t.cantidad) as count FROM (SELECT id_font as cantidad FROM `font` WHERE id_user=$id_user UNION SELECT id_debt as cantidad FROM `debt` WHERE id_user=$id_user) t";
-		$sql2 = "SELECT SUM(t.cantidad) as total FROM (SELECT SUM(amount) as cantidad FROM `font` WHERE id_user=2 UNION SELECT -SUM(amount) as cantidad FROM `debt` WHERE id_user=$id_user) t";
+		$sql2 = "SELECT SUM(t.cantidad) as total FROM (SELECT SUM(amount) as cantidad FROM `font` WHERE id_user=$id_user UNION SELECT -SUM(amount) as cantidad FROM `debt` WHERE id_user=$id_user) t";
 		break;
 }
 

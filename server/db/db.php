@@ -1,9 +1,9 @@
 <?php
 
-$conn = new mysqli('localhost', 'root', '', 'accountly');
+$conn = new mysqli('127.0.0.1:3366', 'root', '', 'accountly');
 
 date_default_timezone_set("America/Caracas");
-$host = "localhost";
+$host = "127.0.0.1:3366";
 $user_db = "root";
 $pass_db = "";
 $db = "accountly";

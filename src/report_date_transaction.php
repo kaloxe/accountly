@@ -144,7 +144,7 @@ require_once("/xampp/htdocs/accountly/server/db/db.php");
                                                 $fecha_base = $cita["date"];
                                                 $fecha = date("d-m-Y", strtotime($fecha_base)); ?>
                                                 <tr cedula_paciente="paciente_<?php echo $cita["id_transaction"]; ?>">
-                                                    <td><?php echo $cita["amount"]; ?> </td>
+                                                <td class="count<?php echo $cita['id_management']; ?>"><?php echo $cita["amount"]; ?> </td>
                                                     <td><?php echo $cita["name_font"]; ?> </td>
                                                     <td><?php echo $cita["reference"]; ?> </td>
                                                     <td><?php echo $fecha; ?> </td>

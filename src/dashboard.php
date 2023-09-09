@@ -15,7 +15,7 @@ require_once("/xampp/htdocs/accountly/server/db/db.php");
     $fecha_inicial = date("Y-m-d", strtotime($fecha_final . "- 7 days"));
     if ((isset($fecha_final)) && (isset($fecha_inicial))) {
         if ($fecha_final != null && $fecha_inicial != null) {
-            $sql = "SELECT t.amount, id_transaction, f.id_font , name_font, reference, date FROM transaction t INNER JOIN font f on f.id_font=t.id_font WHERE (date BETWEEN '$fecha_inicial' and '$fecha_final') AND id_user=$id_user";
+            $sql = "SELECT t.amount, t.id_transaction, m.id_management ,f.id_font , name_font, reference, name_management, date FROM transaction t INNER JOIN font f on f.id_font=t.id_font INNER JOIN management m on t.id_management=m.id_management WHERE (date BETWEEN '$fecha_inicial' and '$fecha_final') AND id_user=$id_user";
             $sql1 = "SELECT count(id_transaction) FROM transaction t INNER JOIN font f on f.id_font=t.id_font WHERE (date BETWEEN '$fecha_inicial' and '$fecha_final') AND id_user=$id_user";
         }
     }
@@ -67,7 +67,7 @@ require_once("/xampp/htdocs/accountly/server/db/db.php");
                         <i class="fa fa-money-bill fa-3x text-primary"></i>
                         <!-- <i class="fa-sharp fa-solid fa-money-bill"></i> -->
                         <div class="ms-3 mx-auto">
-                            <p class="mb-2">Precio del dolar</p>
+                            <p class="mb-2">Dolar</p>
                             <h6 class="mb-0">$<?php echo $valorDolar; ?></h6>
                         </div>
                     </div>
@@ -137,8 +137,8 @@ require_once("/xampp/htdocs/accountly/server/db/db.php");
                                 while ($cita = $query->fetch(PDO::FETCH_ASSOC)) {
                                     $fecha_base = $cita["date"];
                                     $fecha = date("d-m-Y", strtotime($fecha_base)); ?>
-                                    <tr cedula_paciente="paciente_<?php echo $cita["id_transaction"]; ?>">
-                                        <td><?php echo $cita["amount"]; ?> </td>
+                                    <tr cedula_paciente="paciente_<?php echo $cita["id_transaction"] ?>">  
+                                    <td class="count<?php echo $cita['id_management']; ?>"><?php echo $cita["amount"]; ?> </td>
                                         <td><?php echo $cita["name_font"]; ?> </td>
                                         <td><?php echo $cita["reference"]; ?> </td>
                                         <td><?php echo $fecha; ?> </td>
