@@ -27,7 +27,7 @@ require('./views/header.php');
                 <div class="px-2 h-100">
                     <div class="d-flex align-items-center justify-content-between m-n2">
                         <div class="row">
-                            <a href="./create-font.php" class="col-2 btn btn-primary m-2 ms-4"><i class="fa fa-plus"></i></a>
+                            <a href="./create-account.php" class="col-2 btn btn-primary m-2 ms-4"><i class="fa fa-plus"></i></a>
                             <input class="col form-control m-2 ms-2 w-25" name="campo" id="campo" type="text" placeholder="Buscar">
                         </div>
                         <div class="me-2">
@@ -56,7 +56,6 @@ require('./views/header.php');
                                 <!-- <th class="sort asc">Num. Deposito</th>
                             <th class="sort asc">Usuario</th> -->
                                 <th class="sort asc">Nombre</th>
-                                <th class="sort asc">Monto</th>
                                 <th></th>
                             </thead>
 
@@ -80,7 +79,7 @@ require('./views/header.php');
 
         <!-- Content End -->
 
-        <div class="modal fade text-start" id="editFontModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade text-start" id="editAccountModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="col-12">
                     <div class="formulario__mensaje p-1 text-center mb-2 pb-5" id="formulario__mensaje">
@@ -90,7 +89,7 @@ require('./views/header.php');
                     <div class="modal-content">
                         <div class="bg-light rounded h-100 p-4">
                             <div class="d-flex">
-                                <a class="ps-5 pe-3" href="./fonts.php"><i class="fa fa-arrow-left"></i></a>
+                                <a class="ps-5 pe-3" href="./accounts.php"><i class="fa fa-arrow-left"></i></a>
                                 <h6 class="mb-4">Actualizar deposito</h6>
                             </div>
 
@@ -101,14 +100,6 @@ require('./views/header.php');
                                         <label for="nombre">Nombre del deposito</label>
                                         <input type="text" class="form-control formulario__input" name="nombre" id="nombre" placeholder="" value="">
                                         <p class="formulario__input-error">El campo debe tener de 4 a 40 caracteres, solo se aceptan letras y numeros.</p>
-                                    </div>
-                                </div>
-
-                                <div class="mb-2" id="grupo__monto">
-                                    <div class="formulario__grupo-input">
-                                        <label for="monto">Monto</label>
-                                        <input type="text" class="form-control formulario__input" name="monto" id="monto" placeholder="">
-                                        <p class="formulario__input-error">Solo se aceptan numeros y decimales separados por coma o punto.</p>
                                     </div>
                                 </div>
 
@@ -151,10 +142,10 @@ require('./views/header.php');
     <script>
         function eliminar(id) {
             let data = {
-                action: "delete_font",
+                action: "delete_account",
                 id: id
             }
-            fetch('/accountly/server/controllers/controllerFont.php', {
+            fetch('/accountly/server/controllers/controllerAccount.php', {
                     "method": 'POST',
                     "headers": {
                         "Content-Type": "application/json; charset=utf-8"
@@ -163,7 +154,7 @@ require('./views/header.php');
                 }).then(res => res.text())
                 .then(dat => {
                     setTimeout(() => {
-                        window.location.href = "/accountly/src/fonts.php";
+                        window.location.href = "/accountly/src/accounts.php";
                     }, 1500);
                     console.log(dat)
                 })
@@ -194,7 +185,7 @@ require('./views/header.php');
                 pagina = 1
             }
 
-            let url = "tables/loadFont.php"
+            let url = "tables/loadAccount.php"
             let formaData = new FormData()
             formaData.append('campo', input)
             formaData.append('registros', num_registros)
@@ -243,7 +234,7 @@ require('./views/header.php');
             getData()
         }
     </script>
-    <script src="./assets/js/validate-edit-font.js"></script>
+    <script src="./assets/js/validate-edit-account.js"></script>
 
     <?php
     require('./views/footer.php');

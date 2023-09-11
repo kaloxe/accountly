@@ -7,27 +7,25 @@ if (isset($_POST)) {
     $user = json_decode($data, true);
 
     switch ($user['action']) {
-        case "create_font":
+        case "create_account":
             $nombre = $user['nombre'];
-            $monto = $user['monto'];
-            $sql = "INSERT INTO `font`(`id_user`, `name_font`, `amount`) VALUES ($id_user, '$nombre', $monto)";
+            $sql = "INSERT INTO `account`(`id_user`, `name_account`, `state_register`) VALUES ($id_user, '$nombre', 1)";
             echo Rest::execute($sql);
             break;
-        case "read_font":
+        case "read_account":
             $id = $user['id'];
-            $sql = "SELECT `id_font`, `name_font`, `amount` FROM `font` WHERE `id_font`=$id";
-            echo Rest::readFont($sql);
+            $sql = "SELECT `id_account`, `name_account` FROM `account` WHERE `id_account`=$id";
+            echo Rest::readAccount($sql);
             break;
-        case "update_font":
+        case "update_account":
             $id = $user["id"];
             $nombre = $user['nombre'];
-            $monto = $user['monto'];
-            $sql = "UPDATE `font` SET `name_font`='$nombre',`amount`=$monto WHERE `id_font`=$id";
+            $sql = "UPDATE `account` SET `name_account`='$nombre' WHERE `id_account`=$id";
             echo Rest::execute($sql);
             break;
-        case "delete_font":
+        case "delete_account":
             $id = $user['id'];
-            $sql = "DELETE FROM `font` WHERE `font`.`id_font` = $id";
+            $sql = "DELETE FROM `account` WHERE `account`.`id_account` = $id";
             echo Rest::execute($sql);
             break;
         default:

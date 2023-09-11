@@ -1,45 +1,19 @@
 const formulario = document.getElementById("formulario");
 const submit = document.getElementById("submit");
 const inputs = document.querySelectorAll("#formulario input");
-let index;
-let font;
-
-function openModal(id) {
-  index = {
-    action: "read_font",
-    id: id,
-  };
-  fetch("/accountly/server/controllers/controllerFont.php", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json; charset=utf-8",
-    },
-    body: JSON.stringify(index),
-  })
-    .then((res) => res.json())
-    .then((dat) => {
-      document.getElementById("nombre").value=dat.name_font;
-      document.getElementById("monto").value=dat.amount;
-    });
-}
 
 const expresiones = {
   nombre: /^[0-9a-zA-ZÀ-ÿ\s]{3,40}$/, // Letras, numeros, guion y guion_bajo
-  monto: /^[0-9]+([\,\.][0-9]+)?$/, // 7 a 14 numeros.
 };
 
 const campos = {
-  nombre: true,
-  monto: true,
+  nombre: false,
 };
 
 const validarFormulario = (e) => {
   switch (e.target.name) {
     case "nombre":
       validarCampo(expresiones.nombre, e.target, "nombre");
-      break;
-    case "monto":
-      validarCampo(expresiones.monto, e.target, "monto");
       break;
   }
 };
@@ -68,28 +42,24 @@ inputs.forEach((input) => {
 submit.addEventListener("click", (e) => {
   e.preventDefault();
 
-  if (campos.nombre && campos.monto) {
-    const nombre = document.getElementById("nombre").value;
-    const monto = document.getElementById("monto").value;
-    let data = {
-      action: "update_font",
-      id: index.id,
-      nombre: nombre,
-      monto: monto,
-    };
-    fetch("/accountly/server/controllers/controllerFont.php", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json; charset=utf-8",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.text())
-      .then((dat) => console.log(dat));
+  if (campos.nombre) {
 
-    // campos.nombre = false;
-    // campos.monto = false;
-    // formulario.reset();
+    const nombre = document.getElementById("nombre").value;
+    let data = {
+      action: "create_account",
+      nombre: nombre,
+    }
+    fetch('/accountly/server/controllers/controllerAccount.php', {
+      "method": 'POST',
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      "body": JSON.stringify(data)
+    }).then( res => res.text())
+      .then( dat => console.log(dat))
+
+    campos.nombre = false;
+    formulario.reset();
 
     document
       .getElementById("formulario__mensaje-exito")

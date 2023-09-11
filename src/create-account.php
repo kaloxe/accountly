@@ -29,7 +29,7 @@ require('./views/header.php');
 
                     <div class="bg-light rounded h-100 p-4">
                         <div class="d-flex">
-                            <a class="ps-5 pe-3" href="./fonts.php"><i class="fa fa-arrow-left"></i></a>
+                            <a class="ps-5 pe-3" href="./accounts.php"><i class="fa fa-arrow-left"></i></a>
                             <h6 class="mb-4">Registrar deposito</h6>
                         </div>
 
@@ -40,14 +40,6 @@ require('./views/header.php');
                                     <label for="nombre">Nombre del deposito</label>
                                     <input type="text" class="form-control formulario__input" name="nombre" id="nombre" placeholder="">
                                     <p class="formulario__input-error">El campo debe tener de 4 a 40 caracteres, solo se aceptan letras y numeros.</p>
-                                </div>
-                            </div>
-
-                            <div class="mb-2" id="grupo__monto">
-                                <div class="formulario__grupo-input">
-                                    <label for="monto">Monto</label>
-                                    <input type="text" class="form-control formulario__input" name="monto" id="monto" placeholder="">
-                                    <p class="formulario__input-error">Solo se aceptan numeros y decimales separados por coma o punto.</p>
                                 </div>
                             </div>
 
@@ -69,7 +61,7 @@ require('./views/header.php');
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 </div>
 
-<script src="./assets/js/validate-create-font.js"></script>
+<script src="./assets/js/validate-create-account.js"></script>
 
 <?php
 require('./views/footer.php');

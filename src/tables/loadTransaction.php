@@ -9,7 +9,7 @@ require("/xampp/htdocs/accountly/server/session/session.php");
 require '../../server/db/db.php';
 
 /* Un arreglo de las columnas a mostrar en la tabla */
-$columns = ['id_transaction', 'id_management', 'transaction.id_font', "font.name_font", 'id_user', 'reference', 'transaction.amount', 'date', 'description'];
+$columns = ['id_transaction', 'transaction.type', 'transaction.id_account', 'badge.name_badge', 'account.name_account', 'id_user', 'reference', 'transaction.amount', 'date', 'description'];
 
 /* Nombre de la tabla */
 $table = "transaction";
@@ -61,7 +61,7 @@ if (isset($_POST['orderCol'])) {
 
 /* Consulta */
 $sql = "SELECT SQL_CALC_FOUND_ROWS " . implode(", ", $columns) . " 
-FROM $table INNER JOIN font on transaction.id_font=font.id_font
+FROM $table INNER JOIN account on transaction.id_account=account.id_account INNER JOIN badge on badge.id_badge=transaction.id_badge
 $where
 $sOrder
 $sLimit";
@@ -75,8 +75,8 @@ $row_filtro = $resFiltro->fetch_array();
 $totalFiltro = $row_filtro[0];
 
 /* Consulta para total de registro filtrados */
-$sqlTotal = "SELECT count($id) FROM $table INNER JOIN font on transaction.id_font=font.id_font WHERE id_user=$id_user";
-//$sqlTotal = "SELECT count($id) FROM $table INNER JOIN font on $table.id_font=font.id_font WHERE id_user=$id_user";
+$sqlTotal = "SELECT count($id) FROM $table INNER JOIN account on transaction.id_account=account.id_account INNER JOIN badge on badge.id_badge=transaction.id_badge WHERE id_user=$id_user";
+//$sqlTotal = "SELECT count($id) FROM $table INNER JOIN account on $table.id_account=account.id_account WHERE id_user=$id_user";
 $resTotal = $conn->query($sqlTotal);
 $row_total = $resTotal->fetch_array();
 $totalRegistros = $row_total[0];
@@ -89,27 +89,28 @@ $output['data'] = '';
 $output['paginacion'] = '';
 
 // function name($con, $id) {
-//     $sqlName = "SELECT name_font FROM font WHERE id_font= $id";
+//     $sqlName = "SELECT name_account FROM account WHERE id_account= $id";
 //     $result = $con->query($sqlName);
 //     $query = $con->prepare($sqlName);
 //     $query->execute();
 
-//     $font = $result->fetch_assoc();
-//     $res = $font["name_font"];
+//     $account = $result->fetch_assoc();
+//     $res = $account["name_account"];
 //     return $res;
 // }
 
 if ($num_rows > 0) {
     while ($row = $resultado->fetch_assoc()) {
         $output['data'] .= '<tr>';
-        // $output['data'] .= '<td>' . $row['id_font'] . '</td>';
-        $output['data'] .= '<td class="count' . $row['id_management'] . '">' . $row['amount'] . '</td>';
+        // $output['data'] .= '<td>' . $row['id_account'] . '</td>';
+        $output['data'] .= '<td>' . $row['name_badge'] . '</td>';
+        $output['data'] .= '<td class="count' . $row['type'] . '">' . $row['amount'] . '</td>';
         $output['data'] .= '<td>' . $row['description'] . '</td>';
-        $output['data'] .= '<td>' . $row['name_font'] . '</td>';
+        $output['data'] .= '<td>' . $row['name_account'] . '</td>';
         $output['data'] .= '<td>' . $row['reference'] . '</td>';
         $output['data'] .= '<td>' . $row['date'] . '</td>';
         $output['data'] .= '<td>
-        <a class="btn btn-warning btn-sm me-2" id="' . $row['id_font'] . '" name="editar" onclick="openModal(' . $row['id_transaction'] . ')" data-bs-toggle="modal" data-bs-target="#editFontModal"><i class="fa fa-pen"></i></a>
+        <a class="btn btn-warning btn-sm me-2" id="' . $row['id_account'] . '" name="editar" onclick="openModal(' . $row['id_transaction'] . ')" data-bs-toggle="modal" data-bs-target="#editAccountModal"><i class="fa fa-pen"></i></a>
         <a class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteTransactionModal' . $row['id_transaction'] . '"><i class="fa fa-trash me"></i></a>
         </td>';
         $output['data'] .= '</tr>';

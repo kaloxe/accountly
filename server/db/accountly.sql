@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost:3306
--- Tiempo de generación: 24-05-2023 a las 14:49:56
--- Versión del servidor: 10.4.25-MariaDB
--- Versión de PHP: 8.1.10
+-- Servidor: 127.0.0.1:3366
+-- Tiempo de generación: 11-09-2023 a las 04:30:26
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,58 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `accountly`
 --
+CREATE DATABASE IF NOT EXISTS `accountly` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `accountly`;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `account`
+--
+
+CREATE TABLE `account` (
+  `id_account` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `name_account` varchar(45) NOT NULL,
+  `state_register` tinyint(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `account`
+--
+
+INSERT INTO `account` (`id_account`, `id_user`, `name_account`, `state_register`) VALUES
+(1, 1, 'Paypal', 0),
+(3, 1, 'Airtm', 1),
+(5, 1, 'Banco central de Venezuela', 1),
+(6, 1, 'Hola que hace', 1),
+(7, 1, 'La madre que esta', 1),
+(8, 1, 'Binance', 1),
+(9, 1, 'Hacker', 1),
+(10, 1, 'Mas registros', 1),
+(11, 1, 'Banesco', 1),
+(12, 1, 'Bancaribe', 1),
+(13, 1, 'Mercantil', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `badge`
+--
+
+CREATE TABLE `badge` (
+  `id_badge` int(11) NOT NULL,
+  `name_badge` varchar(45) NOT NULL,
+  `value` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `badge`
+--
+
+INSERT INTO `badge` (`id_badge`, `name_badge`, `value`) VALUES
+(1, 'Bolivar', 1),
+(2, 'Dolar', 33);
 
 -- --------------------------------------------------------
 
@@ -32,101 +84,72 @@ CREATE TABLE `binnacle` (
   `id_user` int(11) NOT NULL,
   `movement` varchar(45) NOT NULL,
   `datetime` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `binnacle`
 --
 
 INSERT INTO `binnacle` (`id_binnacle`, `id_user`, `movement`, `datetime`) VALUES
-(1, 2, 'Inicio de session ', '2023-05-15 12:04:54'),
-(2, 2, 'Inicio de session ', '2023-05-15 03:55:39'),
-(3, 3, 'Inicio de session ', '2023-05-15 03:56:35'),
-(4, 3, 'Inicio de session ', '2023-05-15 03:56:47'),
-(5, 1, 'Inicio de session ', '2023-05-15 03:57:21'),
-(6, 2, 'Inicio de session ', '2023-05-15 03:58:10'),
-(7, 2, 'Inicio de session ', '2023-05-15 03:59:27'),
-(8, 2, 'Inicio de session ', '2023-05-15 03:59:40'),
-(9, 2, 'Inicio de session kaloxe24', '2023-05-15 04:01:56'),
-(10, 2, 'Inicio de session kaloxe24', '2023-05-15 04:03:57'),
-(11, 2, 'Inicio de session kaloxe24', '2023-05-15 04:04:50'),
-(12, 2, 'Inicio de session kaloxe24', '2023-05-15 04:40:40');
+(1, 1, 'Inicio de session admin', '2023-09-10 12:36:55'),
+(2, 1, 'Inicio de session admin', '2023-09-10 08:27:18');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `debt`
+-- Estructura de tabla para la tabla `days`
 --
 
-CREATE TABLE `debt` (
-  `id_debt` int(11) NOT NULL,
+CREATE TABLE `days` (
+  `id_days` int(11) NOT NULL,
+  `name_day` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `diary`
+--
+
+CREATE TABLE `diary` (
+  `id_diary` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
+  `id_log` int(11) NOT NULL,
+  `name_diary` varchar(45) NOT NULL,
   `description` varchar(45) NOT NULL,
-  `amount` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `debt`
---
-
-INSERT INTO `debt` (`id_debt`, `id_user`, `description`, `amount`) VALUES
-(5, 1, 'Cambures por pagar', 60),
-(6, 1, 'Prestamo del banco', 80),
-(7, 1, 'Telefono nuevo', 500),
-(8, 2, 'Esto esta aqui', 12345),
-(9, 2, 'dfasdfsfda', 313),
-(10, 2, 'sjfdsfjksd', 3142);
+  `amount` float NOT NULL,
+  `state_register` tinyint(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `font`
+-- Estructura de tabla para la tabla `goal`
 --
 
-CREATE TABLE `font` (
-  `id_font` int(11) NOT NULL,
+CREATE TABLE `goal` (
+  `id_goal` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `name_font` varchar(45) NOT NULL,
-  `amount` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `font`
---
-
-INSERT INTO `font` (`id_font`, `id_user`, `name_font`, `amount`) VALUES
-(77, 1, 'Amazon', 760),
-(87, 1, 'Mercantil', 500),
-(88, 1, 'BCV', 300),
-(89, 1, 'Tesoro', 360),
-(90, 1, 'Paypal', 200),
-(91, 1, 'AirTM', 600),
-(92, 1, 'Bancaribe', 225),
-(93, 1, 'PandG', 405),
-(94, 1, 'Cofee', 65),
-(95, 1, 'Remotask', 565),
-(96, 2, 'Probando cosas', 155857),
-(97, 2, 'wqee', 334),
-(121, 2, 'fgdsfdg', 1314);
+  `name_goal` varchar(45) NOT NULL,
+  `description` varchar(45) NOT NULL,
+  `type` varchar(45) NOT NULL,
+  `amount` float NOT NULL,
+  `date` datetime NOT NULL,
+  `state_register` tinyint(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `management`
+-- Estructura de tabla para la tabla `log`
 --
 
-CREATE TABLE `management` (
-  `id_management` int(11) NOT NULL,
-  `name_management` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `management`
---
-
-INSERT INTO `management` (`id_management`, `name_management`) VALUES
-(1, 'ingreso'),
-(2, 'egreso');
+CREATE TABLE `log` (
+  `id_log` int(11) NOT NULL,
+  `id_days` int(11) NOT NULL,
+  `type` varchar(45) NOT NULL,
+  `date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -136,33 +159,23 @@ INSERT INTO `management` (`id_management`, `name_management`) VALUES
 
 CREATE TABLE `transaction` (
   `id_transaction` int(11) NOT NULL,
-  `id_management` int(11) NOT NULL,
-  `id_font` int(11) NOT NULL,
+  `id_account` int(11) NOT NULL,
+  `id_badge` int(11) NOT NULL,
+  `type` tinyint(4) NOT NULL,
   `reference` varchar(45) NOT NULL,
   `amount` float NOT NULL,
   `date` date NOT NULL,
-  `description` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `description` varchar(45) NOT NULL,
+  `state_register` tinyint(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `transaction`
 --
 
-INSERT INTO `transaction` (`id_transaction`, `id_management`, `id_font`, `reference`, `amount`, `date`, `description`) VALUES
-(3, 2, 77, '78953', 123578, '2023-04-06', 'Hola que sae'),
-(5, 2, 87, '87795', 12.45, '2023-04-16', 'Pago de galleta'),
-(6, 1, 88, '55555', 50, '2023-04-15', 'Bono de Maduro'),
-(7, 1, 89, '123345', 120.12, '2023-04-17', 'Sueldo de la cooperativa'),
-(8, 2, 90, '8888', 45, '2023-04-11', 'Pago del Royale'),
-(9, 1, 94, '65656', 41, '2023-03-29', 'Venta de pelos'),
-(10, 2, 89, '898978', 12.45, '2023-04-05', 'Compra de abanos'),
-(11, 2, 87, '898947', 12.4, '2023-04-09', 'Compra de verduras'),
-(12, 1, 91, '236547', 46.5, '2023-04-05', 'Venta de oro'),
-(14, 1, 77, '4444', 10, '2023-04-17', 'Bono'),
-(15, 2, 77, '88895', 50, '2023-04-17', 'Multa'),
-(16, 1, 97, '123456', 123, '2023-05-12', 'cgfdfgsd'),
-(17, 2, 96, '1234', 12, '2023-05-14', 'hola'),
-(18, 1, 96, '324342', 32413, '2023-05-18', 'dfassfda');
+INSERT INTO `transaction` (`id_transaction`, `id_account`, `id_badge`, `type`, `reference`, `amount`, `date`, `description`, `state_register`) VALUES
+(1, 1, 1, 0, '123456789', 14, '2023-09-10', 'hola', 1),
+(3, 3, 1, 1, '32413', 3212, '2023-09-10', 'fdsaasfd', 1);
 
 -- --------------------------------------------------------
 
@@ -173,22 +186,33 @@ INSERT INTO `transaction` (`id_transaction`, `id_management`, `id_font`, `refere
 CREATE TABLE `user` (
   `id_user` int(11) NOT NULL,
   `nickname` varchar(45) NOT NULL,
-  `email` varchar(45) NOT NULL,
-  `password` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `password` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `user`
 --
 
-INSERT INTO `user` (`id_user`, `nickname`, `email`, `password`) VALUES
-(1, 'admin', 'concha@gmial.com', '123456'),
-(2, 'kaloxe24', 'carlossa@gmail.com', '1234'),
-(3, 'obama', 'nigga@gmail.com', '123456');
+INSERT INTO `user` (`id_user`, `nickname`, `password`, `email`) VALUES
+(1, 'admin', '123456', 'admin@gmail.com');
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `account`
+--
+ALTER TABLE `account`
+  ADD PRIMARY KEY (`id_account`),
+  ADD KEY `fk_account_user1_idx` (`id_user`);
+
+--
+-- Indices de la tabla `badge`
+--
+ALTER TABLE `badge`
+  ADD PRIMARY KEY (`id_badge`);
 
 --
 -- Indices de la tabla `binnacle`
@@ -198,79 +222,115 @@ ALTER TABLE `binnacle`
   ADD KEY `fk_binnacle_User1_idx` (`id_user`);
 
 --
--- Indices de la tabla `debt`
+-- Indices de la tabla `days`
 --
-ALTER TABLE `debt`
-  ADD PRIMARY KEY (`id_debt`),
-  ADD KEY `fk_Liability_User1_idx` (`id_user`);
+ALTER TABLE `days`
+  ADD PRIMARY KEY (`id_days`);
 
 --
--- Indices de la tabla `font`
+-- Indices de la tabla `diary`
 --
-ALTER TABLE `font`
-  ADD PRIMARY KEY (`id_font`),
-  ADD UNIQUE KEY `name_font` (`name_font`),
-  ADD KEY `fk_Font_User1_idx` (`id_user`);
+ALTER TABLE `diary`
+  ADD PRIMARY KEY (`id_diary`),
+  ADD KEY `fk_diary_user1_idx` (`id_user`),
+  ADD KEY `fk_diary_log1_idx` (`id_log`);
 
 --
--- Indices de la tabla `management`
+-- Indices de la tabla `goal`
 --
-ALTER TABLE `management`
-  ADD PRIMARY KEY (`id_management`);
+ALTER TABLE `goal`
+  ADD PRIMARY KEY (`id_goal`),
+  ADD KEY `fk_goal_user1_idx` (`id_user`);
+
+--
+-- Indices de la tabla `log`
+--
+ALTER TABLE `log`
+  ADD PRIMARY KEY (`id_log`),
+  ADD KEY `fk_log_days1_idx` (`id_days`);
 
 --
 -- Indices de la tabla `transaction`
 --
 ALTER TABLE `transaction`
   ADD PRIMARY KEY (`id_transaction`),
-  ADD UNIQUE KEY `reference` (`reference`),
-  ADD KEY `fk_Transaction_Management1_idx` (`id_management`),
-  ADD KEY `fk_Transaction_Font1_idx` (`id_font`);
+  ADD KEY `fk_Transaction_Font1_idx` (`id_account`),
+  ADD KEY `fk_transaction_badge1_idx` (`id_badge`);
 
 --
 -- Indices de la tabla `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`),
-  ADD UNIQUE KEY `nickname` (`nickname`);
+  ADD UNIQUE KEY `nickname_UNIQUE` (`nickname`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
+-- AUTO_INCREMENT de la tabla `account`
+--
+ALTER TABLE `account`
+  MODIFY `id_account` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT de la tabla `badge`
+--
+ALTER TABLE `badge`
+  MODIFY `id_badge` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `binnacle`
 --
 ALTER TABLE `binnacle`
-  MODIFY `id_binnacle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_binnacle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `debt`
+-- AUTO_INCREMENT de la tabla `days`
 --
-ALTER TABLE `debt`
-  MODIFY `id_debt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+ALTER TABLE `days`
+  MODIFY `id_days` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `font`
+-- AUTO_INCREMENT de la tabla `diary`
 --
-ALTER TABLE `font`
-  MODIFY `id_font` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
+ALTER TABLE `diary`
+  MODIFY `id_diary` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `goal`
+--
+ALTER TABLE `goal`
+  MODIFY `id_goal` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `log`
+--
+ALTER TABLE `log`
+  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id_transaction` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_transaction` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `account`
+--
+ALTER TABLE `account`
+  ADD CONSTRAINT `fk_account_user1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `binnacle`
@@ -279,23 +339,30 @@ ALTER TABLE `binnacle`
   ADD CONSTRAINT `fk_binnacle_User1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `debt`
+-- Filtros para la tabla `diary`
 --
-ALTER TABLE `debt`
-  ADD CONSTRAINT `fk_Liability_User1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `diary`
+  ADD CONSTRAINT `fk_diary_log1` FOREIGN KEY (`id_log`) REFERENCES `log` (`id_log`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_diary_user1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `font`
+-- Filtros para la tabla `goal`
 --
-ALTER TABLE `font`
-  ADD CONSTRAINT `fk_Font_User1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `goal`
+  ADD CONSTRAINT `fk_goal_user1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `log`
+--
+ALTER TABLE `log`
+  ADD CONSTRAINT `fk_log_days1` FOREIGN KEY (`id_days`) REFERENCES `days` (`id_days`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `transaction`
 --
 ALTER TABLE `transaction`
-  ADD CONSTRAINT `fk_Transaction_Font1` FOREIGN KEY (`id_font`) REFERENCES `font` (`id_font`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Transaction_Management1` FOREIGN KEY (`id_management`) REFERENCES `management` (`id_management`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Transaction_Font1` FOREIGN KEY (`id_account`) REFERENCES `account` (`id_account`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_transaction_badge1` FOREIGN KEY (`id_badge`) REFERENCES `badge` (`id_badge`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

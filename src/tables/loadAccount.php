@@ -9,12 +9,12 @@ require("/xampp/htdocs/accountly/server/session/session.php");
 require '../../server/db/db.php';
 
 /* Un arreglo de las columnas a mostrar en la tabla */
-$columns = ['id_font', 'id_user', 'name_font', 'amount'];
+$columns = ['id_account', 'id_user', 'name_account'];
 
 /* Nombre de la tabla */
-$table = "font";
+$table = "account";
 
-$id = 'id_font';
+$id = 'id_account';
 
 $campo = isset($_POST['campo']) ? $conn->real_escape_string($_POST['campo']) : null;
 
@@ -90,26 +90,25 @@ $output['paginacion'] = '';
 if ($num_rows > 0) {
     while ($row = $resultado->fetch_assoc()) {
         $output['data'] .= '<tr>';
-        // $output['data'] .= '<td>' . $row['id_font'] . '</td>';
+        // $output['data'] .= '<td>' . $row['id_account'] . '</td>';
         // $output['data'] .= '<td>' . $row['id_user'] . '</td>';
-        $output['data'] .= '<td>' . $row['name_font'] . '</td>';
-        $output['data'] .= '<td>' . $row['amount'] . '</td>';
+        $output['data'] .= '<td>' . $row['name_account'] . '</td>';
         $output['data'] .= '<td>
-        <a class="btn btn-warning btn-sm me-2" id="' . $row['id_font'] . '" name="editar" onclick="openModal(' . $row['id_font'] . ')" data-bs-toggle="modal" data-bs-target="#editFontModal"><i class="fa fa-pen"></i></a>
-        <a class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteFontModal' . $row['id_font'] . '"><i class="fa fa-trash me"></i></a>
+        <a class="btn btn-warning btn-sm me-2" id="' . $row['id_account'] . '" name="editar" onclick="openModal(' . $row['id_account'] . ')" data-bs-toggle="modal" data-bs-target="#editAccountModal"><i class="fa fa-pen"></i></a>
+        <a class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteAccountModal' . $row['id_account'] . '"><i class="fa fa-trash me"></i></a>
         </td>';
         
         
         $output['data'] .= '</tr>';
-        $output['data'] .= '<div class="modal fade" id="deleteFontModal' . $row['id_font'] . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        $output['data'] .= '<div class="modal fade" id="deleteAccountModal' . $row['id_account'] . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Seguro que desea eliminar el deposito ' . $row['name_font'] . '?</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Seguro que desea eliminar el deposito ' . $row['name_account'] . '?</h1>
                         </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mensajed" data-bs-dismiss="modal" onclick="eliminar(' . $row['id_font'] . ')">Eliminar</button>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mensajed" data-bs-dismiss="modal" onclick="eliminar(' . $row['id_account'] . ')">Eliminar</button>
                         
                     </div>
                 </div>
