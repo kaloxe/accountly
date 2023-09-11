@@ -12,7 +12,7 @@ require('./views/header.php');
 
     <!-- Sidebar Start -->
     <?php require('./views/menu.php');
-    $datos = Rest::readFonts($id_user);
+    //$datos = Rest::readFonts($id_user);
     ?>
     <!-- Sidebar End -->
 
