@@ -24,7 +24,6 @@ CREATE DATABASE IF NOT EXISTS `accountly` DEFAULT CHARACTER SET utf8 COLLATE utf
 USE `accountly`;
 
 -- --------------------------------------------------------
-
 --
 -- Estructura de tabla para la tabla `account`
 --
