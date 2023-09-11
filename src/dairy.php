@@ -12,9 +12,7 @@ require('./views/header.php');
 
     <!-- Sidebar Start -->
     <?php require('./views/menu.php');
-
-    $dataAccounts = Rest::readAccounts($id_user);
-    $dataBadges = Rest::readBadges();
+    $datos = Rest::readFonts($id_user);
     ?>
     <!-- Sidebar End -->
 
@@ -61,10 +59,9 @@ require('./views/header.php');
                             <thead>
                                 <!-- <th class="sort asc">Num. Deposito</th>
                             <th class="sort asc">Usuario</th> -->
-                                <th class="sort asc">Divisa</th>
                                 <th class="sort asc">Monto</th>
                                 <th class="sort asc">Descripcion</th>
-                                <th class="sort asc">Cuenta</th>
+                                <th class="sort asc">Fuente</th>
                                 <th class="sort asc">Referencia</th>
                                 <th class="sort asc">Fecha</th>
                                 <th class="sort asc"></th>
@@ -75,7 +72,7 @@ require('./views/header.php');
                             <tbody id="content">
                             </tbody>
                         </table>
-
+                        
                         <label class="col-12 text-center" id="lbl-total"></label>
                     </div>
                 </div>
@@ -88,7 +85,7 @@ require('./views/header.php');
     </div>
     <!-- Content End -->
 
-    <div class="modal fade text-start" id="editAccountModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade text-start" id="editFontModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="col-12">
                 <div class="formulario__mensaje p-1 text-center mb-2 pb-5" id="formulario__mensaje">
@@ -104,40 +101,14 @@ require('./views/header.php');
 
                         <form class="px-3" id="formulario">
 
-                            <div class="mb-2" id="grupo__movimiento">
+                        <div class="mb-2" id="grupo__cuenta">
                                 <div class="formulario__grupo-input">
-                                    <select class="form-select formulario__input" name="movimiento" id="movimiento" aria-label="Default select example">
-                                        <option selected>Seleccione tipo de movimiento</option>
-                                        <option value="1">Ingreso</option>
-                                        <option value="0">Egreso</option>
-                                    </select>
-                                    <p class="formulario__input-error">Seleccione una movimiento a registrar la transaccion.</p>
-                                </div>
-                            </div>
-
-                            <div class="mb-2" id="grupo__cuenta">
-                                <div class="formulario__grupo-input">
-                                    <label for="cuenta">Cuenta</label>
                                     <select class="form-select formulario__input" name="cuenta" id="cuenta" aria-label="Default select example">
-                                        <option selected>Seleccione cuenta</option>
-                                        <?php foreach ($dataAccounts as $account) {   ?>
-                                            <option value="<?php echo $account['id_account'] ?>"><?php echo $account['name_account'] ?></option>
-                                        <?php } ?>
+                                        <option value="" selected>Seleccione cuenta</option>
+                                        <option value="1">Ingreso</option>
+                                        <option value="2">Egreso</option>
                                     </select>
-                                    <p class="formulario__input-error">Seleccione un deposito al que se se registrara el la transaccion.</p>
-                                </div>
-                            </div>
-
-                            <div class="mb-2" id="grupo__divisa">
-                                <div class="formulario__grupo-input">
-                                    <label for="divisa">Divisa</label>
-                                    <select class="form-select formulario__input" name="divisa" id="divisa" aria-label="Default select example">
-                                        <option selected>Seleccione divisa</option>
-                                        <?php foreach ($dataBadges as $badge) {   ?>
-                                            <option value="<?php echo $badge['id_badge'] ?>"><?php echo $badge['name_badge'] ?></option>
-                                        <?php } ?>
-                                    </select>
-                                    <p class="formulario__input-error">Seleccione un deposito al que se se registrara el la transaccion.</p>
+                                    <p class="formulario__input-error">Seleccione una cuenta a registrar la transaccion.</p>
                                 </div>
                             </div>
 
@@ -154,6 +125,19 @@ require('./views/header.php');
                                     <label for="descripcion">Descripcion</label>
                                     <input type="text" class="form-control formulario__input" name="descripcion" id="descripcion" placeholder="">
                                     <p class="formulario__input-error">El campo debe tener de 4 a 40 caracteres, solo se aceptan letras y numeros.</p>
+                                </div>
+                            </div>
+
+                            <div class="mb-2" id="grupo__fuente">
+                                <div class="formulario__grupo-input">
+                                    <label for="fuente">Fuente</label>
+                                    <select class="form-select formulario__input" name="fuente" id="fuente" aria-label="Default select example">
+                                        <option value="" selected>Seleccione deposito</option>
+                                        <?php foreach($datos as $font) {   ?>
+                                            <option value="<?php echo $font['id_font'] ?>"><?php echo $font['name_font'] ?></option>
+                                        <?php } ?>
+                                    </select>
+                                    <p class="formulario__input-error">Seleccione un deposito al que se se registrara el la transaccion.</p>
                                 </div>
                             </div>
 

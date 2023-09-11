@@ -23,8 +23,9 @@ require("/xampp/htdocs/accountly/server/session/session.php");
             <a href="./dashboard.php" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Panel</a>
             <a href="./transactions.php" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Transacciones</a>
             <!-- <a href="./real-table.php" class="nav-item nav-link"><i class="fa fa-couch me-2"></i>Posesiones</a> -->
-            <a href="./fonts.php" class="nav-item nav-link"><i class="fa fa-piggy-bank me-2"></i>Fuentes</a>
+            <a href="./accounts.php" class="nav-item nav-link"><i class="fa fa-piggy-bank me-2"></i>Cuentas</a>
             <a href="./debt.php" class="nav-item nav-link"><i class="fa fa-check me-2"></i>Deudas</a>
+            <a href="./dairy.php" class="nav-item nav-link"><i class="fa fa-check me-2"></i>Agenda</a>
             <a href="./settings.php" class="nav-item nav-link"><i class="far bi-gear-wide-connected me-2"></i>Configuracion</a>
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Reportes</a>

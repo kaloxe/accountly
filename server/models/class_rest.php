@@ -11,19 +11,17 @@ class Rest extends database
     return json_encode($array);
   }
 
-  public static function readFont($sql)
+  public static function readAccount($sql)
   {
     $conn = new database();
     $result = $conn->openSQL()->query($sql);
 
-    $font = $result->fetch_assoc();
-    $id_font = $font["id_font"];
-    $name_font = $font["name_font"];
-    $amount = $font["amount"];
+    $account = $result->fetch_assoc();
+    $id_account = $account["id_account"];
+    $name_account = $account["name_account"];
     $array = array(
-      'id_font' => $id_font,
-      'name_font' => $name_font,
-      'amount' => $amount
+      'id_account' => $id_account,
+      'name_account' => $name_account
     );
     return json_encode($array);
   }
@@ -49,11 +47,12 @@ class Rest extends database
   {
     $conn = new database();
     $result = $conn->openSQL()->query($sql);
-
     $tran = $result->fetch_assoc();
+
     $id_transaction = $tran["id_transaction"];
-    $id_management = $tran["id_management"];
-    $id_font = $tran["id_font"];
+    $type = $tran["type"];
+    $id_badge = $tran["id_badge"];
+    $id_account = $tran["id_account"];
     $reference = $tran["reference"];
     $amount = $tran["amount"];
     $date = $tran["date"];
@@ -61,8 +60,9 @@ class Rest extends database
 
     $array = array(
       'id_transaction' => $id_transaction,
-      'id_management' => $id_management,
-      'id_font' => $id_font,
+      'type' => $type,
+      'id_account' => $id_account,
+      'id_badge' => $id_badge,
       'reference' => $reference,
       'amount' => $amount,
       'date' => $date,
@@ -72,9 +72,18 @@ class Rest extends database
     return json_encode($array);
   }
 
-  public static function readFonts($user_id)
+  public static function readAccounts($user_id)
   {
-    $sql = "SELECT * FROM font WHERE id_user = $user_id";
+    $sql = "SELECT * FROM account WHERE id_user = $user_id";
+    $conn = new database();
+    $query = $conn->open()->prepare($sql);
+    $query->execute();
+    return $query;
+  }
+
+  public static function readBadges()
+  {
+    $sql = "SELECT * FROM badge WHERE 1";
     $conn = new database();
     $query = $conn->open()->prepare($sql);
     $query->execute();
