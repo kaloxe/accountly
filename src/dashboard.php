@@ -11,31 +11,34 @@ require_once("/xampp/htdocs/accountly/server/db/db.php");
 
     <!-- Sidebar Start -->
     <?php require('./views/menu.php');
-    $fecha_final = date("Y-m-d");
-    $fecha_inicial = date("Y-m-d", strtotime($fecha_final . "- 7 days"));
-    if ((isset($fecha_final)) && (isset($fecha_inicial))) {
-        if ($fecha_final != null && $fecha_inicial != null) {
-            $sql = "SELECT t.amount, t.id_transaction, m.id_management ,f.id_font , name_font, reference, name_management, date FROM transaction t INNER JOIN font f on f.id_font=t.id_font INNER JOIN management m on t.id_management=m.id_management WHERE (date BETWEEN '$fecha_inicial' and '$fecha_final') AND id_user=$id_user";
-            $sql1 = "SELECT count(id_transaction) FROM transaction t INNER JOIN font f on f.id_font=t.id_font WHERE (date BETWEEN '$fecha_inicial' and '$fecha_final') AND id_user=$id_user";
-        }
-    }
-    $sql2 = "SELECT SUM(amount) FROM `debt` WHERE id_user=$id_user";
-    $query2 = $connection->prepare($sql2);
-    $query2->execute();
-    $res2 = $connection->query($sql2);
-    $result2 = $res2->fetchColumn();
+    
+    // cosas comentadas que revisar
+    
+    // $fecha_final = date("Y-m-d");
+    // $fecha_inicial = date("Y-m-d", strtotime($fecha_final . "- 7 days"));
+    // if ((isset($fecha_final)) && (isset($fecha_inicial))) {
+    //     if ($fecha_final != null && $fecha_inicial != null) {
+    //         $sql = "SELECT t.amount, t.id_transaction, m.id_management ,f.id_font , name_font, reference, name_management, date FROM transaction t INNER JOIN font f on f.id_font=t.id_font INNER JOIN management m on t.id_management=m.id_management WHERE (date BETWEEN '$fecha_inicial' and '$fecha_final') AND id_user=$id_user";
+    //         $sql1 = "SELECT count(id_transaction) FROM transaction t INNER JOIN font f on f.id_font=t.id_font WHERE (date BETWEEN '$fecha_inicial' and '$fecha_final') AND id_user=$id_user";
+    //     }
+    // }
+    // $sql2 = "SELECT SUM(amount) FROM `debt` WHERE id_user=$id_user";
+    // $query2 = $connection->prepare($sql2);
+    // $query2->execute();
+    // $res2 = $connection->query($sql2);
+    // $result2 = $res2->fetchColumn();
 
-    $sql3 = "SELECT SUM(amount) as amount FROM `font` WHERE id_user=$id_user";
-    $query3 = $connection->prepare($sql3);
-    $query3->execute();
-    $res3 = $connection->query($sql3);
-    $result3 = $res3->fetchColumn();
+    // $sql3 = "SELECT SUM(amount) as amount FROM `font` WHERE id_user=$id_user";
+    // $query3 = $connection->prepare($sql3);
+    // $query3->execute();
+    // $res3 = $connection->query($sql3);
+    // $result3 = $res3->fetchColumn();
 
-    $sql4 = "SELECT SUM(t.cantidad) FROM (SELECT SUM(amount) as cantidad FROM `font` WHERE id_user=2 UNION SELECT -SUM(amount) as cantidad FROM `debt` WHERE id_user=$id_user) t";
-    $query4 = $connection->prepare($sql4);
-    $query4->execute();
-    $res4 = $connection->query($sql4);
-    $result4 = $res4->fetchColumn();
+    // $sql4 = "SELECT SUM(t.cantidad) FROM (SELECT SUM(amount) as cantidad FROM `font` WHERE id_user=2 UNION SELECT -SUM(amount) as cantidad FROM `debt` WHERE id_user=$id_user) t";
+    // $query4 = $connection->prepare($sql4);
+    // $query4->execute();
+    // $res4 = $connection->query($sql4);
+    // $result4 = $res4->fetchColumn();
     ?>
     <!-- Sidebar End -->
 

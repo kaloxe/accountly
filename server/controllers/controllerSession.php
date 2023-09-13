@@ -12,7 +12,7 @@ if (isset($_POST)) {
                 $usuario = $user['usuario'];
                 $correo = $user['correo'];
                 $password = $user['password'];
-                $sql = "INSERT INTO `user`(`nickname`, `email`, `password`) VALUES ('$usuario', '$correo', $password)";
+                $sql = "INSERT INTO `user`(`nickname`, `email`, `password`, `type_user`) VALUES ('$usuario', '$correo', '$password', 'usuario')";
                 echo Rest::execute($sql);
                 break;
             case "valid_user":

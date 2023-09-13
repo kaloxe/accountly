@@ -15,6 +15,7 @@ require('./views/header.php');
 
     $dataAccounts = Rest::readAccounts($id_user);
     $dataBadges = Rest::readBadges();
+    $dataReasons = Rest::readReasons();
     ?>
     <!-- Sidebar End -->
 
@@ -64,6 +65,7 @@ require('./views/header.php');
                                 <th class="sort asc">Divisa</th>
                                 <th class="sort asc">Monto</th>
                                 <th class="sort asc">Descripcion</th>
+                                <th class="sort asc">Razon</th>
                                 <th class="sort asc">Cuenta</th>
                                 <th class="sort asc">Referencia</th>
                                 <th class="sort asc">Fecha</th>
@@ -135,6 +137,19 @@ require('./views/header.php');
                                         <option selected>Seleccione divisa</option>
                                         <?php foreach ($dataBadges as $badge) {   ?>
                                             <option value="<?php echo $badge['id_badge'] ?>"><?php echo $badge['name_badge'] ?></option>
+                                        <?php } ?>
+                                    </select>
+                                    <p class="formulario__input-error">Seleccione un deposito al que se se registrara el la transaccion.</p>
+                                </div>
+                            </div>
+
+                            <div class="mb-2" id="grupo__razon">
+                                <div class="formulario__grupo-input">
+                                    <label for="razon">Razon</label>
+                                    <select class="form-select formulario__input" name="razon" id="razon" aria-label="Default select example">
+                                        <option selected>Seleccione razon</option>
+                                        <?php foreach($dataReasons as $reason) {   ?>
+                                            <option value="<?php echo $reason['id_reason'] ?>"><?php echo $reason['name_reason'] ?></option>
                                         <?php } ?>
                                     </select>
                                     <p class="formulario__input-error">Seleccione un deposito al que se se registrara el la transaccion.</p>

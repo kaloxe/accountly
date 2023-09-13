@@ -53,6 +53,7 @@ class Rest extends database
     $type = $tran["type"];
     $id_badge = $tran["id_badge"];
     $id_account = $tran["id_account"];
+    $id_reason = $tran["id_reason"];
     $reference = $tran["reference"];
     $amount = $tran["amount"];
     $date = $tran["date"];
@@ -63,6 +64,7 @@ class Rest extends database
       'type' => $type,
       'id_account' => $id_account,
       'id_badge' => $id_badge,
+      'id_reason' => $id_reason,
       'reference' => $reference,
       'amount' => $amount,
       'date' => $date,
@@ -84,6 +86,14 @@ class Rest extends database
   public static function readBadges()
   {
     $sql = "SELECT * FROM badge WHERE 1";
+    $conn = new database();
+    $query = $conn->open()->prepare($sql);
+    $query->execute();
+    return $query;
+  }
+  public static function readReasons()
+  {
+    $sql = "SELECT * FROM reason WHERE 1";
     $conn = new database();
     $query = $conn->open()->prepare($sql);
     $query->execute();

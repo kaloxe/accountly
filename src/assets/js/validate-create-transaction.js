@@ -15,6 +15,7 @@ const expresiones = {
   descripcion: /^[0-9a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
   cuenta: /^[0-9a-zA-ZÀ-ÿ\s]{1,10}$/, // Letras y espacios, pueden llevar acentos.
   divisa: /^[0-9a-zA-ZÀ-ÿ\s]{1,10}$/,
+  razon: /^[0-9a-zA-ZÀ-ÿ\s]{1,10}$/,
   referencia: /^\d{4,16}$/, // 7 a 14 numeros.
   fecha: /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/,
 };
@@ -25,6 +26,7 @@ const campos = {
   descripcion: false,
   cuenta: false,
   divisa: false,
+  razon: false,
   referencia: false,
   fecha: false,
 };
@@ -45,6 +47,9 @@ const validarFormulario = (e) => {
       break;
     case "divisa":
       validarCampo(expresiones.divisa, e.target, "divisa");
+      break;
+    case "razon":
+      validarCampo(expresiones.razon, e.target, "razon");
       break;
     case "referencia":
       validarCampo(expresiones.referencia, e.target, "referencia");
@@ -95,6 +100,7 @@ submit.addEventListener("click", (e) => {
     campos.descripcion &&
     campos.cuenta &&
     campos.divisa &&
+    campos.razon &&
     campos.referencia &&
     campos.fecha
   ) {
@@ -103,6 +109,7 @@ submit.addEventListener("click", (e) => {
     const descripcion = document.getElementById("descripcion").value;
     const cuenta = document.getElementById("cuenta").value;
     const divisa = document.getElementById("divisa").value;
+    const razon = document.getElementById("razon").value;
     const referencia = document.getElementById("referencia").value;
     const fecha = document.getElementById("fecha").value;
 
@@ -113,6 +120,7 @@ submit.addEventListener("click", (e) => {
       descripcion: descripcion,
       cuenta: cuenta,
       divisa: divisa,
+      razon: razon,
       referencia: referencia,
       fecha: fecha,
     };
@@ -131,6 +139,7 @@ submit.addEventListener("click", (e) => {
     campos.descripcion = false;
     campos.cuenta = false;
     campos.divisa = false;
+    campos.razon = false;
     campos.referencia = false;
     campos.fecha = false;
     formulario.reset();

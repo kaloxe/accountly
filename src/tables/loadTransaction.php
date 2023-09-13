@@ -9,7 +9,7 @@ require("/xampp/htdocs/accountly/server/session/session.php");
 require '../../server/db/db.php';
 
 /* Un arreglo de las columnas a mostrar en la tabla */
-$columns = ['id_transaction', 'transaction.type', 'transaction.id_account', 'badge.name_badge', 'account.name_account', 'id_user', 'reference', 'transaction.amount', 'date', 'description'];
+$columns = ['id_transaction', 'transaction.type', 'reason.name_reason', 'transaction.id_account', 'badge.name_badge', 'account.name_account', 'id_user', 'reference', 'transaction.amount', 'date', 'description'];
 
 /* Nombre de la tabla */
 $table = "transaction";
@@ -61,7 +61,7 @@ if (isset($_POST['orderCol'])) {
 
 /* Consulta */
 $sql = "SELECT SQL_CALC_FOUND_ROWS " . implode(", ", $columns) . " 
-FROM $table INNER JOIN account on transaction.id_account=account.id_account INNER JOIN badge on badge.id_badge=transaction.id_badge
+FROM $table INNER JOIN account on transaction.id_account=account.id_account INNER JOIN badge on badge.id_badge=transaction.id_badge INNER JOIN reason on reason.id_reason=transaction.id_reason
 $where
 $sOrder
 $sLimit";
@@ -75,7 +75,7 @@ $row_filtro = $resFiltro->fetch_array();
 $totalFiltro = $row_filtro[0];
 
 /* Consulta para total de registro filtrados */
-$sqlTotal = "SELECT count($id) FROM $table INNER JOIN account on transaction.id_account=account.id_account INNER JOIN badge on badge.id_badge=transaction.id_badge WHERE id_user=$id_user";
+$sqlTotal = "SELECT count($id) FROM $table INNER JOIN account on transaction.id_account=account.id_account INNER JOIN badge on badge.id_badge=transaction.id_badge INNER JOIN reason on reason.id_reason=transaction.id_reason WHERE id_user=$id_user";
 //$sqlTotal = "SELECT count($id) FROM $table INNER JOIN account on $table.id_account=account.id_account WHERE id_user=$id_user";
 $resTotal = $conn->query($sqlTotal);
 $row_total = $resTotal->fetch_array();
@@ -105,6 +105,7 @@ if ($num_rows > 0) {
         // $output['data'] .= '<td>' . $row['id_account'] . '</td>';
         $output['data'] .= '<td>' . $row['name_badge'] . '</td>';
         $output['data'] .= '<td class="count' . $row['type'] . '">' . $row['amount'] . '</td>';
+        $output['data'] .= '<td>' . $row['name_reason'] . '</td>';
         $output['data'] .= '<td>' . $row['description'] . '</td>';
         $output['data'] .= '<td>' . $row['name_account'] . '</td>';
         $output['data'] .= '<td>' . $row['reference'] . '</td>';
