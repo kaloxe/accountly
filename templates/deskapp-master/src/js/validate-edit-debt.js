@@ -1,28 +1,46 @@
 const formulario = document.getElementById("formulario");
 const submit = document.getElementById("submit");
 const inputs = document.querySelectorAll("#formulario input");
+const textareas = document.querySelectorAll("#formulario textarea");
+let index;
+let debt;
 
-console.log(formulario);
-console.log(submit);
-console.log(inputs);
+function openModal(id) {
+  index = {
+    action: "read_debt",
+    id: id,
+  };
+  fetch("/accountly/server/controllers/controllerDebt.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+    },
+    body: JSON.stringify(index),
+  })
+    .then((res) => res.json())
+    .then((dat) => {
+      document.getElementById("descripcion").value = dat.description;
+      document.getElementById("monto").value = dat.amount;
+    });
+}
 
 const expresiones = {
-  password: /^.{1,12}$/, // 4 a 12 digitos.
-  usuario: /^[a-zA-Z0-9\_\-]{4,16}$/,
+  descripcion: /^[0-9a-zA-ZÀ-ÿ\s]{4,80}$/, // Letras, numeros, guion y guion_bajo
+  monto: /^[0-9]+([\,\.][0-9]+)?$/, // 7 a 14 numeros.
 };
 
 const campos = {
-  usuario: false,
-  password: false,
+  descripcion: true,
+  monto: true,
 };
 
 const validarFormulario = (e) => {
   switch (e.target.name) {
-    case "usuario":
-      validarCampo(expresiones.usuario, e.target, "usuario");
+    case "descripcion":
+      validarCampo(expresiones.descripcion, e.target, "descripcion");
       break;
-    case "password":
-      validarCampo(expresiones.password, e.target, "password");
+    case "monto":
+      validarCampo(expresiones.monto, e.target, "monto");
       break;
   }
 };
@@ -47,44 +65,45 @@ inputs.forEach((input) => {
   input.addEventListener("keyup", validarFormulario);
   input.addEventListener("blur", validarFormulario);
 });
+textareas.forEach((textarea) => {
+  textarea.addEventListener("keyup", validarFormulario);
+  textarea.addEventListener("blur", validarFormulario);
+});
 
 submit.addEventListener("click", (e) => {
   e.preventDefault();
-  if (campos.password && campos.usuario) {
-    const usuario = document.getElementById("usuario").value;
-    const password = document.getElementById("password").value;
+
+  if (campos.monto && campos.descripcion) {
+    const descripcion = document.getElementById("descripcion").value;
+    const monto = document.getElementById("monto").value;
     let data = {
-      action: "valid_user",
-      usuario: usuario,
-      password: password
+      action: "update_debt",
+      id: index.id,
+      descripcion: descripcion,
+      monto: monto,
     };
-    fetch("/accountly/server/controllers/controllerSession.php", {
+    fetch("/accountly/server/controllers/controllerDebt.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json; charset=utf-8",
       },
       body: JSON.stringify(data),
     })
-      .then((res) => res.json())
-      .then((dat) => {
-          console.log(dat);
-          if (dat.state) {
-            window.location.href = "/accountly/src/dashboard.php";
-          } else {
-            document
-              .getElementById("formulario__mensaje-exito")
-              .classList.add("formulario__mensaje-exito-activo");
-            setTimeout(() => {
-              document
-                .getElementById("formulario__mensaje-exito")
-                .classList.remove("formulario__mensaje-exito-activo");
-            }, 5000);
-          }
-          return true;
-      });
-    campos.usuario = false;
-    campos.password = false;
-    formulario.reset();
+      .then((res) => res.text())
+      .then((dat) => console.log(dat));
+
+    // campos.nombre = false;
+    // campos.monto = false;
+    // formulario.reset();
+
+    document
+      .getElementById("formulario__mensaje-exito")
+      .classList.add("formulario__mensaje-exito-activo");
+    setTimeout(() => {
+      document
+        .getElementById("formulario__mensaje-exito")
+        .classList.remove("formulario__mensaje-exito-activo");
+    }, 5000);
   } else {
     Object.keys(campos).forEach((campo) => {
       if (!campos[campo]) {

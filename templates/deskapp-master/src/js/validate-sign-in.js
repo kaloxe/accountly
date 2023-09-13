@@ -58,6 +58,7 @@ submit.addEventListener("click", (e) => {
       usuario: usuario,
       password: password
     };
+    console.log(data)
     fetch("/accountly/server/controllers/controllerSession.php", {
       method: "POST",
       headers: {

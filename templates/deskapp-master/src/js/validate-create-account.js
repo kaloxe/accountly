@@ -2,27 +2,18 @@ const formulario = document.getElementById("formulario");
 const submit = document.getElementById("submit");
 const inputs = document.querySelectorAll("#formulario input");
 
-console.log(formulario);
-console.log(submit);
-console.log(inputs);
-
 const expresiones = {
-  password: /^.{1,12}$/, // 4 a 12 digitos.
-  usuario: /^[a-zA-Z0-9\_\-]{4,16}$/,
+  nombre: /^[0-9a-zA-ZÀ-ÿ\s]{3,40}$/, // Letras, numeros, guion y guion_bajo
 };
 
 const campos = {
-  usuario: false,
-  password: false,
+  nombre: false,
 };
 
 const validarFormulario = (e) => {
   switch (e.target.name) {
-    case "usuario":
-      validarCampo(expresiones.usuario, e.target, "usuario");
-      break;
-    case "password":
-      validarCampo(expresiones.password, e.target, "password");
+    case "nombre":
+      validarCampo(expresiones.nombre, e.target, "nombre");
       break;
   }
 };
@@ -50,41 +41,34 @@ inputs.forEach((input) => {
 
 submit.addEventListener("click", (e) => {
   e.preventDefault();
-  if (campos.password && campos.usuario) {
-    const usuario = document.getElementById("usuario").value;
-    const password = document.getElementById("password").value;
+
+  if (campos.nombre) {
+
+    const nombre = document.getElementById("nombre").value;
     let data = {
-      action: "valid_user",
-      usuario: usuario,
-      password: password
-    };
-    fetch("/accountly/server/controllers/controllerSession.php", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json; charset=utf-8",
+      action: "create_account",
+      nombre: nombre,
+    }
+    fetch('/accountly/server/controllers/controllerAccount.php', {
+      "method": 'POST',
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8"
       },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((dat) => {
-          console.log(dat);
-          if (dat.state) {
-            window.location.href = "/accountly/src/dashboard.php";
-          } else {
-            document
-              .getElementById("formulario__mensaje-exito")
-              .classList.add("formulario__mensaje-exito-activo");
-            setTimeout(() => {
-              document
-                .getElementById("formulario__mensaje-exito")
-                .classList.remove("formulario__mensaje-exito-activo");
-            }, 5000);
-          }
-          return true;
-      });
-    campos.usuario = false;
-    campos.password = false;
+      "body": JSON.stringify(data)
+    }).then( res => res.text())
+      .then( dat => console.log(dat))
+
+    campos.nombre = false;
     formulario.reset();
+
+    document
+      .getElementById("formulario__mensaje-exito")
+      .classList.add("formulario__mensaje-exito-activo");
+    setTimeout(() => {
+      document
+        .getElementById("formulario__mensaje-exito")
+        .classList.remove("formulario__mensaje-exito-activo");
+    }, 5000);
   } else {
     Object.keys(campos).forEach((campo) => {
       if (!campos[campo]) {
