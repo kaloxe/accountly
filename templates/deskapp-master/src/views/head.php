@@ -3,7 +3,7 @@
   <head>
     <!-- Basic Page Info -->
     <meta charset="utf-8" />
-    <title>DeskApp - Bootstrap Admin Dashboard HTML Template</title>
+    <title>Accountly</title>
 
     <!-- Site favicon -->
     <link
@@ -15,13 +15,14 @@
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="vendors/images/favicon-32x32.png"
+      href="vendors/images/icon-accountly.png"
+      
     />
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="vendors/images/favicon-16x16.png"
+      href="vendors/images/icon-accountly.png"
     />
 
     <!-- Mobile Specific Metas -->

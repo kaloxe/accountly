@@ -35,7 +35,7 @@
                             <h2 class="text-center text-primary">Login To DeskApp</h2>
                         </div>
                         <form id="formulario">
-                            <div class="input-group custom"  id="grupo__usuario">
+                            <div class="input-group custom" id="grupo__usuario">
                                 <input type="text" class="formulario__grupo-input formulario__input form-control form-control-lg" name="usuario" id="usuario" placeholder="Username" />
                                 <div class="input-group-append custom">
                                     <span class="input-group-text"><i class="icon-copy dw dw-user1"></i></span>
