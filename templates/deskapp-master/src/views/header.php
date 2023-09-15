@@ -127,7 +127,7 @@
             <div class="dropdown">
                 <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                     <span class="user-icon">
-                        <img src="vendors/images/photo1.jpg" alt="" />
+                    <i class="dw dw-user1"></i>
                     </span>
                     <span class="user-name"><?php echo $_SESSION['nickname']; ?></span>
                 </a>
@@ -138,9 +138,6 @@
                     <a class="dropdown-item" href="/accountly/server/session/session.php?close_session=true"><i class="dw dw-logout"></i> Log Out</a>
                 </div>
             </div>
-        </div>
-        <div class="github-link">
-            <a href="https://github.com/dropways/deskapp" target="_blank"><img src="vendors/images/github.svg" alt="" /></a>
         </div>
     </div>
 </div>

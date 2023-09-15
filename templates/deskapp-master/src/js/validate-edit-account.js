@@ -2,7 +2,6 @@ const formulario_update = document.getElementById("formulario_update");
 const update = document.getElementById("update");
 const inputs_update = document.querySelectorAll("#formulario_update input");
 let index;
-let account;
 
 function openUpdateModal(id) {
   index = {
@@ -23,18 +22,42 @@ function openUpdateModal(id) {
 }
 
 const campos_update = {
-  nombre: true,
+  nombre_update: true,
+};
+
+const validarFormularioUpdate = (e) => {
+  switch (e.target.name) {
+    case "nombre_update":
+      validarCampoUpdate(expresiones.nombre, e.target, "nombre_update");
+      break;
+  }
+};
+
+const validarCampoUpdate = (expresion, input, campo) => {
+  if (expresion.test(input.value)) {
+    document.getElementById(`${campo}`).classList.remove("form-control-error");
+    document
+      .querySelector(`#grupo__${campo} .formulario__input-error`)
+      .classList.remove("formulario__input-error-activo");
+    campos_update[campo] = true;
+  } else {
+    document.getElementById(`${campo}`).classList.add("form-control-error");
+    document
+      .querySelector(`#grupo__${campo} .formulario__input-error`)
+      .classList.add("formulario__input-error-activo");
+    campos_update[campo] = false;
+  }
 };
 
 inputs_update.forEach((input) => {
-  input.addEventListener("keyup", validarFormulario);
-  input.addEventListener("blur", validarFormulario);
+  input.addEventListener("keyup", validarFormularioUpdate);
+  input.addEventListener("blur", validarFormularioUpdate);
 });
 
 update.addEventListener("click", (e) => {
   e.preventDefault();
 
-  if (campos_update.nombre) {
+  if (campos_update.nombre_update) {
     const nombre = document.getElementById("nombre_update").value;
     let data = {
       action: "update_account",
@@ -51,16 +74,12 @@ update.addEventListener("click", (e) => {
       .then((res) => res.text())
       .then((dat) => console.log(dat));
 
-    // campos_update.nombre = false;
-    // campos_update.monto = false;
-    // formulario.reset();
-
     document
-      .getElementById("formulario__mensaje-exito")
+      .getElementById("formulario__mensaje-exito_update")
       .classList.add("formulario__mensaje-exito-activo");
     setTimeout(() => {
       document
-        .getElementById("formulario__mensaje-exito")
+        .getElementById("formulario__mensaje-exito_update")
         .classList.remove("formulario__mensaje-exito-activo");
     }, 5000);
   } else {
@@ -73,11 +92,11 @@ update.addEventListener("click", (e) => {
       }
     });
     document
-      .getElementById("formulario__mensaje")
+      .getElementById("formulario__mensaje_update")
       .classList.add("formulario__mensaje-activo");
     setTimeout(() => {
       document
-        .getElementById("formulario__mensaje")
+        .getElementById("formulario__mensaje_update")
         .classList.remove("formulario__mensaje-activo");
     }, 5000);
   }

@@ -1,7 +1,7 @@
-const formulario = document.getElementById("formulario");
-const submit = document.getElementById("submit");
-const inputs = document.querySelectorAll("#formulario input");
-const selects = document.querySelectorAll("#formulario select");
+const formulario_create = document.getElementById("formulario_create");
+const create = document.getElementById("create");
+const inputs_create = document.querySelectorAll("#formulario_create input");
+const selects_create = document.querySelectorAll("#formulario_create select");
 
 let today = new Date();
 var dd = today.getDate();
@@ -20,98 +20,98 @@ const expresiones = {
   fecha: /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/,
 };
 
-const campos = {
-  movimiento: false,
-  monto: false,
-  descripcion: false,
-  cuenta: false,
-  divisa: false,
-  razon: false,
-  referencia: false,
-  fecha: false,
+const campos_create = {
+  movimiento_create: false,
+  monto_create: false,
+  descripcion_create: false,
+  cuenta_create: false,
+  divisa_create: false,
+  razon_create: false,
+  referencia_create: false,
+  fecha_create: false,
 };
 
-const validarFormulario = (e) => {
+const validarFormularioCreate = (e) => {
   switch (e.target.name) {
-    case "movimiento":
-      validarCampo(expresiones.movimiento, e.target, "movimiento");
+    case "movimiento_create":
+      validarCampoCreate(expresiones.movimiento, e.target, "movimiento_create");
       break;
-    case "monto":
-      validarCampo(expresiones.monto, e.target, "monto");
+    case "monto_create":
+      validarCampoCreate(expresiones.monto, e.target, "monto_create");
       break;
-    case "descripcion":
-      validarCampo(expresiones.descripcion, e.target, "descripcion");
+    case "descripcion_create":
+      validarCampoCreate(expresiones.descripcion, e.target, "descripcion_create");
       break;
-    case "cuenta":
-      validarCampo(expresiones.cuenta, e.target, "cuenta");
+    case "cuenta_create":
+      validarCampoCreate(expresiones.cuenta, e.target, "cuenta_create");
       break;
-    case "divisa":
-      validarCampo(expresiones.divisa, e.target, "divisa");
+    case "divisa_create":
+      validarCampoCreate(expresiones.divisa, e.target, "divisa_create");
       break;
-    case "razon":
-      validarCampo(expresiones.razon, e.target, "razon");
+    case "razon_create":
+      validarCampoCreate(expresiones.razon, e.target, "razon_create");
       break;
-    case "referencia":
-      validarCampo(expresiones.referencia, e.target, "referencia");
+    case "referencia_create":
+      validarCampoCreate(expresiones.referencia, e.target, "referencia_create");
       break;
-    case "fecha":
+    case "fecha_create":
       if (Date.parse(e.target.value) <= Date.parse(today)) {
-        validarCampo(expresiones.fecha, e.target, "fecha");
+        validarCampoCreate(expresiones.fecha, e.target, "fecha_create");
         break;
       } else {
-        validarCampo(expresiones.fecha, "", "fecha");
+        validarCampoCreate(expresiones.fecha, "", "fecha_create");
         break;
       }
   }
 };
 
-const validarCampo = (expresion, input, campo) => {
+const validarCampoCreate = (expresion, input, campo) => {
   if (expresion.test(input.value)) {
     document.getElementById(`${campo}`).classList.remove("form-control-error");
     document
       .querySelector(`#grupo__${campo} .formulario__input-error`)
       .classList.remove("formulario__input-error-activo");
-    campos[campo] = true;
+    campos_create[campo] = true;
   } else {
     document.getElementById(`${campo}`).classList.add("form-control-error");
     document
       .querySelector(`#grupo__${campo} .formulario__input-error`)
       .classList.add("formulario__input-error-activo");
-    campos[campo] = false;
+    campos_create[campo] = false;
   }
 };
 
-inputs.forEach((input) => {
-  input.addEventListener("keyup", validarFormulario);
-  input.addEventListener("blur", validarFormulario);
-  input.addEventListener("change", validarFormulario);
+inputs_create.forEach((input) => {
+  input.addEventListener("keyup", validarFormularioCreate);
+  input.addEventListener("blur", validarFormularioCreate);
+  input.addEventListener("change", validarFormularioCreate);
 });
 
-selects.forEach((select) => {
-  select.addEventListener("change", validarFormulario);
+selects_create.forEach((select) => {
+  select.addEventListener("change", validarFormularioCreate);
 });
 
-submit.addEventListener("click", (e) => {
+create.addEventListener("click", (e) => {
   e.preventDefault();
 
   if (
-    campos.movimiento &&
-    campos.monto &&
-    campos.descripcion &&
-    campos.cuenta &&
-    campos.divisa &&
-    campos.razon &&
-    campos.referencia &&
-    campos.fecha
+    campos_create.movimiento_create &&
+    campos_create.monto_create &&
+    campos_create.descripcion_create &&
+    campos_create.cuenta_create &&
+    campos_create.divisa_create &&
+    campos_create.razon_create &&
+    campos_create.referencia_create &&
+    campos_create.fecha_create
   ) {
-    const movimiento = document.getElementById("movimiento").value;
-    const monto = document.getElementById("monto").value;
-    const descripcion = document.getElementById("descripcion").value;
-    const cuenta = document.getElementById("cuenta").value;
-    const divisa = document.getElementById("divisa").value;
-    const razon = document.getElementById("razon").value;
-    const referencia = document.getElementById("referencia").value;
-    const fecha = document.getElementById("fecha").value;
+    const movimiento = document.getElementById("movimiento_create").value;
+    const monto = document.getElementById("monto_create").value;
+    const descripcion = document.getElementById("descripcion_create").value;
+    const cuenta = document.getElementById("cuenta_create").value;
+    const divisa = document.getElementById("divisa_create").value;
+    const razon = document.getElementById("razon_create").value;
+    const referencia = document.getElementById("referencia_create").value;
+    const fecha = document.getElementById("fecha_create").value;
 
     let data = {
       action: "create_transaction",
@@ -134,15 +134,15 @@ submit.addEventListener("click", (e) => {
       .then((res) => res.text())
       .then((dat) => console.log(dat));
 
-    campos.movimiento = false;
-    campos.monto = false;
-    campos.descripcion = false;
-    campos.cuenta = false;
-    campos.divisa = false;
-    campos.razon = false;
-    campos.referencia = false;
-    campos.fecha = false;
-    formulario.reset();
+    campos_create.movimiento_create = false;
+    campos_create.monto_create = false;
+    campos_create.descripcion_create = false;
+    campos_create.cuenta_create = false;
+    campos_create.divisa_create = false;
+    campos_create.razon_create = false;
+    campos_create.referencia_create = false;
+    campos_create.fecha_create = false;
+    formulario_create.reset();
 
     document
       .getElementById("formulario__mensaje-exito")
@@ -154,7 +154,7 @@ submit.addEventListener("click", (e) => {
     }, 5000);
   } else {
     Object.keys(campos).forEach((campo) => {
-      if (!campos[campo]) {
+      if (!campos_create[campo]) {
         document.getElementById(`${campo}`).classList.add("form-control-error");
         document
           .querySelector(`#grupo__${campo} .formulario__input-error`)

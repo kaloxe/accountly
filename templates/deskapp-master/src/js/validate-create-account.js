@@ -3,22 +3,22 @@ const create = document.getElementById("create");
 const inputs_create = document.querySelectorAll("#formulario_create input");
 
 const expresiones = {
-  nombre: /^[0-9a-zA-ZÀ-ÿ\s]{3,40}$/, // Letras, numeros, guion y guion_bajo
+  nombre: /^[0-9a-zA-ZÀ-ÿ\s]{4,40}$/, // Letras, numeros, guion y guion_bajo
 };
 
 const campos_create = {
   nombre_create: false,
 };
 
-const validarFormulario = (e) => {
+const validarFormularioCreate = (e) => {
   switch (e.target.name) {
     case "nombre_create":
-      validarCampo(expresiones.nombre, e.target, "nombre_create");
+      validarCampoCreate(expresiones.nombre, e.target, "nombre_create");
       break;
   }
 };
 
-const validarCampo = (expresion, input, campo) => {
+const validarCampoCreate = (expresion, input, campo) => {
   if (expresion.test(input.value)) {
     document.getElementById(`${campo}`).classList.remove("form-control-error");
     document
@@ -35,8 +35,8 @@ const validarCampo = (expresion, input, campo) => {
 };
 
 inputs_create.forEach((input) => {
-  input.addEventListener("keyup", validarFormulario);
-  input.addEventListener("blur", validarFormulario);
+  input.addEventListener("keyup", validarFormularioCreate);
+  input.addEventListener("blur", validarFormularioCreate);
 });
 
 create.addEventListener("click", (e) => {

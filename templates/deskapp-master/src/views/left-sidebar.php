@@ -17,7 +17,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="calendar.html" class="dropdown-toggle no-arrow">
+                    <a href="transaction.php" class="dropdown-toggle no-arrow">
                         <span class="micon bi bi-receipt-cutoff"></span><span class="mtext">Transacciones</span>
                     </a>
                 </li>
@@ -27,17 +27,17 @@
                     </a>
                 </li>
                 <li>
-                    <a href="calendar.html" class="dropdown-toggle no-arrow">
+                    <a href="dairy.php" class="dropdown-toggle no-arrow">
                         <span class="micon bi bi-calendar4-week"></span><span class="mtext">Agenda</span>
                     </a>
                 </li>
                 <li>
-                    <a href="calendar.html" class="dropdown-toggle no-arrow">
+                    <a href="goal.php" class="dropdown-toggle no-arrow">
                         <span class="micon bi bi-diagram-3"></span><span class="mtext">Metas</span>
                     </a>
                 </li>
                 <li>
-                    <a href="calendar.html" class="dropdown-toggle no-arrow">
+                    <a href="settings.php" class="dropdown-toggle no-arrow">
                         <span class="micon bi bi-command"></span><span class="mtext">Configuracion</span>
                     </a>
                 </li>
@@ -57,7 +57,7 @@
                 </li>
 
                 <li>
-                    <a href="calendar.html" class="dropdown-toggle no-arrow">
+                    <a href="binnacle.php" class="dropdown-toggle no-arrow">
                         <span class="micon bi bi-textarea-resize"></span><span class="mtext">Bitacora</span>
                     </a>
                 </li>

@@ -88,17 +88,6 @@ $output['totalFiltro'] = $totalFiltro;
 $output['data'] = '';
 $output['paginacion'] = '';
 
-// function name($con, $id) {
-//     $sqlName = "SELECT name_account FROM account WHERE id_account= $id";
-//     $result = $con->query($sqlName);
-//     $query = $con->prepare($sqlName);
-//     $query->execute();
-
-//     $account = $result->fetch_assoc();
-//     $res = $account["name_account"];
-//     return $res;
-// }
-
 if ($num_rows > 0) {
     while ($row = $resultado->fetch_assoc()) {
         $output['data'] .= '<tr>';
