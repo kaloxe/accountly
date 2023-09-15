@@ -70,7 +70,7 @@ submit.addEventListener("click", (e) => {
       .then((dat) => {
           console.log(dat);
           if (dat.state) {
-            window.location.href = "/accountly/src/dashboard.php";
+            window.location.href = "/accountly/templates/deskapp-master/index.php";
           } else {
             document
               .getElementById("formulario__mensaje-exito")

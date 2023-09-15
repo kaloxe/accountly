@@ -1,5 +1,3 @@
-<?php require("/xampp/htdocs/accountly/server/session/session.php"); ?>
-
 <div class="left-side-bar">
     <div class="brand-logo">
         <a href="index.html">
@@ -14,7 +12,7 @@
         <div class="sidebar-menu">
             <ul id="accordion-menu">
                 <li>
-                    <a href="calendar.html" class="dropdown-toggle no-arrow">
+                    <a href="index.php" class="dropdown-toggle no-arrow">
                         <span class="micon bi bi-house"></span><span class="mtext">Panel</span>
                     </a>
                 </li>

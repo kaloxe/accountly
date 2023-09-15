@@ -25,21 +25,35 @@
                         </nav>
                     </div>
                     <div class="col-md-6 col-sm-12 text-right">
-                        <div class="dropdown">
-                            <a class="btn btn-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                                January 2018
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#">Export List</a>
-                                <a class="dropdown-item" href="#">Policies</a>
-                                <a class="dropdown-item" href="#">View Assets</a>
-                            </div>
-                        </div>
+                        <a class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#modal_create" type="button">
+                            Registrar
+                        </a>
                     </div>
                 </div>
             </div>
-            <!-- Simple Datatable start -->
+
+            <!-- multiple select row Datatable start -->
             <div class="card-box mb-30">
+                <div class="pd-20">
+                    <h4 class="text-blue h4">Data Table with multiple select row</h4>
+                </div>
+                <div class="pb-20">
+                    <table class="data-table table hover multiple-select-row nowrap">
+                        <thead>
+                            <tr>
+                                <th class="table-plus datatable-nosort sort asc">Cuenta</th>
+                                <th class="datatable-nosort">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="content">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- multiple select row Datatable End -->
+
+            <!-- Simple Datatable start -->
+            <!-- <div class="card-box mb-30">
                 <div class="pd-20">
                     <h4 class="text-blue h4">Data Table Simple</h4>
                     <p class="mb-0">
@@ -291,188 +305,107 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </div> -->
             <!-- Simple Datatable End -->
 
-            <!-- Export Datatable start -->
-            <div class="card-box mb-30">
+            <!-- Create modal -->
+            <div class="col-md-4 col-sm-12 mb-30">
+                <div class="pd-20 card-box height-100-p">
+                    <h5 class="h4">Medium modal</h5>
 
-                <!-- <div class="pd-20">
+                    <div class="modal fade" id="modal_create" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
 
-                    <h4 class="text-blue h4">Data Table with Export Buttons</h4>
-                </div> -->
-
-                <div class="clearfix pd-20">
-                    <div class="pull-left">
-                        <h4 class="text-blue h4">Basic Table</h4>
-                        <p>Add class <code>.table</code></p>
-                    </div>
-                    <!-- Medium modal -->
-                    <div class="col-md-4 col-sm-12 mb-30">
-                        <div class="pd-20 card-box height-100-p">
-                            <h5 class="h4">Medium modal</h5>
-                            <a href="#" class="btn btn-primary btn-sm scroll-click" data-toggle="modal" data-target="#Medium-modal" type="button">
-                                <img src="vendors/images/modal-img2.jpg" alt="modal" />
-                            </a>
-                            <div class="pull-right">
-                                <a href="#basic-table" class="btn btn-primary btn-sm scroll-click" rel="content-y" data-toggle="collapse" role="button"><i class="fa fa-code"></i> Source Code</a>
+                            <div class="formulario__mensaje p-1 text-center mb-2 pb-5" id="formulario__mensaje">
+                                <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Rellene el formulario correctamente. </p>
                             </div>
-                            <div class="modal fade" id="Medium-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h4 class="modal-title" id="myLargeModalLabel">
-                                                Large modal
-                                            </h4>
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                                ×
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing
-                                                elit, sed do eiusmod tempor incididunt ut labore et
-                                                dolore magna aliqua. Ut enim ad minim veniam, quis
-                                                nostrud exercitation ullamco laboris nisi ut aliquip
-                                                ex ea commodo consequat. Duis aute irure dolor in
-                                                reprehenderit in voluptate velit esse cillum dolore eu
-                                                fugiat nulla pariatur. Excepteur sint occaecat
-                                                cupidatat non proident, sunt in culpa qui officia
-                                                deserunt mollit anim id est laborum.
-                                            </p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                Close
-                                            </button>
-                                            <button type="button" class="btn btn-primary">
-                                                Save changes
-                                            </button>
+
+                            <div class="modal-content">
+                                <form id="formulario_create">
+                                    <div class="modal-body">
+                                        <h4 class="text-blue h4 mb-10">Crear</h4>
+                                        <div class="form-group formulario__grupo-input" id="grupo__nombre_create">
+                                            <label>Event name</label>
+                                            <input type="text" class="form-control formulario__input" name="nombre_create" id="nombre_create" />
+                                            <p class="formulario__input-error">El campo debe tener de 4 a 40 caracteres, solo se aceptan letras y numeros.</p>
                                         </div>
                                     </div>
-                                </div>
+                                    <div class="modal-footer">
+                                        <input type="button" class="btn btn-primary" id="create" value="Registrar">
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal">
+                                            Close
+                                        </button>
+                                    </div>
+                                    <p class="formulario__mensaje-exito pt-2" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
+                                </form>
                             </div>
                         </div>
                     </div>
-
-
-
-                </div>
-
-                <div class="pb-20">
-                    <table class="table hover multiple-select-row data-table-export nowrap">
-                        <thead>
-                            <tr>
-                                <th class="table-plus datatable-nosort">Name</th>
-                                <th>Age</th>
-                                <th>Office</th>
-                                <th>Address</th>
-                                <th>Start Date</th>
-                                <th>Salart</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="table-plus">Gloria F. Mead</td>
-                                <td>25</td>
-                                <td>Sagittarius</td>
-                                <td>2829 Trainer Avenue Peoria, IL 61602</td>
-                                <td>29-03-2018</td>
-                                <td>$162,700</td>
-                            </tr>
-                            <tr>
-                                <td class="table-plus">Andrea J. Cagle</td>
-                                <td>30</td>
-                                <td>Gemini</td>
-                                <td>1280 Prospect Valley Road Long Beach, CA 90802</td>
-                                <td>29-03-2018</td>
-                                <td>$162,700</td>
-                            </tr>
-                            <tr>
-                                <td class="table-plus">Andrea J. Cagle</td>
-                                <td>20</td>
-                                <td>Gemini</td>
-                                <td>2829 Trainer Avenue Peoria, IL 61602</td>
-                                <td>29-03-2018</td>
-                                <td>$162,700</td>
-                            </tr>
-                            <tr>
-                                <td class="table-plus">Andrea J. Cagle</td>
-                                <td>30</td>
-                                <td>Sagittarius</td>
-                                <td>1280 Prospect Valley Road Long Beach, CA 90802</td>
-                                <td>29-03-2018</td>
-                                <td>$162,700</td>
-                            </tr>
-                            <tr>
-                                <td class="table-plus">Andrea J. Cagle</td>
-                                <td>25</td>
-                                <td>Gemini</td>
-                                <td>2829 Trainer Avenue Peoria, IL 61602</td>
-                                <td>29-03-2018</td>
-                                <td>$162,700</td>
-                            </tr>
-                            <tr>
-                                <td class="table-plus">Andrea J. Cagle</td>
-                                <td>20</td>
-                                <td>Sagittarius</td>
-                                <td>1280 Prospect Valley Road Long Beach, CA 90802</td>
-                                <td>29-03-2018</td>
-                                <td>$162,700</td>
-                            </tr>
-                            <tr>
-                                <td class="table-plus">Andrea J. Cagle</td>
-                                <td>18</td>
-                                <td>Gemini</td>
-                                <td>1280 Prospect Valley Road Long Beach, CA 90802</td>
-                                <td>29-03-2018</td>
-                                <td>$162,700</td>
-                            </tr>
-                            <tr>
-                                <td class="table-plus">Andrea J. Cagle</td>
-                                <td>30</td>
-                                <td>Sagittarius</td>
-                                <td>1280 Prospect Valley Road Long Beach, CA 90802</td>
-                                <td>29-03-2018</td>
-                                <td>$162,700</td>
-                            </tr>
-                            <tr>
-                                <td class="table-plus">Andrea J. Cagle</td>
-                                <td>30</td>
-                                <td>Sagittarius</td>
-                                <td>1280 Prospect Valley Road Long Beach, CA 90802</td>
-                                <td>29-03-2018</td>
-                                <td>$162,700</td>
-                            </tr>
-                            <tr>
-                                <td class="table-plus">Andrea J. Cagle</td>
-                                <td>30</td>
-                                <td>Gemini</td>
-                                <td>1280 Prospect Valley Road Long Beach, CA 90802</td>
-                                <td>29-03-2018</td>
-                                <td>$162,700</td>
-                            </tr>
-                            <tr>
-                                <td class="table-plus">Andrea J. Cagle</td>
-                                <td>30</td>
-                                <td>Gemini</td>
-                                <td>1280 Prospect Valley Road Long Beach, CA 90802</td>
-                                <td>29-03-2018</td>
-                                <td>$162,700</td>
-                            </tr>
-                            <tr>
-                                <td class="table-plus">Andrea J. Cagle</td>
-                                <td>30</td>
-                                <td>Gemini</td>
-                                <td>1280 Prospect Valley Road Long Beach, CA 90802</td>
-                                <td>29-03-2018</td>
-                                <td>$162,700</td>
-                            </tr>
-                        </tbody>
-                    </table>
                 </div>
             </div>
-            <!-- Export Datatable End -->
+
+            <!-- Edit modal -->
+            <div class="col-md-4 col-sm-12 mb-30">
+                <div class="pd-20 card-box height-100-p">
+                    <h5 class="h4">Medium modal</h5>
+
+                    <div class="modal fade" id="modal_update" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+
+                            <div class="formulario__mensaje p-1 text-center mb-2 pb-5" id="formulario__mensaje">
+                                <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Rellene el formulario correctamente. </p>
+                            </div>
+
+                            <div class="modal-content">
+                                <form id="formulario_update">
+                                    <div class="modal-body">
+                                        <h4 class="text-blue h4 mb-10">Actualizar</h4>
+                                        <div class="form-group formulario__grupo-input" id="grupo__nombre_update">
+                                            <label>Event name</label>
+                                            <input type="text" class="form-control formulario__input" name="nombre_update" id="nombre_update" />
+                                            <p class="formulario__input-error">El campo debe tener de 4 a 40 caracteres, solo se aceptan letras y numeros.</p>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="button" class="btn btn-primary" id="update" value="Actualizar">
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal">
+                                            Close
+                                        </button>
+                                    </div>
+                                    <p class="formulario__mensaje-exito pt-2" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Delete modal -->
+            <div class="col-md-4 col-sm-12 mb-30">
+                <div class="pd-20 card-box height-100-p">
+                    <h5 class="h4">Medium modal</h5>
+
+                    <div class="modal fade" id="modal_delete" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <form>
+                                    <div class="modal-body">
+                                        <h4 class="text-blue h4 mb-10">Eliminar</h4>
+                                        <p>Esta seguro de que quiere borrar el registro?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="button" class="btn btn-primary" id="eliminar" value="Eliminar">
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal">
+                                            Close
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <div class="footer-wrap pd-20 mb-20 card-box">
@@ -482,6 +415,71 @@
     </div>
 </div>
 
+<script>
+    let index_delete;
+
+    function openDeleteModal(id) {
+        index_delete = id;
+    }
+    const eliminar = document.getElementById("eliminar");
+    eliminar.addEventListener("click", (e) => {
+        e.preventDefault();
+        let data = {
+            action: "delete_account",
+            id: index_delete,
+        };
+        fetch("/accountly/server/controllers/controllerAccount.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                },
+                body: JSON.stringify(data),
+            })
+            .then((res) => res.text())
+            .then((dat) => console.log(dat));
+    });
+
+    // function eliminar(id) {
+    //     let data = {
+    //         action: "delete_account",
+    //         id: id
+    //     }
+    //     fetch('/accountly/server/controllers/controllerAccount.php', {
+    //             "method": 'POST',
+    //             "headers": {
+    //                 "Content-Type": "application/json; charset=utf-8"
+    //             },
+    //             "body": JSON.stringify(data)
+    //         }).then(res => res.text())
+    //         .then(dat => {
+    //             setTimeout(() => {
+    //                 window.location.href = "/accountly/src/accounts.php";
+    //             }, 1500);
+    //             console.log(dat)
+    //         })
+    // }
+
+    /* Llamando a la función getData() */
+    getData()
+
+    /* Peticion AJAX */
+    function getData() {
+        let content = document.getElementById("content")
+
+        let url = "src/tables/loadAccount.php"
+        let formaData = new FormData()
+        fetch(url, {
+                method: "POST",
+                body: formaData
+            }).then(response => response.json())
+            .then(data => {
+                content.innerHTML = data.data
+            }).catch(err => console.log(err))
+    }
+</script>
+
+<script src="./src/js/validate-create-account.js"></script>
+<script src="./src/js/validate-edit-account.js"></script>
 <?php require('./src/views/scripts.php'); ?>
 <script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
 <script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>

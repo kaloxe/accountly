@@ -1,19 +1,19 @@
-const formulario = document.getElementById("formulario");
-const submit = document.getElementById("submit");
-const inputs = document.querySelectorAll("#formulario input");
+const formulario_create = document.getElementById("formulario_create");
+const create = document.getElementById("create");
+const inputs_create = document.querySelectorAll("#formulario_create input");
 
 const expresiones = {
   nombre: /^[0-9a-zA-ZÀ-ÿ\s]{3,40}$/, // Letras, numeros, guion y guion_bajo
 };
 
-const campos = {
-  nombre: false,
+const campos_create = {
+  nombre_create: false,
 };
 
 const validarFormulario = (e) => {
   switch (e.target.name) {
-    case "nombre":
-      validarCampo(expresiones.nombre, e.target, "nombre");
+    case "nombre_create":
+      validarCampo(expresiones.nombre, e.target, "nombre_create");
       break;
   }
 };
@@ -24,27 +24,27 @@ const validarCampo = (expresion, input, campo) => {
     document
       .querySelector(`#grupo__${campo} .formulario__input-error`)
       .classList.remove("formulario__input-error-activo");
-    campos[campo] = true;
+    campos_create[campo] = true;
   } else {
     document.getElementById(`${campo}`).classList.add("form-control-error");
     document
       .querySelector(`#grupo__${campo} .formulario__input-error`)
       .classList.add("formulario__input-error-activo");
-    campos[campo] = false;
+    campos_create[campo] = false;
   }
 };
 
-inputs.forEach((input) => {
+inputs_create.forEach((input) => {
   input.addEventListener("keyup", validarFormulario);
   input.addEventListener("blur", validarFormulario);
 });
 
-submit.addEventListener("click", (e) => {
+create.addEventListener("click", (e) => {
   e.preventDefault();
 
-  if (campos.nombre) {
+  if (campos_create.nombre_create) {
 
-    const nombre = document.getElementById("nombre").value;
+    const nombre = document.getElementById("nombre_create").value;
     let data = {
       action: "create_account",
       nombre: nombre,
@@ -58,8 +58,8 @@ submit.addEventListener("click", (e) => {
     }).then( res => res.text())
       .then( dat => console.log(dat))
 
-    campos.nombre = false;
-    formulario.reset();
+    campos_create.nombre_create = false;
+    formulario_create.reset();
 
     document
       .getElementById("formulario__mensaje-exito")
@@ -70,8 +70,8 @@ submit.addEventListener("click", (e) => {
         .classList.remove("formulario__mensaje-exito-activo");
     }, 5000);
   } else {
-    Object.keys(campos).forEach((campo) => {
-      if (!campos[campo]) {
+    Object.keys(campos_create).forEach((campo) => {
+      if (!campos_create[campo]) {
         document.getElementById(`${campo}`).classList.add("form-control-error");
         document
           .querySelector(`#grupo__${campo} .formulario__input-error`)

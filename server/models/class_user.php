@@ -24,10 +24,10 @@ class User extends database
                 'password' => $password
             );
             
-            $actualdt = date('y-m-d h:i:s');
-            $sql1 = "INSERT INTO `binnacle`(`id_user`, `movement`, `datetime`) VALUES ($id_user,'Inicio de session $nickname','$actualdt')";
-            $query = $conn->open()->prepare($sql1);
-            $query->execute();
+            // $actualdt = date('y-m-d h:i:s');
+            // $sql1 = "INSERT INTO `binnacle`(`id_user`, `movement`, `datetime`) VALUES ($id_user,'Inicio de session $nickname','$actualdt')";
+            // $query = $conn->open()->prepare($sql1);
+            // $query->execute();
 
             return $array;
         }
