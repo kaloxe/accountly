@@ -1,14 +1,10 @@
 <?php
 require('/xampp/htdocs/accountly/server/db/db.php');
-require('/xampp/htdocs/accountly/server/models/class_rest.php');
 require('./src/views/head.php');
 require('./src/views/loader.php');
 require('./src/views/header.php');
 require('./src/views/right-sidebar.php');
 require('./src/views/left-sidebar.php');
-$dataAccounts = Rest::readAccounts($id_user);
-$dataBadges = Rest::readBadges();
-$dataReasons = Rest::readReasons();
 ?>
 
 <div class="main-container">
@@ -48,7 +44,7 @@ $dataReasons = Rest::readReasons();
                     <table class="data-table table hover multiple-select-row nowrap">
                         <thead>
                             <tr>
-                            <th class="sort asc">Divisa</th>
+                                <th class="sort asc">Divisa</th>
                                 <th class="sort asc">Monto</th>
                                 <th class="sort asc">Descripcion</th>
                                 <th class="sort asc">Razon</th>
@@ -121,6 +117,26 @@ $dataReasons = Rest::readReasons();
             }).then(response => response.json())
             .then(data => {
                 content.innerHTML = data.data
+            }).catch(err => console.log(err))
+    }
+
+    // llamando contenido de los selects de los formularios de los modals
+    getSelects()
+
+    function getSelects() {
+        let url = "src/php/selects.php"
+        let formaData = new FormData()
+        fetch(url, {
+                method: "POST",
+                body: formaData
+            }).then(response => response.json())
+            .then(data => {
+                cuenta_create.innerHTML = data.accounts
+                cuenta_update.innerHTML = data.accounts
+                divisa_create.innerHTML = data.badges
+                divisa_update.innerHTML = data.badges
+                razon_create.innerHTML = data.reasons
+                razon_update.innerHTML = data.reasons
             }).catch(err => console.log(err))
     }
 </script>

@@ -1,10 +1,11 @@
 <div class="left-side-bar">
     <div class="brand-logo">
-        <a href="index.html">
-            <img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo" />
-            <img src="vendors/images/deskapp-logo-white.svg" alt="" class="light-logo" />
+        <a class="align-items-center" href="#">
+            <span class="mtext col-12">Accountly</span>
+            <!-- <img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo" />
+            <img src="vendors/images/deskapp-logo-white.svg" alt="" class="light-logo" /> -->
         </a>
-        <div class="close-sidebar" data-toggle="left-sidebar-close">
+        <div class="close-sidebar col-2" data-toggle="left-sidebar-close">
             <i class="ion-close-round"></i>
         </div>
     </div>
@@ -13,7 +14,7 @@
             <ul id="accordion-menu">
                 <li>
                     <a href="index.php" class="dropdown-toggle no-arrow">
-                        <span class="micon bi bi-house"></span><span class="mtext">Panel</span>
+                        <span class="micon bi bi-house"></span><span class="mtext">Principal</span>
                     </a>
                 </li>
                 <li>
@@ -46,12 +47,14 @@
                         <span class="micon bi bi-pie-chart"></span><span class="mtext">Reportes</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="index.html">Dashboard style 1</a></li>
-                        <li><a href="index2.html">Dashboard style 2</a></li>
-                        <li><a href="index3.html">Dashboard style 3</a></li>
+                        <li><a href="#">Totales</a></li>
+                        <li><a href="#">Filtrar transacciones</a></li>
+                        <li><a href="#">Conversion a divisas</a></li>
+                        <li><a href="#">Movimientos</a></li>
+                        <li><a href="#">Eventos proximos</a></li>
                     </ul>
                 </li>
-                
+
                 <li>
                     <div class="dropdown-divider"></div>
                 </li>
@@ -66,15 +69,10 @@
                         <span class="micon bi bi-file-pdf"></span><span class="mtext">Documentacion</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="introduction.html">Introduction</a></li>
-                        <li><a href="getting-started.html">Getting Started</a></li>
-                        <li><a href="color-settings.html">Color Settings</a></li>
-                        <li>
-                            <a href="third-party-plugins.html">Third Party Plugins</a>
-                        </li>
+                        <li><a href="https://github.com/kaloxe/accountly">Codigo libre</a></li>
                     </ul>
                 </li>
-            
+
             </ul>
         </div>
     </div>

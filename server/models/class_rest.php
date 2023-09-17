@@ -74,6 +74,31 @@ class Rest extends database
     return json_encode($array);
   }
 
+  public static function readDiary($sql)
+  {
+    $conn = new database();
+    $result = $conn->openSQL()->query($sql);
+    $tran = $result->fetch_assoc();
+
+    $id_diary = $tran["id_diary"];
+    $type = $tran["type"];
+    $id_badge = $tran["id_badge"];
+    $amount = $tran["amount"];
+    $date = $tran["date"];
+    $description = $tran["description"];
+
+    $array = array(
+      'id_diary' => $id_diary,
+      'type' => $type,
+      'id_badge' => $id_badge,
+      'amount' => $amount,
+      'date' => $date,
+      'description' => $description
+    );
+
+    return json_encode($array);
+  }
+
   public static function readAccounts($user_id)
   {
     $sql = "SELECT * FROM account WHERE id_user = $user_id";

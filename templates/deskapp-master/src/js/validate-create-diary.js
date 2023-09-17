@@ -3,6 +3,16 @@ const create = document.getElementById("create");
 const inputs_create = document.querySelectorAll("#formulario_create input");
 const selects_create = document.querySelectorAll("#formulario_create select");
 
+function openCreateModal(fecha) {
+  console.log(fecha);
+  document.getElementById("fecha_create").value = fecha;
+  if (Date.parse(document.getElementById("fecha_create").value) >= Date.parse(today)) {
+    validarCampoCreate(expresiones.fecha, document.getElementById("fecha_create"), "fecha_create");
+  } else {
+    validarCampoCreate(expresiones.fecha, "", "fecha_create");
+  }
+}
+
 let today = new Date();
 let dd = today.getDate();
 let mm = today.getMonth() + 1;
@@ -13,10 +23,7 @@ const expresiones = {
   movimiento: /^[0-9a-zA-ZÀ-ÿ\s]{1,10}$/, // Letras, numeros, guion y guion_bajo
   monto: /^[0-9]+([\,\.][0-9]+)?$/, // 7 a 14 numeros.
   descripcion: /^[0-9a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-  cuenta: /^[0-9a-zA-ZÀ-ÿ\s]{1,10}$/, // Letras y espacios, pueden llevar acentos.
   divisa: /^[0-9a-zA-ZÀ-ÿ\s]{1,10}$/,
-  razon: /^[0-9a-zA-ZÀ-ÿ\s]{1,10}$/,
-  referencia: /^\d{4,16}$/, // 7 a 14 numeros.
   fecha: /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/,
 };
 
@@ -24,11 +31,8 @@ const campos_create = {
   movimiento_create: false,
   monto_create: false,
   descripcion_create: false,
-  cuenta_create: false,
   divisa_create: false,
-  razon_create: false,
-  referencia_create: false,
-  fecha_create: false,
+  fecha_create: true,
 };
 
 const validarFormularioCreate = (e) => {
@@ -40,22 +44,17 @@ const validarFormularioCreate = (e) => {
       validarCampoCreate(expresiones.monto, e.target, "monto_create");
       break;
     case "descripcion_create":
-      validarCampoCreate(expresiones.descripcion, e.target, "descripcion_create");
-      break;
-    case "cuenta_create":
-      validarCampoCreate(expresiones.cuenta, e.target, "cuenta_create");
+      validarCampoCreate(
+        expresiones.descripcion,
+        e.target,
+        "descripcion_create"
+      );
       break;
     case "divisa_create":
       validarCampoCreate(expresiones.divisa, e.target, "divisa_create");
       break;
-    case "razon_create":
-      validarCampoCreate(expresiones.razon, e.target, "razon_create");
-      break;
-    case "referencia_create":
-      validarCampoCreate(expresiones.referencia, e.target, "referencia_create");
-      break;
     case "fecha_create":
-      if (Date.parse(e.target.value) <= Date.parse(today)) {
+      if (Date.parse(e.target.value) >= Date.parse(today)) {
         validarCampoCreate(expresiones.fecha, e.target, "fecha_create");
         break;
       } else {
@@ -98,33 +97,25 @@ create.addEventListener("click", (e) => {
     campos_create.movimiento_create &&
     campos_create.monto_create &&
     campos_create.descripcion_create &&
-    campos_create.cuenta_create &&
     campos_create.divisa_create &&
-    campos_create.razon_create &&
-    campos_create.referencia_create &&
     campos_create.fecha_create
   ) {
     const movimiento = document.getElementById("movimiento_create").value;
     const monto = document.getElementById("monto_create").value;
     const descripcion = document.getElementById("descripcion_create").value;
-    const cuenta = document.getElementById("cuenta_create").value;
     const divisa = document.getElementById("divisa_create").value;
-    const razon = document.getElementById("razon_create").value;
-    const referencia = document.getElementById("referencia_create").value;
     const fecha = document.getElementById("fecha_create").value;
 
     let data = {
-      action: "create_transaction",
+      action: "create_diary",
       movimiento: movimiento,
       monto: monto,
       descripcion: descripcion,
-      cuenta: cuenta,
       divisa: divisa,
-      razon: razon,
-      referencia: referencia,
       fecha: fecha,
     };
-    fetch("/accountly/server/controllers/controllerTransaction.php", {
+    console.log(data);
+    fetch("/accountly/server/controllers/controllerDiary.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json; charset=utf-8",
@@ -137,10 +128,7 @@ create.addEventListener("click", (e) => {
     campos_create.movimiento_create = false;
     campos_create.monto_create = false;
     campos_create.descripcion_create = false;
-    campos_create.cuenta_create = false;
     campos_create.divisa_create = false;
-    campos_create.razon_create = false;
-    campos_create.referencia_create = false;
     campos_create.fecha_create = false;
     formulario_create.reset();
 

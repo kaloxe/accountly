@@ -40,6 +40,33 @@ jQuery(document).ready(function () {
 					icon: "circle",
 				},
 				{
+					title: "Otro",
+					description:
+						"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu pellentesque nibh. In nisl nulla, convallis ac nulla eget, pellentesque pellentesque magna.",
+					start: "2023-05-05",
+					end: "2023-05-05",
+					className: "fc-bg-default",
+					icon: "circle",
+				},
+				{
+					title: "vaina",
+					description:
+						"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu pellentesque nibh. In nisl nulla, convallis ac nulla eget, pellentesque pellentesque magna.",
+					start: "2023-05-05",
+					end: "2023-05-05",
+					className: "fc-bg-default",
+					icon: "circle",
+				},
+				{
+					title: "coso",
+					description:
+						"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu pellentesque nibh. In nisl nulla, convallis ac nulla eget, pellentesque pellentesque magna.",
+					start: "2023-05-05",
+					end: "2023-05-05",
+					className: "fc-bg-default",
+					icon: "circle",
+				},
+				{
 					title: "Flight Paris",
 					description:
 						"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu pellentesque nibh. In nisl nulla, convallis ac nulla eget, pellentesque pellentesque magna.",
