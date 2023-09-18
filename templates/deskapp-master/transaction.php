@@ -12,7 +12,7 @@ require('./src/views/left-sidebar.php');
         <div class="min-height-200px">
             <div class="page-header">
                 <div class="row">
-                    <div class="col-md-6 col-sm-12">
+                    <div class="col-md-6 col-sm-6">
                         <div class="title">
                             <h4>DataTable</h4>
                         </div>
@@ -27,7 +27,7 @@ require('./src/views/left-sidebar.php');
                             </ol>
                         </nav>
                     </div>
-                    <div class="col-md-6 col-sm-12 text-right">
+                    <div class="col-md-6 col-sm-6 text-right">
                         <a class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#modal_create" type="button">
                             Registrar
                         </a>

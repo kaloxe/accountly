@@ -24,7 +24,7 @@
                 </li>
                 <li>
                     <a href="account.php" class="dropdown-toggle no-arrow">
-                        <span class="micon bi bi-hdd-stack"></span><span class="mtext">Cuentas</span>
+                        <span class="micon bi bi-piggy-bank"></span><span class="mtext">Cuentas</span>
                     </a>
                 </li>
                 <li>
@@ -34,12 +34,12 @@
                 </li>
                 <li>
                     <a href="goal.php" class="dropdown-toggle no-arrow">
-                        <span class="micon bi bi-diagram-3"></span><span class="mtext">Metas</span>
+                        <span class="micon bi bi-flag"></span><span class="mtext">Metas</span>
                     </a>
                 </li>
                 <li>
                     <a href="settings.php" class="dropdown-toggle no-arrow">
-                        <span class="micon bi bi-command"></span><span class="mtext">Configuracion</span>
+                        <span class="micon bi bi-gear"></span><span class="mtext">Configuracion</span>
                     </a>
                 </li>
                 <li class="dropdown">
@@ -61,12 +61,12 @@
 
                 <li>
                     <a href="binnacle.php" class="dropdown-toggle no-arrow">
-                        <span class="micon bi bi-textarea-resize"></span><span class="mtext">Bitacora</span>
+                        <span class="micon bi bi-clock-history"></span><span class="mtext">Bitacora</span>
                     </a>
                 </li>
                 <li>
                     <a href="javascript:;" class="dropdown-toggle">
-                        <span class="micon bi bi-file-pdf"></span><span class="mtext">Documentacion</span>
+                        <span class="micon bi bi-info-circle"></span><span class="mtext">Documentacion</span>
                     </a>
                     <ul class="submenu">
                         <li><a href="https://github.com/kaloxe/accountly">Codigo libre</a></li>
