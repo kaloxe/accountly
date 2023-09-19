@@ -44,7 +44,7 @@ if ($num_rows > 0) {
         $output['data'] .= '
                     <a href="#" class="btn btn-primary">Completar</a>
                     <button
-                        type="button mx-4"
+                        type="button"
                         class="btn"
                         data-bgcolor="#1da1f2"
                         data-color="#ffffff"

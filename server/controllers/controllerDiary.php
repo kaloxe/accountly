@@ -15,7 +15,7 @@ if (isset($_POST)) {
             $descripcion = $user['descripcion'];
             $fecha =  $user['fecha'];
             $sql = "INSERT INTO `date`(`date`) VALUES ('$fecha')";
-            $sql1 = "INSERT INTO `diary`(`id_user`, `id_badge`, `id_date`, `description`, `amount`, `type`, `state_register`) VALUES ($id_user, $divisa, (SELECT MAX(id_date) AS id_date FROM date), '$descripcion', $monto, $movimiento, 1)";
+            $sql1 = "INSERT INTO `diary`(`id_user`, `id_badge`, `id_date`, `description`, `amount`, `type`, `state_register`) VALUES ($id_user, $divisa, (SELECT MAX(date.id_date) AS id_date FROM date), '$descripcion', $monto, $movimiento, 1)";
             echo Rest::execute($sql); 
             echo Rest::execute($sql1);
             break;

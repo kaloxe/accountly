@@ -1,10 +1,4 @@
 <?php
-/*
-* Script: Cargar datos de lado del servidor con PHP y MySQL
-* Autor: Marco Robles
-* Team: Códigos de Programación
-*/
-
 require("/xampp/htdocs/accountly/server/session/session.php");
 require("/xampp/htdocs/accountly/server/db/db.php");
 
@@ -27,6 +21,20 @@ $where";
 $resultado = $conn->query($sql);
 $num_rows = $resultado->num_rows;
 
+function getBadges($id)
+{
+    require("/xampp/htdocs/accountly/server/db/db.php");
+    $sql1 = "SELECT (SELECT SUM(transaction.amount) FROM transaction WHERE transaction.id_account=$id and badge.id_badge=transaction.id_badge and transaction.type=1) FROM account INNER JOIN transaction on account.id_account=transaction.id_account INNER JOIN badge on transaction.id_badge=badge.id_badge WHERE account.id_account=$id";
+    $sql2 = "SELECT (SELECT SUM(transaction.amount) FROM transaction WHERE transaction.id_account=$id and badge.id_badge=transaction.id_badge and transaction.type=0) FROM account INNER JOIN transaction on account.id_account=transaction.id_account INNER JOIN badge on transaction.id_badge=badge.id_badge WHERE account.id_account=$id";
+    $resultado1 = $conn->query($sql);
+    $resultado1 = $conn->query($sql);
+    $num_rows = $resultado->num_rows;
+
+    $output = [];
+    $output['data'] = '';
+    return 1;
+}
+
 /* Mostrado resultados */
 $output = [];
 $output['data'] = '';
@@ -35,6 +43,7 @@ if ($num_rows > 0) {
     while ($row = $resultado->fetch_assoc()) {
         $output['data'] .= '<tr>';
         $output['data'] .= '<td class="table-plus">' . $row['name_account'] . '</td>';
+        $output['data'] .= '<td></td>';
         $output['data'] .= '
         <td>
             <div class="dropdown">
@@ -48,24 +57,7 @@ if ($num_rows > 0) {
                 </div>
             </div>
         </td>';
-        // $output['data'] .= '<td>
-        // <a class="btn btn-warning btn-sm me-2" id="' . $row['id_account'] . '" name="editar" onclick="openModal(' . $row['id_account'] . ')" data-bs-toggle="modal" data-bs-target="#editAccountModal"><i class="fa fa-pen"></i></a>
-        // <a class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteAccountModal' . $row['id_account'] . '"><i class="fa fa-trash me"></i></a>
-        // </td>';
         $output['data'] .= '</tr>';
-        // $output['data'] .= '<div class="modal fade" id="deleteAccountModal' . $row['id_account'] . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        //     <div class="modal-dialog modal-dialog-centered">
-        //         <div class="modal-content">
-        //             <div class="modal-header">
-        //                 <h1 class="modal-title fs-5" id="exampleModalLabel">Seguro que desea eliminar el deposito ' . $row['name_account'] . '?</h1>
-        //                 </div>
-        //             <div class="modal-footer">
-        //                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        //                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mensajed" data-bs-dismiss="modal" onclick="eliminar(' . $row['id_account'] . ')">Eliminar</button>        
-        //             </div>
-        //         </div>
-        //     </div>
-        // </div>';
     }
 }
 

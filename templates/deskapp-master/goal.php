@@ -45,8 +45,8 @@
 
         </div>
         <div class="footer-wrap pd-20 mb-20 card-box">
-            DeskApp - Bootstrap 4 Admin Template By
-            <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
+            Accountly - Aplicacion creada por
+            <a href="https://github.com/kaloxe" target="_blank">Carlos Sanchez</a>
         </div>
     </div>
 </div>
