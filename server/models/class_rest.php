@@ -99,6 +99,31 @@ class Rest extends database
     return json_encode($array);
   }
 
+  public static function readGoal($sql)
+  {
+    $conn = new database();
+    $result = $conn->openSQL()->query($sql);
+    $tran = $result->fetch_assoc();
+
+    $id_goal = $tran["id_goal"];
+    $type = $tran["type"];
+    $id_badge = $tran["id_badge"];
+    $amount = $tran["amount"];
+    $description = $tran["description"];
+    $name_goal = $tran["name_goal"];
+
+    $array = array(
+      'type' => $type,
+      'id_badge' => $id_badge,
+      'id_goal' => $id_goal,
+      'name_goal' => $name_goal,
+      'amount' => $amount,
+      'description' => $description
+    );
+
+    return json_encode($array);
+  }
+
   public static function readAccounts($user_id)
   {
     $sql = "SELECT * FROM account WHERE id_user = $user_id";

@@ -8,7 +8,7 @@
             <div class="modal-content">
                 <form id="formulario_update">
                     <div class="modal-body">
-                        <h4 class="text-blue h4 mb-10">Actualizar</h4>
+                        <h4 class="text-blue h4 mb-10">Crear</h4>
 
                         <div class="form-group formulario__grupo-input" id="grupo__movimiento_update">
                             <label>Movimiento</label>
@@ -16,14 +16,6 @@
                                 <option selected>Seleccione movimiento</option>
                                 <option value="1">Ingreso</option>
                                 <option value="0">Egreso</option>
-                            </select>
-                            <p class="formulario__input-error">Seleccione un deposito al que se se registrara el la transaccion.</p>
-                        </div>
-
-                        <div class="form-group formulario__grupo-input" id="grupo__cuenta_update">
-                            <label>Cuenta</label>
-                            <select class="form-control formulario__input" name="cuenta_update" id="cuenta_update">
-                                <!-- select generado con php por fetch en js -->
                             </select>
                             <p class="formulario__input-error">Seleccione un deposito al que se se registrara el la transaccion.</p>
                         </div>
@@ -36,32 +28,20 @@
                             <p class="formulario__input-error">Seleccione un deposito al que se se registrara el la transaccion.</p>
                         </div>
 
-                        <div class="form-group formulario__grupo-input" id="grupo__razon_update">
-                            <label>Razon</label>
-                            <select class="form-control formulario__input" name="razon_update" id="razon_update">
-                                <!-- select generado con php por fetch en js -->
-                            </select>
-                            <p class="formulario__input-error">Seleccione un deposito al que se se registrara el la transaccion.</p>
-                        </div>
-
                         <div class="form-group formulario__grupo-input" id="grupo__monto_update">
                             <label>Monto</label>
                             <input type="text" class="form-control formulario__input" name="monto_update" id="monto_update" />
                             <p class="formulario__input-error">El campo debe tener de 4 a 40 caracteres, solo se aceptan letras y numeros.</p>
                         </div>
+
+                        <div class="form-group formulario__grupo-input" id="grupo__meta_update">
+                            <label>Meta</label>
+                            <input type="text" class="form-control formulario__input" name="meta_update" id="meta_update" />
+                            <p class="formulario__input-error">El campo debe tener de 4 a 40 caracteres, solo se aceptan letras y numeros.</p>
+                        </div>
                         <div class="form-group formulario__grupo-input" id="grupo__descripcion_update">
                             <label>Descripcion</label>
                             <input type="text" class="form-control formulario__input" name="descripcion_update" id="descripcion_update" />
-                            <p class="formulario__input-error">El campo debe tener de 4 a 40 caracteres, solo se aceptan letras y numeros.</p>
-                        </div>
-                        <div class="form-group formulario__grupo-input" id="grupo__referencia_update">
-                            <label>Referencia</label>
-                            <input type="text" class="form-control formulario__input" name="referencia_update" id="referencia_update" />
-                            <p class="formulario__input-error">El campo debe tener de 4 a 40 caracteres, solo se aceptan letras y numeros.</p>
-                        </div>
-                        <div class="form-group formulario__grupo-input" id="grupo__fecha_update">
-                            <label>Fecha</label>
-                            <input type="date" class="form-control formulario__input" name="fecha_update" id="fecha_update" />
                             <p class="formulario__input-error">El campo debe tener de 4 a 40 caracteres, solo se aceptan letras y numeros.</p>
                         </div>
 

@@ -11,7 +11,7 @@ $table = "goal";
 $id = 'id_goal';
 
 /* Filtrado */
-$where = 'WHERE id_user='. $id_user .'';
+$where = 'WHERE id_user=' . $id_user . '';
 
 
 /* Consulta */
@@ -42,7 +42,25 @@ if ($num_rows > 0) {
                     ' . $row['description'] . '
                     </p>';
         $output['data'] .= '
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <a href="#" class="btn btn-primary">Completar</a>
+                    <button
+                        type="button mx-4"
+                        class="btn"
+                        data-bgcolor="#1da1f2"
+                        data-color="#ffffff"
+                        id="editar_' . $row['id_goal'] . '" name="editar" onclick="openUpdateModal(' . $row['id_goal'] . ')" data-toggle="modal" data-target="#modal_update"
+                    >
+                        <i class="fa fa-pencil"></i>
+                    </button>
+                    <button
+                        type="button"
+                        class="btn pull-right"
+                        data-bgcolor="#bd081c"
+                        data-color="#ffffff"
+                        id="eliminar_' . $row['id_goal'] . '" name="eliminar" onclick="openDeleteModal(' . $row['id_goal'] . ')" data-toggle="modal" data-target="#modal_delete"
+                    >
+                        <i class="fa fa-trash"></i>
+                    </button>
                 </div>
             </div>
         </div>';

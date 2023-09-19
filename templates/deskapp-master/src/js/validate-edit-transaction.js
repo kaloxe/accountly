@@ -155,8 +155,8 @@ update.addEventListener("click", (e) => {
         .classList.remove("formulario__mensaje-exito-activo");
     }, 5000);
   } else {
-    Object.keys(campos).forEach((campo) => {
-      if (!campos[campo]) {
+    Object.keys(campos_update).forEach((campo) => {
+      if (!campos_update[campo]) {
         document.getElementById(`${campo}`).classList.add("form-control-error");
         document
           .querySelector(`#grupo__${campo} .formulario__input-error`)

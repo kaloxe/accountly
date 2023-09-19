@@ -18,27 +18,24 @@ if (isset($_POST)) {
             //$sql = "INSERT INTO `transaction`(`id_account`, `reference`, `amount`, `date`, `description`) VALUES ($cuenta, $cuenta, $referencia, $monto, '$fecha', '$description')";
             echo Rest::execute($sql);
             break;
-        case "read_transaction":
+        case "read_goal":
             $id = $user['id'];
-            $sql = "SELECT `id_transaction`, `type`, `id_badge`, `id_reason`, `id_account`, `reference`, `amount`, `date`, `description` FROM `transaction` WHERE `id_transaction`=$id";
-            echo Rest::readTransaction($sql);
+            $sql = "SELECT `id_goal`, `id_badge`, `name_goal`, `description`, `amount`, `type` FROM `goal` WHERE `id_goal`=$id";
+            echo Rest::readGoal($sql);
             break;
-        case "update_transaction":
+        case "update_goal":
             $id = $user["id"];
             $movimiento = $user['movimiento'];
-            $cuenta = $user['cuenta'];
             $divisa = $user['divisa'];
-            $razon = $user['razon'];
             $monto = $user['monto'];
+            $meta = $user['meta'];
             $descripcion = $user['descripcion'];
-            $referencia = $user['referencia'];
-            $fecha =  $user['fecha'];
-            $sql = "UPDATE `transaction` SET `type`=$movimiento, `id_badge`=$divisa, `id_reason`=$razon, `id_account`=$cuenta, `reference`='$referencia', `amount`=$monto, `date`='$fecha', `description`='$descripcion' WHERE `id_transaction`=$id";
+            $sql = "UPDATE `goal` SET `type`=$movimiento, `id_badge`=$divisa, `amount`=$monto, `name_goal`='$meta', `description`='$descripcion' WHERE `id_goal`=$id";
             echo Rest::execute($sql);
             break;
-        case "delete_transaction":
+        case "delete_goal":
             $id = $user['id'];
-            $sql = "DELETE FROM `transaction` WHERE `transaction`.`id_transaction` = $id";
+            $sql = "DELETE FROM `goal` WHERE `goal`.`id_goal` = $id";
             echo Rest::execute($sql);
             break;
         default:

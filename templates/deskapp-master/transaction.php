@@ -14,15 +14,15 @@ require('./src/views/left-sidebar.php');
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
                         <div class="title">
-                            <h4>DataTable</h4>
+                            <h4>Transaccion</h4>
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    <a href="index.html">Home</a>
+                                    <a href="index.html">Principal</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    DataTable
+                                    Transaccion
                                 </li>
                             </ol>
                         </nav>
