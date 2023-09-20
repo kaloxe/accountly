@@ -10,11 +10,11 @@ if (@$_SESSION['nickname']) {
     $nickname = $_SESSION['nickname'];
     $email = $_SESSION['email'];
 } else {
-    @header('Location: /accountly/src/sign-in.php');
+    @header('Location: /accountly/templates/deskapp-master/login.php');
 }
 
 if (isset($_GET['close_session'])) {
     session_unset();
     session_destroy();
-    @header('Location: /accountly/src/sign-in.php');
+    @header('Location: /accountly/templates/deskapp-master/login.php');
 }

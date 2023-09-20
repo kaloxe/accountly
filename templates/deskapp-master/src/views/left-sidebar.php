@@ -47,11 +47,11 @@
                         <span class="micon bi bi-pie-chart"></span><span class="mtext">Reportes</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="#">Totales</a></li>
-                        <li><a href="#">Filtrar transacciones</a></li>
-                        <li><a href="#">Conversion a divisas</a></li>
-                        <li><a href="#">Movimientos</a></li>
-                        <li><a href="#">Eventos proximos</a></li>
+                        <li><a href="report_total.php">Totales</a></li>
+                        <li><a href="report_transaction.php">Filtrar transacciones</a></li>
+                        <li><a href="report_badge.php">Conversion a divisas</a></li>
+                        <li><a href="report_movement.php">Movimientos</a></li>
+                        <li><a href="report_event.php">Eventos proximos</a></li>
                     </ul>
                 </li>
 

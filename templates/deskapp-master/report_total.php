@@ -52,6 +52,21 @@
                 </div>
             </div>
 
+            <div class="row">
+                <div class="col-md-6 mb-30">
+                    <div class="pd-20 card-box height-100-p">
+                        <h4 class="h4 text-blue">Pie Chart</h4>
+                        <div id="chart8"></div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-30">
+                    <div class="pd-20 card-box height-100-p">
+                        <h4 class="h4 text-blue">Radial Bar Chart</h4>
+                        <div id="chart9"></div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Create modal -->
             <?php require('./src/modals/account/create-modal.php') ?>
 
@@ -130,4 +145,7 @@
 <script src="src/plugins/datatables/js/vfs_fonts.js"></script>
 <!-- Datatable Setting js -->
 <script src="vendors/scripts/datatable-setting.js"></script>
+<!-- ApexChart -->
+<script src="src/plugins/apexcharts/apexcharts.min.js"></script>
+<script src="vendors/scripts/apexcharts-setting.js"></script>
 <?php require('./src/views/footer.php'); ?>
