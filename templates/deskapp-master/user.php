@@ -14,7 +14,7 @@ require('./src/views/left-sidebar.php');
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
                         <div class="title">
-                            <h4>Transaccion</h4>
+                            <h4>Usuarios</h4>
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
@@ -22,7 +22,7 @@ require('./src/views/left-sidebar.php');
                                     <a href="index.html">Principal</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    Transaccion
+                                    Usuario
                                 </li>
                             </ol>
                         </nav>
@@ -38,19 +38,16 @@ require('./src/views/left-sidebar.php');
             <!-- multiple select row Datatable start -->
             <div class="card-box mb-30">
                 <div class="pd-20">
-                    <h4 class="text-blue h4">Transacciones</h4>
+                    <h4 class="text-blue h4">Usuarios</h4>
                 </div>
                 <div class="pb-20">
                     <table class="data-table table stripe hover nowrap">
                         <thead>
                             <tr>
-                                <th class="sort asc">Divisa</th>
-                                <th class="sort asc">Monto</th>
-                                <th class="sort asc">Razon</th>
-                                <th class="sort asc">Descripcion</th>
-                                <th class="sort asc">Cuenta</th>
-                                <th class="sort asc">Referencia</th>
-                                <th class="sort asc">Fecha</th>
+                                <th class="sort asc">Tipo</th>
+                                <th class="sort asc">Nombre</th>
+                                <th class="sort asc">Correo</th>
+                                <th class="sort asc">Contraseña</th>
                                 <th class="datatable-nosort">Action</th>
                             </tr>
                         </thead>
@@ -61,13 +58,13 @@ require('./src/views/left-sidebar.php');
             </div>
 
             <!-- Create modal -->
-            <?php require('./src/modals/transaction/create-modal.php') ?>
+            <?php require('./src/modals/user/create-modal.php') ?>
 
             <!-- Edit modal -->
-            <?php require('./src/modals/transaction/update-modal.php') ?>
+            <?php require('./src/modals/user/update-modal.php') ?>
 
             <!-- Delete modal -->
-            <?php require('./src/modals/transaction/delete-modal.php') ?>
+            <?php require('./src/modals/user/delete-modal.php') ?>
 
         </div>
 
@@ -88,10 +85,10 @@ require('./src/views/left-sidebar.php');
     eliminar.addEventListener("click", (e) => {
         e.preventDefault();
         let data = {
-            action: "delete_transaction",
+            action: "delete_user",
             id: index_delete,
         };
-        fetch("/accountly/server/controllers/controllerTransaction.php", {
+        fetch("/accountly/server/controllers/controllerUser.php", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json; charset=utf-8",
@@ -109,7 +106,7 @@ require('./src/views/left-sidebar.php');
     function getData() {
         let content = document.getElementById("content")
 
-        let url = "src/tables/loadTransaction.php"
+        let url = "src/tables/loadUser.php"
         let formaData = new FormData()
         fetch(url, {
                 method: "POST",
@@ -119,30 +116,10 @@ require('./src/views/left-sidebar.php');
                 content.innerHTML = data.data
             }).catch(err => console.log(err))
     }
-
-    // llamando contenido de los selects de los formularios de los modals
-    getSelects()
-
-    function getSelects() {
-        let url = "src/php/selects.php"
-        let formaData = new FormData()
-        fetch(url, {
-                method: "POST",
-                body: formaData
-            }).then(response => response.json())
-            .then(data => {
-                cuenta_create.innerHTML = data.accounts
-                cuenta_update.innerHTML = data.accounts
-                divisa_create.innerHTML = data.badges
-                divisa_update.innerHTML = data.badges
-                razon_create.innerHTML = data.reasons
-                razon_update.innerHTML = data.reasons
-            }).catch(err => console.log(err))
-    }
 </script>
 
-<script src="./src/js/validate-create-transaction.js"></script>
-<script src="./src/js/validate-edit-transaction.js"></script>
+<script src="./src/js/validate-create-user.js"></script>
+<script src="./src/js/validate-edit-user.js"></script>
 <?php require('./src/views/scripts.php'); ?>
 <script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
 <script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>

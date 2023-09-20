@@ -1,0 +1,21 @@
+Cambiar la estructura de la tabla de transacciones eliminando el atributo de referencia
+Cambiar las rutas de los directorios para organizar el proyecto
+Mejorar diseño de formularios
+Mejorar las validaciones en el cliente
+Mejorar las vistas de los modulos
+Mejorar aplicacion de estilos css
+Mejorar la barra de carga
+Crear las vistas de los reportes
+Hacer funcionar los graficos con los datos de la base MySQL
+Implementar reportes (x5)
+Implementar validaciones en el servidor
+Implementar bitacora
+Implementar configuracion y/o perfil
+Implementar notificaciones al correo del usuario
+Implementar modo oscuro y modo claro
+Hacer las pantallas dinamicas cuando se efectue un registro
+Eliminar referencias anteriores
+
+Utilizar una base de datos en la nube
+Hacer que funcione en movil
+Desplegar la aplicacion

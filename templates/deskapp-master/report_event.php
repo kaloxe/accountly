@@ -41,7 +41,7 @@ require('./src/views/left-sidebar.php');
                     <h4 class="text-blue h4">Transacciones</h4>
                 </div>
                 <div class="pb-20">
-                    <table class="data-table table hover multiple-select-row nowrap">
+                    <table class="data-table table stripe hover nowrap">
                         <thead>
                             <tr>
                                 <th class="sort asc">Divisa</th>

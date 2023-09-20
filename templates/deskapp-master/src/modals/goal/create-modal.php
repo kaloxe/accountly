@@ -49,7 +49,7 @@
                     <div class="modal-footer">
                         <input type="button" class="btn btn-primary" id="create" value="Registrar">
                         <button type="button" class="btn btn-primary" data-dismiss="modal">
-                            Close
+                            Cerrar
                         </button>
                     </div>
                     <p class="formulario__mensaje-exito pt-2" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>

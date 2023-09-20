@@ -9,9 +9,14 @@
                 <form id="formulario_create">
                     <div class="modal-body">
                         <h4 class="text-blue h4 mb-10">Crear</h4>
-                        <div class="form-group formulario__grupo-input" id="grupo__nombre_create">
-                            <label>Nombre de la cuenta</label>
-                            <input type="text" class="form-control formulario__input" name="nombre_create" id="nombre_create" />
+                        <div class="form-group formulario__grupo-input" id="grupo__divisa_create">
+                            <label>Nombre de la divisa</label>
+                            <input type="text" class="form-control formulario__input" name="divisa_create" id="divisa_create" />
+                            <p class="formulario__input-error">El campo debe tener de 4 a 40 caracteres, solo se aceptan letras y numeros.</p>
+                        </div>
+                        <div class="form-group formulario__grupo-input" id="grupo__valor_create">
+                            <label>Valor de la divisa</label>
+                            <input type="text" class="form-control formulario__input" name="valor_create" id="valor_create" />
                             <p class="formulario__input-error">El campo debe tener de 4 a 40 caracteres, solo se aceptan letras y numeros.</p>
                         </div>
                     </div>

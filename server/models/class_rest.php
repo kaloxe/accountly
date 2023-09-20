@@ -25,24 +25,22 @@ class Rest extends database
     );
     return json_encode($array);
   }
-
-  public static function readDebt($sql)
+  public static function readBadge($sql)
   {
     $conn = new database();
     $result = $conn->openSQL()->query($sql);
 
-    $debt = $result->fetch_assoc();
-    $id_debt = $debt["id_debt"];
-    $description = $debt["description"];
-    $amount = $debt["amount"];
+    $badge = $result->fetch_assoc();
+    $id_badge = $badge["id_badge"];
+    $name_badge = $badge["name_badge"];
+    $value = $badge["value"];
     $array = array(
-      'id_debt' => $id_debt,
-      'description' => $description,
-      'amount' => $amount
+      'id_badge' => $id_badge,
+      'name_badge' => $name_badge,
+      'value' => $value
     );
     return json_encode($array);
   }
-
   public static function readTransaction($sql)
   {
     $conn = new database();
@@ -74,6 +72,28 @@ class Rest extends database
     return json_encode($array);
   }
 
+  public static function readUser($sql)
+  {
+    $conn = new database();
+    $result = $conn->openSQL()->query($sql);
+    $tran = $result->fetch_assoc();
+
+    $id_user = $tran["id_user"];
+    $nickname = $tran["nickname"];
+    $email = $tran["email"];
+    $password = $tran["password"];
+    $type_user = $tran["type_user"];
+
+    $array = array(
+      'id_user' => $id_user,
+      'nickname' => $nickname,
+      'email' => $email,
+      'password' => $password,
+      'type_user' => $type_user
+    );
+
+    return json_encode($array);
+  }
   public static function readDiary($sql)
   {
     $conn = new database();

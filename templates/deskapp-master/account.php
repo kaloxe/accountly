@@ -35,14 +35,14 @@
             <!-- multiple select row Datatable start -->
             <div class="card-box mb-30">
                 <div class="pd-20">
-                    <h4 class="text-blue h4">Data Table with multiple select row</h4>
+                    <h4 class="text-blue h4">Cuentas</h4>
                 </div>
                 <div class="pb-20">
-                    <table class="data-table table hover multiple-select-row nowrap">
+                    <table class="data-table table stripe hover nowrap">
                         <thead>
                             <tr>
                                 <th class="table-plus">Cuenta</th>
-                                <th>Total</th>
+                                <th>Saldo</th>
                                 <th class="datatable-nosort">Action</th>
                             </tr>
                         </thead>

@@ -38,8 +38,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="settings.php" class="dropdown-toggle no-arrow">
-                        <span class="micon bi bi-gear"></span><span class="mtext">Configuracion</span>
+                    <a href="user.php" class="dropdown-toggle no-arrow">
+                        <span class="micon bi bi-people"></span><span class="mtext">Usuarios</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="badge.php" class="dropdown-toggle no-arrow">
+                        <span class="micon bi bi-cash-coin"></span><span class="mtext">Divisas</span>
                     </a>
                 </li>
                 <li class="dropdown">
@@ -58,10 +63,9 @@
                 <li>
                     <div class="dropdown-divider"></div>
                 </li>
-
                 <li>
-                    <a href="binnacle.php" class="dropdown-toggle no-arrow">
-                        <span class="micon bi bi-clock-history"></span><span class="mtext">Bitacora</span>
+                    <a href="settings.php" class="dropdown-toggle no-arrow">
+                        <span class="micon bi bi-gear"></span><span class="mtext">Configuracion</span>
                     </a>
                 </li>
                 <li>
@@ -72,7 +76,11 @@
                         <li><a href="https://github.com/kaloxe/accountly">Codigo libre</a></li>
                     </ul>
                 </li>
-
+                <li>
+                    <a href="binnacle.php" class="dropdown-toggle no-arrow">
+                        <span class="micon bi bi-clock-history"></span><span class="mtext">Bitacora</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

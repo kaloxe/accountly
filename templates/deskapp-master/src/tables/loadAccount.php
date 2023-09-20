@@ -47,15 +47,9 @@ if ($num_rows > 0) {
         $output['data'] .= '<td>' . getBadges($row['id_account']) . '</td>';
         $output['data'] .= '
         <td>
-            <div class="dropdown">
-                <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                    <i class="dw dw-more"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                    <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
-                    <a class="dropdown-item" id="editar_' . $row['id_account'] . '" name="editar" onclick="openUpdateModal(' . $row['id_account'] . ')" data-toggle="modal" data-target="#modal_update"><i class="dw dw-edit2"></i> Edit</a>
-                    <a class="dropdown-item" id="eliminar_' . $row['id_account'] . '" name="eliminar" onclick="openDeleteModal(' . $row['id_account'] . ')" data-toggle="modal" data-target="#modal_delete"><i class="dw dw-delete-3"></i> Delete</a>
-                </div>
+            <div class="table-actions">
+                <a href="#" data-color="#265ed7" id="editar_' . $row['id_account'] . '" name="editar" onclick="openUpdateModal(' . $row['id_account'] . ')" data-toggle="modal" data-target="#modal_update"><i class="icon-copy dw dw-edit2"></i></a>
+                <a href="#" data-color="#e95959" id="eliminar_' . $row['id_account'] . '" name="eliminar" onclick="openDeleteModal(' . $row['id_account'] . ')" data-toggle="modal" data-target="#modal_delete"><i class="icon-copy dw dw-delete-3"></i></a>
             </div>
         </td>';
         $output['data'] .= '</tr>';
