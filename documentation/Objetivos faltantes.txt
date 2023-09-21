@@ -1,5 +1,6 @@
 Cambiar la estructura de la tabla de transacciones eliminando el atributo de referencia
 Cambiar las rutas de los directorios para organizar el proyecto
+Cambiar nombres en los plugins (calendario, barra superior, principal)
 Mejorar diseño de formularios
 Mejorar las validaciones en el cliente
 Mejorar las vistas de los modulos
@@ -7,6 +8,7 @@ Mejorar aplicacion de estilos css
 Mejorar la barra de carga
 Crear las vistas de los reportes
 Hacer funcionar los graficos con los datos de la base MySQL
+Implementar autenticacion para los modulos segun el tipo de usuario
 Implementar reportes (x5)
 Implementar validaciones en el servidor
 Implementar bitacora
