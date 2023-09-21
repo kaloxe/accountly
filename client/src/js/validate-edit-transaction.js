@@ -27,7 +27,6 @@ function openUpdateModal(id) {
       document.getElementById("monto_update").value = dat.amount;
       document.getElementById("descripcion_update").value = dat.description;
       document.getElementById("cuenta_update").value = dat.id_account;
-      document.getElementById("referencia_update").value = dat.reference;
       document.getElementById("fecha_update").value = dat.date;
     });
 }
@@ -39,7 +38,6 @@ const campos_update = {
   cuenta_update: true,
   divisa_update: true,
   razon_update: true,
-  referencia_update: true,
   fecha_update: true,
 };
 
@@ -62,9 +60,6 @@ const validarFormularioUpdate = (e) => {
       break;
     case "razon_update":
       validarCampoUpdate(expresiones.razon, e.target, "razon_update");
-      break;
-    case "referencia_update":
-      validarCampoUpdate(expresiones.referencia, e.target, "referencia_update");
       break;
     case "fecha_update":
       if (Date.parse(e.target.value) <= Date.parse(today)) {
@@ -113,7 +108,6 @@ update.addEventListener("click", (e) => {
     campos_update.cuenta_update &&
     campos_update.divisa_update &&
     campos_update.razon_update &&
-    campos_update.referencia_update &&
     campos_update.fecha_update
   ) {
     const movimiento = document.getElementById("movimiento_update").value;
@@ -122,7 +116,6 @@ update.addEventListener("click", (e) => {
     const cuenta = document.getElementById("cuenta_update").value;
     const divisa = document.getElementById("divisa_update").value;
     const razon = document.getElementById("razon_update").value;
-    const referencia = document.getElementById("referencia_update").value;
     const fecha = document.getElementById("fecha_update").value;
     let data = {
       action: "update_transaction",
@@ -133,7 +126,6 @@ update.addEventListener("click", (e) => {
       cuenta: cuenta,
       divisa: divisa,
       razon: razon,
-      referencia: referencia,
       fecha: fecha,
     };
     fetch("/accountly/server/controllers/controllerTransaction.php", {

@@ -20,7 +20,7 @@ require('./src/views/left-sidebar.php');
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    <a href="index.html">Principal</a>
+                                    <a href="index.php">Principal</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
                                     Agenda

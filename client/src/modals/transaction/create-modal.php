@@ -54,11 +54,6 @@
                             <input type="text" class="form-control formulario__input" name="descripcion_create" id="descripcion_create" />
                             <p class="formulario__input-error">El campo debe tener de 4 a 40 caracteres, solo se aceptan letras y numeros.</p>
                         </div>
-                        <div class="form-group formulario__grupo-input" id="grupo__referencia_create">
-                            <label>Referencia</label>
-                            <input type="text" class="form-control formulario__input" name="referencia_create" id="referencia_create" />
-                            <p class="formulario__input-error">El campo debe tener de 4 a 40 caracteres, solo se aceptan letras y numeros.</p>
-                        </div>
                         <div class="form-group formulario__grupo-input" id="grupo__fecha_create">
                             <label>Fecha</label>
                             <input type="date" class="form-control formulario__input" name="fecha_create" id="fecha_create" />

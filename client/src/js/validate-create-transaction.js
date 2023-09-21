@@ -16,7 +16,6 @@ const expresiones = {
   cuenta: /^[0-9a-zA-ZÀ-ÿ\s]{1,10}$/, // Letras y espacios, pueden llevar acentos.
   divisa: /^[0-9a-zA-ZÀ-ÿ\s]{1,10}$/,
   razon: /^[0-9a-zA-ZÀ-ÿ\s]{1,10}$/,
-  referencia: /^\d{4,16}$/, // 7 a 14 numeros.
   fecha: /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/,
 };
 
@@ -27,7 +26,6 @@ const campos_create = {
   cuenta_create: false,
   divisa_create: false,
   razon_create: false,
-  referencia_create: false,
   fecha_create: false,
 };
 
@@ -50,9 +48,6 @@ const validarFormularioCreate = (e) => {
       break;
     case "razon_create":
       validarCampoCreate(expresiones.razon, e.target, "razon_create");
-      break;
-    case "referencia_create":
-      validarCampoCreate(expresiones.referencia, e.target, "referencia_create");
       break;
     case "fecha_create":
       if (Date.parse(e.target.value) <= Date.parse(today)) {
@@ -101,7 +96,6 @@ create.addEventListener("click", (e) => {
     campos_create.cuenta_create &&
     campos_create.divisa_create &&
     campos_create.razon_create &&
-    campos_create.referencia_create &&
     campos_create.fecha_create
   ) {
     const movimiento = document.getElementById("movimiento_create").value;
@@ -110,7 +104,6 @@ create.addEventListener("click", (e) => {
     const cuenta = document.getElementById("cuenta_create").value;
     const divisa = document.getElementById("divisa_create").value;
     const razon = document.getElementById("razon_create").value;
-    const referencia = document.getElementById("referencia_create").value;
     const fecha = document.getElementById("fecha_create").value;
 
     let data = {
@@ -121,7 +114,6 @@ create.addEventListener("click", (e) => {
       cuenta: cuenta,
       divisa: divisa,
       razon: razon,
-      referencia: referencia,
       fecha: fecha,
     };
     fetch("/accountly/server/controllers/controllerTransaction.php", {
@@ -140,7 +132,6 @@ create.addEventListener("click", (e) => {
     campos_create.cuenta_create = false;
     campos_create.divisa_create = false;
     campos_create.razon_create = false;
-    campos_create.referencia_create = false;
     campos_create.fecha_create = false;
     formulario_create.reset();
 

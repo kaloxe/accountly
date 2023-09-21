@@ -14,15 +14,13 @@ if (isset($_POST)) {
             $razon = $user['razon'];
             $monto = $user['monto'];
             $descripcion = $user['descripcion'];
-            $referencia = $user['referencia'];
             $fecha =  $user['fecha'];
-            $sql = "INSERT INTO `transaction`(`id_account`, `id_badge`, `id_reason`, `type`, `reference`, `amount`, `date`, `description`, `state_register`) VALUES ($cuenta, $divisa, $razon, $movimiento, $referencia, $monto, '$fecha', '$descripcion', 1)";
-            //$sql = "INSERT INTO `transaction`(`id_account`, `reference`, `amount`, `date`, `description`) VALUES ($cuenta, $cuenta, $referencia, $monto, '$fecha', '$description')";
+            $sql = "INSERT INTO `transaction`(`id_account`, `id_badge`, `id_reason`, `type`, `amount`, `date`, `description`, `state_register`) VALUES ($cuenta, $divisa, $razon, $movimiento, $monto, '$fecha', '$descripcion', 1)";
             echo Rest::execute($sql);
             break;
         case "read_transaction":
             $id = $user['id'];
-            $sql = "SELECT `id_transaction`, `type`, `id_badge`, `id_reason`, `id_account`, `reference`, `amount`, `date`, `description` FROM `transaction` WHERE `id_transaction`=$id";
+            $sql = "SELECT `id_transaction`, `type`, `id_badge`, `id_reason`, `id_account`, `amount`, `date`, `description` FROM `transaction` WHERE `id_transaction`=$id";
             echo Rest::readTransaction($sql);
             break;
         case "update_transaction":
@@ -33,9 +31,8 @@ if (isset($_POST)) {
             $razon = $user['razon'];
             $monto = $user['monto'];
             $descripcion = $user['descripcion'];
-            $referencia = $user['referencia'];
             $fecha =  $user['fecha'];
-            $sql = "UPDATE `transaction` SET `type`=$movimiento, `id_badge`=$divisa, `id_reason`=$razon, `id_account`=$cuenta, `reference`='$referencia', `amount`=$monto, `date`='$fecha', `description`='$descripcion' WHERE `id_transaction`=$id";
+            $sql = "UPDATE `transaction` SET `type`=$movimiento, `id_badge`=$divisa, `id_reason`=$razon, `id_account`=$cuenta, `amount`=$monto, `date`='$fecha', `description`='$descripcion' WHERE `id_transaction`=$id";
             echo Rest::execute($sql);
             break;
         case "delete_transaction":

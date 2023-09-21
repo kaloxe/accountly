@@ -19,7 +19,7 @@ require('./src/views/left-sidebar.php');
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    <a href="index.html">Principal</a>
+                                    <a href="index.php">Principal</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
                                     Transaccion
@@ -49,7 +49,6 @@ require('./src/views/left-sidebar.php');
                                 <th class="sort asc">Razon</th>
                                 <th class="sort asc">Descripcion</th>
                                 <th class="sort asc">Cuenta</th>
-                                <th class="sort asc">Referencia</th>
                                 <th class="sort asc">Fecha</th>
                                 <th class="datatable-nosort">Action</th>
                             </tr>

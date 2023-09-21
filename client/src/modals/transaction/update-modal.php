@@ -54,11 +54,6 @@
                             <input type="text" class="form-control formulario__input" name="descripcion_update" id="descripcion_update" />
                             <p class="formulario__input-error">El campo debe tener de 4 a 40 caracteres, solo se aceptan letras y numeros.</p>
                         </div>
-                        <div class="form-group formulario__grupo-input" id="grupo__referencia_update">
-                            <label>Referencia</label>
-                            <input type="text" class="form-control formulario__input" name="referencia_update" id="referencia_update" />
-                            <p class="formulario__input-error">El campo debe tener de 4 a 40 caracteres, solo se aceptan letras y numeros.</p>
-                        </div>
                         <div class="form-group formulario__grupo-input" id="grupo__fecha_update">
                             <label>Fecha</label>
                             <input type="date" class="form-control formulario__input" name="fecha_update" id="fecha_update" />

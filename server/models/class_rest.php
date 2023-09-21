@@ -52,7 +52,6 @@ class Rest extends database
     $id_badge = $tran["id_badge"];
     $id_account = $tran["id_account"];
     $id_reason = $tran["id_reason"];
-    $reference = $tran["reference"];
     $amount = $tran["amount"];
     $date = $tran["date"];
     $description = $tran["description"];
@@ -63,7 +62,6 @@ class Rest extends database
       'id_account' => $id_account,
       'id_badge' => $id_badge,
       'id_reason' => $id_reason,
-      'reference' => $reference,
       'amount' => $amount,
       'date' => $date,
       'description' => $description
