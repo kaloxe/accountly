@@ -17,7 +17,7 @@
                         <div class="widget-data">
                             <div class="weight-700 font-24 text-dark">75</div>
                             <div class="font-14 text-secondary weight-500">
-                                Appointment
+                                Eventos proximos
                             </div>
                         </div>
                         <div class="widget-icon">

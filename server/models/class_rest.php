@@ -25,6 +25,18 @@ class Rest extends database
     );
     return json_encode($array);
   }
+
+  public static function binnacle($id_user, $movement)
+  {
+    $conn = new database();
+    $actualdt = date('y-m-d h:i:s');
+    $sql = "INSERT INTO `binnacle`(`id_user`, `movement`, `datetime`) VALUES ($id_user,'$movement','$actualdt')";
+    $query = $conn->open()->prepare($sql);
+    $query->execute();
+    $array = array('state' => true);
+    return json_encode($array);
+  }
+
   public static function readBadge($sql)
   {
     $conn = new database();

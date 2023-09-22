@@ -16,7 +16,6 @@ if (isset($_POST)) {
             $descripcion = $user['descripcion'];
             $fecha =  $user['fecha'];
             $sql = "INSERT INTO `transaction`(`id_account`, `id_badge`, `id_reason`, `type`, `amount`, `date`, `description`, `state_register`) VALUES ($cuenta, $divisa, $razon, $movimiento, $monto, '$fecha', '$descripcion', 1)";
-            echo Rest::binnacle($id_user, "Registro de transaccion");
             echo Rest::execute($sql);
             break;
         case "read_transaction":
@@ -34,13 +33,11 @@ if (isset($_POST)) {
             $descripcion = $user['descripcion'];
             $fecha =  $user['fecha'];
             $sql = "UPDATE `transaction` SET `type`=$movimiento, `id_badge`=$divisa, `id_reason`=$razon, `id_account`=$cuenta, `amount`=$monto, `date`='$fecha', `description`='$descripcion' WHERE `id_transaction`=$id";
-            echo Rest::binnacle($id_user, "Cambio en la transaccion n* $id");
             echo Rest::execute($sql);
             break;
         case "delete_transaction":
             $id = $user['id'];
             $sql = "DELETE FROM `transaction` WHERE `transaction`.`id_transaction` = $id";
-            echo Rest::binnacle($id_user, "Eliminacion de la transaccion n* $id");
             echo Rest::execute($sql);
             break;
         default:

@@ -92,8 +92,7 @@
                     <span class="user-name"><?php echo $_SESSION['nickname']; ?></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                    <a class="dropdown-item" href="#"><i class="dw dw-user1"></i> Perfil</a>
-                    <a class="dropdown-item" href="#"><i class="dw dw-settings2"></i> Configuracion</a>
+                    <a class="dropdown-item" href="settings.php"><i class="dw dw-settings2"></i> Configuracion</a>
                     <a class="dropdown-item" href="/accountly/server/session/session.php?close_session=true"><i class="dw dw-logout"></i> Cerrar sesion</a>
                 </div>
             </div>

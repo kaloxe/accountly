@@ -10,6 +10,7 @@ if (isset($_POST)) {
         case "create_account":
             $nombre = $user['nombre'];
             $sql = "INSERT INTO `account`(`id_user`, `name_account`, `state_register`) VALUES ($id_user, '$nombre', 1)";
+            echo Rest::binnacle($id_user, "Creacion de cuenta: $nombre");
             echo Rest::execute($sql);
             break;
         case "read_account":
@@ -21,11 +22,13 @@ if (isset($_POST)) {
             $id = $user["id"];
             $nombre = $user['nombre'];
             $sql = "UPDATE `account` SET `name_account`='$nombre' WHERE `id_account`=$id";
+            echo Rest::binnacle($id_user, "Actualizacion de cuenta: $nombre");
             echo Rest::execute($sql);
             break;
         case "delete_account":
             $id = $user['id'];
             $sql = "DELETE FROM `account` WHERE `account`.`id_account` = $id";
+            echo Rest::binnacle($id_user, "Eliminacion de cuenta n* $id");
             echo Rest::execute($sql);
             break;
         default:

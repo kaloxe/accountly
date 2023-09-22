@@ -20,12 +20,14 @@ if (isset($_POST)) {
                 $usuario = $user['usuario'];
                 $password = $user['password'];
                 $sql = "SELECT * FROM `user` WHERE `nickname`='$usuario' AND `password`='$password'";
+                
                 $result = User::validUser($sql);
                 if ($result["state"]) {
                     $_SESSION['state'] = $result['state'];
                     $_SESSION['id_user'] = $result["id_user"];
                     $_SESSION['nickname'] = $result["nickname"];
                     $_SESSION['email'] = $result["email"];
+                    //echo Rest::binnacle($id_user, "Ingreso de usuario: $usuario");
                     echo json_encode($result);
                 } else {
                     echo json_encode($result);
@@ -40,6 +42,7 @@ if (isset($_POST)) {
                 $result = User::validUser($sql);
                 if ($result["state"]) {
                     $sql = "UPDATE `user` SET `password`='$newPassword' WHERE `id_user`='$id'";
+                    echo Rest::binnacle($id_user, "Cambio de contraseña de usuario: $usuario");
                     echo Rest::execute($sql);
                 } else {
                     echo json_encode($result);

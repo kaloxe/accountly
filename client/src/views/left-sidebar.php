@@ -52,11 +52,11 @@
                         <span class="micon bi bi-pie-chart"></span><span class="mtext">Reportes</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="report_total.php">Totales</a></li>
+                        <li><a href="report_total.php">Reporte de totales</a></li>
                         <li><a href="report_transaction.php">Filtrar transacciones</a></li>
                         <li><a href="report_badge.php">Conversion a divisas</a></li>
-                        <li><a href="report_movement.php">Movimientos</a></li>
-                        <li><a href="report_event.php">Eventos proximos</a></li>
+                        <li><a href="report_movement.php">Reporte de movimientos</a></li>
+                        <li><a href="report_event.php">Reporte de Usuarios</a></li>
                     </ul>
                 </li>
 

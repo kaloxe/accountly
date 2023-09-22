@@ -11,6 +11,7 @@ if (isset($_POST)) {
             $divisa = $user['divisa'];
             $valor = $user['valor'];
             $sql = "INSERT INTO `badge`(`name_badge`, `value`) VALUES ('$divisa', $valor)";
+            echo Rest::binnacle($id_user, "Creacion de divisa: $divisa");
             echo Rest::execute($sql);
             break;
         case "read_badge":
@@ -23,11 +24,13 @@ if (isset($_POST)) {
             $divisa = $user['divisa'];
             $valor = $user['valor'];
             $sql = "UPDATE `badge` SET `name_badge`='$divisa', `value`='$valor' WHERE `id_badge`=$id";
+            echo Rest::binnacle($id_user, "Actualizacion de divisa: $divisa");
             echo Rest::execute($sql);
             break;
         case "delete_badge":
             $id = $user['id'];
             $sql = "DELETE FROM `badge` WHERE `badge`.`id_badge` = $id";
+            echo Rest::binnacle($id_user, "Eliminacion de divisa n* $id");
             echo Rest::execute($sql);
             break;
         default:

@@ -1,13 +1,12 @@
-Cambiar nombres en los plugins (calendario, barra superior, principal)
-Mejorar diseño de formularios
-Mejorar aplicacion de estilos css
-Mejorar la barra de carga
+Cambiar nombres en los plugins (calendario)
 Mejorar las vistas de los modulos
 Crear las vistas de los reportes
+Acomodar fechas
 
-Implementar bitacora
+Implementar pagina principal
 Implementar configuracion y/o perfil
 
+Que completar en metas funcione
 Mejorar las validaciones en el cliente
 Hacer funcionar los graficos con los datos de la base MySQL
 Implementar autenticacion para los modulos segun el tipo de usuario

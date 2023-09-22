@@ -16,6 +16,7 @@ if (isset($_POST)) {
             $descripcion = $user['descripcion'];
             $sql = "INSERT INTO `goal`(`id_user`, `id_badge`, `name_goal`, `description`, `amount`, `complete`, `type`, `state_register`) VALUES ($id_user, $divisa, '$meta', '$descripcion', $monto, 0, $movimiento, 1)";
             //$sql = "INSERT INTO `transaction`(`id_account`, `reference`, `amount`, `date`, `description`) VALUES ($cuenta, $cuenta, $referencia, $monto, '$fecha', '$description')";
+            echo Rest::binnacle($id_user, "Creacion de meta: $meta");
             echo Rest::execute($sql);
             break;
         case "read_goal":
@@ -31,11 +32,13 @@ if (isset($_POST)) {
             $meta = $user['meta'];
             $descripcion = $user['descripcion'];
             $sql = "UPDATE `goal` SET `type`=$movimiento, `id_badge`=$divisa, `amount`=$monto, `name_goal`='$meta', `description`='$descripcion' WHERE `id_goal`=$id";
+            echo Rest::binnacle($id_user, "Actualizacion de meta: $meta");
             echo Rest::execute($sql);
             break;
         case "delete_goal":
             $id = $user['id'];
             $sql = "DELETE FROM `goal` WHERE `goal`.`id_goal` = $id";
+            echo Rest::binnacle($id_user, "Eliminacion de meta n* $id");
             echo Rest::execute($sql);
             break;
         default:
