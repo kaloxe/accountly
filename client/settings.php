@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
                         <div class="title">
-                            <h4>Cuenta</h4>
+                            <h4>Configuracion</h4>
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
@@ -19,47 +19,79 @@
                                     <a href="index.php">Principal</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    Cuenta
+                                    Configuracion
                                 </li>
                             </ol>
                         </nav>
                     </div>
-                    <div class="col-md-6 col-sm-6 text-right">
-                        <a class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#modal_create" type="button">
-                            Registrar
-                        </a>
+                </div>
+            </div>
+            <div class="formulario__mensaje p-1 text-center my-3 pb-5" id="formulario__mensaje">
+                <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Rellene el formulario correctamente. </p>
+            </div>
+            <!-- multiple select row Datatable start -->
+            <div class="card-box mb-30">
+                <div class="pb-20">
+                    <div class="profile-setting">
+                        <form id="formulario_update">
+                            <ul class="profile-edit-list row">
+                                <li class="weight-500 col-md-6">
+                                    <h4 class="text-blue h5 mb-20">
+                                        Editar nombre o correo
+                                    </h4>
+                                    <div class="form-group" id="grupo__usuario_update">
+                                        <label>Nombre de usuario</label>
+                                        <input class="form-control form-control-lg formulario__grupo-input formulario__input" name="usuario_update" id="usuario_update" type="text" />
+                                        <p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos.</p>
+                                    </div>
+                                    <div class="form-group" id="grupo__correo_update">
+                                        <label>Correo</label>
+                                        <input class="form-control form-control-lg formulario__grupo-input formulario__input" name="correo_update" id="correo_update" type="email" />
+                                        <p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos.</p>
+                                    </div>
+                                    <div class="form-group mb-0">
+                                        <a class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#modal_update_name" type="button">
+                                            Confirmar
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="weight-500 col-md-6">
+                                    <h4 class="text-blue h5 mb-20">
+                                        Cambiar contraseña
+                                    </h4>
+                                    <div class="form-group" id="grupo__oldPassword">
+                                        <label>Antigua contraseña:</label>
+                                        <input class="form-control form-control-lg formulario__grupo-input formulario__input" name="oldPassword" id="oldPassword" type="password" placeholder="**************" />
+                                        <p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos.</p>
+                                    </div>
+                                    <div class="form-group" id="grupo__password1">
+                                        <label>Nueva contraseña:</label>
+                                        <input class="form-control form-control-lg formulario__grupo-input formulario__input" name="password1" id="password1" type="password" placeholder="***************" />
+                                        <p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos.</p>
+                                    </div>
+                                    <div class="form-group" id="grupo__password2">
+                                        <label>Confirmar contraseña:</label>
+                                        <input class="form-control form-control-lg formulario__grupo-input formulario__input" name="password2" id="password2" type="password" placeholder="***************" />
+                                        <p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos.</p>
+                                    </div>
+                                    <div class="form-group mb-0">
+                                        <a class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#modal_update_password" type="button">
+                                            Guardar y actualizar
+                                        </a>
+                                        <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </form>
                     </div>
                 </div>
             </div>
 
-            <!-- multiple select row Datatable start -->
-            <div class="card-box mb-30">
-                <div class="pd-20">
-                    <h4 class="text-blue h4">Cuentas</h4>
-                </div>
-                <div class="pb-20">
-                    <table class="data-table table stripe hover nowrap">
-                        <thead>
-                            <tr>
-                                <th class="table-plus">Cuenta</th>
-                                <th>Saldo</th>
-                                <th class="datatable-nosort">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="content">
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            <!-- Edit modal name -->
+            <?php require('./src/modals/settings/update-modal-name.php') ?>
 
-            <!-- Create modal -->
-            <?php require('./src/modals/account/create-modal.php') ?>
-
-            <!-- Edit modal -->
-            <?php require('./src/modals/account/update-modal.php') ?>
-
-            <!-- Delete modal -->
-            <?php require('./src/modals/account/delete-modal.php') ?>
+            <!-- Edit modal password -->
+            <?php require('./src/modals/settings/update-modal-password.php') ?>
 
         </div>
 
@@ -70,51 +102,9 @@
     </div>
 </div>
 
-<script>
-    let index_delete;
-
-    function openDeleteModal(id) {
-        index_delete = id;
-    }
-    const eliminar = document.getElementById("eliminar");
-    eliminar.addEventListener("click", (e) => {
-        e.preventDefault();
-        let data = {
-            action: "delete_account",
-            id: index_delete,
-        };
-        fetch("/accountly/server/controllers/controllerAccount.php", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json; charset=utf-8",
-                },
-                body: JSON.stringify(data),
-            })
-            .then((res) => res.text())
-            .then((dat) => console.log(dat));
-    });
-
-    /* Llamando a la función getData() */
-    getData()
-
-    /* Peticion AJAX */
-    function getData() {
-        let content = document.getElementById("content")
-
-        let url = "src/tables/loadAccount.php"
-        let formaData = new FormData()
-        fetch(url, {
-                method: "POST",
-                body: formaData
-            }).then(response => response.json())
-            .then(data => {
-                content.innerHTML = data.data
-            }).catch(err => console.log(err))
-    }
-</script>
-
-<script src="./src/js/validate-create-account.js"></script>
-<script src="./src/js/validate-edit-account.js"></script>
+<script src="./src/js/validate-edit-password-settings.js"></script>
+<script src="./src/js/validate-edit-name-settings.js"></script>
+<!-- <script src="./src/js/validate-user-settings.js"></script> -->
 <?php require('./src/views/scripts.php'); ?>
 <script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
 <script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>

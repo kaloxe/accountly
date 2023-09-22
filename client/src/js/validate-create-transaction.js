@@ -116,6 +116,7 @@ create.addEventListener("click", (e) => {
       razon: razon,
       fecha: fecha,
     };
+    console.log(data)
     fetch("/accountly/server/controllers/controllerTransaction.php", {
       method: "POST",
       headers: {
