@@ -14,7 +14,7 @@ require('./src/views/left-sidebar.php');
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
                         <div class="title">
-                            <h4>Transaccion</h4>
+                            <h4>Filtrar transacciones</h4>
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
@@ -22,21 +22,21 @@ require('./src/views/left-sidebar.php');
                                     <a href="index.php">Principal</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    Transaccion
+                                    Filtrar transacciones
                                 </li>
                             </ol>
                         </nav>
                     </div>
                     <div class="col-md-6 col-sm-6 text-right">
-                        <a class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#modal_create" type="button">
-                            Registrar
-                        </a>
+                        <button type="button" class="btn btn-secondary" data-color="#ffffff">
+                            <i class="fa fa-print"></i>
+                        </button>
                     </div>
                 </div>
             </div>
 
             <!-- multiple select row Datatable start -->
-            <div class="card-box mb-30">
+            <!-- <div class="card-box mb-30">
                 <div class="pd-20">
                     <h4 class="text-blue h4">Transacciones</h4>
                 </div>
@@ -50,23 +50,101 @@ require('./src/views/left-sidebar.php');
                                 <th class="sort asc">Razon</th>
                                 <th class="sort asc">Cuenta</th>
                                 <th class="sort asc">Fecha</th>
-                                <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody id="content">
+                        <tbody id="">
                         </tbody>
                     </table>
                 </div>
+            </div> -->
+            <div class="card-box mb-30  height-100-p">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="clearfix pt-20 px-4">
+                            <div class="pull-left">
+                                <h4 class="h4 text-blue">Filtros y tabla de transacciones</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="clearfix pt-20 px-4">
+                            <div class="pull-right">
+                                <a class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#modal_create" type="button">
+                                    Filtrar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <form>
+                    <div class="row px-4">
+                        <div class="col-md-2 col-filter col-sm-6">
+                            <div class="form-group">
+                                <label>Desde</label>
+                                <input type="date" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-filter col-sm-6">
+                            <div class="form-group">
+                                <label>Hasta</label>
+                                <input type="date" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-filter col-sm-4">
+                            <div class="form-group">
+                                <label>Cuenta</label>
+                                <select class="selectpicker form-control">
+                                    <option>Seleccionar</option>
+                                    <option>Mustard</option>
+                                    <option>Relish</option>
+                                    <option>Plain</option>
+                                    <option>Toasted</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-filter col-sm-4">
+                            <div class="form-group">
+                                <label>Divisa</label>
+                                <select class="selectpicker form-control">
+                                    <option>Seleccionar</option>
+                                    <option>Mustard</option>
+                                    <option>Relish</option>
+                                    <option>Plain</option>
+                                    <option>Toasted</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-filter col-sm-4">
+                            <div class="form-group">
+                                <label>Razon</label>
+                                <select class="selectpicker form-control">
+                                    <option>Seleccionar</option>
+                                    <option>Mustard</option>
+                                    <option>Relish</option>
+                                    <option>Plain</option>
+                                    <option>Toasted</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Divisa</th>
+                            <th scope="col">Monto</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">Razon</th>
+                            <th scope="col">Cuenta</th>
+                            <th scope="col">Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody id="content">
+                    </tbody>
+                </table>
             </div>
-
-            <!-- Create modal -->
-            <?php require('./src/modals/transaction/create-modal.php') ?>
-
-            <!-- Edit modal -->
-            <?php require('./src/modals/transaction/update-modal.php') ?>
-
-            <!-- Delete modal -->
-            <?php require('./src/modals/transaction/delete-modal.php') ?>
 
         </div>
 
@@ -78,29 +156,6 @@ require('./src/views/left-sidebar.php');
 </div>
 
 <script>
-    let index_delete;
-
-    function openDeleteModal(id) {
-        index_delete = id;
-    }
-    const eliminar = document.getElementById("eliminar");
-    eliminar.addEventListener("click", (e) => {
-        e.preventDefault();
-        let data = {
-            action: "delete_transaction",
-            id: index_delete,
-        };
-        fetch("/accountly/server/controllers/controllerTransaction.php", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json; charset=utf-8",
-                },
-                body: JSON.stringify(data),
-            })
-            .then((res) => res.text())
-            .then((dat) => console.log(dat));
-    });
-
     /* Llamando a la función getData() */
     getData()
 
@@ -108,7 +163,7 @@ require('./src/views/left-sidebar.php');
     function getData() {
         let content = document.getElementById("content")
 
-        let url = "src/tables/loadTransaction.php"
+        let url = "src/tables/loadFilterTransactions.php"
         let formaData = new FormData()
         fetch(url, {
                 method: "POST",
@@ -120,28 +175,28 @@ require('./src/views/left-sidebar.php');
     }
 
     // llamando contenido de los selects de los formularios de los modals
-    getSelects()
+    // getSelects()
 
-    function getSelects() {
-        let url = "src/php/selects.php"
-        let formaData = new FormData()
-        fetch(url, {
-                method: "POST",
-                body: formaData
-            }).then(response => response.json())
-            .then(data => {
-                cuenta_create.innerHTML = data.accounts
-                cuenta_update.innerHTML = data.accounts
-                divisa_create.innerHTML = data.badges
-                divisa_update.innerHTML = data.badges
-                razon_create.innerHTML = data.reasons
-                razon_update.innerHTML = data.reasons
-            }).catch(err => console.log(err))
-    }
+    // function getSelects() {
+    //     let url = "src/php/selects.php"
+    //     let formaData = new FormData()
+    //     fetch(url, {
+    //             method: "POST",
+    //             body: formaData
+    //         }).then(response => response.json())
+    //         .then(data => {
+    //             cuenta_create.innerHTML = data.accounts
+    //             cuenta_update.innerHTML = data.accounts
+    //             divisa_create.innerHTML = data.badges
+    //             divisa_update.innerHTML = data.badges
+    //             razon_create.innerHTML = data.reasons
+    //             razon_update.innerHTML = data.reasons
+    //         }).catch(err => console.log(err))
+    // }
 </script>
 
-<script src="./src/js/validate-create-transaction.js"></script>
-<script src="./src/js/validate-edit-transaction.js"></script>
+<!-- <script src="./src/js/validate-create-transaction.js"></script>
+<script src="./src/js/validate-edit-transaction.js"></script> -->
 <?php require('./src/views/scripts.php'); ?>
 <script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
 <script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>

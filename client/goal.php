@@ -76,13 +76,32 @@
             .then((dat) => console.log(dat));
     });
 
+    function completeGoal(id) {
+        index = {
+            action: "complete_goal",
+            id: id,
+        };
+        fetch("/accountly/server/controllers/controllerGoal.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                },
+                body: JSON.stringify(index),
+            })
+            .then((res) => res.json())
+            .then((dat) => {
+                console.log(dat);
+                getData();
+                //corregir despues
+            });
+    }
+
     /* Llamando a la función getData() para obtener contenido de la tabla */
     getData()
 
     /* Peticion AJAX */
     function getData() {
         let goals = document.getElementById("goals")
-        console.log(goals)
 
         let url = "src/tables/loadGoal.php"
         let formaData = new FormData()
@@ -91,7 +110,6 @@
                 body: formaData
             }).then(response => response.json())
             .then(data => {
-                console.log(data)
                 goals.innerHTML = data.data
             }).catch(err => console.log(err))
     }

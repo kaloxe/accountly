@@ -69,7 +69,7 @@ submit.addEventListener("click", (e) => {
       .then((res) => res.json())
       .then((dat) => {
           console.log(dat);
-          if (dat.state) {
+          if (dat.state==true) {
             window.location.href = "/accountly/client/index.php";
           } else {
             document

@@ -11,7 +11,7 @@
                 </div>
                 <div class="modal-footer">
                     <input type="button" class="btn btn-primary" id="update_password" value="Confirmar" data-dismiss="modal">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
                         Cerrar
                     </button>
                 </div>

@@ -9,9 +9,9 @@
         <div class="min-height-200px">
             <div class="page-header">
                 <div class="row">
-                    <div class="col-md-6 col-sm-6">
+                    <div class="col-md-8 col-sm-6">
                         <div class="title">
-                            <h4>Cuenta</h4>
+                            <h4>Reporte de divisas</h4>
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
@@ -19,47 +19,58 @@
                                     <a href="index.php">Principal</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    Cuenta
+                                    Reporte de divisas
                                 </li>
                             </ol>
                         </nav>
                     </div>
-                    <div class="col-md-6 col-sm-6 text-right">
-                        <a class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#modal_create" type="button">
-                            Registrar
-                        </a>
+                    <div class="col-md-4 col-sm-6 text-left">
+                        <div class="row">
+                            <div class="col mr-2">
+                                <select name="divisa" class="selectpicker form-control">
+                                    <option>Seleccione divisa</option>
+                                    <option>Mustard</option>
+                                    <option>Relish</option>
+                                    <option>Plain</option>
+                                    <option>Toasted</option>
+                                </select>
+                            </div>
+                            <a class="btn btn-primary mr-2" href="#" role="button" data-toggle="modal" data-target="#modal_create" type="button">
+                                Filtrar
+                            </a>
+                            <button type="button" class="btn btn-secondary mr-3" data-color="#ffffff">
+                                <i class="fa fa-print"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- multiple select row Datatable start -->
             <div class="card-box mb-30">
-                <div class="pd-20">
-                    <h4 class="text-blue h4">Divisas y monedas</h4>
+                <div class="clearfix pd-20">
+                    <div class="pull-left">
+                        <h4 class="h4 text-blue">Totales de saldo en cuentas</h4>
+                    </div>
                 </div>
-                <div class="pb-20">
-                    <table class="data-table table stripe hover nowrap">
-                        <thead>
-                            <tr>
-                                <th class="table-plus">Cuenta</th>
-                                <th>Total</th>
-                                <th class="datatable-nosort">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="content">
-                        </tbody>
-                    </table>
-                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Cuenta</th>
+                            <th scope="col">Divisa</th>
+                            <th scope="col">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="content">
+                    </tbody>
+                    <tbody>
+                        <tr>
+                            <th>Total</th>
+                            <th></th>
+                            <th>Dolares 1000</th>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-
-            <!-- Create modal -->
-            <?php require('./src/modals/account/create-modal.php') ?>
-
-            <!-- Edit modal -->
-            <?php require('./src/modals/account/update-modal.php') ?>
-
-            <!-- Delete modal -->
-            <?php require('./src/modals/account/delete-modal.php') ?>
 
         </div>
 
@@ -71,29 +82,6 @@
 </div>
 
 <script>
-    let index_delete;
-
-    function openDeleteModal(id) {
-        index_delete = id;
-    }
-    const eliminar = document.getElementById("eliminar");
-    eliminar.addEventListener("click", (e) => {
-        e.preventDefault();
-        let data = {
-            action: "delete_account",
-            id: index_delete,
-        };
-        fetch("/accountly/server/controllers/controllerAccount.php", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json; charset=utf-8",
-                },
-                body: JSON.stringify(data),
-            })
-            .then((res) => res.text())
-            .then((dat) => console.log(dat));
-    });
-
     /* Llamando a la función getData() */
     getData()
 
@@ -101,7 +89,7 @@
     function getData() {
         let content = document.getElementById("content")
 
-        let url = "src/tables/loadAccount.php"
+        let url = "src/tables/loadReportBadge.php"
         let formaData = new FormData()
         fetch(url, {
                 method: "POST",
@@ -112,9 +100,9 @@
             }).catch(err => console.log(err))
     }
 </script>
-
+<!-- 
 <script src="./src/js/validate-create-account.js"></script>
-<script src="./src/js/validate-edit-account.js"></script>
+<script src="./src/js/validate-edit-account.js"></script> -->
 <?php require('./src/views/scripts.php'); ?>
 <script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
 <script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>

@@ -47,9 +47,12 @@ if (isset($_POST)) {
                 $sql = "SELECT * FROM `user` WHERE `nickname`='$usuario' AND `password`='$password'";
                 $result = User::validUser($sql);
                 if ($result["state"]) {
-                    $sql = "UPDATE `user` SET `nickname`='$nuevoUsuario', `email`='$correo' WHERE `id_user`=$id";
+                    //$_SESSION['state'] = $result['state'];
+                    $_SESSION['nickname']= $nuevoUsuario;
+                    $_SESSION['email'] = $correo;
+                    $sql1 = "UPDATE `user` SET `nickname`='$nuevoUsuario', `email`='$correo' WHERE `id_user`=$id";
                     //echo Rest::binnacle($id_user, "Cambio de contraseña de usuario: $usuario");
-                    echo Rest::execute($sql);
+                    echo Rest::execute($sql1);
                 } else {
                     echo json_encode($result);
                 }
@@ -62,9 +65,9 @@ if (isset($_POST)) {
                 $sql = "SELECT * FROM `user` WHERE `nickname`='$usuario' AND `password`='$password'";
                 $result = User::validUser($sql);
                 if ($result["state"]) {
-                    $sql = "UPDATE `user` SET `password`='$newPassword' WHERE `id_user`='$id'";
+                    $sql1 = "UPDATE `user` SET `password`='$newPassword' WHERE `id_user`='$id'";
                     //echo Rest::binnacle($id_user, "Cambio de contraseña de usuario: $usuario");
-                    echo Rest::execute($sql);
+                    echo Rest::execute($sql1);
                 } else {
                     echo json_encode($result);
                 }

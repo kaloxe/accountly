@@ -28,11 +28,7 @@ const validarFormularioUpdatePassword = (e) => {
       );
       break;
     case "password1":
-      validarCampoUpdatePassword(
-        expresiones.password,
-        e.target,
-        "password1"
-      );
+      validarCampoUpdatePassword(expresiones.password, e.target, "password1");
       validarPassword2UpdatePassword();
       break;
     case "password2":
@@ -62,21 +58,17 @@ const validarPassword2UpdatePassword = () => {
   const inputPassword2 = document.getElementById("password2");
 
   if (inputPassword1.value !== inputPassword2.value) {
-    document
-      .getElementById(`password2`)
-      .classList.add("form-control-error");
+    document.getElementById(`password2`).classList.add("form-control-error");
     document
       .querySelector(`#grupo__password2 .formulario__input-error`)
       .classList.add("formulario__input-error-activo");
-      campos_password_update["password2"] = false;
+    campos_password_update["password2"] = false;
   } else {
-    document
-      .getElementById(`password2`)
-      .classList.remove("form-control-error");
+    document.getElementById(`password2`).classList.remove("form-control-error");
     document
       .querySelector(`#grupo__password2 .formulario__input-error`)
       .classList.remove("formulario__input-error-activo");
-      campos_password_update["password2"] = true;
+    campos_password_update["password2"] = true;
   }
 };
 
@@ -103,7 +95,6 @@ update_password.addEventListener("click", (e) => {
       password1: password1,
       password2: password2,
     };
-    console.log(data)
     fetch("/accountly/server/controllers/controllerSettings.php", {
       method: "POST",
       headers: {
@@ -111,22 +102,29 @@ update_password.addEventListener("click", (e) => {
       },
       body: JSON.stringify(data),
     })
-      .then((res) => res.text())
+      .then((res) => res.json())
       .then((dat) => {
-        console.log(dat)
-        if(!dat.state) {
-          alert("Contraseña incorrecta")
+        console.log(dat);
+        if (!dat.state) {
+          document
+            .getElementById("formulario__mensaje")
+            .classList.add("formulario__mensaje-activo");
+          setTimeout(() => {
+            document
+              .getElementById("formulario__mensaje")
+              .classList.remove("formulario__mensaje-activo");
+          }, 5000);
+        } else {
+          document
+            .getElementById("formulario__mensaje-exito")
+            .classList.add("formulario__mensaje-exito-activo");
+          setTimeout(() => {
+            document
+              .getElementById("formulario__mensaje-exito")
+              .classList.remove("formulario__mensaje-exito-activo");
+          }, 5000);
         }
       });
-
-    document
-      .getElementById("formulario__mensaje-exito")
-      .classList.add("formulario__mensaje-exito-activo");
-    setTimeout(() => {
-      document
-        .getElementById("formulario__mensaje-exito")
-        .classList.remove("formulario__mensaje-exito-activo");
-    }, 5000);
   } else {
     Object.keys(campos_password_update).forEach((campo) => {
       if (!campos_password_update[campo]) {

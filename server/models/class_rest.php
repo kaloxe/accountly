@@ -141,6 +141,7 @@ class Rest extends database
     $amount = $tran["amount"];
     $description = $tran["description"];
     $name_goal = $tran["name_goal"];
+    $complete = $tran["complete"];
 
     $array = array(
       'type' => $type,
@@ -148,10 +149,20 @@ class Rest extends database
       'id_goal' => $id_goal,
       'name_goal' => $name_goal,
       'amount' => $amount,
-      'description' => $description
+      'description' => $description,
+      'complete' => $complete
     );
 
     return json_encode($array);
+  }
+
+  public static function readGoalComplete($sql)
+  {
+    $conn = new database();
+    $result = $conn->openSQL()->query($sql);
+    $tran = $result->fetch_assoc();
+    $complete = $tran["complete"];
+    return $complete;
   }
 
   public static function readAccounts($user_id)

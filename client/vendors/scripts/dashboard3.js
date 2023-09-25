@@ -1,12 +1,12 @@
 var options = {
 	series: [
 	{
-		name: "Patients",
-		data: [10, 15, 12, 20, 18, 26, 24, 25, 20, 25, 22, 30]
+		name: "Egresos",
+		data: [10, 15, 12, 20, 18, 26, 24]
 	},
 	{
-		name: "Consultations",
-		data: [15, 10, 17, 15, 23, 21, 30, 20, 26, 20, 28, 25]
+		name: "Ingresos",
+		data: [15, 10, 17, 15, 23, 21, 30]
 	}
 	],
 	chart: {
@@ -48,7 +48,7 @@ var options = {
 		}
 	},
 	xaxis: {
-		categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+		categories: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
 		labels:{
 			style:{
 				colors: '#8c9094'
@@ -57,7 +57,7 @@ var options = {
 	},
 	yaxis: {
 		min: 0,
-		max: 35,
+		max: 55,
 		labels:{
 			style:{
 				colors: '#8c9094'

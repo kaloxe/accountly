@@ -56,7 +56,7 @@
                         <li><a href="report_transaction.php">Filtrar transacciones</a></li>
                         <li><a href="report_badge.php">Conversion a divisas</a></li>
                         <li><a href="report_movement.php">Reporte de movimientos</a></li>
-                        <li><a href="report_event.php">Reporte de Usuarios</a></li>
+                        <li><a href="report_user.php">Reporte de Usuarios</a></li>
                     </ul>
                 </li>
 
@@ -73,6 +73,7 @@
                         <span class="micon bi bi-info-circle"></span><span class="mtext">Documentacion</span>
                     </a>
                     <ul class="submenu">
+                        <li><a href="">Manual de usuario</a></li>
                         <li><a href="https://github.com/kaloxe/accountly">Codigo libre</a></li>
                     </ul>
                 </li>

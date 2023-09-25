@@ -31,59 +31,57 @@
             </div>
             <!-- multiple select row Datatable start -->
             <div class="card-box mb-30">
-                <div class="pb-20">
-                    <div class="profile-setting">
-                        <form id="formulario_update">
-                            <ul class="profile-edit-list row">
-                                <li class="weight-500 col-md-6">
-                                    <h4 class="text-blue h5 mb-20">
-                                        Editar nombre o correo
-                                    </h4>
-                                    <div class="form-group" id="grupo__usuario_update">
-                                        <label>Nombre de usuario</label>
-                                        <input class="form-control form-control-lg formulario__grupo-input formulario__input" name="usuario_update" id="usuario_update" type="text" />
-                                        <p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos.</p>
-                                    </div>
-                                    <div class="form-group" id="grupo__correo_update">
-                                        <label>Correo</label>
-                                        <input class="form-control form-control-lg formulario__grupo-input formulario__input" name="correo_update" id="correo_update" type="email" />
-                                        <p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos.</p>
-                                    </div>
-                                    <div class="form-group mb-0">
-                                        <a class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#modal_update_name" type="button">
-                                            Confirmar
-                                        </a>
-                                    </div>
-                                </li>
-                                <li class="weight-500 col-md-6">
-                                    <h4 class="text-blue h5 mb-20">
-                                        Cambiar contraseña
-                                    </h4>
-                                    <div class="form-group" id="grupo__oldPassword">
-                                        <label>Antigua contraseña:</label>
-                                        <input class="form-control form-control-lg formulario__grupo-input formulario__input" name="oldPassword" id="oldPassword" type="password" placeholder="**************" />
-                                        <p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos.</p>
-                                    </div>
-                                    <div class="form-group" id="grupo__password1">
-                                        <label>Nueva contraseña:</label>
-                                        <input class="form-control form-control-lg formulario__grupo-input formulario__input" name="password1" id="password1" type="password" placeholder="***************" />
-                                        <p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos.</p>
-                                    </div>
-                                    <div class="form-group" id="grupo__password2">
-                                        <label>Confirmar contraseña:</label>
-                                        <input class="form-control form-control-lg formulario__grupo-input formulario__input" name="password2" id="password2" type="password" placeholder="***************" />
-                                        <p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos.</p>
-                                    </div>
-                                    <div class="form-group mb-0">
-                                        <a class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#modal_update_password" type="button">
-                                            Guardar y actualizar
-                                        </a>
-                                        <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </form>
-                    </div>
+                <div class="profile-setting">
+                    <form id="formulario_update">
+                        <ul class="profile-edit-list row">
+                            <li class="weight-500 col-md-6">
+                                <h4 class="text-blue h5 mb-20">
+                                    Editar nombre o correo
+                                </h4>
+                                <div class="form-group" id="grupo__usuario_update">
+                                    <label>Nombre de usuario</label>
+                                    <input class="form-control form-control-lg formulario__grupo-input formulario__input" name="usuario_update" id="usuario_update" type="text" />
+                                    <p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos.</p>
+                                </div>
+                                <div class="form-group" id="grupo__correo_update">
+                                    <label>Correo</label>
+                                    <input class="form-control form-control-lg formulario__grupo-input formulario__input" name="correo_update" id="correo_update" type="email" />
+                                    <p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos.</p>
+                                </div>
+                                <div class="form-group mb-0">
+                                    <a class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#modal_update_name" type="button">
+                                        Confirmar
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="weight-500 col-md-6">
+                                <h4 class="text-blue h5 mb-20">
+                                    Cambiar contraseña
+                                </h4>
+                                <div class="form-group" id="grupo__oldPassword">
+                                    <label>Antigua contraseña:</label>
+                                    <input class="form-control form-control-lg formulario__grupo-input formulario__input" name="oldPassword" id="oldPassword" type="password" placeholder="**************" />
+                                    <p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos.</p>
+                                </div>
+                                <div class="form-group" id="grupo__password1">
+                                    <label>Nueva contraseña:</label>
+                                    <input class="form-control form-control-lg formulario__grupo-input formulario__input" name="password1" id="password1" type="password" placeholder="***************" />
+                                    <p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos.</p>
+                                </div>
+                                <div class="form-group" id="grupo__password2">
+                                    <label>Confirmar contraseña:</label>
+                                    <input class="form-control form-control-lg formulario__grupo-input formulario__input" name="password2" id="password2" type="password" placeholder="***************" />
+                                    <p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos.</p>
+                                </div>
+                                <div class="form-group mb-0">
+                                    <a class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#modal_update_password" type="button">
+                                        Guardar y actualizar
+                                    </a>
+                                    <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </form>
                 </div>
             </div>
 

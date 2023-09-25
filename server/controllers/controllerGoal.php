@@ -21,7 +21,7 @@ if (isset($_POST)) {
             break;
         case "read_goal":
             $id = $user['id'];
-            $sql = "SELECT `id_goal`, `id_badge`, `name_goal`, `description`, `amount`, `type` FROM `goal` WHERE `id_goal`=$id";
+            $sql = "SELECT `id_goal`, `id_badge`, `name_goal`, `description`, `complete`, `amount`, `type` FROM `goal` WHERE `id_goal`=$id";
             echo Rest::readGoal($sql);
             break;
         case "update_goal":
@@ -34,6 +34,14 @@ if (isset($_POST)) {
             $sql = "UPDATE `goal` SET `type`=$movimiento, `id_badge`=$divisa, `amount`=$monto, `name_goal`='$meta', `description`='$descripcion' WHERE `id_goal`=$id";
             echo Rest::binnacle($id_user, "Actualizacion de meta: $meta");
             echo Rest::execute($sql);
+            break;
+        case "complete_goal":
+            $id = $user["id"];
+            $sql = "SELECT `id_goal`, `id_badge`, `name_goal`, `description`, `amount`, `complete`, `type` FROM `goal` WHERE `id_goal`=$id";
+            $goal = (Rest::readGoalComplete($sql) ? 0 : 1);
+            $sql1 = "UPDATE `goal` SET `complete`=$goal WHERE `id_goal`=$id";
+            //echo Rest::binnacle($id_user, "Se completo meta de meta: $id");
+            echo Rest::execute($sql1);
             break;
         case "delete_goal":
             $id = $user['id'];

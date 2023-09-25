@@ -30,7 +30,7 @@ if ($num_rows > 0) {
     while ($row = $resultado->fetch_assoc()) {
         $output['data'] .= '<tr>';
         // $output['data'] .= '<td>' . $row['id_account'] . '</td>';
-        $output['data'] .= '<td>' . $row['date'] . '</td>';
+        $output['data'] .= '<td>' . (date("d/m/Y", strtotime($row['date']))) . '</td>';
         $output['data'] .= '<td>' . $row['description'] . '</td>';
         $output['data'] .= '<td>' . $row['name_badge'] . '</td>';
         $output['data'] .= '<td class="count' . $row['type'] . '">' . $row['amount'] . '</td>';

@@ -41,14 +41,6 @@ if ($num_rows > 0) {
         $output['data'] .= '<td>' . $row['description'] . '</td>';
         $output['data'] .= '<td>' . $row['name_account'] . '</td>';
         $output['data'] .= '<td>' . (date("d/m/Y", strtotime($row['date']))) . '</td>';
-
-        $output['data'] .= '
-        <td>
-            <div class="table-actions">
-                <a href="#" data-color="#265ed7" id="editar_' . $row['id_transaction'] . '" name="editar" onclick="openUpdateModal(' . $row['id_transaction'] . ')" data-toggle="modal" data-target="#modal_update"><i class="icon-copy dw dw-edit2"></i></a>
-                <a href="#" data-color="#e95959" id="eliminar_' . $row['id_transaction'] . '" name="eliminar" onclick="openDeleteModal(' . $row['id_transaction'] . ')" data-toggle="modal" data-target="#modal_delete"><i class="icon-copy dw dw-delete-3"></i></a>
-            </div>
-        </td>';
         $output['data'] .= '</tr>';
     }
 }

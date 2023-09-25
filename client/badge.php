@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
                         <div class="title">
-                            <h4>Cuenta</h4>
+                            <h4>Divisas</h4>
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
@@ -19,7 +19,7 @@
                                     <a href="index.php">Principal</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    Cuenta
+                                Divisas
                                 </li>
                             </ol>
                         </nav>

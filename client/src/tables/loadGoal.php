@@ -42,11 +42,10 @@ if ($num_rows > 0) {
                     ' . $row['description'] . '
                     </p>';
         $output['data'] .= '
-                    <a href="#" class="btn btn-primary">Completar</a>
+                    <a href="#" class="btn '. ($row['complete'] ? 'btn-warning' : 'btn-secondary')  .'" onclick="completeGoal(' . $row['id_goal'] . ')">' . ($row['complete'] ? 'Completada' : 'Completar') . '</a>
                     <button
                         type="button"
-                        class="btn"
-                        data-bgcolor="#1da1f2"
+                        class="btn btn-info"
                         data-color="#ffffff"
                         id="editar_' . $row['id_goal'] . '" name="editar" onclick="openUpdateModal(' . $row['id_goal'] . ')" data-toggle="modal" data-target="#modal_update"
                     >
@@ -54,9 +53,8 @@ if ($num_rows > 0) {
                     </button>
                     <button
                         type="button"
-                        class="btn pull-right"
+                        class="btn btn-danger pull-right"
                         data-bgcolor="#bd081c"
-                        data-color="#ffffff"
                         id="eliminar_' . $row['id_goal'] . '" name="eliminar" onclick="openDeleteModal(' . $row['id_goal'] . ')" data-toggle="modal" data-target="#modal_delete"
                     >
                         <i class="fa fa-trash"></i>

@@ -694,6 +694,14 @@ pre code {
   padding-right: 15px;
   padding-left: 15px;
 }
+
+.col-filter {
+  position: relative;
+  width: 100%;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
 .col {
   -ms-flex-preferred-size: 0;
   flex-basis: 0;

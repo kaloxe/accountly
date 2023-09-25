@@ -67,10 +67,10 @@ chart.render();
 
 var options2 = {
 	series: [{
-		name: 'series1',
+		name: 'Ingresos',
 		data: [31, 40, 28, 51, 42, 109, 200]
 	}, {
-		name: 'series2',
+		name: 'Egresos',
 		data: [11, 32, 45, 32, 34, 52, 41]
 	}],
 	chart: {
@@ -94,8 +94,8 @@ var options2 = {
 		curve: 'smooth'
 	},
 	xaxis: {
-		type: 'datetime',
-		categories: ["2020-09-19T00:00:00.000Z", "2020-09-19T01:30:00.000Z", "2020-09-19T02:30:00.000Z", "2020-09-19T03:30:00.000Z", "2020-09-19T04:30:00.000Z", "2020-09-19T05:30:00.000Z", "2020-09-19T06:30:00.000Z"]
+		type: 'date',
+		categories: ["2023-09-14", "2023-09-15", "2023-09-16", "2023-09-17", "2023-09-18", "2023-09-19", "2023-09-20"]
 	},
 	tooltip: {
 		x: {
@@ -589,9 +589,9 @@ chart.render();
 var options8 = {
 	series: [44, 55, 41, 17, 15],
 	chart: {
-		type: 'donut',
+		type: 'pie',
 	},
-	labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
+	labels: ['Banesco', 'Life', 'BCV', 'Paypal', 'Bancaribe'],
 	responsive: [{
 		breakpoint: 480,
 		options: {

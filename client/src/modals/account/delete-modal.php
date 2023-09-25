@@ -10,8 +10,8 @@
                     <p>Esta seguro de que quiere borrar el registro?</p>
                 </div>
                 <div class="modal-footer">
-                    <input type="button" class="btn btn-primary" id="eliminar" value="Eliminar" data-dismiss="modal">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">
+                    <input type="button" class="btn btn-danger" id="eliminar" value="Eliminar" data-dismiss="modal">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
                         Cerrar
                     </button>
                 </div>

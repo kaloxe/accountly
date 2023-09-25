@@ -87,17 +87,31 @@ update_user.addEventListener("click", (e) => {
       },
       body: JSON.stringify(data),
     })
-      .then((res) => res.text())
-      .then((dat) => console.log(dat));
-
-    document
-      .getElementById("formulario__mensaje-exito")
-      .classList.add("formulario__mensaje-exito-activo");
-    setTimeout(() => {
-      document
-        .getElementById("formulario__mensaje-exito")
-        .classList.remove("formulario__mensaje-exito-activo");
-    }, 5000);
+      .then((res) => res.json())
+      .then((dat) => {
+        console.log(dat);
+        if (dat.state) {
+          document
+            .getElementById("formulario__mensaje-exito_update_usuario")
+            .classList.add("formulario__mensaje-exito-activo");
+          setTimeout(() => {
+            document
+              .getElementById("formulario__mensaje-exito_update_usuario")
+              .classList.remove("formulario__mensaje-exito-activo");
+          }, 5000);
+        } else {
+          alert("hola");
+          document
+            .getElementById("formulario__mensaje_update_usuario")
+            .classList.add("formulario__mensaje-activo");
+          setTimeout(() => {
+            document
+              .getElementById("formulario__mensaje_update_usuario")
+              .classList.remove("formulario__mensaje-activo");
+          }, 5000);
+        }
+        return true;
+      });
   } else {
     Object.keys(campos_update).forEach((campo) => {
       if (!campos_update[campo]) {
@@ -108,11 +122,11 @@ update_user.addEventListener("click", (e) => {
       }
     });
     document
-      .getElementById("formulario__mensaje")
+      .getElementById("formulario__mensaje_update_usuario")
       .classList.add("formulario__mensaje-activo");
     setTimeout(() => {
       document
-        .getElementById("formulario__mensaje")
+        .getElementById("formulario__mensaje_update_usuario")
         .classList.remove("formulario__mensaje-activo");
     }, 5000);
   }
