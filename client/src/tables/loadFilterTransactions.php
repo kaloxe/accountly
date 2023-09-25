@@ -1,23 +1,35 @@
 <?php
-/*
-* Script: Cargar datos de lado del servidor con PHP y MySQL
-* Autor: Marco Robles
-* Team: Códigos de Programación
-*/
-
 require("/xampp/htdocs/accountly/server/session/session.php");
 require("/xampp/htdocs/accountly/server/db/db.php");
 
 /* Un arreglo de las columnas a mostrar en la tabla */
-$columns = ['id_transaction', 'transaction.type', 'reason.name_reason', 'transaction.id_account', 'badge.name_badge', 'account.name_account', 'id_user', 'transaction.amount', 'date', 'description'];
+$columns = ['id_transaction', 'transaction.type', 'reason.name_reason', 'transaction.id_reason', 'transaction.id_account', 'badge.name_badge', 'account.name_account', 'id_user', 'transaction.amount', 'date', 'description'];
 
 /* Nombre de la tabla */
 $table = "transaction";
 
 $id = 'id_transaction';
 
-/* Filtrado */
 $where = 'WHERE id_user='. $id_user .'';
+
+// if (isset($_POST)) {
+//     $data = file_get_contents("php://input");
+//     $user = json_decode($data, true);
+//     switch ($user['action']) {
+//         case "report_transaction":
+//             $cuenta = $user['cuenta'];
+//             $divisa = $user['divisa'];
+//             $razon = $user['razon'];
+//             $fecha1 =  $user['fecha1'];
+//             $fecha2 =  $user['fecha2'];
+//             $where = 'WHERE transaction.id_account=' . $cuenta . ' AND transaction.id_badge=' . $divisa . ' AND transaction.id_reason=' . $razon . ' AND (date BETWEEN "' . $fecha1 . '" AND "' . $fecha2 . '") AND id_user='. $id_user .'';
+//             break;
+//         default:
+//             echo json_encode('hola');
+//     }
+// }
+/* Filtrado */
+
 
 
 /* Consulta */

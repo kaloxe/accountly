@@ -14,7 +14,7 @@
                             <div class="form-group formulario__grupo-input col-6 px-3" id="grupo__movimiento_create">
                                 <label>Movimiento</label>
                                 <select class="form-control formulario__input" name="movimiento_create" id="movimiento_create">
-                                    <option selected>Seleccione</option>
+                                    <option value="">Seleccione</option>
                                     <option value="1">Ingreso</option>
                                     <option value="0">Egreso</option>
                                 </select>

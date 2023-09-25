@@ -14,7 +14,7 @@
                             <div class="form-group formulario__grupo-input col-6 px-3" id="grupo__movimiento_update">
                                 <label>Movimiento</label>
                                 <select class="form-control formulario__input" name="movimiento_update" id="movimiento_update">
-                                    <option selected>Seleccione movimiento</option>
+                                    <option value="">Seleccione movimiento</option>
                                     <option value="1">Ingreso</option>
                                     <option value="0">Egreso</option>
                                 </select>

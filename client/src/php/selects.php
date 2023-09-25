@@ -9,9 +9,9 @@ $dataBadges = Rest::readBadges();
 $dataReasons = Rest::readReasons();
 
 $select = [];
-$select['accounts'] = '<option selected>Seleccione</option>';
-$select['badges'] = '<option selected>Seleccione</option>';
-$select['reasons'] = '<option selected>Seleccione</option>';
+$select['accounts'] = '<option value="">Seleccione</option>';
+$select['badges'] = '<option value="">Seleccione</option>';
+$select['reasons'] = '<option value="">Seleccione</option>';
 
 foreach ($dataAccounts as $account) {
     $select['accounts'] .= '<option value="' . $account['id_account'] . '">' . $account['name_account'] . '</option>';

@@ -69,62 +69,51 @@ require('./src/views/left-sidebar.php');
                     <div class="col-md-6 col-sm-6">
                         <div class="clearfix pt-20 px-4">
                             <div class="pull-right">
-                                <a class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#modal_create" type="button">
-                                    Filtrar
-                                </a>
+                                <input type="button" class="btn btn-primary" id="filter" value="Filtrar">
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <form>
+                <form id="formulario">
                     <div class="row px-4">
                         <div class="col-md-2 col-filter col-sm-6">
-                            <div class="form-group">
+                            <div class="form-group formulario__grupo-input" id="grupo__fecha1">
                                 <label>Desde</label>
-                                <input type="date" class="form-control" />
+                                <input type="date" class="form-control formulario__input" name="fecha1" id="fecha1" />
+                                <p class="formulario__input-error">El campo debe tener de 4 a 40 caracteres, solo se aceptan letras y numeros.</p>
                             </div>
                         </div>
+
                         <div class="col-md-2 col-filter col-sm-6">
-                            <div class="form-group">
+                            <div class="form-group formulario__grupo-input" id="grupo__fecha2">
                                 <label>Hasta</label>
-                                <input type="date" class="form-control" />
+                                <input type="date" class="form-control formulario__input" name="fecha2" id="fecha2" />
+                                <p class="formulario__input-error">El campo debe tener de 4 a 40 caracteres, solo se aceptan letras y numeros.</p>
                             </div>
                         </div>
                         <div class="col-md-3 col-filter col-sm-4">
-                            <div class="form-group">
+                            <div class="form-group formulario__grupo-input" id="grupo__cuenta">
                                 <label>Cuenta</label>
-                                <select class="selectpicker form-control">
-                                    <option>Seleccionar</option>
-                                    <option>Mustard</option>
-                                    <option>Relish</option>
-                                    <option>Plain</option>
-                                    <option>Toasted</option>
+                                <select class="form-control formulario__input" name="cuenta" id="cuenta">
                                 </select>
+                                <p class="formulario__input-error">El campo debe tener de 4 a 40 caracteres, solo se aceptan letras y numeros.</p>
                             </div>
                         </div>
                         <div class="col-md-2 col-filter col-sm-4">
-                            <div class="form-group">
+                            <div class="form-group formulario__grupo-input" id="grupo__divisa">
                                 <label>Divisa</label>
-                                <select class="selectpicker form-control">
-                                    <option>Seleccionar</option>
-                                    <option>Mustard</option>
-                                    <option>Relish</option>
-                                    <option>Plain</option>
-                                    <option>Toasted</option>
+                                <select class="form-control formulario__input" name="divisa" id="divisa">
                                 </select>
+                                <p class="formulario__input-error">El campo debe tener de 4 a 40 caracteres, solo se aceptan letras y numeros.</p>
                             </div>
                         </div>
                         <div class="col-md-3 col-filter col-sm-4">
-                            <div class="form-group">
+                            <div class="form-group formulario__grupo-input" id="grupo__razon">
                                 <label>Razon</label>
-                                <select class="selectpicker form-control">
-                                    <option>Seleccionar</option>
-                                    <option>Mustard</option>
-                                    <option>Relish</option>
-                                    <option>Plain</option>
-                                    <option>Toasted</option>
+                                <select class="form-control formulario__input" name="razon" id="razon">
                                 </select>
+                                <p class="formulario__input-error">El campo debe tener de 4 a 40 caracteres, solo se aceptan letras y numeros.</p>
                             </div>
                         </div>
                     </div>
@@ -160,11 +149,11 @@ require('./src/views/left-sidebar.php');
     getData()
 
     /* Peticion AJAX */
-    function getData() {
+    function getData(formaData) {
         let content = document.getElementById("content")
-
+        
         let url = "src/tables/loadFilterTransactions.php"
-        let formaData = new FormData()
+        //let formaData = new FormData()
         fetch(url, {
                 method: "POST",
                 body: formaData
@@ -175,28 +164,24 @@ require('./src/views/left-sidebar.php');
     }
 
     // llamando contenido de los selects de los formularios de los modals
-    // getSelects()
+    getSelects()
 
-    // function getSelects() {
-    //     let url = "src/php/selects.php"
-    //     let formaData = new FormData()
-    //     fetch(url, {
-    //             method: "POST",
-    //             body: formaData
-    //         }).then(response => response.json())
-    //         .then(data => {
-    //             cuenta_create.innerHTML = data.accounts
-    //             cuenta_update.innerHTML = data.accounts
-    //             divisa_create.innerHTML = data.badges
-    //             divisa_update.innerHTML = data.badges
-    //             razon_create.innerHTML = data.reasons
-    //             razon_update.innerHTML = data.reasons
-    //         }).catch(err => console.log(err))
-    // }
+    function getSelects() {
+        let url = "src/php/selects.php"
+        let formaData = new FormData()
+        fetch(url, {
+                method: "POST",
+                body: formaData
+            }).then(response => response.json())
+            .then(data => {
+                cuenta.innerHTML = data.accounts
+                divisa.innerHTML = data.badges
+                razon.innerHTML = data.reasons
+            }).catch(err => console.log(err))
+    }
 </script>
 
-<!-- <script src="./src/js/validate-create-transaction.js"></script>
-<script src="./src/js/validate-edit-transaction.js"></script> -->
+<script src="./src/js/validate-report-transaction.js"></script>
 <?php require('./src/views/scripts.php'); ?>
 <script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
 <script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
