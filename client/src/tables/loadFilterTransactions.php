@@ -12,22 +12,6 @@ $id = 'id_transaction';
 
 $where = 'WHERE id_user='. $id_user .'';
 
-// if (isset($_POST)) {
-//     $data = file_get_contents("php://input");
-//     $user = json_decode($data, true);
-//     switch ($user['action']) {
-//         case "report_transaction":
-//             $cuenta = $user['cuenta'];
-//             $divisa = $user['divisa'];
-//             $razon = $user['razon'];
-//             $fecha1 =  $user['fecha1'];
-//             $fecha2 =  $user['fecha2'];
-//             $where = 'WHERE transaction.id_account=' . $cuenta . ' AND transaction.id_badge=' . $divisa . ' AND transaction.id_reason=' . $razon . ' AND (date BETWEEN "' . $fecha1 . '" AND "' . $fecha2 . '") AND id_user='. $id_user .'';
-//             break;
-//         default:
-//             echo json_encode('hola');
-//     }
-// }
 /* Filtrado */
 
 

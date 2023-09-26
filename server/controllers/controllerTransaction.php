@@ -6,7 +6,6 @@ require_once("../models/class_rest.php");
 if (isset($_POST)) {
     $data = file_get_contents("php://input");
     $user = json_decode($data, true);
-
     switch ($user['action']) {
         case "create_transaction":
             $movimiento = $user['movimiento'];

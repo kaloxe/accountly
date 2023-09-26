@@ -34,7 +34,6 @@ require('./src/views/left-sidebar.php');
                     </div>
                 </div>
             </div>
-
             <!-- multiple select row Datatable start -->
             <!-- <div class="card-box mb-30">
                 <div class="pd-20">
@@ -149,14 +148,14 @@ require('./src/views/left-sidebar.php');
     getData()
 
     /* Peticion AJAX */
-    function getData(formaData) {
+    function getData() {
         let content = document.getElementById("content")
         
         let url = "src/tables/loadFilterTransactions.php"
-        //let formaData = new FormData()
+        let formaData = new FormData()
         fetch(url, {
                 method: "POST",
-                body: formaData
+                body: JSON.stringify(formaData)
             }).then(response => response.json())
             .then(data => {
                 content.innerHTML = data.data
@@ -167,7 +166,7 @@ require('./src/views/left-sidebar.php');
     getSelects()
 
     function getSelects() {
-        let url = "src/php/selects.php"
+        let url = "src/php/selectsReport.php"
         let formaData = new FormData()
         fetch(url, {
                 method: "POST",

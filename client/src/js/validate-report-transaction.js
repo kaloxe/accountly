@@ -17,9 +17,9 @@ const expresiones = {
 };
 
 const campos = {
-  cuenta: false,
-  divisa: false,
-  razon: false,
+  cuenta: true,
+  divisa: true,
+  razon: true,
   fecha1: false,
   fecha2: false,
 };
@@ -35,14 +35,6 @@ const validarFormulario = (e) => {
     case "razon":
       validarCampo(expresiones.razon, e.target, "razon");
       break;
-    // case "fecha":
-    //   if (Date.parse(e.target.value) <= Date.parse(today)) {
-    //     validarCampo(expresiones.fecha, e.target, "fecha");
-    //     break;
-    //   } else {
-    //     validarCampo(expresiones.fecha, "", "fecha");
-    //     break;
-    //   }
     case "fecha1":
       if (Date.parse(e.target.value) <= Date.parse(today)) {
         validarCampo(expresiones.fecha, e.target, "fecha1");
@@ -112,29 +104,47 @@ selects.forEach((select) => {
 filter.addEventListener("click", (e) => {
   e.preventDefault();
 
-  if (campos.cuenta && campos.divisa && campos.razon && campos.fecha1 && campos.fecha2) {
+  if (
+    campos.cuenta &&
+    campos.divisa &&
+    campos.razon &&
+    campos.fecha1 &&
+    campos.fecha2
+  ) {
     const cuenta = document.getElementById("cuenta").value;
     const divisa = document.getElementById("divisa").value;
     const razon = document.getElementById("razon").value;
     const fecha1 = document.getElementById("fecha1").value;
     const fecha2 = document.getElementById("fecha2").value;
 
+    let content = document.getElementById("content");
     let data = {
       action: "report_transaction",
       cuenta: cuenta,
       divisa: divisa,
       razon: razon,
       fecha1: fecha1,
-      fecha2: fecha2
+      fecha2: fecha2,
     };
     console.log(data);
-    getData(data);
-
-    campos.cuenta = false;
-    campos.divisa = false;
-    campos.razon = false;
-    campos.fecha1 = false;
-    campos.fecha2 = false;
+    
+    fetch("/accountly/server/controllers/controllerReportTransaction.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((dat) => {
+        console.log(dat);
+        content.innerHTML = dat.data;
+      });
+    // campos.cuenta = false;
+    // campos.divisa = false;
+    // campos.razon = false;
+    // campos.fecha1 = false;
+    // campos.fecha2 = false;
   } else {
     Object.keys(campos).forEach((campo) => {
       if (!campos[campo]) {
