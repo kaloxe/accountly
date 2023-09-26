@@ -79,6 +79,27 @@ filter.addEventListener("click", (e) => {
       .then((dat) => {
         console.log(dat);
         content.innerHTML = dat.data;
+        document.getElementById("chartTotal").innerHTML = "";
+        let optionsFilterTotal = {
+          series: dat.amounts,
+          chart: {
+              type: 'pie',
+          },
+          labels: dat.badges,
+          responsive: [{
+              breakpoint: 480,
+              options: {
+                  chart: {
+                      width: 200
+                  },
+                  legend: {
+                      position: 'bottom'
+                  }
+              }
+          }]
+      };
+      let chart2 = new ApexCharts(document.querySelector("#chartTotal"), optionsFilterTotal);
+      chart2.render();
       });
     // campos.cuenta = false;
     // campos.divisa = false;

@@ -10,11 +10,8 @@ $table = "transaction";
 
 $id = 'id_transaction';
 
-$where = 'WHERE id_user='. $id_user .'';
-
 /* Filtrado */
-
-
+$where = 'WHERE id_user='. $id_user .'';
 
 /* Consulta */
 $sql = "SELECT SQL_CALC_FOUND_ROWS " . implode(", ", $columns) . "

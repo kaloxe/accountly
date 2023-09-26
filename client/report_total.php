@@ -28,7 +28,7 @@
                     <div class="col-md-8 col-sm-6 text-left">
                         <form id="formulario">
                             <div class="row">
-                            <!-- <div class="col mr-2 form-group formulario__grupo-input" id="grupo__cuenta"> -->
+                                <!-- <div class="col mr-2 form-group formulario__grupo-input" id="grupo__cuenta"> -->
                                 <div class="col mr-2 formulario__grupo-input" id="grupo__cuenta">
                                     <select class="form-control formulario__input" name="cuenta" id="cuenta">
                                     </select>
@@ -76,7 +76,7 @@
                     <!-- <div class="pd-20 card-box height-100-p"> -->
                     <div class="pd-20 card-box">
                         <h4 class="h4 text-blue">Grafica</h4>
-                        <div id="chart8"></div>
+                        <div id="chartTotal"></div>
                     </div>
                 </div>
             </div>
@@ -102,7 +102,32 @@
                 body: formaData
             }).then(response => response.json())
             .then(data => {
-                content.innerHTML = data.data
+                console.log(data);
+                console.log(data.data);
+                console.log(data.badges);
+                console.log(data.amounts);
+                content.innerHTML = data.data;
+
+                let options8 = {
+                    series: data.amounts,
+                    chart: {
+                        type: 'pie',
+                    },
+                    labels: data.badges,
+                    responsive: [{
+                        breakpoint: 480,
+                        options: {
+                            chart: {
+                                width: 200
+                            },
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    }]
+                };
+                let chart = new ApexCharts(document.querySelector("#chartTotal"), options8);
+                chart.render();
             }).catch(err => console.log(err))
     }
 
@@ -121,7 +146,6 @@
             }).catch(err => console.log(err))
     }
 </script>
-
 <script src="./src/js/validate-report-total.js"></script>
 <?php require('./src/views/scripts.php'); ?>
 <!-- ApexChart -->

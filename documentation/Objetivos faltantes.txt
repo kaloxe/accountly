@@ -3,6 +3,7 @@ Mejorar las vistas de los modulos
 
 Implementar pagina principal
 
+Validacion de cuentas cuando se crea un nuevo registro con un nombre igual por usuario
 Mensajes de exito o fracaso al terminar una operacion
 Hacer funcionar los graficos con los datos de la base MySQL
 Mejorar las validaciones en el cliente

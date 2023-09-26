@@ -8,10 +8,10 @@ if (isset($_POST)) {
     $user = json_decode($data, true);
     switch ($user['action']) {
         case "report_total":
-            $cuentaC = (($user['cuenta']=="all") ? 1 : ('account.id_account=' . $user['cuenta'] . ''));
-            $cuentaT = (($user['cuenta']=="all") ? 1 : ('transaction.id_account=' . $user['cuenta'] . ''));
-            $divisa = (($user['divisa']=="all") ? 1 : ('transaction.id_badge=' . $user['divisa'] . ''));
-            
+            $cuentaC = (($user['cuenta'] == "all") ? 1 : ('account.id_account=' . $user['cuenta'] . ''));
+            $cuentaT = (($user['cuenta'] == "all") ? 1 : ('transaction.id_account=' . $user['cuenta'] . ''));
+            $divisa = (($user['divisa'] == "all") ? 1 : ('transaction.id_badge=' . $user['divisa'] . ''));
+
             /* Un arreglo de las columnas a mostrar en la tabla */
             $columns = ['id_account', 'id_user', 'name_account'];
 
@@ -72,13 +72,15 @@ if (isset($_POST)) {
                     $output['data'] .= '</tr>';
                 }
             }
-            if($cuentaC == 1) {
+            if ($cuentaC == 1) {
                 $output['data'] .= '<tr>';
                 $output['data'] .= '<th>Total</th>';
                 $output['data'] .= '<th>' . getTotal($divisa) . '</th>';
                 $output['data'] .= '</tr>';
             }
-            
+
+            $output['badges'] = ["Hola", "Papantra", "Maicra", "Pana", "Coso"];
+            $output['amounts'] = [50, 70, 40, 80, 30];
 
             echo json_encode($output, JSON_UNESCAPED_UNICODE);
             break;

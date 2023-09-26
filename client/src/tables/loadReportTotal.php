@@ -13,7 +13,6 @@ $id = 'id_account';
 /* Filtrado */
 $where = 'WHERE id_user=' . $id_user . '';
 
-
 /* Consulta */
 $sql = "SELECT SQL_CALC_FOUND_ROWS " . implode(", ", $columns) . "
 FROM $table
@@ -71,4 +70,13 @@ $output['data'] .= '<th>Total</th>';
 $output['data'] .= '<th>' . getTotal() . '</th>';
 $output['data'] .= '</tr>';
 
+$output['badges'] = ["Hola", "Vaina", "Maicra", "Pana", "Carnal"];
+$output['amounts'] = [50, 70, 40, 80, 30];
+
+// $arr = [1, 2, 3];
+// array_push($arr, 4, 5);
+// echo json_encode($arr);
+/*
+Resultado: [1,2,3,4,5]
+*/
 echo json_encode($output, JSON_UNESCAPED_UNICODE);
