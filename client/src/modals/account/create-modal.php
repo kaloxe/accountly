@@ -8,7 +8,7 @@
             <div class="modal-content">
                 <form id="formulario_create">
                     <div class="modal-body">
-                        <h4 class="text-blue h4 mb-10">Crear</h4>
+                        <h4 class="text-blue h4 mb-10">Registrar transaccion</h4>
                         <div class="form-group formulario__grupo-input" id="grupo__nombre_create">
                             <label>Nombre de la cuenta</label>
                             <input type="text" class="form-control formulario__input" name="nombre_create" id="nombre_create" />

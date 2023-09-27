@@ -8,7 +8,7 @@
             <div class="modal-content">
                 <form id="formulario_update">
                     <div class="modal-body">
-                        <h4 class="text-blue h4 mb-10">Crear</h4>
+                        <h4 class="text-blue h4 mb-10">Editar meta</h4>
 
                         <div class="form-group formulario__grupo-input" id="grupo__movimiento_update">
                             <label>Movimiento</label>

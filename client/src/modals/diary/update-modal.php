@@ -8,7 +8,7 @@
                 <form id="formulario_update">
                     <div class="modal-body">
 
-                        <h4 class="text-blue h4 mb-10">Actualizar evento</h4>
+                        <h4 class="text-blue h4 mb-10">Editar evento</h4>
 
                         <div class="row">
                             <div class="form-group formulario__grupo-input col-6 px-3" id="grupo__movimiento_update">

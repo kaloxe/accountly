@@ -8,7 +8,7 @@
             <div class="modal-content">
                 <form id="formulario_create">
                     <div class="modal-body">
-                        <h4 class="text-blue h4 mb-10">Crear</h4>
+                        <h4 class="text-blue h4 mb-10">Registrar transaccion</h4>
 
                         <div class="row">
                             <div class="form-group formulario__grupo-input col-6 px-3" id="grupo__movimiento_create">

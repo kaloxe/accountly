@@ -182,9 +182,28 @@ class Rest extends database
     $query->execute();
     return $query;
   }
+
   public static function readReasons()
   {
     $sql = "SELECT * FROM reason WHERE 1";
+    $conn = new database();
+    $query = $conn->open()->prepare($sql);
+    $query->execute();
+    return $query;
+  }
+
+  public static function readUsers()
+  {
+    $sql = "SELECT * FROM user WHERE 1";
+    $conn = new database();
+    $query = $conn->open()->prepare($sql);
+    $query->execute();
+    return $query;
+  }
+
+  public static function readTypesUser()
+  {
+    $sql = "SELECT * FROM user WHERE 1";
     $conn = new database();
     $query = $conn->open()->prepare($sql);
     $query->execute();

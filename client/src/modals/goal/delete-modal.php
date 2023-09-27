@@ -3,7 +3,7 @@
         <div class="modal-content">
             <form>
                 <div class="modal-body">
-                    <h4 class="text-blue h4 mb-10">Eliminar</h4>
+                    <h4 class="text-blue h4 mb-10">Eliminar meta</h4>
                     <p>Esta seguro de que quiere borrar el registro?</p>
                 </div>
                 <div class="modal-footer">

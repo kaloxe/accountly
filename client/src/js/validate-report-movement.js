@@ -4,22 +4,17 @@ const inputs = document.querySelectorAll("#formulario input");
 const selects = document.querySelectorAll("#formulario select");
 
 const expresiones = {
-  cuenta: /^[0-9a-zA-ZÀ-ÿ\s]{1,10}$/, // Letras y espacios, pueden llevar acentos.
-  divisa: /^[0-9a-zA-ZÀ-ÿ\s]{1,10}$/,
+  tiempo: /^[0-9a-zA-ZÀ-ÿ\s]{1,10}$/, // Letras y espacios, pueden llevar acentos.
 };
 
 const campos = {
-  cuenta: true,
-  divisa: true,
+  tiempo: true,
 };
 
 const validarFormulario = (e) => {
   switch (e.target.name) {
-    case "cuenta":
-      validarCampo(expresiones.cuenta, e.target, "cuenta");
-      break;
-    case "divisa":
-      validarCampo(expresiones.divisa, e.target, "divisa");
+    case "tiempo":
+      validarCampo(expresiones.tiempo, e.target, "tiempo");
       break;
   }
 };
@@ -53,19 +48,19 @@ selects.forEach((select) => {
 filter.addEventListener("click", (e) => {
   e.preventDefault();
 
-  if (campos.cuenta && campos.divisa) {
-    const cuenta = document.getElementById("cuenta").value;
-    const divisa = document.getElementById("divisa").value;
+  if (
+    campos.tiempo
+  ) {
+    const tiempo = document.getElementById("tiempo").value;
 
     let content = document.getElementById("content");
     let data = {
-      action: "report_total",
-      cuenta: cuenta,
-      divisa: divisa,
+      action: "report_movement",
+      tiempo: tiempo,
     };
     console.log(data);
-
-    fetch("/accountly/server/controllers/controllerReportTotal.php", {
+    
+    fetch("/accountly/server/controllers/controllerReportMovement.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json; charset=utf-8",
@@ -76,38 +71,7 @@ filter.addEventListener("click", (e) => {
       .then((dat) => {
         console.log(dat);
         content.innerHTML = dat.data;
-        
-        document.getElementById("chartTotal").innerHTML = "";
-
-        let optionsFilterTotal = {
-          series: dat.amounts,
-          chart: {
-            type: "pie",
-          },
-          labels: dat.badges,
-          responsive: [
-            {
-              breakpoint: 480,
-              options: {
-                chart: {
-                  width: 200,
-                },
-                legend: {
-                  position: "bottom",
-                },
-              },
-            },
-          ],
-        };
-        let chart2 = new ApexCharts(
-          document.querySelector("#chartTotal"),
-          optionsFilterTotal
-        );
-        //  chart2.destroy();
-        chart2.render();
       });
-    // campos.cuenta = false;
-    // campos.divisa = false;
   } else {
     Object.keys(campos).forEach((campo) => {
       if (!campos[campo]) {

@@ -28,22 +28,24 @@ require('./src/views/left-sidebar.php');
                         </nav>
                     </div>
                     <div class="col-md-4 col-sm-6 text-left">
-                        <div class="row">
-                            <div class="col mr-2">
-                                <select class="selectpicker form-control">
-                                    <option value="">Ultima semana</option>
-                                    <option value="">Ultimo mes</option>
-                                    <option value="">Ultimo semestre</option>
-                                    <option value="">Ultimo año</option>
-                                </select>
+                        <form id="formulario">
+                            <div class="row">
+                                <!-- <div class="col mr-2 form-group formulario__grupo-input" id="grupo__tiempo"> -->
+                                <div class="col mr-2 formulario__grupo-input" id="grupo__tiempo">
+                                    <select class="form-control formulario__input" name="tiempo" id="tiempo">
+                                        <option value="week">Ultima semana</option>
+                                        <option value="month">Ultimo mes</option>
+                                        <option value="semester">ultimo semestre</option>
+                                        <option value="year">ultimo año</option>
+                                    </select>
+                                    <p class="formulario__input-error">El campo debe tener de 4 a 40 caracteres, solo se aceptan letras y numeros.</p>
+                                </div>
+                                <input type="button" class="btn btn-primary mr-2" id="filter" value="Filtrar">
+                                <button type="button" class="btn btn-secondary mr-3" data-color="#ffffff">
+                                    <i class="fa fa-print"></i>
+                                </button>
                             </div>
-                            <a class="btn btn-primary mr-2" href="#" role="button" data-toggle="modal" data-target="#modal_create" type="button">
-                                Filtrar
-                            </a>
-                            <button type="button" class="btn btn-secondary mr-3" data-color="#ffffff">
-                                <i class="fa fa-print"></i>
-                            </button>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -103,8 +105,7 @@ require('./src/views/left-sidebar.php');
     }
 </script>
 
-<!-- <script src="./src/js/validate-create-transaction.js"></script>
-<script src="./src/js/validate-edit-transaction.js"></script> -->
+<script src="./src/js/validate-report-movement.js"></script>
 <?php require('./src/views/scripts.php'); ?>
 <script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
 <script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>

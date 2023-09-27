@@ -8,7 +8,7 @@
             <div class="modal-content">
                 <form id="formulario_create">
                     <div class="modal-body">
-                        <h4 class="text-blue h4 mb-10">Crear</h4>
+                        <h4 class="text-blue h4 mb-10">Registrar divisa</h4>
                         <div class="form-group formulario__grupo-input" id="grupo__divisa_create">
                             <label>Nombre de la divisa</label>
                             <input type="text" class="form-control formulario__input" name="divisa_create" id="divisa_create" />

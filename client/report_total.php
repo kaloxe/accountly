@@ -128,6 +128,7 @@
                 };
                 let chart = new ApexCharts(document.querySelector("#chartTotal"), options8);
                 chart.render();
+                
             }).catch(err => console.log(err))
     }
 
