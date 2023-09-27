@@ -11,6 +11,15 @@ class Rest extends database
     return json_encode($array);
   }
 
+  public static function exists($sql)
+  {
+    $conn = new database();
+
+    $resultado = $conn->openSQL()->query($sql);
+    $num_rows = $resultado->num_rows;
+    return $num_rows > 0 ? true : false;
+  }
+
   public static function readAccount($sql)
   {
     $conn = new database();

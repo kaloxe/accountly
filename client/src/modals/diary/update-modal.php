@@ -1,9 +1,13 @@
 <div class="modal fade" id="modal_update" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="col-12">
-            <div class="formulario__mensaje p-1 text-center mb-2 pb-5" id="formulario__mensaje">
-                <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Rellene el formulario correctamente. </p>
+            <div class="formulario__mensaje p-1 text-center mb-2 pb-5" id="formulario__mensaje_update">
+                <p><i class="micon bi bi-exclamation-triangle"></i> <b>Error:</b> Rellene el formulario correctamente. </p>
             </div>
+            <div class="formulario__mensaje-exito p-1 text-center mb-2 pb-5" id="formulario__mensaje-exito_update">
+                <p><i class="micon bi bi-check-circle"></i> <b>Mensaje:</b> Operacion realizada satisfactoriamente. </p>
+            </div>
+
             <div class="modal-content">
                 <form id="formulario_update">
                     <div class="modal-body">
@@ -55,7 +59,6 @@
                             Cerrar
                         </button>
                     </div>
-                    <p class="formulario__mensaje-exito pt-2" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
                 </form>
             </div>
         </div>

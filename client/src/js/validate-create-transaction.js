@@ -38,7 +38,11 @@ const validarFormularioCreate = (e) => {
       validarCampoCreate(expresiones.monto, e.target, "monto_create");
       break;
     case "descripcion_create":
-      validarCampoCreate(expresiones.descripcion, e.target, "descripcion_create");
+      validarCampoCreate(
+        expresiones.descripcion,
+        e.target,
+        "descripcion_create"
+      );
       break;
     case "cuenta_create":
       validarCampoCreate(expresiones.cuenta, e.target, "cuenta_create");
@@ -116,7 +120,7 @@ create.addEventListener("click", (e) => {
       razon: razon,
       fecha: fecha,
     };
-    console.log(data)
+    console.log(data);
     fetch("/accountly/server/controllers/controllerTransaction.php", {
       method: "POST",
       headers: {
@@ -124,26 +128,28 @@ create.addEventListener("click", (e) => {
       },
       body: JSON.stringify(data),
     })
-      .then((res) => res.text())
-      .then((dat) => console.log(dat));
-
-    campos_create.movimiento_create = false;
-    campos_create.monto_create = false;
-    campos_create.descripcion_create = false;
-    campos_create.cuenta_create = false;
-    campos_create.divisa_create = false;
-    campos_create.razon_create = false;
-    campos_create.fecha_create = false;
-    formulario_create.reset();
-
-    document
-      .getElementById("formulario__mensaje-exito")
-      .classList.add("formulario__mensaje-exito-activo");
-    setTimeout(() => {
-      document
-        .getElementById("formulario__mensaje-exito")
-        .classList.remove("formulario__mensaje-exito-activo");
-    }, 5000);
+      .then((res) => res.json())
+      .then((dat) => {
+        console.log(dat);
+        if (dat.state) {
+          document
+            .getElementById("formulario__mensaje-exito_create")
+            .classList.add("formulario__mensaje-exito-activo");
+          setTimeout(() => {
+            document
+              .getElementById("formulario__mensaje-exito_create")
+              .classList.remove("formulario__mensaje-exito-activo");
+          }, 5000);
+          campos_create.movimiento_create = false;
+          campos_create.monto_create = false;
+          campos_create.descripcion_create = false;
+          campos_create.cuenta_create = false;
+          campos_create.divisa_create = false;
+          campos_create.razon_create = false;
+          campos_create.fecha_create = false;
+          formulario_create.reset();
+        }
+      });
   } else {
     Object.keys(campos_create).forEach((campo) => {
       if (!campos_create[campo]) {
@@ -154,11 +160,11 @@ create.addEventListener("click", (e) => {
       }
     });
     document
-      .getElementById("formulario__mensaje")
+      .getElementById("formulario__mensaje_create")
       .classList.add("formulario__mensaje-activo");
     setTimeout(() => {
       document
-        .getElementById("formulario__mensaje")
+        .getElementById("formulario__mensaje_create")
         .classList.remove("formulario__mensaje-activo");
     }, 5000);
   }

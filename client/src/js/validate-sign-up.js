@@ -58,13 +58,13 @@ const validarPassword2 = () => {
     document
       .querySelector(`#grupo__password2 .formulario__input-error`)
       .classList.add("formulario__input-error-activo");
-    campos["password"] = false;
+    campos["password2"] = false;
   } else {
     document.getElementById(`password2`).classList.remove("form-control-error");
     document
       .querySelector(`#grupo__password2 .formulario__input-error`)
       .classList.remove("formulario__input-error-activo");
-    campos["password"] = true;
+    campos["password2"] = true;
   }
 };
 
@@ -75,7 +75,7 @@ inputs.forEach((input) => {
 
 submit.addEventListener("click", (e) => {
   e.preventDefault();
-  if (campos.usuario && campos.password && campos.correo) {
+  if (campos.usuario && campos.password && campos.password2 && campos.correo) {
 
     const usuario = document.getElementById("usuario").value;
     const correo = document.getElementById("correo").value;

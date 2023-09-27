@@ -77,8 +77,7 @@ filter.addEventListener("click", (e) => {
         console.log(dat);
         content.innerHTML = dat.data;
         
-        document.getElementById("chartTotal").innerHTML = "";
-
+        //document.getElementById("chartTotal").innerHTML = "";
         let optionsFilterTotal = {
           series: dat.amounts,
           chart: {
@@ -99,12 +98,13 @@ filter.addEventListener("click", (e) => {
             },
           ],
         };
-        let chart2 = new ApexCharts(
+        let chart = new ApexCharts(
           document.querySelector("#chartTotal"),
           optionsFilterTotal
         );
         //  chart2.destroy();
-        chart2.render();
+        
+        chart.render();
       });
     // campos.cuenta = false;
     // campos.divisa = false;

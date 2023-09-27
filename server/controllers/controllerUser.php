@@ -13,7 +13,7 @@ if (isset($_POST)) {
             $correo = $user['correo'];
             $password = $user['password'];
             $sql = "INSERT INTO `user`(`nickname`, `email`, `password`, `type_user`) VALUES ('$usuario', '$correo', '$password', 'administrador')";
-            echo Rest::binnacle($id_user, "Registro de usuario $usuario");
+            Rest::binnacle($id_user, "Registro de usuario $usuario");
             echo Rest::execute($sql);
             break;
         case "read_user":
@@ -27,13 +27,13 @@ if (isset($_POST)) {
             $nickname = $user['usuario'];
             $password =  $user['password'];
             $sql = "UPDATE `user` SET `email`='$email', `nickname`='$nickname', `password`='$password' WHERE `id_user`=$id";
-            echo Rest::binnacle($id_user, "Actualizacion de usuario $usuario");
+            Rest::binnacle($id_user, "Actualizacion de usuario $nickname");
             echo Rest::execute($sql);
             break;
         case "delete_user":
             $id = $user['id'];
             $sql = "DELETE FROM `user` WHERE `user`.`id_user` = $id";
-            echo Rest::binnacle($id_user, "Eliminacion de n* $id");
+            Rest::binnacle($id_user, "Eliminacion de n* $id");
             echo Rest::execute($sql);
             break;
         default:

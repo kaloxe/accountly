@@ -9,9 +9,15 @@ if (isset($_POST)) {
     switch ($user['action']) {
         case "create_account":
             $nombre = $user['nombre'];
-            $sql = "INSERT INTO `account`(`id_user`, `name_account`, `state_register`) VALUES ($id_user, '$nombre', 1)";
-            echo Rest::binnacle($id_user, "Creacion de cuenta: $nombre");
-            echo Rest::execute($sql);
+            $sql1 = "SELECT name_account FROM `account` WHERE `name_account`='$nombre' and id_user=$id_user";
+            $sql2 = "INSERT INTO `account`(`id_user`, `name_account`, `state_register`) VALUES ($id_user, '$nombre', 1)";
+            //$sql2 = "INSERT INTO `account`(`id_user`, `name_account`, `state_register`) SELECT * FROM ( SELECT $id_user as id_user, '$nombre' as name_account, 1 as state_register) as temp WHERE NOT EXISTS(SELECT name_account FROM `account` WHERE `name_account`='$nombre')";
+            Rest::binnacle($id_user, "Creacion de cuenta: $nombre");
+            if (Rest::exists($sql1)) {
+                echo json_encode(array('state' => false));
+            } else {
+                echo Rest::execute($sql2);
+            }
             break;
         case "read_account":
             $id = $user['id'];
@@ -21,14 +27,19 @@ if (isset($_POST)) {
         case "update_account":
             $id = $user["id"];
             $nombre = $user['nombre'];
-            $sql = "UPDATE `account` SET `name_account`='$nombre' WHERE `id_account`=$id";
-            echo Rest::binnacle($id_user, "Actualizacion de cuenta: $nombre");
-            echo Rest::execute($sql);
+            $sql1 = "SELECT name_account FROM `account` WHERE `name_account`='$nombre' and id_user=$id_user";
+            $sql2 = "UPDATE `account` SET `name_account`='$nombre' WHERE `id_account`=$id";
+            Rest::binnacle($id_user, "Actualizacion de cuenta: $nombre");
+            if (Rest::exists($sql1)) {
+                echo json_encode(array('state' => false));
+            } else {
+                echo Rest::execute($sql2);
+            }
             break;
         case "delete_account":
             $id = $user['id'];
             $sql = "DELETE FROM `account` WHERE `account`.`id_account` = $id";
-            echo Rest::binnacle($id_user, "Eliminacion de cuenta n* $id");
+            Rest::binnacle($id_user, "Eliminacion de cuenta n* $id");
             echo Rest::execute($sql);
             break;
         default:

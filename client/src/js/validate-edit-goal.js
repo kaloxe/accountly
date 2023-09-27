@@ -120,17 +120,20 @@ update.addEventListener("click", (e) => {
       },
       body: JSON.stringify(data),
     })
-      .then((res) => res.text())
-      .then((dat) => console.log(dat));
-
-    document
-      .getElementById("formulario__mensaje-exito")
-      .classList.add("formulario__mensaje-exito-activo");
-    setTimeout(() => {
-      document
-        .getElementById("formulario__mensaje-exito")
-        .classList.remove("formulario__mensaje-exito-activo");
-    }, 5000);
+    .then((res) => res.json())
+    .then((dat) => {
+      console.log(dat);
+      if (dat.state) {
+        document
+          .getElementById("formulario__mensaje-exito_update")
+          .classList.add("formulario__mensaje-exito-activo");
+        setTimeout(() => {
+          document
+            .getElementById("formulario__mensaje-exito_update")
+            .classList.remove("formulario__mensaje-exito-activo");
+        }, 5000);
+      }
+    });
   } else {
     Object.keys(campos_update).forEach((campo) => {
       if (!campos_update[campo]) {
@@ -141,11 +144,11 @@ update.addEventListener("click", (e) => {
       }
     });
     document
-      .getElementById("formulario__mensaje")
+      .getElementById("formulario__mensaje_update")
       .classList.add("formulario__mensaje-activo");
     setTimeout(() => {
       document
-        .getElementById("formulario__mensaje")
+        .getElementById("formulario__mensaje_update")
         .classList.remove("formulario__mensaje-activo");
     }, 5000);
   }

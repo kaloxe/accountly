@@ -29,7 +29,7 @@ const campos_update = {
   usuario_update: true,
   correo_update: true,
   password_update: true,
-  password2_update: true,
+  password2_update: false,
 };
 
 const validarFormularioUpdate = (e) => {
@@ -77,7 +77,7 @@ const validarPassword2Update = () => {
     document
       .querySelector(`#grupo__password2_update .formulario__input-error`)
       .classList.add("formulario__input-error-activo");
-    campos_update["password_update"] = false;
+    campos_update["password2_update"] = false;
   } else {
     document
       .getElementById(`password2_update`)
@@ -85,7 +85,7 @@ const validarPassword2Update = () => {
     document
       .querySelector(`#grupo__password2_update .formulario__input-error`)
       .classList.remove("formulario__input-error-activo");
-    campos_update["password_update"] = true;
+    campos_update["password2_update"] = true;
   }
 };
 
@@ -97,10 +97,11 @@ inputs_update.forEach((input) => {
 
 update.addEventListener("click", (e) => {
   e.preventDefault();
-  
+
   if (
     campos_update.usuario_update &&
     campos_update.password_update &&
+    campos_update.password2_update &&
     campos_update.correo_update
   ) {
     const usuario = document.getElementById("usuario_update").value;
@@ -120,17 +121,20 @@ update.addEventListener("click", (e) => {
       },
       body: JSON.stringify(data),
     })
-      .then((res) => res.text())
-      .then((dat) => console.log(dat));
-
-    document
-      .getElementById("formulario__mensaje-exito")
-      .classList.add("formulario__mensaje-exito-activo");
-    setTimeout(() => {
-      document
-        .getElementById("formulario__mensaje-exito")
-        .classList.remove("formulario__mensaje-exito-activo");
-    }, 5000);
+      .then((res) => res.json())
+      .then((dat) => {
+        console.log(dat);
+        if (dat.state) {
+          document
+            .getElementById("formulario__mensaje-exito_update")
+            .classList.add("formulario__mensaje-exito-activo");
+          setTimeout(() => {
+            document
+              .getElementById("formulario__mensaje-exito_update")
+              .classList.remove("formulario__mensaje-exito-activo");
+          }, 5000);
+        }
+      });
   } else {
     Object.keys(campos_update).forEach((campo) => {
       if (!campos_update[campo]) {
@@ -141,11 +145,11 @@ update.addEventListener("click", (e) => {
       }
     });
     document
-      .getElementById("formulario__mensaje")
+      .getElementById("formulario__mensaje_update")
       .classList.add("formulario__mensaje-activo");
     setTimeout(() => {
       document
-        .getElementById("formulario__mensaje")
+        .getElementById("formulario__mensaje_update")
         .classList.remove("formulario__mensaje-activo");
     }, 5000);
   }

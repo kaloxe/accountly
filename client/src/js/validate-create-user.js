@@ -54,17 +54,21 @@ const validarPassword2Create = () => {
   const inputPassword2 = document.getElementById("password2_create");
 
   if (inputPassword1.value !== inputPassword2.value) {
-    document.getElementById(`password2_create`).classList.add("form-control-error");
+    document
+      .getElementById(`password2_create`)
+      .classList.add("form-control-error");
     document
       .querySelector(`#grupo__password2_create .formulario__input-error`)
       .classList.add("formulario__input-error-activo");
-    campos_create["password_create"] = false;
+    campos_create["password2_create"] = false;
   } else {
-    document.getElementById(`password2_create`).classList.remove("form-control-error");
+    document
+      .getElementById(`password2_create`)
+      .classList.remove("form-control-error");
     document
       .querySelector(`#grupo__password2_create .formulario__input-error`)
       .classList.remove("formulario__input-error-activo");
-    campos_create["password_create"] = true;
+    campos_create["password2_create"] = true;
   }
 };
 
@@ -75,8 +79,12 @@ inputs_create.forEach((input) => {
 
 create.addEventListener("click", (e) => {
   e.preventDefault();
-  if (campos_create.usuario_create && campos_create.password_create && campos_create.correo_create) {
-
+  if (
+    campos_create.usuario_create &&
+    campos_create.password_create &&
+    campos_create.password2_create &&
+    campos_create.correo_create
+  ) {
     const usuario = document.getElementById("usuario_create").value;
     const correo = document.getElementById("correo_create").value;
     const password = document.getElementById("password_create").value;
@@ -84,7 +92,7 @@ create.addEventListener("click", (e) => {
       action: "create_user",
       usuario: usuario,
       correo: correo,
-      password: password
+      password: password,
     };
     fetch("/accountly/server/controllers/controllerUser.php", {
       method: "POST",
@@ -93,26 +101,28 @@ create.addEventListener("click", (e) => {
       },
       body: JSON.stringify(data),
     })
-      .then((res) => res.text())
-      .then((dat) => console.log(dat));
-
-    campos_create.usuario_create = false;
-    campos_create.correo_create = false;
-    campos_create.password_create = false;
-    campos_create.password2_create = false;
-    formulario_create.reset();
-
-    document
-      .getElementById("formulario__mensaje-exito")
-      .classList.add("formulario__mensaje-exito-activo");
-    setTimeout(() => {
-      document
-        .getElementById("formulario__mensaje-exito")
-        .classList.remove("formulario__mensaje-exito-activo");
-    }, 5000);
+      .then((res) => res.json())
+      .then((dat) => {
+        console.log(dat);
+        if (dat.state) {
+          document
+            .getElementById("formulario__mensaje-exito_create")
+            .classList.add("formulario__mensaje-exito-activo");
+          setTimeout(() => {
+            document
+              .getElementById("formulario__mensaje-exito_create")
+              .classList.remove("formulario__mensaje-exito-activo");
+          }, 5000);
+          campos_create.usuario_create = false;
+          campos_create.correo_create = false;
+          campos_create.password_create = false;
+          campos_create.password2_create = false;
+          formulario_create.reset();
+        }
+      });
   } else {
-    Object.keys(campos).forEach((campo) => {
-      if (!campos[campo]) {
+    Object.keys(campos_create).forEach((campo) => {
+      if (!campos_create[campo]) {
         document.getElementById(`${campo}`).classList.add("form-control-error");
         document
           .querySelector(`#grupo__${campo} .formulario__input-error`)
@@ -120,11 +130,11 @@ create.addEventListener("click", (e) => {
       }
     });
     document
-      .getElementById("formulario__mensaje")
+      .getElementById("formulario__mensaje_create")
       .classList.add("formulario__mensaje-activo");
     setTimeout(() => {
       document
-        .getElementById("formulario__mensaje")
+        .getElementById("formulario__mensaje_create")
         .classList.remove("formulario__mensaje-activo");
     }, 5000);
   }

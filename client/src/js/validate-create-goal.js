@@ -107,22 +107,33 @@ create.addEventListener("click", (e) => {
       },
       body: JSON.stringify(data),
     })
-      .then((res) => res.text())
-      .then((dat) => console.log(dat));
-
-    campos_create.movimiento_create = false;
-    campos_create.monto_create = false;
-    campos_create.descripcion_create = false;
-    campos_create.divisa_create = false;
-    campos_create.meta_create = false;
-    formulario_create.reset();
+      .then((res) => res.json())
+      .then((dat) => {
+        console.log(dat);
+        if (dat.state) {
+          document
+            .getElementById("formulario__mensaje-exito_create")
+            .classList.add("formulario__mensaje-exito-activo");
+          setTimeout(() => {
+            document
+              .getElementById("formulario__mensaje-exito_create")
+              .classList.remove("formulario__mensaje-exito-activo");
+          }, 5000);
+          campos_create.movimiento_create = false;
+          campos_create.monto_create = false;
+          campos_create.descripcion_create = false;
+          campos_create.divisa_create = false;
+          campos_create.meta_create = false;
+          formulario_create.reset();
+        }
+      });
 
     document
-      .getElementById("formulario__mensaje-exito")
+      .getElementById("formulario__mensaje-exito_create")
       .classList.add("formulario__mensaje-exito-activo");
     setTimeout(() => {
       document
-        .getElementById("formulario__mensaje-exito")
+        .getElementById("formulario__mensaje-exito_create")
         .classList.remove("formulario__mensaje-exito-activo");
     }, 5000);
   } else {
@@ -135,11 +146,11 @@ create.addEventListener("click", (e) => {
       }
     });
     document
-      .getElementById("formulario__mensaje")
+      .getElementById("formulario__mensaje_create")
       .classList.add("formulario__mensaje-activo");
     setTimeout(() => {
       document
-        .getElementById("formulario__mensaje")
+        .getElementById("formulario__mensaje_create")
         .classList.remove("formulario__mensaje-activo");
     }, 5000);
   }
