@@ -36,11 +36,26 @@ if (isset($_POST)) {
             break;
         case "complete_goal":
             $id = $user["id"];
-            $sql = "SELECT `id_goal`, `id_badge`, `name_goal`, `description`, `amount`, `complete`, `type` FROM `goal` WHERE `id_goal`=$id";
-            $goal = (Rest::readGoalComplete($sql) ? 0 : 1);
-            $sql1 = "UPDATE `goal` SET `complete`=$goal WHERE `id_goal`=$id";
-             Rest::binnacle($id_user, "Se completo meta de meta: $id");
-            echo Rest::execute($sql1);
+            $sqlData = "SELECT `id_goal`, `id_badge`, `name_goal`, `description`, `complete`, `amount`, `type` FROM `goal` WHERE `id_goal`=$id";
+            $goalData = json_decode((Rest::readGoal($sqlData)), true);
+            if ($goalData["complete"] == 1) {
+                echo json_encode(array('state' => false));
+            } else {
+                $cuenta = $user["cuenta"];
+                $descripcion = $user["descripcion"];
+                $divisa = $goalData["id_badge"];
+                $movimiento = $goalData["type"];
+                $monto = $goalData["amount"];
+                $fecha = date('y-m-d');
+                $razon = 5;
+                $sql1 = "INSERT INTO `transaction`(`id_account`, `id_badge`, `id_reason`, `type`, `amount`, `date`, `description`, `state_register`) VALUES ($cuenta, $divisa, $razon, $movimiento, $monto, '$fecha', '$descripcion', 1)";
+                Rest::execute($sql1);
+                //$goal = (Rest::readGoalComplete($sqlData) ? 0 : 1);
+                $sql2 = "UPDATE `goal` SET `complete`=1 WHERE `id_goal`=$id";
+                //Rest::binnacle($id_user, "Se completo meta de meta: $id");
+                echo Rest::execute($sql2);
+            }
+
             break;
         case "delete_goal":
             $id = $user['id'];

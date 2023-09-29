@@ -7,8 +7,8 @@ console.log(submit);
 console.log(inputs);
 
 const expresiones = {
-  password: /^.{1,12}$/, // 4 a 12 digitos.
-  usuario: /^[a-zA-Z0-9\_\-]{4,16}$/,
+  password: /^.{1,40}$/, // 4 a 12 digitos.
+  usuario: /^[a-zA-Z0-9\_\-]{4,20}$/,
 };
 
 const campos = {
@@ -30,15 +30,15 @@ const validarFormulario = (e) => {
 const validarCampo = (expresion, input, campo) => {
   if (expresion.test(input.value)) {
     document.getElementById(`${campo}`).classList.remove("form-control-error");
-    document
-      .querySelector(`#grupo__${campo} .formulario__input-error`)
-      .classList.remove("formulario__input-error-activo");
+    // document
+    //   .querySelector(`#grupo__${campo} .formulario__input-error`)
+    //   .classList.remove("formulario__input-error-activo");
     campos[campo] = true;
   } else {
     document.getElementById(`${campo}`).classList.add("form-control-error");
-    document
-      .querySelector(`#grupo__${campo} .formulario__input-error`)
-      .classList.add("formulario__input-error-activo");
+    // document
+    //   .querySelector(`#grupo__${campo} .formulario__input-error`)
+    //   .classList.add("formulario__input-error-activo");
     campos[campo] = false;
   }
 };
@@ -56,9 +56,9 @@ submit.addEventListener("click", (e) => {
     let data = {
       action: "valid_user",
       usuario: usuario,
-      password: password
+      password: password,
     };
-    console.log(data)
+    console.log(data);
     fetch("/accountly/server/controllers/controllerSession.php", {
       method: "POST",
       headers: {
@@ -68,33 +68,32 @@ submit.addEventListener("click", (e) => {
     })
       .then((res) => res.json())
       .then((dat) => {
-          console.log(dat);
-          if (dat.state==true) {
-            window.location.href = "/accountly/client/index.php";
-          } else {
+        console.log(dat);
+        if (dat.state == true) {
+          window.location.href = "/accountly/client/index.php";
+        } else {
+          document
+            .getElementById("formulario__mensaje_validacion")
+            .classList.add("formulario__mensaje-activo");
+          setTimeout(() => {
             document
-              .getElementById("formulario__mensaje-exito")
-              .classList.add("formulario__mensaje-exito-activo");
-            setTimeout(() => {
-              document
-                .getElementById("formulario__mensaje-exito")
-                .classList.remove("formulario__mensaje-exito-activo");
-            }, 5000);
-          }
-          return true;
+              .getElementById("formulario__mensaje_validacion")
+              .classList.remove("formulario__mensaje-activo");
+          }, 5000);
+        }
       });
     campos.usuario = false;
     campos.password = false;
     formulario.reset();
   } else {
-    Object.keys(campos).forEach((campo) => {
-      if (!campos[campo]) {
-        document.getElementById(`${campo}`).classList.add("form-control-error");
-        document
-          .querySelector(`#grupo__${campo} .formulario__input-error`)
-          .classList.add("formulario__input-error-activo");
-      }
-    });
+     Object.keys(campos).forEach((campo) => {
+       if (!campos[campo]) {
+         document.getElementById(`${campo}`).classList.add("form-control-error");
+        //  document
+        //    .querySelector(`#grupo__${campo} .formulario__input-error`)
+        //    .classList.add("formulario__input-error-activo");
+       }
+     });
     document
       .getElementById("formulario__mensaje")
       .classList.add("formulario__mensaje-activo");

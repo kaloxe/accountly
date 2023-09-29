@@ -4,12 +4,12 @@ const inputs_update = document.querySelectorAll("#formulario_update input");
 let index;
 
 const expresiones = {
-  usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
+  usuario: /^[a-zA-Z0-9\_\-]{4,25}$/, // Letras, numeros, guion y guion_bajo
   correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-  password: /^[0-9a-zA-ZÀ-ÿ\s]{3,40}$/, // 7 a 14 numeros.
-  oldPassword: /^[0-9a-zA-ZÀ-ÿ\s]{3,40}$/, // Letras, numeros, guion y guion_bajo
-  password1: /^[0-9a-zA-ZÀ-ÿ\s]{3,40}$/, // 7 a 14 numeros.
-  password2: /^[0-9a-zA-ZÀ-ÿ\s]{3,40}$/, // 7 a 14 numeros.
+  password: /^[0-9a-zA-ZÀ-ÿ\s]{1,40}$/, // 7 a 14 numeros.
+  oldPassword: /^[0-9a-zA-ZÀ-ÿ\s]{6,40}$/, // Letras, numeros, guion y guion_bajo
+  password1: /^[0-9a-zA-ZÀ-ÿ\s]{6,40}$/, // 7 a 14 numeros.
+  password2: /^[0-9a-zA-ZÀ-ÿ\s]{6,40}$/, // 7 a 14 numeros.
 };
 
 const campos_password_update = {
@@ -105,23 +105,23 @@ update_password.addEventListener("click", (e) => {
       .then((res) => res.json())
       .then((dat) => {
         console.log(dat);
-        if (!dat.state) {
+        if (dat.state) {
           document
-            .getElementById("formulario__mensaje")
-            .classList.add("formulario__mensaje-activo");
-          setTimeout(() => {
-            document
-              .getElementById("formulario__mensaje")
-              .classList.remove("formulario__mensaje-activo");
-          }, 5000);
-        } else {
-          document
-            .getElementById("formulario__mensaje-exito")
+            .getElementById("formulario__mensaje-exito_update_password")
             .classList.add("formulario__mensaje-exito-activo");
           setTimeout(() => {
             document
-              .getElementById("formulario__mensaje-exito")
+              .getElementById("formulario__mensaje-exito_update_password")
               .classList.remove("formulario__mensaje-exito-activo");
+          }, 5000);
+        } else {
+          document
+            .getElementById("formulario__mensaje_validacion_update_password")
+            .classList.add("formulario__mensaje-activo");
+          setTimeout(() => {
+            document
+              .getElementById("formulario__mensaje_validacion_update_password")
+              .classList.remove("formulario__mensaje-activo");
           }, 5000);
         }
       });

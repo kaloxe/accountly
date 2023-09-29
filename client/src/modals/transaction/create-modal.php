@@ -4,6 +4,9 @@
             <div class="formulario__mensaje p-1 text-center mb-2 pb-5" id="formulario__mensaje_create">
                 <p><i class="micon bi bi-exclamation-triangle"></i> <b>Error:</b> Rellene el formulario correctamente. </p>
             </div>
+            <div class="formulario__mensaje p-1 text-center mb-2 pb-5" id="formulario__mensaje_validacion_create">
+                <p><i class="micon bi bi-exclamation-triangle"></i> <b>Error:</b> Operacion fallida. </p>
+            </div>
             <div class="formulario__mensaje-exito p-1 text-center mb-2 pb-5" id="formulario__mensaje-exito_create">
                 <p><i class="micon bi bi-check-circle"></i> <b>Mensaje:</b> Operacion realizada satisfactoriamente. </p>
             </div>
@@ -21,13 +24,13 @@
                                     <option value="1">Ingreso</option>
                                     <option value="0">Egreso</option>
                                 </select>
-                                <p class="formulario__input-error">Seleccione un deposito al que se se registrara el la transaccion.</p>
+                                <p class="formulario__input-error">Seleccione una opcion.</p>
                             </div>
 
                             <div class="form-group formulario__grupo-input col-6 pr-3" id="grupo__fecha_create">
                                 <label>Fecha</label>
                                 <input type="date" class="form-control formulario__input" name="fecha_create" id="fecha_create" />
-                                <p class="formulario__input-error">El campo debe tener de 4 a 40 caracteres, solo se aceptan letras y numeros.</p>
+                                <p class="formulario__input-error">Solo fecha actual o anterior.</p>
                             </div>
 
                         </div>
@@ -37,7 +40,7 @@
                             <select class="form-control formulario__input" name="cuenta_create" id="cuenta_create">
                                 <!-- select generado con php por fetch en js -->
                             </select>
-                            <p class="formulario__input-error">Seleccione un deposito al que se se registrara el la transaccion.</p>
+                            <p class="formulario__input-error">Seleccione una cuenta.</p>
                         </div>
 
                         <div class="row">
@@ -46,12 +49,12 @@
                                 <select class="form-control formulario__input" name="divisa_create" id="divisa_create">
                                     <!-- select generado con php por fetch en js -->
                                 </select>
-                                <p class="formulario__input-error">Seleccione un deposito al que se se registrara el la transaccion.</p>
+                                <p class="formulario__input-error">Seleccione una divisa.</p>
                             </div>
                             <div class="form-group formulario__grupo-input col-7 pr-3" id="grupo__monto_create">
                                 <label>Monto</label>
                                 <input type="text" class="form-control formulario__input" name="monto_create" id="monto_create" />
-                                <p class="formulario__input-error">El campo debe tener de 4 a 40 caracteres, solo se aceptan letras y numeros.</p>
+                                <p class="formulario__input-error">Solo valores numericos.</p>
                             </div>
                         </div>
 
@@ -61,13 +64,13 @@
                             <select class="form-control formulario__input" name="razon_create" id="razon_create">
                                 <!-- select generado con php por fetch en js -->
                             </select>
-                            <p class="formulario__input-error">Seleccione un deposito al que se se registrara el la transaccion.</p>
+                            <p class="formulario__input-error">Seleccione una razon.</p>
                         </div>
 
                         <div class="form-group formulario__grupo-input" id="grupo__descripcion_create">
                             <label>Descripcion</label>
                             <input type="text" class="form-control formulario__input" name="descripcion_create" id="descripcion_create" />
-                            <p class="formulario__input-error">El campo debe tener de 4 a 40 caracteres, solo se aceptan letras y numeros.</p>
+                            <p class="formulario__input-error">El campo debe tener de 4 a 45 caracteres alfanumericos.</p>
                         </div>
 
                     </div>

@@ -4,6 +4,9 @@
             <div class="formulario__mensaje p-1 text-center mb-2 pb-5" id="formulario__mensaje_create">
                 <p><i class="micon bi bi-exclamation-triangle"></i> <b>Error:</b> Rellene el formulario correctamente. </p>
             </div>
+            <div class="formulario__mensaje p-1 text-center mb-2 pb-5" id="formulario__mensaje_validacion_create">
+                <p><i class="micon bi bi-exclamation-triangle"></i> <b>Error:</b> Operacion fallida. </p>
+            </div>
             <div class="formulario__mensaje-exito p-1 text-center mb-2 pb-5" id="formulario__mensaje-exito_create">
                 <p><i class="micon bi bi-check-circle"></i> <b>Mensaje:</b> Operacion realizada satisfactoriamente. </p>
             </div>
@@ -15,12 +18,12 @@
                         <div class="form-group formulario__grupo-input" id="grupo__divisa_create">
                             <label>Nombre de la divisa</label>
                             <input type="text" class="form-control formulario__input" name="divisa_create" id="divisa_create" />
-                            <p class="formulario__input-error">El campo debe tener de 4 a 40 caracteres, solo se aceptan letras y numeros.</p>
+                            <p class="formulario__input-error">El campo debe tener de 4 a 25 caracteres alfanumericos.</p>
                         </div>
                         <div class="form-group formulario__grupo-input" id="grupo__valor_create">
                             <label>Valor de la divisa</label>
                             <input type="text" class="form-control formulario__input" name="valor_create" id="valor_create" />
-                            <p class="formulario__input-error">El campo debe tener de 4 a 40 caracteres, solo se aceptan letras y numeros.</p>
+                            <p class="formulario__input-error">Solo valores numericos.</p>
                         </div>
                     </div>
                     <div class="modal-footer">

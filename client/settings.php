@@ -26,9 +26,7 @@
                     </div>
                 </div>
             </div>
-            <div class="formulario__mensaje p-1 text-center my-3 pb-5" id="formulario__mensaje">
-                <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Rellene el formulario correctamente. </p>
-            </div>
+
             <!-- multiple select row Datatable start -->
             <div class="card-box mb-30">
                 <div class="profile-setting">
@@ -99,7 +97,6 @@
         </div>
     </div>
 </div>
-
 <script src="./src/js/validate-edit-password-settings.js"></script>
 <script src="./src/js/validate-edit-name-settings.js"></script>
 <!-- <script src="./src/js/validate-user-settings.js"></script> -->

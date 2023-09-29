@@ -19,6 +19,20 @@ if (isset($_POST)) {
             Rest::binnacle($id_user, "Registro de transaccion");
             echo Rest::execute($sql);
             break;
+        case "transfer_transaction":
+            $cuenta1 = $user['cuenta1'];
+            $cuenta2 = $user['cuenta2'];
+            $divisa = $user['divisa'];
+            $razon = $user['razon'];
+            $monto = $user['monto'];
+            $descripcion = $user['descripcion'];
+            $fecha =  $user['fecha'];
+            $sql1 = "INSERT INTO `transaction`(`id_account`, `id_badge`, `id_reason`, `type`, `amount`, `date`, `description`, `state_register`) VALUES ($cuenta1, $divisa, $razon, 0, $monto, '$fecha', '$descripcion', 1)";
+            $sql2 = "INSERT INTO `transaction`(`id_account`, `id_badge`, `id_reason`, `type`, `amount`, `date`, `description`, `state_register`) VALUES ($cuenta2, $divisa, $razon, 1, $monto, '$fecha', '$descripcion', 1)";
+            Rest::binnacle($id_user, "Transferencia entre cuentas");
+            Rest::execute($sql1);
+            echo Rest::execute($sql2);
+            break;
         case "read_transaction":
             $id = $user['id'];
             $sql = "SELECT `id_transaction`, `type`, `id_badge`, `id_reason`, `id_account`, `amount`, `date`, `description` FROM `transaction` WHERE `id_transaction`=$id";

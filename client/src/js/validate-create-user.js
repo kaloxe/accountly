@@ -3,8 +3,8 @@ const create = document.getElementById("create");
 const inputs_create = document.querySelectorAll("#formulario_create input");
 
 const expresiones = {
-  usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
-  password: /^.{4,12}$/, // 4 a 12 digitos.
+  usuario: /^[a-zA-Z0-9\_\-]{4,25}$/, // Letras, numeros, guion y guion_bajo
+  password: /^.{6,40}$/, // 4 a 12 digitos.
   correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
 };
 
@@ -105,6 +105,7 @@ create.addEventListener("click", (e) => {
       .then((dat) => {
         console.log(dat);
         if (dat.state) {
+          getData();
           document
             .getElementById("formulario__mensaje-exito_create")
             .classList.add("formulario__mensaje-exito-activo");
@@ -118,6 +119,15 @@ create.addEventListener("click", (e) => {
           campos_create.password_create = false;
           campos_create.password2_create = false;
           formulario_create.reset();
+        } else {
+          document
+            .getElementById("formulario__mensaje_validacion_create")
+            .classList.add("formulario__mensaje-activo");
+          setTimeout(() => {
+            document
+              .getElementById("formulario__mensaje_validacion_create")
+              .classList.remove("formulario__mensaje-activo");
+          }, 5000);
         }
       });
   } else {

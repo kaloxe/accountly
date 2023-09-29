@@ -22,10 +22,18 @@
 
 
 
-                <div class="col-md-12 col-lg-12">
-                    <div class="formulario__mensaje p-1 text-center my-3 pb-5" id="formulario__mensaje">
-                        <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Rellene el formulario correctamente. </p>
+                <div class="login-box col-12">
+
+                    <div class="formulario__mensaje p-1 text-center mb-2 pb-5" id="formulario__mensaje">
+                        <p><i class="micon bi bi-exclamation-triangle"></i> <b>Error:</b> Rellene el formulario correctamente. </p>
                     </div>
+                    <div class="formulario__mensaje p-1 text-center mb-2 pb-5" id="formulario__mensaje_validacion">
+                        <p><i class="micon bi bi-exclamation-triangle"></i> <b>Error:</b> Nombre de cuenta ya registrado. </p>
+                    </div>
+                    <div class="formulario__mensaje-exito p-1 text-center mb-2 pb-5" id="formulario__mensaje-exito">
+                        <p><i class="micon bi bi-check-circle"></i> <b>Mensaje:</b> Usuario creado. </p>
+                    </div>
+
 
                     <div class="login-box bg-white box-shadow border-radius-10">
                         <div class="login-title">
@@ -37,7 +45,7 @@
                                 <label class="col-sm-4 col-form-label">Correo*</label>
                                 <div class="col-sm-8" id="grupo__correo">
                                     <input type="email" class="form-control formulario__grupo-input formulario__input" name="correo" id="correo" />
-                                    <p class="formulario__input-error">El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.</p>
+                                    <p class="formulario__input-error">Ingrese un correo valido.</p>
                                 </div>
 
                             </div>
@@ -45,7 +53,7 @@
                                 <label class="col-sm-4 col-form-label">Nombre de usuario*</label>
                                 <div class="col-sm-8" id="grupo__usuario">
                                     <input type="text" class="form-control formulario__grupo-input formulario__input" name="usuario" id="usuario" />
-                                    <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                                    <p class="formulario__input-error">El usuario debe tener de 4 a 25 caracteres alfanumericos.</p>
                                 </div>
 
                             </div>
@@ -53,7 +61,7 @@
                                 <label class="col-sm-4 col-form-label">Contraseña*</label>
                                 <div class="col-sm-8" id="grupo__password">
                                     <input type="password" class="form-control formulario__grupo-input formulario__input" name="password" id="password" />
-                                    <p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos.</p>
+                                    <p class="formulario__input-error">La contraseña debe tener minimo 6 caracteres.</p>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -67,7 +75,6 @@
                                 <div class="col-sm-12">
                                     <div class="input-group formulario__grupo formulario__grupo-btn-enviar mb-0">
                                         <input type="button" class="btn btn-primary btn-lg btn-block" id="submit" value="Registrar">
-                                        <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
                                     </div>
                                 </div>
                             </div>

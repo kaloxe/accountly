@@ -3,7 +3,7 @@ const create = document.getElementById("create");
 const inputs_create = document.querySelectorAll("#formulario_create input");
 
 const expresiones = {
-  nombre: /^[0-9a-zA-ZÀ-ÿ\s]{4,40}$/, // Letras, numeros, guion y guion_bajo
+  nombre: /^[0-9a-zA-ZÀ-ÿ\s]{4,25}$/, // Letras, numeros, guion y guion_bajo
 };
 
 const campos_create = {
@@ -59,6 +59,7 @@ create.addEventListener("click", (e) => {
       .then((dat) => {
         console.log(dat);
         if (dat.state) {
+          getData();
           document
             .getElementById("formulario__mensaje-exito_create")
             .classList.add("formulario__mensaje-exito-activo");
@@ -71,11 +72,11 @@ create.addEventListener("click", (e) => {
           formulario_create.reset();
         } else {
           document
-            .getElementById("formulario__mensaje_validacion")
+            .getElementById("formulario__mensaje_validacion_create")
             .classList.add("formulario__mensaje-activo");
           setTimeout(() => {
             document
-              .getElementById("formulario__mensaje_validacion")
+              .getElementById("formulario__mensaje_validacion_create")
               .classList.remove("formulario__mensaje-activo");
           }, 5000);
         }

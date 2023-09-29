@@ -3,15 +3,9 @@ Implementar pagina principal
 Implementar reportes (x1)
 
 Mejorar las vistas de los modulos
-Mensajes de exito o fracaso al terminar una operacion
-Implementar que metas realice una transaccion segun el saldo al completarse
-Implementar transferencias entre cuentas registradas
-Mejorar las validaciones en el cliente
 Implementar autenticacion para los modulos segun el tipo de usuario
-Implementar validaciones en el servidor
 Implementar notificaciones
-Hacer las pantallas dinamicas cuando se efectue una operacion
-Llamar la bitacora en las operaciones faltantes del sistema
+Arreglar las datatables para que los numeros sean tambien dinamicos
 
 Cambiar nombres en los plugins (calendario)
 Hacer que los reportes impriman
@@ -19,5 +13,5 @@ Implementar respaldo y restaurar base de datos en configuracion
 Implementar modo oscuro y modo claro
 Hacer que calendario liste los eventos en los cuadros
 
-Utilizar la base de datos en la nube
-Desplegar la aplicacion en la nube
+Desplegar base de datos en la nube
+Desplegar aplicacion en la nube

@@ -75,6 +75,7 @@ update.addEventListener("click", (e) => {
       .then((dat) => {
         console.log(dat);
         if (dat.state) {
+          getData();
           document
             .getElementById("formulario__mensaje-exito_update")
             .classList.add("formulario__mensaje-exito-activo");
@@ -85,11 +86,11 @@ update.addEventListener("click", (e) => {
           }, 5000);
         } else {
           document
-            .getElementById("formulario__mensaje_validacion")
+            .getElementById("formulario__mensaje_validacion_update")
             .classList.add("formulario__mensaje-activo");
           setTimeout(() => {
             document
-              .getElementById("formulario__mensaje_validacion")
+              .getElementById("formulario__mensaje_validacion_update")
               .classList.remove("formulario__mensaje-activo");
           }, 5000);
         }

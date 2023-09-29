@@ -41,8 +41,14 @@ if ($num_rows > 0) {
                     <p class="card-text">
                     ' . $row['description'] . '
                     </p>';
+        //<button class="btn '. ($row['complete'] ? 'btn-warning' : 'btn-secondary')  .'" onclick="completeGoal(' . $row['id_goal'] . ')">' . ($row['complete'] ? 'Completada' : 'Completar') . '</button>
+        if ($row['complete']) {
+            $output['data'] .= '<button class="btn btn-warning">Completada</button>';
+        } else {
+            $output['data'] .= '<button class="btn btn-secondary" onclick="openCompleteModal(' . $row['id_goal'] . ')" data-toggle="modal" data-target="#modal_complete">Completar</button>';
+        }
+
         $output['data'] .= '
-                    <a href="#" class="btn '. ($row['complete'] ? 'btn-warning' : 'btn-secondary')  .'" onclick="completeGoal(' . $row['id_goal'] . ')">' . ($row['complete'] ? 'Completada' : 'Completar') . '</a>
                     <button
                         type="button"
                         class="btn btn-info"

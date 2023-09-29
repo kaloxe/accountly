@@ -3,8 +3,8 @@ const submit = document.getElementById("submit");
 const inputs = document.querySelectorAll("#formulario input");
 
 const expresiones = {
-  usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
-  password: /^.{4,12}$/, // 4 a 12 digitos.
+  usuario: /^[a-zA-Z0-9\_\-]{4,25}$/, // Letras, numeros, guion y guion_bajo
+  password: /^.{6,40}$/, // 4 a 12 digitos.
   correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
 };
 
@@ -76,7 +76,6 @@ inputs.forEach((input) => {
 submit.addEventListener("click", (e) => {
   e.preventDefault();
   if (campos.usuario && campos.password && campos.password2 && campos.correo) {
-
     const usuario = document.getElementById("usuario").value;
     const correo = document.getElementById("correo").value;
     const password = document.getElementById("password").value;
@@ -84,8 +83,9 @@ submit.addEventListener("click", (e) => {
       action: "create_user",
       usuario: usuario,
       correo: correo,
-      password: password
+      password: password,
     };
+    console.log(data)
     fetch("/accountly/server/controllers/controllerSession.php", {
       method: "POST",
       headers: {
@@ -93,23 +93,34 @@ submit.addEventListener("click", (e) => {
       },
       body: JSON.stringify(data),
     })
-      .then((res) => res.text())
-      .then((dat) => console.log(dat));
-
-    campos.usuario = false;
-    campos.correo = false;
-    campos.password = false;
-    campos.password2 = false;
-    formulario.reset();
-
-    document
-      .getElementById("formulario__mensaje-exito")
-      .classList.add("formulario__mensaje-exito-activo");
-    setTimeout(() => {
-      document
-        .getElementById("formulario__mensaje-exito")
-        .classList.remove("formulario__mensaje-exito-activo");
-    }, 5000);
+      .then((res) => res.json())
+      .then((dat) => {
+        console.log(dat);
+        if (dat.state) {
+          document
+            .getElementById("formulario__mensaje-exito")
+            .classList.add("formulario__mensaje-exito-activo");
+          setTimeout(() => {
+            document
+              .getElementById("formulario__mensaje-exito")
+              .classList.remove("formulario__mensaje-exito-activo");
+          }, 5000);
+          campos.usuario = false;
+          campos.correo = false;
+          campos.password = false;
+          campos.password2 = false;
+          formulario.reset();
+        } else {
+          document
+            .getElementById("formulario__mensaje_validacion")
+            .classList.add("formulario__mensaje-activo");
+          setTimeout(() => {
+            document
+              .getElementById("formulario__mensaje_validacion")
+              .classList.remove("formulario__mensaje-activo");
+          }, 5000);
+        }
+      });
   } else {
     Object.keys(campos).forEach((campo) => {
       if (!campos[campo]) {

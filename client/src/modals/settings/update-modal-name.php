@@ -2,7 +2,13 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="col-12">
             <div class="formulario__mensaje p-1 text-center mb-2 pb-5" id="formulario__mensaje_update_usuario">
-                <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Rellene el formulario correctamente. </p>
+                <p><i class="micon bi bi-exclamation-triangle"></i> <b>Error:</b> Rellene el formulario correctamente. </p>
+            </div>
+            <div class="formulario__mensaje p-1 text-center mb-2 pb-5" id="formulario__mensaje_validacion_update_usuario">
+                <p><i class="micon bi bi-exclamation-triangle"></i> <b>Error:</b> Contraseña incorrecta. </p>
+            </div>
+            <div class="formulario__mensaje-exito p-1 text-center mb-2 pb-5" id="formulario__mensaje-exito_update_usuario">
+                <p><i class="micon bi bi-check-circle"></i> <b>Mensaje:</b> Operacion realizada satisfactoriamente. </p>
             </div>
 
             <div class="modal-content">
@@ -12,10 +18,9 @@
                         <div class="form-group formulario__grupo-input" id="grupo__password_update">
                             <label>Ingrese contraseña para realizar la operacion</label>
                             <input type="password" class="form-control formulario__input" name="password_update" id="password_update" />
-                            <p class="formulario__input-error">El campo debe tener de 4 a 40 caracteres, solo se aceptan letras y numeros.</p>
+                            <p class="formulario__input-error">Ingrese la contraseña correctamente/p>
                         </div>
                     </div>
-                    <p class="formulario__mensaje-exito pt-2" id="formulario__mensaje-exito_update_usuario">Formulario enviado exitosamente!</p>
                     <div class="modal-footer">
                         <input type="button" class="btn btn-primary" id="update_user" value="Actualizar">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">

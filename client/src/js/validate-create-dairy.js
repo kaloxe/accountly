@@ -28,8 +28,8 @@ today = yyyy + "-" + mm + "-" + dd;
 
 const expresiones = {
   movimiento: /^[0-9a-zA-ZÀ-ÿ\s]{1,10}$/, // Letras, numeros, guion y guion_bajo
-  monto: /^[0-9]+([\,\.][0-9]+)?$/, // 7 a 14 numeros.
-  descripcion: /^[0-9a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
+  monto: /^[0-9]+([\,\.][0-9]+){0,10}?$/, // 7 a 14 numeros.
+  descripcion: /^[0-9a-zA-ZÀ-ÿ\s]{4,45}$/, // Letras y espacios, pueden llevar acentos.
   divisa: /^[0-9a-zA-ZÀ-ÿ\s]{1,10}$/,
   fecha: /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/,
 };
@@ -133,6 +133,7 @@ create.addEventListener("click", (e) => {
       .then((dat) => {
         console.log(dat);
         if (dat.state) {
+          getData();
           document
             .getElementById("formulario__mensaje-exito_create")
             .classList.add("formulario__mensaje-exito-activo");
@@ -147,6 +148,15 @@ create.addEventListener("click", (e) => {
           campos_create.divisa_create = false;
           campos_create.fecha_create = false;
           formulario_create.reset();
+        } else {
+          document
+            .getElementById("formulario__mensaje_validacion_create")
+            .classList.add("formulario__mensaje-activo");
+          setTimeout(() => {
+            document
+              .getElementById("formulario__mensaje_validacion_create")
+              .classList.remove("formulario__mensaje-activo");
+          }, 5000);
         }
       });
   } else {

@@ -3,8 +3,8 @@ const create = document.getElementById("create");
 const inputs_create = document.querySelectorAll("#formulario_create input");
 
 const expresiones = {
-  divisa: /^[0-9a-zA-ZÀ-ÿ\s]{4,40}$/, // Letras, numeros, guion y guion_bajo
-  valor: /^[0-9]+([\,\.][0-9]+)?$/, // 7 a 14 numeros.
+  divisa: /^[0-9a-zA-ZÀ-ÿ\s]{4,25}$/, // Letras, numeros, guion y guion_bajo
+  valor: /^[0-9]+([\,\.][0-9]+){0,10}?$/, // 7 a 14 numeros.
 };
 
 const campos_create = {
@@ -66,6 +66,7 @@ create.addEventListener("click", (e) => {
       .then((dat) => {
         console.log(dat);
         if (dat.state) {
+          getData();
           document
             .getElementById("formulario__mensaje-exito_create")
             .classList.add("formulario__mensaje-exito-activo");
@@ -77,6 +78,15 @@ create.addEventListener("click", (e) => {
           campos_create.divisa_create = false;
           campos_create.valor_create = false;
           formulario_create.reset();
+        } else {
+          document
+            .getElementById("formulario__mensaje_validacion_create")
+            .classList.add("formulario__mensaje-activo");
+          setTimeout(() => {
+            document
+              .getElementById("formulario__mensaje_validacion_create")
+              .classList.remove("formulario__mensaje-activo");
+          }, 5000);
         }
       });
   } else {

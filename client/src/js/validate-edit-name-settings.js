@@ -24,7 +24,7 @@ function getuser() {
 const campos_update = {
   usuario_update: true,
   correo_update: true,
-  password_update: true,
+  password_update: false,
 };
 
 const validarFormularioUpdate = (e) => {
@@ -100,17 +100,15 @@ update_user.addEventListener("click", (e) => {
               .classList.remove("formulario__mensaje-exito-activo");
           }, 5000);
         } else {
-          alert("hola");
           document
-            .getElementById("formulario__mensaje_update_usuario")
+            .getElementById("formulario__mensaje_validacion_update_usuario")
             .classList.add("formulario__mensaje-activo");
           setTimeout(() => {
             document
-              .getElementById("formulario__mensaje_update_usuario")
+              .getElementById("formulario__mensaje_validacion_update_usuario")
               .classList.remove("formulario__mensaje-activo");
           }, 5000);
         }
-        return true;
       });
   } else {
     Object.keys(campos_update).forEach((campo) => {

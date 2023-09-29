@@ -24,7 +24,6 @@
   <link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/responsive.bootstrap4.min.css" />
   <link rel="stylesheet" type="text/css" href="vendors/styles/style.css" />
   <link rel="stylesheet" type="text/css" href="src/styles/validations.css" />
-
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GBZ3SGGX85"></script>
   <script>

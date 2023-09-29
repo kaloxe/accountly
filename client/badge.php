@@ -19,7 +19,7 @@
                                     <a href="index.php">Principal</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                Divisas
+                                    Divisas
                                 </li>
                             </ol>
                         </nav>
@@ -90,8 +90,30 @@
                 },
                 body: JSON.stringify(data),
             })
-            .then((res) => res.text())
-            .then((dat) => console.log(dat));
+            .then((res) => res.json())
+            .then((dat) => {
+                console.log(dat);
+                if (dat.state) {
+                    getData();
+                    document
+                        .getElementById("formulario__mensaje-exito")
+                        .classList.add("formulario__mensaje-exito-activo");
+                    setTimeout(() => {
+                        document
+                            .getElementById("formulario__mensaje-exito")
+                            .classList.remove("formulario__mensaje-exito-activo");
+                    }, 5000);
+                } else {
+                    document
+                        .getElementById("formulario__mensaje_validacion")
+                        .classList.add("formulario__mensaje-activo");
+                    setTimeout(() => {
+                        document
+                            .getElementById("formulario__mensaje_validacion")
+                            .classList.remove("formulario__mensaje-activo");
+                    }, 5000);
+                }
+            });
     });
 
     /* Llamando a la función getData() */

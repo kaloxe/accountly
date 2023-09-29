@@ -20,12 +20,13 @@
 						<img src="vendors/images/login-page-img.png" alt="" />
 					</div> -->
 
-                <div class="col-md-12 col-lg-12">
-                    <div class="formulario__mensaje p-1 text-center my-3 pb-5" id="formulario__mensaje">
-                        <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Rellene el formulario correctamente.</p>
+                <div class="login-box col-12">
+
+                    <div class="formulario__mensaje p-1 text-center mb-2 pb-5" id="formulario__mensaje">
+                        <p><i class="micon bi bi-exclamation-triangle"></i> <b>Error:</b> Rellene el formulario correctamente. </p>
                     </div>
-                    <div class="formulario__mensaje-exito formulario__mensaje p-1 text-center my-3 pb-5" id="formulario__mensaje-exito">
-                        <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> El usuario o contraseña son incorrectos</p>
+                    <div class="formulario__mensaje p-1 text-center mb-2 pb-5" id="formulario__mensaje_validacion">
+                        <p><i class="micon bi bi-exclamation-triangle"></i> <b>Error:</b> Usuario o contraseña incorretos. </p>
                     </div>
 
                     <div class="login-box bg-white box-shadow border-radius-10">
@@ -38,14 +39,15 @@
                                 <div class="input-group-append custom">
                                     <span class="input-group-text"><i class="icon-copy dw dw-user1"></i></span>
                                 </div>
-                                <p class="formulario__input-error">El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.</p>
+                                <!-- <p class="formulario__input-error">Ingrese correctamente el nombre de usuario.</p> -->
                             </div>
                             <div class="input-group custom" id="grupo__password">
                                 <input type="password" class="formulario__grupo-input formulario__input form-control form-control-lg" name="password" id="password" placeholder="**********" />
                                 <div class="input-group-append custom">
                                     <span class="input-group-text"><i class="dw dw-padlock1"></i></span>
                                 </div>
-                                <p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos.</p>
+                                <!-- <p class="formulario__input-error">Ingrese correctamente la contraseña.</p> -->
+
                             </div>
                             <!-- <div class="row pb-30">
                                 <div class="col-6">

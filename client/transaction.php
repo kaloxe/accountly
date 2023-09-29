@@ -28,6 +28,9 @@ require('./src/views/left-sidebar.php');
                         </nav>
                     </div>
                     <div class="col-md-6 col-sm-6 text-right">
+                        <a class="btn btn-secondary" href="#" role="button" data-toggle="modal" data-target="#modal_transfer" type="button">
+                            Transferir
+                        </a>
                         <a class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#modal_create" type="button">
                             Registrar
                         </a>
@@ -61,6 +64,9 @@ require('./src/views/left-sidebar.php');
 
             <!-- Create modal -->
             <?php require('./src/modals/transaction/create-modal.php') ?>
+
+             <!-- Transfer modal -->
+             <?php require('./src/modals/transaction/transfer-modal.php') ?>
 
             <!-- Edit modal -->
             <?php require('./src/modals/transaction/update-modal.php') ?>
@@ -97,8 +103,30 @@ require('./src/views/left-sidebar.php');
                 },
                 body: JSON.stringify(data),
             })
-            .then((res) => res.text())
-            .then((dat) => console.log(dat));
+            .then((res) => res.json())
+            .then((dat) => {
+                console.log(dat);
+                if (dat.state) {
+                    getData();
+                    document
+                        .getElementById("formulario__mensaje-exito")
+                        .classList.add("formulario__mensaje-exito-activo");
+                    setTimeout(() => {
+                        document
+                            .getElementById("formulario__mensaje-exito")
+                            .classList.remove("formulario__mensaje-exito-activo");
+                    }, 5000);
+                } else {
+                    document
+                        .getElementById("formulario__mensaje_validacion")
+                        .classList.add("formulario__mensaje-activo");
+                    setTimeout(() => {
+                        document
+                            .getElementById("formulario__mensaje_validacion")
+                            .classList.remove("formulario__mensaje-activo");
+                    }, 5000);
+                }
+            });
     });
 
     /* Llamando a la función getData() */
@@ -132,14 +160,19 @@ require('./src/views/left-sidebar.php');
             .then(data => {
                 cuenta_create.innerHTML = data.accounts
                 cuenta_update.innerHTML = data.accounts
+                cuenta1_transfer.innerHTML = data.accounts
+                cuenta2_transfer.innerHTML = data.accounts
                 divisa_create.innerHTML = data.badges
                 divisa_update.innerHTML = data.badges
+                divisa_transfer.innerHTML = data.badges
                 razon_create.innerHTML = data.reasons
                 razon_update.innerHTML = data.reasons
+                razon_transfer.innerHTML = data.reasons
             }).catch(err => console.log(err))
     }
 </script>
 
+<script src="./src/js/validate-transfer.js"></script>
 <script src="./src/js/validate-create-transaction.js"></script>
 <script src="./src/js/validate-edit-transaction.js"></script>
 <?php require('./src/views/scripts.php'); ?>

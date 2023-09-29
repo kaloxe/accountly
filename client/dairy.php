@@ -87,13 +87,13 @@ require('./src/views/left-sidebar.php');
                 </div>
 
                 <!-- Create modal -->
-                <?php require('./src/modals/diary/create-modal.php') ?>
+                <?php require('./src/modals/dairy/create-modal.php') ?>
 
                 <!-- Edit modal -->
-                <?php require('./src/modals/diary/update-modal.php') ?>
+                <?php require('./src/modals/dairy/update-modal.php') ?>
 
                 <!-- Delete modal -->
-                <?php require('./src/modals/diary/delete-modal.php') ?>
+                <?php require('./src/modals/dairy/delete-modal.php') ?>
 
             </div>
         </div>
@@ -124,8 +124,30 @@ require('./src/views/left-sidebar.php');
                 },
                 body: JSON.stringify(data),
             })
-            .then((res) => res.text())
-            .then((dat) => console.log(dat));
+            .then((res) => res.json())
+            .then((dat) => {
+                console.log(dat);
+                if (dat.state) {
+                    getData();
+                    document
+                        .getElementById("formulario__mensaje-exito")
+                        .classList.add("formulario__mensaje-exito-activo");
+                    setTimeout(() => {
+                        document
+                            .getElementById("formulario__mensaje-exito")
+                            .classList.remove("formulario__mensaje-exito-activo");
+                    }, 5000);
+                } else {
+                    document
+                        .getElementById("formulario__mensaje_validacion")
+                        .classList.add("formulario__mensaje-activo");
+                    setTimeout(() => {
+                        document
+                            .getElementById("formulario__mensaje_validacion")
+                            .classList.remove("formulario__mensaje-activo");
+                    }, 5000);
+                }
+            });
     });
 
     /* Llamando a la función getData() */
@@ -164,8 +186,8 @@ require('./src/views/left-sidebar.php');
     }
 </script>
 
-<script src="./src/js/validate-create-diary.js"></script>
-<script src="./src/js/validate-edit-diary.js"></script>
+<script src="./src/js/validate-create-dairy.js"></script>
+<script src="./src/js/validate-edit-dairy.js"></script>
 <?php require('./src/views/scripts.php'); ?>
 <script src="src/plugins/apexcharts/apexcharts.min.js"></script>
 <script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>

@@ -30,10 +30,10 @@ const campos_update = {
 const validarFormularioUpdate = (e) => {
   switch (e.target.name) {
     case "divisa_update":
-      validarCampoCreate(expresiones.divisa, e.target, "divisa_update");
+      validarCampoUpdate(expresiones.divisa, e.target, "divisa_update");
       break;
     case "valor_update":
-      validarCampoCreate(expresiones.valor, e.target, "valor_update");
+      validarCampoUpdate(expresiones.valor, e.target, "valor_update");
       break;
   }
 };
@@ -57,6 +57,7 @@ const validarCampoUpdate = (expresion, input, campo) => {
 inputs_update.forEach((input) => {
   input.addEventListener("keyup", validarFormularioUpdate);
   input.addEventListener("blur", validarFormularioUpdate);
+  input.addEventListener("change", validarFormularioUpdate);
 });
 
 update.addEventListener("click", (e) => {
@@ -82,6 +83,7 @@ update.addEventListener("click", (e) => {
     .then((dat) => {
       console.log(dat);
       if (dat.state) {
+        getData();
         document
           .getElementById("formulario__mensaje-exito_update")
           .classList.add("formulario__mensaje-exito-activo");
@@ -89,6 +91,15 @@ update.addEventListener("click", (e) => {
           document
             .getElementById("formulario__mensaje-exito_update")
             .classList.remove("formulario__mensaje-exito-activo");
+        }, 5000);
+      } else {
+        document
+          .getElementById("formulario__mensaje_validacion_update")
+          .classList.add("formulario__mensaje-activo");
+        setTimeout(() => {
+          document
+            .getElementById("formulario__mensaje_validacion_update")
+            .classList.remove("formulario__mensaje-activo");
         }, 5000);
       }
     });

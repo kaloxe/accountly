@@ -13,6 +13,7 @@ if (isset($_POST)) {
                 $correo = $user['correo'];
                 $password = $user['password'];
                 $sql = "INSERT INTO `user`(`nickname`, `email`, `password`, `type_user`) VALUES ('$usuario', '$correo', '$password', 'usuario')";
+                Rest::binnacle($_SESSION['id_user'], "Registro de usuario comun: $usuario");
                 echo Rest::execute($sql);
                 break;
             case "valid_user":
@@ -27,7 +28,7 @@ if (isset($_POST)) {
                     $_SESSION['id_user'] = $result["id_user"];
                     $_SESSION['nickname'] = $result["nickname"];
                     $_SESSION['email'] = $result["email"];
-                    //echo Rest::binnacle($id_user, "Ingreso de usuario: $usuario");
+                    // Rest::binnacle($id_user, "Ingreso de usuario: $usuario");
                     echo json_encode($result);
                 } else {
                     echo json_encode($result);
@@ -51,7 +52,7 @@ if (isset($_POST)) {
                     $_SESSION['nickname']= $nuevoUsuario;
                     $_SESSION['email'] = $correo;
                     $sql1 = "UPDATE `user` SET `nickname`='$nuevoUsuario', `email`='$correo' WHERE `id_user`=$id";
-                    //echo Rest::binnacle($id_user, "Cambio de contraseña de usuario: $usuario");
+                    Rest::binnacle($id_user, "Cambio de datos de usuario: $usuario");
                     echo Rest::execute($sql1);
                 } else {
                     echo json_encode($result);
@@ -66,7 +67,7 @@ if (isset($_POST)) {
                 $result = User::validUser($sql);
                 if ($result["state"]) {
                     $sql1 = "UPDATE `user` SET `password`='$newPassword' WHERE `id_user`='$id'";
-                    //echo Rest::binnacle($id_user, "Cambio de contraseña de usuario: $usuario");
+                    Rest::binnacle($id_user, "Cambio de contraseña de usuario: $usuario");
                     echo Rest::execute($sql1);
                 } else {
                     echo json_encode($result);

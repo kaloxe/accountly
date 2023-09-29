@@ -43,6 +43,10 @@
             <!-- Delete modal -->
             <?php require('./src/modals/goal/delete-modal.php') ?>
 
+            <!-- Complete modal-->
+            <?php require('./src/modals/goal/complete-modal.php') ?>
+
+
         </div>
         <div class="footer-wrap pd-20 mb-20 card-box">
             Accountly - Aplicacion creada por
@@ -72,29 +76,32 @@
                 },
                 body: JSON.stringify(data),
             })
-            .then((res) => res.text())
-            .then((dat) => console.log(dat));
-    });
-
-    function completeGoal(id) {
-        index = {
-            action: "complete_goal",
-            id: id,
-        };
-        fetch("/accountly/server/controllers/controllerGoal.php", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json; charset=utf-8",
-                },
-                body: JSON.stringify(index),
-            })
             .then((res) => res.json())
             .then((dat) => {
                 console.log(dat);
-                getData();
-                //corregir despues
+                if (dat.state) {
+                    getData();
+                    document
+                        .getElementById("formulario__mensaje-exito")
+                        .classList.add("formulario__mensaje-exito-activo");
+                    setTimeout(() => {
+                        document
+                            .getElementById("formulario__mensaje-exito")
+                            .classList.remove("formulario__mensaje-exito-activo");
+                    }, 5000);
+                } else {
+                    document
+                        .getElementById("formulario__mensaje_validacion")
+                        .classList.add("formulario__mensaje-activo");
+                    setTimeout(() => {
+                        document
+                            .getElementById("formulario__mensaje_validacion")
+                            .classList.remove("formulario__mensaje-activo");
+                    }, 5000);
+                }
             });
-    }
+    });
+
 
     /* Llamando a la función getData() para obtener contenido de la tabla */
     getData()
@@ -127,9 +134,11 @@
             .then(data => {
                 divisa_create.innerHTML = data.badges
                 divisa_update.innerHTML = data.badges
+                cuenta_complete.innerHTML = data.accounts
             }).catch(err => console.log(err))
     }
 </script>
+<script src="./src/js/validate-complete-goal.js"></script>
 <script src="./src/js/validate-create-goal.js"></script>
 <script src="./src/js/validate-edit-goal.js"></script>
 

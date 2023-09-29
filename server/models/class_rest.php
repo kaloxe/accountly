@@ -4,165 +4,247 @@ class Rest extends database
 {
   public static function execute($sql)
   {
-    $conn = new database();
-    $query = $conn->open()->prepare($sql);
-    $query->execute();
-    $array = array('state' => true);
-    return json_encode($array);
+    try {
+      $conn = new database();
+      $query = $conn->open()->prepare($sql);
+      $query->execute();
+      $array = array('state' => true);
+      return json_encode($array);
+    } catch (Exception $e) {
+      $errorMessage = 'Ha habido una excepción: ' . $e->getMessage() . '';
+      $array = array(
+        'state' => false,
+        'message' => $errorMessage
+      );
+      return json_encode($array);
+    }
   }
 
   public static function exists($sql)
   {
     $conn = new database();
-
     $resultado = $conn->openSQL()->query($sql);
     $num_rows = $resultado->num_rows;
     return $num_rows > 0 ? true : false;
   }
 
-  public static function readAccount($sql)
+  public static function binnacle($id_user, $movement)
+  {
+    try {
+      $conn = new database();
+      $actualdt = date('y-m-d h:i:s');
+      $sql = "INSERT INTO `binnacle`(`id_user`, `movement`, `datetime`) VALUES ($id_user,'$movement','$actualdt')";
+      $query = $conn->open()->prepare($sql);
+      $query->execute();
+      $array = array('state' => true);
+      return json_encode($array);
+    } catch (Exception $e) {
+      $errorMessage = 'Ha habido una excepción: ' . $e->getMessage() . '';
+      $array = array(
+        'state' => false,
+        'name_account' => $errorMessage
+      );
+      return json_encode($array);
+    }
+  }
+
+  public static function readUserId($sql)
   {
     $conn = new database();
     $result = $conn->openSQL()->query($sql);
-
-    $account = $result->fetch_assoc();
-    $id_account = $account["id_account"];
-    $name_account = $account["name_account"];
-    $array = array(
-      'id_account' => $id_account,
-      'name_account' => $name_account
-    );
-    return json_encode($array);
+    $user = $result->fetch_assoc();
+    $id = $user["id_user"];
+    return $id;
   }
 
-  public static function binnacle($id_user, $movement)
+  public static function readAccount($sql)
   {
-    $conn = new database();
-    $actualdt = date('y-m-d h:i:s');
-    $sql = "INSERT INTO `binnacle`(`id_user`, `movement`, `datetime`) VALUES ($id_user,'$movement','$actualdt')";
-    $query = $conn->open()->prepare($sql);
-    $query->execute();
-    $array = array('state' => true);
-    return json_encode($array);
+    try {
+      $conn = new database();
+      $result = $conn->openSQL()->query($sql);
+
+      $account = $result->fetch_assoc();
+      $id_account = $account["id_account"];
+      $name_account = $account["name_account"];
+      $array = array(
+        'state' => true,
+        'id_account' => $id_account,
+        'name_account' => $name_account
+      );
+      return json_encode($array);
+    } catch (Exception $e) {
+      $errorMessage = 'Ha habido una excepción: ' . $e->getMessage() . '';
+      $array = array(
+        'state' => false,
+        'name_account' => $errorMessage
+      );
+      return json_encode($array);
+    }
   }
 
   public static function readBadge($sql)
   {
-    $conn = new database();
-    $result = $conn->openSQL()->query($sql);
+    try {
+      $conn = new database();
+      $result = $conn->openSQL()->query($sql);
 
-    $badge = $result->fetch_assoc();
-    $id_badge = $badge["id_badge"];
-    $name_badge = $badge["name_badge"];
-    $value = $badge["value"];
-    $array = array(
-      'id_badge' => $id_badge,
-      'name_badge' => $name_badge,
-      'value' => $value
-    );
-    return json_encode($array);
+      $badge = $result->fetch_assoc();
+      $id_badge = $badge["id_badge"];
+      $name_badge = $badge["name_badge"];
+      $value = $badge["value"];
+      $array = array(
+        'state' => true,
+        'id_badge' => $id_badge,
+        'name_badge' => $name_badge,
+        'value' => $value
+      );
+      return json_encode($array);
+    } catch (Exception $e) {
+      $errorMessage = 'Ha habido una excepción: ' . $e->getMessage() . '';
+      $array = array(
+        'state' => false,
+        'name_account' => $errorMessage
+      );
+      return json_encode($array);
+    }
   }
   public static function readTransaction($sql)
   {
-    $conn = new database();
-    $result = $conn->openSQL()->query($sql);
-    $tran = $result->fetch_assoc();
+    try {
+      $conn = new database();
+      $result = $conn->openSQL()->query($sql);
+      $tran = $result->fetch_assoc();
 
-    $id_transaction = $tran["id_transaction"];
-    $type = $tran["type"];
-    $id_badge = $tran["id_badge"];
-    $id_account = $tran["id_account"];
-    $id_reason = $tran["id_reason"];
-    $amount = $tran["amount"];
-    $date = $tran["date"];
-    $description = $tran["description"];
+      $id_transaction = $tran["id_transaction"];
+      $type = $tran["type"];
+      $id_badge = $tran["id_badge"];
+      $id_account = $tran["id_account"];
+      $id_reason = $tran["id_reason"];
+      $amount = $tran["amount"];
+      $date = $tran["date"];
+      $description = $tran["description"];
 
-    $array = array(
-      'id_transaction' => $id_transaction,
-      'type' => $type,
-      'id_account' => $id_account,
-      'id_badge' => $id_badge,
-      'id_reason' => $id_reason,
-      'amount' => $amount,
-      'date' => $date,
-      'description' => $description
-    );
-
-    return json_encode($array);
+      $array = array(
+        'state' => true,
+        'id_transaction' => $id_transaction,
+        'type' => $type,
+        'id_account' => $id_account,
+        'id_badge' => $id_badge,
+        'id_reason' => $id_reason,
+        'amount' => $amount,
+        'date' => $date,
+        'description' => $description
+      );
+      return json_encode($array);
+    } catch (Exception $e) {
+      $errorMessage = 'Ha habido una excepción: ' . $e->getMessage() . '';
+      $array = array(
+        'state' => false,
+        'name_account' => $errorMessage
+      );
+      return json_encode($array);
+    }
   }
 
   public static function readUser($sql)
   {
-    $conn = new database();
-    $result = $conn->openSQL()->query($sql);
-    $tran = $result->fetch_assoc();
+    try {
+      $conn = new database();
+      $result = $conn->openSQL()->query($sql);
+      $tran = $result->fetch_assoc();
 
-    $id_user = $tran["id_user"];
-    $nickname = $tran["nickname"];
-    $email = $tran["email"];
-    $password = $tran["password"];
-    $type_user = $tran["type_user"];
+      $id_user = $tran["id_user"];
+      $nickname = $tran["nickname"];
+      $email = $tran["email"];
+      $password = $tran["password"];
+      $type_user = $tran["type_user"];
 
-    $array = array(
-      'id_user' => $id_user,
-      'nickname' => $nickname,
-      'email' => $email,
-      'password' => $password,
-      'type_user' => $type_user
-    );
-
-    return json_encode($array);
+      $array = array(
+        'state' => true,
+        'id_user' => $id_user,
+        'nickname' => $nickname,
+        'email' => $email,
+        'password' => $password,
+        'type_user' => $type_user
+      );
+      return json_encode($array);
+    } catch (Exception $e) {
+      $errorMessage = 'Ha habido una excepción: ' . $e->getMessage() . '';
+      $array = array(
+        'state' => false,
+        'name_account' => $errorMessage
+      );
+      return json_encode($array);
+    }
   }
   public static function readDiary($sql)
   {
-    $conn = new database();
-    $result = $conn->openSQL()->query($sql);
-    $tran = $result->fetch_assoc();
+    try {
+      $conn = new database();
+      $result = $conn->openSQL()->query($sql);
+      $tran = $result->fetch_assoc();
 
-    $id_diary = $tran["id_diary"];
-    $type = $tran["type"];
-    $id_badge = $tran["id_badge"];
-    $amount = $tran["amount"];
-    $date = $tran["date"];
-    $description = $tran["description"];
+      $id_diary = $tran["id_diary"];
+      $type = $tran["type"];
+      $id_badge = $tran["id_badge"];
+      $amount = $tran["amount"];
+      $date = $tran["date"];
+      $description = $tran["description"];
 
-    $array = array(
-      'id_diary' => $id_diary,
-      'type' => $type,
-      'id_badge' => $id_badge,
-      'amount' => $amount,
-      'date' => $date,
-      'description' => $description
-    );
-
-    return json_encode($array);
+      $array = array(
+        'state' => true,
+        'id_diary' => $id_diary,
+        'type' => $type,
+        'id_badge' => $id_badge,
+        'amount' => $amount,
+        'date' => $date,
+        'description' => $description
+      );
+      return json_encode($array);
+    } catch (Exception $e) {
+      $errorMessage = 'Ha habido una excepción: ' . $e->getMessage() . '';
+      $array = array(
+        'state' => false,
+        'name_account' => $errorMessage
+      );
+      return json_encode($array);
+    }
   }
 
   public static function readGoal($sql)
   {
-    $conn = new database();
-    $result = $conn->openSQL()->query($sql);
-    $tran = $result->fetch_assoc();
+    try {
+      $conn = new database();
+      $result = $conn->openSQL()->query($sql);
+      $tran = $result->fetch_assoc();
 
-    $id_goal = $tran["id_goal"];
-    $type = $tran["type"];
-    $id_badge = $tran["id_badge"];
-    $amount = $tran["amount"];
-    $description = $tran["description"];
-    $name_goal = $tran["name_goal"];
-    $complete = $tran["complete"];
+      $id_goal = $tran["id_goal"];
+      $type = $tran["type"];
+      $id_badge = $tran["id_badge"];
+      $amount = $tran["amount"];
+      $description = $tran["description"];
+      $name_goal = $tran["name_goal"];
+      $complete = $tran["complete"];
 
-    $array = array(
-      'type' => $type,
-      'id_badge' => $id_badge,
-      'id_goal' => $id_goal,
-      'name_goal' => $name_goal,
-      'amount' => $amount,
-      'description' => $description,
-      'complete' => $complete
-    );
-
-    return json_encode($array);
+      $array = array(
+        'state' => true,
+        'type' => $type,
+        'id_badge' => $id_badge,
+        'id_goal' => $id_goal,
+        'name_goal' => $name_goal,
+        'amount' => $amount,
+        'description' => $description,
+        'complete' => $complete
+      );
+      return json_encode($array);
+    } catch (Exception $e) {
+      $errorMessage = 'Ha habido una excepción: ' . $e->getMessage() . '';
+      $array = array(
+        'state' => false,
+        'name_account' => $errorMessage
+      );
+      return json_encode($array);
+    }
   }
 
   public static function readGoalComplete($sql)
