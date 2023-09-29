@@ -1,5 +1,7 @@
 <?php require('./src/views/head.php'); ?>
 <?php require('./src/views/loader.php'); ?>
+<?php require("/xampp/htdocs/accountly/server/session/session.php"); ?>
+<?php require("/xampp/htdocs/accountly/server/session/authenticatorAdmin.php"); ?>
 <?php require('./src/views/header.php'); ?>
 <?php require('./src/views/right-sidebar.php'); ?>
 <?php require('./src/views/left-sidebar.php'); ?>
@@ -113,6 +115,7 @@
         </div>
     </div>
 </div>
+
 <script>
     /* Llamando a la función getData() */
     getData()

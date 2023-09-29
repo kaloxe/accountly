@@ -17,7 +17,7 @@ $table = "binnacle";
 $id = 'id_binnacle';
 
 /* Filtrado */
-$where = 'WHERE user.id_user='. $id_user .'';
+$where = 'WHERE '. $id_user_where .'';
 
 
 /* Consulta */

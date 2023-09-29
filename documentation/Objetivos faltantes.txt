@@ -9,7 +9,6 @@ Arreglar las datatables para que los numeros sean tambien dinamicos
 
 Cambiar nombres en los plugins (calendario)
 Hacer que los reportes impriman
-Implementar respaldo y restaurar base de datos en configuracion
 Implementar modo oscuro y modo claro
 Hacer que calendario liste los eventos en los cuadros
 

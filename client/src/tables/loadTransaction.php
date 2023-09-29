@@ -9,7 +9,7 @@ require("/xampp/htdocs/accountly/server/session/session.php");
 require("/xampp/htdocs/accountly/server/db/db.php");
 
 /* Un arreglo de las columnas a mostrar en la tabla */
-$columns = ['id_transaction', 'transaction.type', 'reason.name_reason', 'transaction.id_account', 'badge.name_badge', 'account.name_account', 'id_user', 'transaction.amount', 'date', 'description'];
+$columns = ['id_transaction', 'transaction.type', 'reason.name_reason', 'transaction.id_account', 'badge.name_badge', 'account.name_account', 'account.id_user', 'transaction.amount', 'date', 'description'];
 
 /* Nombre de la tabla */
 $table = "transaction";
@@ -17,12 +17,12 @@ $table = "transaction";
 $id = 'id_transaction';
 
 /* Filtrado */
-$where = 'WHERE id_user='. $id_user .'';
+$where = 'WHERE '. $id_user_where .'';
 
 
 /* Consulta */
 $sql = "SELECT SQL_CALC_FOUND_ROWS " . implode(", ", $columns) . "
-FROM $table INNER JOIN account on transaction.id_account=account.id_account INNER JOIN badge on badge.id_badge=transaction.id_badge INNER JOIN reason on reason.id_reason=transaction.id_reason
+FROM $table INNER JOIN account on transaction.id_account=account.id_account INNER JOIN badge on badge.id_badge=transaction.id_badge INNER JOIN reason on reason.id_reason=transaction.id_reason INNER JOIN user on user.id_user=account.id_user
 $where ORDER BY date DESC";
 $resultado = $conn->query($sql);
 $num_rows = $resultado->num_rows;

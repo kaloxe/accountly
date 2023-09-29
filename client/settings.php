@@ -1,5 +1,6 @@
 <?php require('./src/views/head.php'); ?>
 <?php require('./src/views/loader.php'); ?>
+<?php require("/xampp/htdocs/accountly/server/session/session.php"); ?>
 <?php require('./src/views/header.php'); ?>
 <?php require('./src/views/right-sidebar.php'); ?>
 <?php require('./src/views/left-sidebar.php'); ?>
@@ -8,6 +9,7 @@
     <div class="pd-ltr-20 xs-pd-20-10">
         <div class="min-height-200px">
             <div class="page-header">
+                
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
                         <div class="title">
@@ -23,6 +25,11 @@
                                 </li>
                             </ol>
                         </nav>
+                    </div>
+                    <div class="col-md-6 col-sm-6 text-right">
+                        <a type="button" class="btn btn-warning" data-color="#ffffff" data-toggle="modal" data-target="#modal_database" type="button">
+                            <i class="fa fa-server"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -75,7 +82,6 @@
                                     <a class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#modal_update_password" type="button">
                                         Guardar y actualizar
                                     </a>
-                                    <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
                                 </div>
                             </li>
                         </ul>
@@ -86,11 +92,14 @@
             <!-- Edit modal name -->
             <?php require('./src/modals/settings/update-modal-name.php') ?>
 
+            <!-- database modal -->
+            <?php require('./src/modals/settings/database-modal.php') ?>
+
             <!-- Edit modal password -->
             <?php require('./src/modals/settings/update-modal-password.php') ?>
 
         </div>
-
+        
         <div class="footer-wrap pd-20 mb-20 card-box">
             Accountly - Aplicacion creada por
             <a href="https://github.com/kaloxe" target="_blank">Carlos Sanchez</a>
@@ -101,18 +110,5 @@
 <script src="./src/js/validate-edit-name-settings.js"></script>
 <!-- <script src="./src/js/validate-user-settings.js"></script> -->
 <?php require('./src/views/scripts.php'); ?>
-<script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
-<script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
-<script src="src/plugins/datatables/js/dataTables.responsive.min.js"></script>
-<script src="src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
-<!-- buttons for Export datatable -->
-<script src="src/plugins/datatables/js/dataTables.buttons.min.js"></script>
-<script src="src/plugins/datatables/js/buttons.bootstrap4.min.js"></script>
-<script src="src/plugins/datatables/js/buttons.print.min.js"></script>
-<script src="src/plugins/datatables/js/buttons.html5.min.js"></script>
-<script src="src/plugins/datatables/js/buttons.flash.min.js"></script>
-<script src="src/plugins/datatables/js/pdfmake.min.js"></script>
-<script src="src/plugins/datatables/js/vfs_fonts.js"></script>
 <!-- Datatable Setting js -->
-<script src="vendors/scripts/datatable-setting.js"></script>
 <?php require('./src/views/footer.php'); ?>

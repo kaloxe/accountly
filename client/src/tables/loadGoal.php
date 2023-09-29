@@ -3,7 +3,7 @@ require("/xampp/htdocs/accountly/server/session/session.php");
 require("/xampp/htdocs/accountly/server/db/db.php");
 
 /* Un arreglo de las columnas a mostrar en la tabla */
-$columns = ['id_goal', 'id_user', 'badge.id_badge', 'badge.name_badge', 'name_goal', 'description', 'amount', 'complete', 'type', 'state_register'];
+$columns = ['id_goal', 'goal.id_user', 'badge.id_badge', 'badge.name_badge', 'name_goal', 'description', 'amount', 'complete', 'type', 'state_register'];
 
 /* Nombre de la tabla */
 $table = "goal";
@@ -11,12 +11,12 @@ $table = "goal";
 $id = 'id_goal';
 
 /* Filtrado */
-$where = 'WHERE id_user=' . $id_user . '';
+$where = 'WHERE ' . $id_user_where . '';
 
 
 /* Consulta */
 $sql = "SELECT SQL_CALC_FOUND_ROWS " . implode(", ", $columns) . "
-FROM $table INNER JOIN badge on goal.id_badge=badge.id_badge
+FROM $table INNER JOIN badge on goal.id_badge=badge.id_badge INNER JOIN user on user.id_user=goal.id_user
 $where";
 $resultado = $conn->query($sql);
 $num_rows = $resultado->num_rows;

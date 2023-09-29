@@ -1,5 +1,3 @@
-<?php require("/xampp/htdocs/accountly/server/session/session.php"); ?>
-
 <div class="header">
     <div class="header-left">
         <div class="menu-icon bi bi-list"></div>

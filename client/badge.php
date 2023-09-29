@@ -1,5 +1,7 @@
 <?php require('./src/views/head.php'); ?>
 <?php require('./src/views/loader.php'); ?>
+<?php require("/xampp/htdocs/accountly/server/session/session.php"); ?>
+<?php require_once("../server/session/authenticator.php"); ?>
 <?php require('./src/views/header.php'); ?>
 <?php require('./src/views/right-sidebar.php'); ?>
 <?php require('./src/views/left-sidebar.php'); ?>

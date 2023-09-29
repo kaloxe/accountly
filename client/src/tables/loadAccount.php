@@ -3,7 +3,7 @@ require("/xampp/htdocs/accountly/server/session/session.php");
 require("/xampp/htdocs/accountly/server/db/db.php");
 
 /* Un arreglo de las columnas a mostrar en la tabla */
-$columns = ['id_account', 'id_user', 'name_account'];
+$columns = ['id_account', 'account.id_user', 'name_account'];
 
 /* Nombre de la tabla */
 $table = "account";
@@ -11,12 +11,12 @@ $table = "account";
 $id = 'id_account';
 
 /* Filtrado */
-$where = 'WHERE id_user=' . $id_user . '';
+$where = 'WHERE ' . $id_user_where . '';
 
 
 /* Consulta */
 $sql = "SELECT SQL_CALC_FOUND_ROWS " . implode(", ", $columns) . "
-FROM $table
+FROM $table INNER JOIN user on user.id_user=account.id_user
 $where";
 $resultado = $conn->query($sql);
 $num_rows = $resultado->num_rows;

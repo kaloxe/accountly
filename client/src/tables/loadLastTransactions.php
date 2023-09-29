@@ -17,12 +17,12 @@ $table = "transaction";
 $id = 'id_transaction';
 
 /* Filtrado */
-$where = 'WHERE id_user='. $id_user .'';
+$where = 'WHERE '. $id_user_where .'';
 
 
 /* Consulta */
 $sql = "SELECT SQL_CALC_FOUND_ROWS " . implode(", ", $columns) . "
-FROM $table INNER JOIN account on transaction.id_account=account.id_account INNER JOIN badge on badge.id_badge=transaction.id_badge INNER JOIN reason on reason.id_reason=transaction.id_reason
+FROM $table INNER JOIN account on transaction.id_account=account.id_account INNER JOIN badge on badge.id_badge=transaction.id_badge INNER JOIN reason on reason.id_reason=transaction.id_reason INNER JOIN user on user.id_user=account.id_user
 $where ORDER BY date DESC LIMIT 10";
 $resultado = $conn->query($sql);
 $num_rows = $resultado->num_rows;

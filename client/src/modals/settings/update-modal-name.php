@@ -18,7 +18,7 @@
                         <div class="form-group formulario__grupo-input" id="grupo__password_update">
                             <label>Ingrese contraseña para realizar la operacion</label>
                             <input type="password" class="form-control formulario__input" name="password_update" id="password_update" />
-                            <p class="formulario__input-error">Ingrese la contraseña correctamente/p>
+                            <p class="formulario__input-error">Ingrese la contraseña correctamente. </p>
                         </div>
                     </div>
                     <div class="modal-footer">

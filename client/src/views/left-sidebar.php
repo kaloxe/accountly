@@ -12,19 +12,37 @@
     <div class="menu-block customscroll">
         <div class="sidebar-menu">
             <ul id="accordion-menu">
+                <?php
+                switch ($type_user) {
+                    case "administrador":
+                        ?>
+                        <li>
+                            <a href="user.php" class="dropdown-toggle no-arrow">
+                                <span class="micon bi bi-people"></span><span class="mtext">Usuarios</span>
+                            </a>
+                        </li>
+                        <?php
+                        break;
+                    case "usuario":
+                        ?>
+                        <li>
+                            <a href="index.php" class="dropdown-toggle no-arrow">
+                                <span class="micon bi bi-house"></span><span class="mtext">Principal</span>
+                            </a>
+                        </li>
+                        <?php
+                        break;
+                    default:
+                        echo "Permisologia no permitida";
+                } ?>
                 <li>
-                    <a href="index.php" class="dropdown-toggle no-arrow">
-                        <span class="micon bi bi-house"></span><span class="mtext">Principal</span>
+                    <a href="account.php" class="dropdown-toggle no-arrow">
+                        <span class="micon bi bi-piggy-bank"></span><span class="mtext">Cuentas</span>
                     </a>
                 </li>
                 <li>
                     <a href="transaction.php" class="dropdown-toggle no-arrow">
                         <span class="micon bi bi-receipt-cutoff"></span><span class="mtext">Transacciones</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="account.php" class="dropdown-toggle no-arrow">
-                        <span class="micon bi bi-piggy-bank"></span><span class="mtext">Cuentas</span>
                     </a>
                 </li>
                 <li>
@@ -37,16 +55,30 @@
                         <span class="micon bi bi-flag"></span><span class="mtext">Metas</span>
                     </a>
                 </li>
-                <li>
-                    <a href="user.php" class="dropdown-toggle no-arrow">
-                        <span class="micon bi bi-people"></span><span class="mtext">Usuarios</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="badge.php" class="dropdown-toggle no-arrow">
-                        <span class="micon bi bi-cash-coin"></span><span class="mtext">Divisas</span>
-                    </a>
-                </li>
+                <?php
+                switch ($type_user) {
+                    case "administrador":
+                        ?>
+                        <li>
+                            <a href="badge.php" class="dropdown-toggle no-arrow">
+                                <span class="micon bi bi-cash-coin"></span><span class="mtext">Divisas</span>
+                            </a>
+                        </li>
+                        <?php
+                        break;
+                    case "usuario":
+                        ?>
+                        <li>
+                            <a href="#" class="dropdown-toggle no-arrow">
+                                <span class="micon bi bi-cash-coin"></span><span class="mtext">Divisas</span>
+                            </a>
+                        </li>
+                        <?php
+                        break;
+                    default:
+                        echo "Permisologia no permitida";
+                } ?>
+                
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
                         <span class="micon bi bi-pie-chart"></span><span class="mtext">Reportes</span>
@@ -56,10 +88,20 @@
                         <li><a href="report_transaction.php">Filtrar transacciones</a></li>
                         <li><a href="report_badge.php">Conversion a divisas</a></li>
                         <li><a href="report_movement.php">Reporte de movimientos</a></li>
-                        <li><a href="report_user.php">Reporte de Usuarios</a></li>
+                        <?php
+                        switch ($type_user) {
+                            case "administrador":
+                                ?>
+                                <li><a href="report_user.php">Reporte de Usuarios</a></li>
+                                <?php
+                                break;
+                            case "usuario":
+                                break;
+                            default:
+                                echo "Permisologia no permitida";
+                        } ?>
                     </ul>
                 </li>
-
                 <li>
                     <div class="dropdown-divider"></div>
                 </li>

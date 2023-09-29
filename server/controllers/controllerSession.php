@@ -31,6 +31,7 @@ if (isset($_POST)) {
                     $_SESSION['state'] = $result['state'];
                     $_SESSION['id_user'] = $result["id_user"];
                     $_SESSION['nickname'] = $result["nickname"];
+                    $_SESSION['type_user'] = $result["type_user"];
                     $_SESSION['email'] = $result["email"];
                     Rest::binnacle($_SESSION['id_user'], "Ingreso de usuario: $usuario");
                     echo json_encode($result);

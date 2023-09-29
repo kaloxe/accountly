@@ -70,7 +70,16 @@ submit.addEventListener("click", (e) => {
       .then((dat) => {
         console.log(dat);
         if (dat.state == true) {
-          window.location.href = "/accountly/client/index.php";
+          switch (dat.type_user) {
+            case "administrador":
+              window.location.href = "/accountly/client/user.php";
+              break;
+            case "usuario":
+              window.location.href = "/accountly/client/index.php";
+              break;
+            default:
+              console.log("Problemas con los permisos retornados");
+          }
         } else {
           document
             .getElementById("formulario__mensaje_validacion")
@@ -86,14 +95,14 @@ submit.addEventListener("click", (e) => {
     campos.password = false;
     formulario.reset();
   } else {
-     Object.keys(campos).forEach((campo) => {
-       if (!campos[campo]) {
-         document.getElementById(`${campo}`).classList.add("form-control-error");
+    Object.keys(campos).forEach((campo) => {
+      if (!campos[campo]) {
+        document.getElementById(`${campo}`).classList.add("form-control-error");
         //  document
         //    .querySelector(`#grupo__${campo} .formulario__input-error`)
         //    .classList.add("formulario__input-error-activo");
-       }
-     });
+      }
+    });
     document
       .getElementById("formulario__mensaje")
       .classList.add("formulario__mensaje-activo");

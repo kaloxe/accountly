@@ -4,7 +4,7 @@ require("/xampp/htdocs/accountly/server/session/session.php");
 require("/xampp/htdocs/accountly/server/db/db.php");
 
 /* Un arreglo de las columnas a mostrar en la tabla */
-$columns = ['id_diary', 'diary.description', 'badge.name_badge', 'date.date', 'diary.amount', 'diary.type', 'diary.state_register'];
+$columns = ['id_diary', 'diary.id_user', 'diary.description', 'badge.name_badge', 'date.date', 'diary.amount', 'diary.type', 'diary.state_register'];
 
 /* Nombre de la tabla */
 $table = "diary";
@@ -12,12 +12,12 @@ $table = "diary";
 $id = 'id_diary';
 
 /* Filtrado */
-$where = 'WHERE id_user=' . $id_user . '';
+$where = 'WHERE ' . $id_user_where . '';
 
 
 /* Consulta */
 $sql = "SELECT SQL_CALC_FOUND_ROWS " . implode(", ", $columns) . "
-FROM $table INNER JOIN badge on badge.id_badge=diary.id_badge INNER JOIN date on date.id_date=diary.id_date
+FROM $table INNER JOIN badge on badge.id_badge=diary.id_badge INNER JOIN date on date.id_date=diary.id_date INNER JOIN user on user.id_user=diary.id_user
 $where";
 $resultado = $conn->query($sql);
 $num_rows = $resultado->num_rows;
