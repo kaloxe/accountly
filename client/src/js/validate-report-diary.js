@@ -3,23 +3,40 @@ const filter = document.getElementById("filter");
 const inputs = document.querySelectorAll("#formulario input");
 const selects = document.querySelectorAll("#formulario select");
 
+let today = new Date();
+let dd = today.getDate();
+let mm = today.getMonth() + 1;
+let yyyy = today.getFullYear();
+today = yyyy + "-" + mm + "-" + dd;
+
 const expresiones = {
-  cuenta: /^[0-9a-zA-ZÀ-ÿ\s]{1,10}$/, // Letras y espacios, pueden llevar acentos.
+  estado: /^[0-9a-zA-ZÀ-ÿ\s]{1,10}$/, // Letras y espacios, pueden llevar acentos.
   divisa: /^[0-9a-zA-ZÀ-ÿ\s]{1,10}$/,
+  fecha: /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/,
 };
 
 const campos = {
-  cuenta: true,
+  estado: true,
   divisa: true,
+  fecha1: false,
+  fecha2: false,
 };
 
 const validarFormulario = (e) => {
   switch (e.target.name) {
-    case "cuenta":
-      validarCampo(expresiones.cuenta, e.target, "cuenta");
+    case "estado":
+      validarCampo(expresiones.estado, e.target, "estado");
       break;
     case "divisa":
       validarCampo(expresiones.divisa, e.target, "divisa");
+      break;
+    case "fecha1":
+      validarCampo(expresiones.fecha, e.target, "fecha1");
+      validarfecha2();
+      break;
+    case "fecha2":
+      validarCampo(expresiones.fecha, e.target, "fecha2");
+      validarfecha2();
       break;
   }
 };
@@ -40,6 +57,25 @@ const validarCampo = (expresion, input, campo) => {
   }
 };
 
+const validarfecha2 = () => {
+  const inputFecha1 = document.getElementById("fecha1");
+  const inputFecha2 = document.getElementById("fecha2");
+
+  if (inputFecha1.value <= inputFecha2.value) {
+    document.getElementById(`fecha2`).classList.remove("form-control-error");
+    document
+      .querySelector(`#grupo__fecha2 .formulario__input-error`)
+      .classList.remove("formulario__input-error-activo");
+    campos["fecha2"] = true;
+  } else {
+    document.getElementById(`fecha2`).classList.add("form-control-error");
+    document
+      .querySelector(`#grupo__fecha2 .formulario__input-error`)
+      .classList.add("formulario__input-error-activo");
+    campos["fecha2"] = false;
+  }
+};
+
 inputs.forEach((input) => {
   input.addEventListener("keyup", validarFormulario);
   input.addEventListener("blur", validarFormulario);
@@ -53,19 +89,23 @@ selects.forEach((select) => {
 filter.addEventListener("click", (e) => {
   e.preventDefault();
 
-  if (campos.cuenta && campos.divisa) {
-    const cuenta = document.getElementById("cuenta").value;
+  if (campos.estado && campos.divisa && campos.fecha1 && campos.fecha2) {
+    const estado = document.getElementById("estado").value;
     const divisa = document.getElementById("divisa").value;
+    const fecha1 = document.getElementById("fecha1").value;
+    const fecha2 = document.getElementById("fecha2").value;
 
     let content = document.getElementById("content");
     let data = {
-      action: "report_total",
-      cuenta: cuenta,
+      action: "report_diary",
+      estado: estado,
       divisa: divisa,
+      fecha1: fecha1,
+      fecha2: fecha2,
     };
     console.log(data);
 
-    fetch("/accountly/server/controllers/controllerReportTotal.php", {
+    fetch("/accountly/server/controllers/controllerReportDiary.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json; charset=utf-8",
@@ -76,13 +116,7 @@ filter.addEventListener("click", (e) => {
       .then((dat) => {
         console.log(dat);
         content.innerHTML = dat.data;
-        chart.updateOptions({
-          series: dat.chart.amounts,
-          labels: dat.chart.accounts,
-        });
       });
-    // campos.cuenta = false;
-    // campos.divisa = false;
   } else {
     Object.keys(campos).forEach((campo) => {
       if (!campos[campo]) {

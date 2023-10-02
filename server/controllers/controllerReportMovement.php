@@ -25,7 +25,7 @@ if (isset($_POST)) {
                 default:
                     $tiempo = "1 DAY";
             }
-            $columns = ['id_transaction', 'transaction.type', 'reason.name_reason', 'transaction.id_account', 'badge.name_badge', 'account.name_account', 'id_user', 'transaction.amount', 'date', 'description'];
+            $columns = ['id_transaction', 'transaction.type', 'reason.name_reason', 'transaction.id_account', 'badge.name_badge', 'account.name_account', 'account.id_user', 'transaction.amount', 'date', 'description', 'nickname'];
 
             /* Nombre de la tabla */
             $table = "transaction";
@@ -33,11 +33,12 @@ if (isset($_POST)) {
             $id = 'id_transaction';
 
             /* Filtrado */
-            $where = 'WHERE id_user=' . $id_user . ' and date BETWEEN DATE_SUB(curdate(),INTERVAL '. $tiempo . ') AND curdate()';
+            $where = 'WHERE ' . $id_user_where . ' and date BETWEEN DATE_SUB(curdate(),INTERVAL '. $tiempo . ') AND curdate()';
 
 
             /* Consulta */
-            $sql = "SELECT SQL_CALC_FOUND_ROWS " . implode(", ", $columns) . " FROM $table INNER JOIN account on transaction.id_account=account.id_account INNER JOIN badge on badge.id_badge=transaction.id_badge INNER JOIN reason on reason.id_reason=transaction.id_reason $where ORDER BY date DESC";
+            $sql = "SELECT SQL_CALC_FOUND_ROWS " . implode(", ", $columns) . " FROM $table INNER JOIN account on transaction.id_account=account.id_account INNER JOIN badge on badge.id_badge=transaction.id_badge INNER JOIN reason on reason.id_reason=transaction.id_reason  INNER JOIN user on user.id_user=account.id_user
+            $where ORDER BY date DESC";
             $resultado = $conn->query($sql);
             $num_rows = $resultado->num_rows;
 
@@ -48,6 +49,7 @@ if (isset($_POST)) {
             if ($num_rows > 0) {
                 while ($row = $resultado->fetch_assoc()) {
                     $output['data'] .= '<tr>';
+                    ($type_user=="administrador") ? ($output['data'] .= '<td class="table-plus">' . $row['nickname'] . '</td>') : ($output['data'] .='');
                     // $output['data'] .= '<td>' . $row['id_account'] . '</td>';
                     $output['data'] .= '<td>' . $row['name_badge'] . '</td>';
                     $output['data'] .= '<td class="count' . $row['type'] . '">' . $row['amount'] . '</td>';
@@ -58,6 +60,8 @@ if (isset($_POST)) {
                     $output['data'] .= '</tr>';
                 }
             }
+
+            $output['chart'] = Rest::getMovements($id_user_where, $tiempo);
 
             echo json_encode($output, JSON_UNESCAPED_UNICODE);
             break;

@@ -15,7 +15,7 @@ require('./src/views/left-sidebar.php');
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
                         <div class="title">
-                            <h4>Filtrar transacciones</h4>
+                            <h4>Reporte de transacciones</h4>
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
@@ -23,7 +23,7 @@ require('./src/views/left-sidebar.php');
                                     <a href="index.php">Principal</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    Filtrar transacciones
+                                    Reporte de transacciones
                                 </li>
                             </ol>
                         </nav>
@@ -122,6 +122,7 @@ require('./src/views/left-sidebar.php');
                 <table class="table table-striped">
                     <thead>
                         <tr>
+                            <?php echo ($type_user == "administrador") ? "<th>Usuario</th>" : ""; ?>
                             <th scope="col">Divisa</th>
                             <th scope="col">Monto</th>
                             <th scope="col">Descripcion</th>
@@ -151,8 +152,8 @@ require('./src/views/left-sidebar.php');
     /* Peticion AJAX */
     function getData() {
         let content = document.getElementById("content")
-        
-        let url = "src/tables/loadFilterTransactions.php"
+
+        let url = "src/tables/loadReportTransactions.php"
         let formaData = new FormData()
         fetch(url, {
                 method: "POST",

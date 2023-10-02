@@ -42,6 +42,7 @@
                     <table class="data-table table stripe hover nowrap">
                         <thead>
                             <tr>
+                                <?php echo ($type_user=="administrador") ? "<th>Usuario</th>": ""; ?>
                                 <th class="table-plus">Cuenta</th>
                                 <th>Saldo</th>
                                 <th class="datatable-nosort">Action</th>

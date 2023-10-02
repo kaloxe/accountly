@@ -3,7 +3,7 @@ require("/xampp/htdocs/accountly/server/session/session.php");
 require("/xampp/htdocs/accountly/server/db/db.php");
 
 /* Un arreglo de las columnas a mostrar en la tabla */
-$columns = ['id_account', 'account.id_user', 'name_account'];
+$columns = ['id_account', 'account.id_user', 'name_account', 'nickname'];
 
 /* Nombre de la tabla */
 $table = "account";
@@ -43,6 +43,7 @@ $output['data'] = '';
 if ($num_rows > 0) {
     while ($row = $resultado->fetch_assoc()) {
         $output['data'] .= '<tr>';
+        ($type_user=="administrador") ? ($output['data'] .= '<td class="table-plus">' . $row['nickname'] . '</td>') : ($output['data'] .='');
         $output['data'] .= '<td class="table-plus">' . $row['name_account'] . '</td>';
         $output['data'] .= '<td>' . getBadges($row['id_account']) . '</td>';
         $output['data'] .= '

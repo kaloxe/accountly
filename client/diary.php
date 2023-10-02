@@ -49,6 +49,7 @@ require('./src/views/left-sidebar.php');
                         <table class="data-table table nowrap">
                             <thead>
                                 <tr>
+                                    <?php echo ($type_user=="administrador") ? "<th>Usuario</th>": ""; ?>
                                     <th class="table-plus">Fecha</th>
                                     <th>Descripcion</th>
                                     <th>Divisa</th>
@@ -88,13 +89,13 @@ require('./src/views/left-sidebar.php');
                 </div>
 
                 <!-- Create modal -->
-                <?php require('./src/modals/dairy/create-modal.php') ?>
+                <?php require('./src/modals/diary/create-modal.php') ?>
 
                 <!-- Edit modal -->
-                <?php require('./src/modals/dairy/update-modal.php') ?>
+                <?php require('./src/modals/diary/update-modal.php') ?>
 
                 <!-- Delete modal -->
-                <?php require('./src/modals/dairy/delete-modal.php') ?>
+                <?php require('./src/modals/diary/delete-modal.php') ?>
 
             </div>
         </div>
@@ -187,8 +188,8 @@ require('./src/views/left-sidebar.php');
     }
 </script>
 
-<script src="./src/js/validate-create-dairy.js"></script>
-<script src="./src/js/validate-edit-dairy.js"></script>
+<script src="./src/js/validate-create-diary.js"></script>
+<script src="./src/js/validate-edit-diary.js"></script>
 <?php require('./src/views/scripts.php'); ?>
 <script src="src/plugins/apexcharts/apexcharts.min.js"></script>
 <script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>

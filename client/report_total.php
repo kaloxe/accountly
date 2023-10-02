@@ -64,6 +64,7 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
+                                    <?php echo ($type_user == "administrador") ? "<th>Usuario</th>" : ""; ?>
                                     <th scope="col">Cuenta</th>
                                     <th scope="col">Saldo</th>
                                 </tr>
@@ -102,34 +103,9 @@
                 method: "POST",
                 body: formaData
             }).then(response => response.json())
-            .then(data => {
-                console.log(data);
-                console.log(data.data);
-                console.log(data.badges);
-                console.log(data.amounts);
-                content.innerHTML = data.data;
-
-                let options8 = {
-                    series: data.amounts,
-                    chart: {
-                        type: 'pie',
-                    },
-                    labels: data.badges,
-                    responsive: [{
-                        breakpoint: 480,
-                        options: {
-                            chart: {
-                                width: 200
-                            },
-                            legend: {
-                                position: 'bottom'
-                            }
-                        }
-                    }]
-                };
-                let chart = new ApexCharts(document.querySelector("#chartTotal"), options8);
-                chart.render();
-                
+            .then(dat => {
+                console.log(dat);
+                content.innerHTML = dat.data;
             }).catch(err => console.log(err))
     }
 
@@ -142,9 +118,9 @@
                 method: "POST",
                 body: formaData
             }).then(response => response.json())
-            .then(data => {
-                cuenta.innerHTML = data.accounts
-                divisa.innerHTML = data.badges
+            .then(dat => {
+                cuenta.innerHTML = dat.accounts
+                divisa.innerHTML = dat.badges
             }).catch(err => console.log(err))
     }
 </script>
@@ -152,5 +128,5 @@
 <?php require('./src/views/scripts.php'); ?>
 <!-- ApexChart -->
 <script src="src/plugins/apexcharts/apexcharts.min.js"></script>
-<script src="vendors/scripts/apexcharts-setting.js"></script>
+<script src="./src/js/report-total-chart.js"></script>
 <?php require('./src/views/footer.php'); ?>

@@ -55,15 +55,15 @@ var options = {
 			}
 		}
 	},
-	yaxis: {
-		min: 0,
-		max: 55,
-		labels:{
-			style:{
-				colors: '#8c9094'
-			}
-		}
-	},
+	// yaxis: {
+	// 	min: 0,
+	// 	max: 55,
+	// 	labels:{
+	// 		style:{
+	// 			colors: '#8c9094'
+	// 		}
+	// 	}
+	// },
 	legend: {
 		position: 'top',
 		horizontalAlign: 'right',

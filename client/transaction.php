@@ -48,6 +48,7 @@ require('./src/views/left-sidebar.php');
                     <table class="data-table table stripe hover nowrap">
                         <thead>
                             <tr>
+                                <?php echo ($type_user == "administrador") ? "<th>Usuario</th>" : ""; ?>
                                 <th class="sort asc">Divisa</th>
                                 <th class="sort asc">Monto</th>
                                 <th class="sort asc">Razon</th>
@@ -66,8 +67,8 @@ require('./src/views/left-sidebar.php');
             <!-- Create modal -->
             <?php require('./src/modals/transaction/create-modal.php') ?>
 
-             <!-- Transfer modal -->
-             <?php require('./src/modals/transaction/transfer-modal.php') ?>
+            <!-- Transfer modal -->
+            <?php require('./src/modals/transaction/transfer-modal.php') ?>
 
             <!-- Edit modal -->
             <?php require('./src/modals/transaction/update-modal.php') ?>

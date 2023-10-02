@@ -13,7 +13,7 @@ if (isset($_POST)) {
             $divisa = (($user['divisa'] == "all") ? 1 : ('transaction.id_badge=' . $user['divisa'] . ''));
 
             /* Un arreglo de las columnas a mostrar en la tabla */
-            $columns = ['id_account', 'id_user', 'name_account'];
+            $columns = ['id_account', 'account.id_user', 'name_account', 'nickname'];
 
             /* Nombre de la tabla */
             $table = "account";
@@ -21,18 +21,21 @@ if (isset($_POST)) {
             $id = 'id_account';
 
             /* Filtrado */
-            $where = 'WHERE id_user=' . $id_user . ' AND ' . $cuentaC . '';
+            $where = 'WHERE ' . $id_user_where . ' AND ' . $cuentaC . '';
 
             /* Consulta */
-            $sql = "SELECT SQL_CALC_FOUND_ROWS " . implode(", ", $columns) . " FROM $table $where";
+            $sql = "SELECT SQL_CALC_FOUND_ROWS " . implode(", ", $columns) . " 
+            FROM $table INNER JOIN user on user.id_user=account.id_user $where";
             $resultado = $conn->query($sql);
             $num_rows = $resultado->num_rows;
 
             // totales
-            function getTotal($badge)
+            function getTotal($type_user, $id_user, $badge)
             {
                 require("/xampp/htdocs/accountly/server/db/db.php");
-                $sqlTotal = "SELECT name_badge, (ifnull((SELECT SUM(transaction.amount) FROM transaction WHERE  badge.id_badge=transaction.id_badge and transaction.type=1),0)- ifnull((SELECT SUM(transaction.amount) FROM transaction WHERE badge.id_badge=transaction.id_badge and transaction.type=0),0)) as subtotal FROM account INNER JOIN transaction on account.id_account=transaction.id_account INNER JOIN badge on transaction.id_badge=badge.id_badge WHERE " . $badge . " GROUP BY badge.id_badge";
+                $user_where = $type_user == "administrador" ? 1 : "account.id_user=$id_user";
+                $sqlTotal = "SELECT name_badge, value, (ifnull((SELECT SUM(transaction.amount) FROM transaction INNER JOIN account on account.id_account=transaction.id_account WHERE $user_where and badge.id_badge=transaction.id_badge and transaction.type=1),0)-ifnull((SELECT SUM(transaction.amount) FROM transaction INNER JOIN account on account.id_account=transaction.id_account WHERE $user_where and badge.id_badge=transaction.id_badge and transaction.type=0),0)) as subtotal FROM transaction INNER JOIN account on account.id_account=transaction.id_account INNER JOIN user on user.id_user=account.id_user INNER JOIN badge on transaction.id_badge=badge.id_badge WHERE $user_where and $badge GROUP BY badge.id_badge";
+                //$sqlTotal = "SELECT name_badge, (ifnull((SELECT SUM(transaction.amount) FROM transaction WHERE  badge.id_badge=transaction.id_badge and transaction.type=1),0)- ifnull((SELECT SUM(transaction.amount) FROM transaction WHERE badge.id_badge=transaction.id_badge and transaction.type=0),0)) as subtotal FROM account INNER JOIN transaction on account.id_account=transaction.id_account INNER JOIN badge on transaction.id_badge=badge.id_badge WHERE 1 GROUP BY badge.id_badge";
                 $total = $conn->query($sqlTotal);
                 $num_rowsTotal = $total->num_rows;
                 $outputTotal = '';
@@ -48,7 +51,8 @@ if (isset($_POST)) {
             function getBadges($id, $badge)
             {
                 require("/xampp/htdocs/accountly/server/db/db.php");
-                $sql1 = "SELECT name_badge, (ifnull((SELECT SUM(transaction.amount) FROM transaction WHERE transaction.id_account=$id and badge.id_badge=transaction.id_badge and transaction.type=1),0)- ifnull((SELECT SUM(transaction.amount) FROM transaction WHERE transaction.id_account=$id and badge.id_badge=transaction.id_badge and transaction.type=0),0)) as subtotal FROM account INNER JOIN transaction on account.id_account=transaction.id_account INNER JOIN badge on transaction.id_badge=badge.id_badge WHERE transaction.id_account=$id and " . $badge . " GROUP BY badge.id_badge";
+                $sql1 = "SELECT name_account, name_badge, value, (ifnull((SELECT SUM(transaction.amount) FROM transaction INNER JOIN account on account.id_account=transaction.id_account WHERE transaction.id_account=$id and badge.id_badge=transaction.id_badge and transaction.type=1 and 1 and 1),0) - ifnull((SELECT SUM(transaction.amount) FROM transaction INNER JOIN account on account.id_account=transaction.id_account WHERE transaction.id_account=$id and badge.id_badge=transaction.id_badge and transaction.type=0 and 1 and 1),0)) as subtotal FROM transaction INNER JOIN account on account.id_account=transaction.id_account INNER JOIN user on user.id_user=account.id_user INNER JOIN badge on transaction.id_badge=badge.id_badge WHERE $badge and transaction.id_account=$id GROUP BY badge.id_badge";
+                //$sql1 = "SELECT name_badge, (ifnull((SELECT SUM(transaction.amount) FROM transaction WHERE transaction.id_account=$id and badge.id_badge=transaction.id_badge and transaction.type=1),0)- ifnull((SELECT SUM(transaction.amount) FROM transaction WHERE transaction.id_account=$id and badge.id_badge=transaction.id_badge and transaction.type=0),0)) as subtotal FROM account INNER JOIN transaction on account.id_account=transaction.id_account INNER JOIN badge on transaction.id_badge=badge.id_badge WHERE transaction.id_account=$id GROUP BY badge.id_badge";
                 $resultado1 = $conn->query($sql1);
                 $num_rows1 = $resultado1->num_rows;
                 $output1 = '';
@@ -67,6 +71,7 @@ if (isset($_POST)) {
             if ($num_rows > 0) {
                 while ($row = $resultado->fetch_assoc()) {
                     $output['data'] .= '<tr>';
+                    ($type_user == "administrador") ? ($output['data'] .= '<td class="table-plus">' . $row['nickname'] . '</td>') : ($output['data'] .= '');
                     $output['data'] .= '<td scope="row" class="table-plus">' . $row['name_account'] . '</td>';
                     $output['data'] .= '<td>' . getBadges($row['id_account'], $divisa) . '</td>';
                     $output['data'] .= '</tr>';
@@ -75,12 +80,12 @@ if (isset($_POST)) {
             if ($cuentaC == 1) {
                 $output['data'] .= '<tr>';
                 $output['data'] .= '<th>Total</th>';
-                $output['data'] .= '<th>' . getTotal($divisa) . '</th>';
+                ($type_user == "administrador") ? ($output['data'] .= '<th></th>') : ($output['data'] .= '');
+                $output['data'] .= '<th>' . getTotal($type_user, $id_user, $divisa) . '</th>';
                 $output['data'] .= '</tr>';
             }
 
-            $output['badges'] = ["Hola", "Papantra", "Maicra", "Pana", "Coso"];
-            $output['amounts'] = [50, 70, 40, 80, 30];
+            $output['chart'] = Rest::getTotals($id_user_where, $cuentaC, $divisa);
 
             echo json_encode($output, JSON_UNESCAPED_UNICODE);
             break;

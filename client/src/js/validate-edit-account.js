@@ -7,6 +7,7 @@ function openUpdateModal(id) {
   index = {
     action: "read_account",
     id: id,
+    user_id: null
   };
   fetch("/accountly/server/controllers/controllerAccount.php", {
     method: "POST",
@@ -17,6 +18,9 @@ function openUpdateModal(id) {
   })
     .then((res) => res.json())
     .then((dat) => {
+      console.log(dat);
+      index.user_id=dat.user_id;
+      console.log(index);
       document.getElementById("nombre_update").value = dat.name_account;
     });
 }
@@ -62,6 +66,7 @@ update.addEventListener("click", (e) => {
     let data = {
       action: "update_account",
       id: index.id,
+      user_id: index.user_id,
       nombre: nombre,
     };
     fetch("/accountly/server/controllers/controllerAccount.php", {
@@ -95,15 +100,6 @@ update.addEventListener("click", (e) => {
           }, 5000);
         }
       });
-
-    document
-      .getElementById("formulario__mensaje-exito_update")
-      .classList.add("formulario__mensaje-exito-activo");
-    setTimeout(() => {
-      document
-        .getElementById("formulario__mensaje-exito_update")
-        .classList.remove("formulario__mensaje-exito-activo");
-    }, 5000);
   } else {
     Object.keys(campos_update).forEach((campo) => {
       if (!campos_update[campo]) {

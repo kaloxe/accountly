@@ -46,7 +46,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="dairy.php" class="dropdown-toggle no-arrow">
+                    <a href="diary.php" class="dropdown-toggle no-arrow">
                         <span class="micon bi bi-calendar4-week"></span><span class="mtext">Agenda</span>
                     </a>
                 </li>
@@ -85,8 +85,8 @@
                     </a>
                     <ul class="submenu">
                         <li><a href="report_total.php">Reporte de totales</a></li>
-                        <li><a href="report_transaction.php">Filtrar transacciones</a></li>
-                        <li><a href="report_badge.php">Conversion a divisas</a></li>
+                        <li><a href="report_transaction.php">Reporte de transacciones</a></li>
+                        <li><a href="report_diary.php">Reporte de eventos</a></li>
                         <li><a href="report_movement.php">Reporte de movimientos</a></li>
                         <?php
                         switch ($type_user) {

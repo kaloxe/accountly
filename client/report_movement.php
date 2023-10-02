@@ -59,6 +59,7 @@ require('./src/views/left-sidebar.php');
                 <table class="table table-striped">
                     <thead>
                         <tr>
+                            <?php echo ($type_user == "administrador") ? "<th>Usuario</th>" : ""; ?>
                             <th scope="col">Divisa</th>
                             <th scope="col">Monto</th>
                             <th scope="col">Descripcion</th>
@@ -88,22 +89,22 @@ require('./src/views/left-sidebar.php');
 
 <script>
     /* Llamando a la función getData() */
-    getData()
+    // getData()
 
-    /* Peticion AJAX */
-    function getData() {
-        let content = document.getElementById("content")
+    // /* Peticion AJAX */
+    // function getData() {
+    //     let content = document.getElementById("content")
 
-        let url = "src/tables/loadReportMovements.php"
-        let formaData = new FormData()
-        fetch(url, {
-                method: "POST",
-                body: formaData
-            }).then(response => response.json())
-            .then(data => {
-                content.innerHTML = data.data
-            }).catch(err => console.log(err))
-    }
+    //     let url = "src/tables/loadReportMovements.php"
+    //     let formaData = new FormData()
+    //     fetch(url, {
+    //             method: "POST",
+    //             body: formaData
+    //         }).then(response => response.json())
+    //         .then(data => {
+    //             content.innerHTML = data.data
+    //         }).catch(err => console.log(err))
+    // }
 </script>
 
 <script src="./src/js/validate-report-movement.js"></script>
@@ -124,6 +125,6 @@ require('./src/views/left-sidebar.php');
 <script src="vendors/scripts/datatable-setting.js"></script>
 <!-- ApexChart -->
 <script src="src/plugins/apexcharts/apexcharts.min.js"></script>
-<script src="vendors/scripts/apexcharts-setting.js"></script>
+<script src="./src/js/report-movement-chart.js"></script>
 
 <?php require('./src/views/footer.php'); ?>

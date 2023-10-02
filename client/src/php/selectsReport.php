@@ -4,7 +4,7 @@ require("/xampp/htdocs/accountly/server/session/session.php");
 require("/xampp/htdocs/accountly/server/models/class_rest.php");
 require("/xampp/htdocs/accountly/server/db/db.php");
 
-$dataAccounts = Rest::readAccounts($id_user);
+$dataAccounts = Rest::readAccounts($id_user_where);
 $dataBadges = Rest::readBadges();
 $dataReasons = Rest::readReasons();
 $dataUsers = Rest::readUsers();
@@ -18,7 +18,7 @@ $select['users'] = '<option value="all">Todos</option>';
 $select['types'] = '<option value="all">Todos</option>';
 
 foreach ($dataAccounts as $account) {
-    $select['accounts'] .= '<option value="' . $account['id_account'] . '">' . $account['name_account'] . '</option>';
+    $select['accounts'] .= '<option value="' . $account['id_account'] . '">' . (($type_user=="administrador") ? ('' . $account['nickname'] . ' ') : "") . $account['name_account'] . '</option>';
 }
 
 foreach ($dataBadges as $badge) {

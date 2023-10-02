@@ -14,7 +14,7 @@
             <div class="modal-content">
                 <form id="formulario_create">
                     <div class="modal-body">
-                        <h4 class="text-blue h4 mb-10">Crear</h4>
+                        <h4 class="text-blue h4 mb-10">Crear nuevo usuario</h4>
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label">Correo*</label>
                             <div class="col-sm-8" id="grupo__correo_create">

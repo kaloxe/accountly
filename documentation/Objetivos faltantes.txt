@@ -1,16 +1,10 @@
-Implementar funcionar los graficos con los datos de la base MySQL
-Implementar pagina principal
-Implementar reportes (x1)
+Retoques a reportes
+Implementar notificaciones
+Hacer que los reportes impriman
+Hacer que calendario liste los eventos en los cuadros
+Cambiar nombres en los plugins (calendario)
 
 Mejorar las vistas de los modulos
-Implementar autenticacion para los modulos segun el tipo de usuario
-Implementar notificaciones
 Arreglar las datatables para que los numeros sean tambien dinamicos
-
-Cambiar nombres en los plugins (calendario)
-Hacer que los reportes impriman
 Implementar modo oscuro y modo claro
-Hacer que calendario liste los eventos en los cuadros
-
-Desplegar base de datos en la nube
 Desplegar aplicacion en la nube

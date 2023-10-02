@@ -48,18 +48,14 @@ selects.forEach((select) => {
 filter.addEventListener("click", (e) => {
   e.preventDefault();
 
-  if (
-    campos.tiempo
-  ) {
+  if (campos.tiempo) {
     const tiempo = document.getElementById("tiempo").value;
-
     let content = document.getElementById("content");
     let data = {
       action: "report_movement",
       tiempo: tiempo,
     };
-    console.log(data);
-    
+
     fetch("/accountly/server/controllers/controllerReportMovement.php", {
       method: "POST",
       headers: {
@@ -70,7 +66,25 @@ filter.addEventListener("click", (e) => {
       .then((res) => res.json())
       .then((dat) => {
         console.log(dat);
+        console.log(dat.chart);
         content.innerHTML = dat.data;
+        
+        chart.updateOptions({
+          series: [
+            {
+              name: "Ingresos",
+              data: dat.chart["incomes"],
+            },
+            {
+              name: "Egresos",
+              data: dat.chart["becomes"],
+            },
+          ],
+          xaxis: {
+            type: "date",
+            categories: dat.chart["dates"],
+          },
+        });
       });
   } else {
     Object.keys(campos).forEach((campo) => {

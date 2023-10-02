@@ -5,6 +5,15 @@
 <?php require('./src/views/header.php'); ?>
 <?php require('./src/views/right-sidebar.php'); ?>
 <?php require('./src/views/left-sidebar.php'); ?>
+<?php
+include('/xampp/htdocs/accountly/server/simplehtmldom/simple_html_dom.php');
+// Carga la página web que deseas analizar
+$html = file_get_html('https://www.bancaynegocios.com');
+//echo file_get_html('https://www.bcv.org.ve');
+
+// Encuentra el título de la página web
+$valorDolar = $html->find('.iedv tbody tr td', 2)->plaintext;
+?>
 
 <div class="main-container">
     <div class="xs-pd-20-10 pd-ltr-20">
@@ -18,26 +27,13 @@
                     <div class="d-flex flex-wrap justify-content-between align-items-center pb-0 pb-md-2">
                         <div class="h5 mb-md-0">Movimientos recientes</div>
                     </div>
-                    <div class="d-flex justify-content-center align-items-center" id="activities-chart"></div>
+                    <div class="d-flex justify-content-center align-items-center" id="movimientos-recientes"></div>
                 </div>
             </div>
+
             <div class="col-md-4 mb-20">
-                <div class="card-box min-height-150px pd-20 mb-20" data-bgcolor="#455a64">
-                    <div class="d-flex justify-content-between pb-20 text-white">
-                        <div class="icon h1 text-white">
-                            <i class="fa fa-calendar mr-3" aria-hidden="true"></i>
-                        </div>
-                        <div class="font-14 text-right">
-                            <div>30/09/2023</div>
-                            <div class="font-12 text-right">Se me daño el antiguo telefono, por eso necesito uno nuevo.</div>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-end">
-                        <div class="text-white">
-                            <div class="font-14">Comprar telefono</div>
-                            <div class="font-24 weight-500">150 Dolares</div>
-                        </div>
-                    </div>
+                <div class="card-box min-height-150px pd-20 mb-20" data-bgcolor="#455a64" id="next-event">
+                    
                 </div>
                 <div class="card-box min-height-150px pd-20" data-bgcolor="#265ed7">
                     <div class="d-flex justify-content-between pb-20 text-white">
@@ -46,13 +42,13 @@
                         </div>
                         <div class="font-14 text-right">
                             <div>Dolar hoy</div>
-                            <div class="font-12">24/09/2023</div>
+                            <div class="font-12"><?php echo date('d/m/y'); ?></div>
                         </div>
                     </div>
                     <div class="d-flex justify-content-between align-items-end">
                         <div class="text-white">
                             <div class="font-14">Precio del dolar segun BCV</div>
-                            <div class="font-24 weight-500">33.3333</div>
+                            <div class="font-24 weight-500"><?php echo $valorDolar; ?></div>
                         </div>
                     </div>
                 </div>
@@ -99,7 +95,7 @@
                         <th scope="col">Divisa</th>
                         <th scope="col">Monto</th>
                         <th scope="col">Cuenta</th>
-                        <th scope="col">Razon</th>  
+                        <th scope="col">Razon</th>
                         <th scope="col">Fecha</th>
                     </tr>
                 </thead>
@@ -123,7 +119,6 @@
     /* Peticion AJAX */
     function getData() {
         let content = document.getElementById("content")
-
         let url = "src/tables/loadLastTransactions.php"
         let formaData = new FormData()
         fetch(url, {
@@ -133,6 +128,17 @@
             .then(data => {
                 content.innerHTML = data.data
             }).catch(err => console.log(err))
+
+        let event = document.getElementById("next-event")
+        let urlEvent = "src/tables/loadIndex.php"
+        let formaDataEvent = new FormData()
+        fetch(urlEvent, {
+                method: "POST",
+                body: formaDataEvent
+            }).then(response => response.json())
+            .then(data => {
+                event.innerHTML = data.data
+            }).catch(err => console.log(err))
     }
 </script>
 <?php require('./src/views/scripts.php'); ?>
@@ -141,5 +147,6 @@
 <script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
 <script src="src/plugins/datatables/js/dataTables.responsive.min.js"></script>
 <script src="src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
-<script src="vendors/scripts/dashboard3.js"></script>
+<!-- <script src="vendors/scripts/dashboard3.js"></script> -->
+<script src="./src/js/index-chart.js"></script>
 <?php require('./src/views/footer.php'); ?>
