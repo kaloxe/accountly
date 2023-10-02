@@ -63,7 +63,6 @@ filter.addEventListener("click", (e) => {
       cuenta: cuenta,
       divisa: divisa,
     };
-    console.log(data);
 
     fetch("/accountly/server/controllers/controllerReportTotal.php", {
       method: "POST",

@@ -1,7 +1,6 @@
-Retoques a reportes
 Implementar notificaciones
 Hacer que los reportes impriman
-Hacer que calendario liste los eventos en los cuadros
+Hacer calendario dinamico
 Cambiar nombres en los plugins (calendario)
 
 Mejorar las vistas de los modulos

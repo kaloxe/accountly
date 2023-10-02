@@ -148,6 +148,21 @@ create.addEventListener("click", (e) => {
           campos_create.divisa_create = false;
           campos_create.fecha_create = false;
           formulario_create.reset();
+          fetch("/accountly/server/controllers/controllerDiary.php", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json; charset=utf-8",
+            },
+            body: JSON.stringify({
+              action: "get_events",
+            }),
+          })
+            .then((res) => res.json())
+            .then((dat) => {
+              console.log(dat);
+              events = dat;
+
+            });
         } else {
           document
             .getElementById("formulario__mensaje_validacion_create")

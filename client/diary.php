@@ -80,8 +80,8 @@ require('./src/views/left-sidebar.php');
                                 <div class="event-body"></div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">
-                                    Close
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                    Cerrar
                                 </button>
                             </div>
                         </div>
@@ -196,7 +196,7 @@ require('./src/views/left-sidebar.php');
 <script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
 <script src="src/plugins/datatables/js/dataTables.responsive.min.js"></script>
 <script src="src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
-<script src="vendors/scripts/dashboard3.js"></script>
+<script src="vendors/scripts/dashboard3-datatable.js"></script>
 <script src="src/plugins/fullcalendar/fullcalendar.min.js"></script>
 <script src="vendors/scripts/calendar-setting.js"></script>
 <?php require('./src/views/footer.php'); ?>

@@ -3900,6 +3900,15 @@ body.IE .register-page-wrap .container {
 .fc-view-container tr:first-child > td > .fc-day-grid-event {
   background: #1b00ff;
 }
+.fc-view-container tr:first-child > td > .fc-bg-red {
+  background: red !important;
+}
+.fc-view-container tr:first-child > td > .fc-bg-green {
+  background: green !important;
+}
+.fc-view-container tr:first-child > td > .fc-bg-gray {
+  background: gray !important;
+}
 .fc-today.alert-info {
   background: #e0deef;
 }

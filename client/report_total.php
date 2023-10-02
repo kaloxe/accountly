@@ -92,22 +92,22 @@
 </div>
 
 <script>
-    getData()
-    /* Peticion AJAX */
-    function getData() {
-        let content = document.getElementById("content")
+    // getData()
+    // /* Peticion AJAX */
+    // function getData() {
+    //     let content = document.getElementById("content")
 
-        let url = "src/tables/loadReportTotal.php"
-        let formaData = new FormData()
-        fetch(url, {
-                method: "POST",
-                body: formaData
-            }).then(response => response.json())
-            .then(dat => {
-                console.log(dat);
-                content.innerHTML = dat.data;
-            }).catch(err => console.log(err))
-    }
+    //     let url = "src/tables/loadReportTotal.php"
+    //     let formaData = new FormData()
+    //     fetch(url, {
+    //             method: "POST",
+    //             body: formaData
+    //         }).then(response => response.json())
+    //         .then(dat => {
+    //             console.log(dat);
+    //             content.innerHTML = dat.data;
+    //         }).catch(err => console.log(err))
+    // }
 
     getSelects()
 

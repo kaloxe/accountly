@@ -16,13 +16,16 @@ if (isset($_POST)) {
             $sql = "INSERT INTO `date`(`date`) VALUES ('$fecha')";
             $sql1 = "INSERT INTO `diary`(`id_user`, `id_badge`, `id_date`, `description`, `amount`, `type`, `state_register`) VALUES ($id_user, $divisa, (SELECT MAX(date.id_date) AS id_date FROM date), '$descripcion', $monto, $movimiento, 1)";
             Rest::binnacle($id_user, "Creacion de evento para el $fecha");
-            Rest::execute($sql); 
+            Rest::execute($sql);
             echo Rest::execute($sql1);
             break;
         case "read_diary":
             $id = $user['id'];
             $sql = "SELECT `id_diary`, `type`, `id_badge`, `amount`, `date`, `description` FROM `diary` INNER JOIN `date` on `date`.`id_date`=`diary`.`id_date` WHERE `id_diary`=$id";
             echo Rest::readDiary($sql);
+            break;
+        case "get_events":
+            echo json_encode(Rest::getEvents($id_user_where));
             break;
         case "update_diary":
             $id = $user["id"];

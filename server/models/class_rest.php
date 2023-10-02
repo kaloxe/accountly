@@ -449,6 +449,41 @@ class Rest extends database
     }
   }
 
+  public static function getEvents($id_where)
+  {
+    try {
+      $events = [];
+      $conn = new database();
+
+      $sql = "SELECT * FROM diary INNER JOIN user on user.id_user=diary.id_user INNER JOIN badge on badge.id_badge=diary.id_badge INNER JOIN date on date.id_date=diary.id_date WHERE $id_where";
+      $result = $conn->openSQL()->query($sql);
+      $num_rows = $result->num_rows;
+
+      if ($num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+          $array = array(
+            'title' => "".$row['description']."",
+            'description' => "".$row['amount']." ". $row['name_badge'] ."",
+            'start' => $row['date'],
+            'end' => $row['date'],
+            //'className' => "fc-bg-default",
+            'className' => ($row['state_register'] ? ($row['type'] ? "fc-bg-green" : "fc-bg-red") : "fc-bg-gray"),
+            'icon' => ($row['type'] ? "arrow-up" : "arrow-down"),
+          );
+          array_unshift($events, $array);
+        }
+      }
+      return $events;
+    } catch (Exception $e) {
+      $errorMessage = 'Ha habido una excepción: ' . $e->getMessage() . '';
+      $array = array(
+        'state' => false,
+        'message' => $errorMessage
+      );
+      return $array;
+    }
+  }
+
   public static function readGoalComplete($sql)
   {
     $conn = new database();
