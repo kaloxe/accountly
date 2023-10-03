@@ -48,46 +48,8 @@
             </div>
         </div>
         <div class="user-notification">
-            <div class="dropdown">
-                <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
-                    <i class="icon-copy dw dw-notification"></i>
-                    <span class="badge notification-active"></span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <div class="notification-list mx-h-350 customscroll">
-                        <ul>
-                            <li>
-                                <a href="#">
-                                    <img src="vendors/images/perfil.avif" alt="" />
-                                    <h3>Ultimo inicio de session</h3>
-                                    <p>
-                                        Ultimo inicio de session
-                                    </p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="vendors/images/calendar.jpg" alt="" />
-                                    <h3>Evento proximo</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                                        elit, sed...
-                                    </p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="vendors/images/flags.jpg" alt="" />
-                                    <h3>Activos suficientes para meta</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                                        elit, sed...
-                                    </p>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="dropdown" id="notifications">
+                
             </div>
         </div>
         <div class="user-info-dropdown">
@@ -106,3 +68,4 @@
         </div>
     </div>
 </div>
+<script src="./src/js/notifications.js"></script>

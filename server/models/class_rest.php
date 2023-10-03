@@ -449,6 +449,73 @@ class Rest extends database
     }
   }
 
+  public static function getNotifications($user_id)
+  {
+    try {
+      $notifications = [];
+      $conn = new database();
+
+      $sql1 = "SELECT * FROM `binnacle` WHERE movement LIKE '%Ingreso de usuario%' and id_user=$user_id ORDER BY datetime DESC LIMIT 1, 1";
+      $result1 = $conn->openSQL()->query($sql1);
+      $num_rows1 = $result1->num_rows;
+      if ($num_rows1 > 0) {
+        while ($row1 = $result1->fetch_assoc()) {
+          array_push($notifications, array(
+            'type' => "last-session",
+            'title' => "Ultimo inicio de session",
+            'description' => "Entrada anterior " . date("d/m/Y H:i:s", strtotime($row1['datetime'])) . "",
+          ));
+        }
+      }
+
+      $actualdt = date('y-m-d');
+      $date = date("y-m-d", strtotime($actualdt . "+ 10 days"));
+      $sql2 = "SELECT * FROM diary INNER JOIN badge on badge.id_badge=diary.id_badge INNER JOIN date on date.id_date=diary.id_date INNER JOIN user on user.id_user=diary.id_user WHERE diary.state_register=1 and user.id_user=$user_id and date.date>='$actualdt' and date.date<='$date' ORDER BY date ASC";
+      $result2 = $conn->openSQL()->query($sql2);
+      $num_rows2 = $result2->num_rows;
+      if ($num_rows2 > 0) {
+        while ($row2 = $result2->fetch_assoc()) {
+          array_push($notifications, array(
+            'type' => "next-event",
+            'title' => "Evento proximo el " . date("d/m/Y", strtotime($row2['date'])) . "",
+            'description' => "" . $row2['description'] . "",
+          ));
+        }
+      }
+
+      $sql3 = "SELECT * FROM `goal` WHERE goal.id_user=$user_id and complete=0";
+      $result3 = $conn->openSQL()->query($sql3);
+      $num_rows3 = $result3->num_rows;
+      if ($num_rows3 > 0) {
+        while ($row3 = $result3->fetch_assoc()) {
+          $badge = $row3['id_badge'];
+          $sqlTotal = "SELECT name_badge, value, (ifnull((SELECT SUM(transaction.amount) FROM transaction INNER JOIN account on account.id_account=transaction.id_account WHERE account.id_user=$user_id and badge.id_badge=transaction.id_badge and transaction.type=1),0)-ifnull((SELECT SUM(transaction.amount) FROM transaction INNER JOIN account on account.id_account=transaction.id_account WHERE account.id_user=$user_id and badge.id_badge=transaction.id_badge and transaction.type=0),0)) as subtotal FROM transaction INNER JOIN account on account.id_account=transaction.id_account INNER JOIN user on user.id_user=account.id_user INNER JOIN badge on transaction.id_badge=badge.id_badge WHERE account.id_user=$user_id and transaction.id_badge=$badge GROUP BY badge.id_badge";
+          $total = $conn->openSQL()->query($sqlTotal);
+          $num_rowsTotal = $total->num_rows;
+          if ($num_rowsTotal > 0) {
+            while (($rowTotal = $total->fetch_assoc())) {
+              if (($row3['amount']) <= ($rowTotal["subtotal"])) {
+                array_push($notifications, array(
+                  'type' => "goal",
+                  'title' => "Ahorros suficientes para meta",
+                  'description' => "" . $row3['name_goal'] . "",
+                ));
+              }
+            }
+          }
+        }
+      }
+      return $notifications;
+    } catch (Exception $e) {
+      $errorMessage = 'Ha habido una excepción: ' . $e->getMessage() . '';
+      $array = array(
+        'state' => false,
+        'message' => $errorMessage
+      );
+      return $array;
+    }
+  }
+
   public static function getEvents($id_where)
   {
     try {
@@ -462,8 +529,8 @@ class Rest extends database
       if ($num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
           $array = array(
-            'title' => "".$row['description']."",
-            'description' => "".$row['amount']." ". $row['name_badge'] ."",
+            'title' => "" . $row['description'] . "",
+            'description' => "" . $row['amount'] . " " . $row['name_badge'] . "",
             'start' => $row['date'],
             'end' => $row['date'],
             //'className' => "fc-bg-default",

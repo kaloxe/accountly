@@ -12,7 +12,7 @@ $table = "diary";
 $id = 'id_diary';
 
 /* Filtrado */
-$where = 'WHERE ' . $id_user_where . '';
+$where = 'WHERE ' . $id_user_where . ' and diary.state_register=1';
 
 
 /* Consulta */

@@ -1,9 +1,8 @@
-Implementar notificaciones
 Hacer que los reportes impriman
-Hacer calendario dinamico
 Cambiar nombres en los plugins (calendario)
 
 Mejorar las vistas de los modulos
+Hacer el calendario dinamico
 Arreglar las datatables para que los numeros sean tambien dinamicos
 Implementar modo oscuro y modo claro
 Desplegar aplicacion en la nube

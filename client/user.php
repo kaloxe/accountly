@@ -142,6 +142,7 @@ require('./src/views/left-sidebar.php');
     }
 </script>
 
+
 <script src="./src/js/validate-create-user.js"></script>
 <script src="./src/js/validate-edit-user.js"></script>
 <?php require('./src/views/scripts.php'); ?>

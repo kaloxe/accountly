@@ -30,12 +30,12 @@ if ($num_rows > 0) {
     while ($row = $resultado->fetch_assoc()) {
         $output['data'] .= '<tr>';
         ($type_user == "administrador") ? ($output['data'] .= '<td class="table-plus">' . $row['nickname'] . '</td>') : ($output['data'] .= '');
-        // $output['data'] .= '<td>' . $row['id_account'] . '</td>';
         $output['data'] .= '<td>' . (date("d/m/Y", strtotime($row['date']))) . '</td>';
         $output['data'] .= '<td>' . $row['description'] . '</td>';
         $output['data'] .= '<td>' . $row['name_badge'] . '</td>';
         $output['data'] .= '<td class="count' . $row['type'] . '">' . $row['amount'] . '</td>';
         $output['data'] .= '<td>' . ($row['state_register'] ? 'Pendiente' : 'Pasado') . '</td>';
+        //<a href="#" data-color="#265ed7" id="editar_' . $row['id_diary'] . '" name="editar" onclick="openUpdateModal(' . $row['id_diary'] . ')" data-toggle="modal" data-target="#modal_update"><i class="icon-copy dw dw-eye"></i></a>
         $output['data'] .= '
         <td>
             <div class="table-actions">
