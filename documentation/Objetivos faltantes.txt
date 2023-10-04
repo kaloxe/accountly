@@ -1,6 +1,4 @@
 Hacer que los reportes impriman
-Cambiar nombres en los plugins (calendario)
-
 Mejorar las vistas de los modulos
 Hacer el calendario dinamico
 Arreglar las datatables para que los numeros sean tambien dinamicos

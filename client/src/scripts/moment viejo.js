@@ -1369,7 +1369,7 @@ function parseIsoWeekday(input, locale) {
 
 // LOCALES
 
-var defaultLocaleWeekdays = 'Domingo_Lunes_Martes_Miercoles_Jueves_Viernes_Sabado'.split('_');
+var defaultLocaleWeekdays = 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_');
 function localeWeekdays (m, format) {
     if (!m) {
         return isArray(this._weekdays) ? this._weekdays :
@@ -1379,12 +1379,12 @@ function localeWeekdays (m, format) {
         this._weekdays[this._weekdays.isFormat.test(format) ? 'format' : 'standalone'][m.day()];
 }
 
-var defaultLocaleWeekdaysShort = 'Dom_Lun_Mar_Mie_Jue_Vie_Sab'.split('_');
+var defaultLocaleWeekdaysShort = 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_');
 function localeWeekdaysShort (m) {
     return (m) ? this._weekdaysShort[m.day()] : this._weekdaysShort;
 }
 
-var defaultLocaleWeekdaysMin = 'Do_Lu_Ma_Mi_Ju_Vi_Sa'.split('_');
+var defaultLocaleWeekdaysMin = 'Su_Mo_Tu_We_Th_Fr_Sa'.split('_');
 function localeWeekdaysMin (m) {
     return (m) ? this._weekdaysMin[m.day()] : this._weekdaysMin;
 }
@@ -2247,7 +2247,7 @@ function configFromISO(config) {
 }
 
 // RFC 2822 regex: For details see https://tools.ietf.org/html/rfc2822#section-3.3
-var rfc2822 = /^(?:(Lun|Mar|Mie|Jue|Vie|Sab|Dom),?\s)?(\d{1,2})\s(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s(\d{2,4})\s(\d\d):(\d\d)(?::(\d\d))?\s(?:(UT|GMT|[ECMP][SD]T)|([Zz])|([+-]\d{4}))$/;
+var rfc2822 = /^(?:(Mon|Tue|Wed|Thu|Fri|Sat|Sun),?\s)?(\d{1,2})\s(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s(\d{2,4})\s(\d\d):(\d\d)(?::(\d\d))?\s(?:(UT|GMT|[ECMP][SD]T)|([Zz])|([+-]\d{4}))$/;
 
 function extractFromRFC2822Strings(yearStr, monthStr, dayStr, hourStr, minuteStr, secondStr) {
     var result = [
