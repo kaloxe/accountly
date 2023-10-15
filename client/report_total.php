@@ -42,7 +42,7 @@
                                     <p class="formulario__input-error">El campo debe tener de 4 a 40 caracteres, solo se aceptan letras y numeros.</p>
                                 </div>
                                 <input type="button" class="btn btn-primary mr-2" id="filter" value="Filtrar">
-                                <button type="button" class="btn btn-secondary mr-3" data-color="#ffffff">
+                                <button type="button" class="btn btn-secondary mr-3" data-color="#ffffff" id="print">
                                     <i class="fa fa-print"></i>
                                 </button>
                             </div>
@@ -65,8 +65,8 @@
                             <thead>
                                 <tr>
                                     <?php echo ($type_user == "administrador") ? "<th>Usuario</th>" : ""; ?>
-                                    <th scope="col">Cuenta</th>
-                                    <th scope="col">Saldo</th>
+                                    <th>Cuenta</th>
+                                    <th>Saldo</th>
                                 </tr>
                             </thead>
                             <tbody id="content">
@@ -92,6 +92,36 @@
 </div>
 
 <script>
+    const print = document.getElementById("print");
+
+    print.addEventListener("click", (e) => {
+        e.preventDefault();
+        let data = {
+            action: "total_pdf",
+            report: {
+                title: "Prueba de reportes de totales",
+
+            }
+        };
+        
+        //location.href = "consulta.php";
+        //$.post('/accountly/client/TCPDF/reports/example_001.php', {titulo:data.title})
+        //window.location = `/accountly/client/TCPDF/reports/example_001.php?titulo=${data.title}`;
+        fetch("/accountly/server/controllers/controllerReportTotal.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                },
+                body: JSON.stringify(data),
+            })
+            .then((res) => res.json())
+            .then((dat) => {
+                console.log(dat);
+                window.open("/accountly/client/TCPDF/reports/example_001.php", "_blank");
+            });
+
+    });
+
     // getData()
     // /* Peticion AJAX */
     // function getData() {

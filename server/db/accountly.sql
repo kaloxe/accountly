@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3366
--- Tiempo de generación: 02-10-2023 a las 12:36:05
+-- Tiempo de generación: 15-10-2023 a las 19:41:07
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -342,7 +342,44 @@ INSERT INTO `binnacle` (`id_binnacle`, `id_user`, `movement`, `datetime`) VALUES
 (252, 1, 'Cambio en la transaccion n* 6', '2023-10-01 04:04:25'),
 (253, 2, 'Ingreso de usuario: profesor', '2023-10-01 05:14:25'),
 (254, 2, 'Cambio en la transaccion n* 18', '2023-10-01 11:31:01'),
-(255, 1, 'Ingreso de usuario: admin', '2023-10-01 11:37:07');
+(255, 1, 'Ingreso de usuario: admin', '2023-10-01 11:37:07'),
+(256, 1, 'Creacion de evento para el 2023-10-12', '2023-10-04 07:24:13'),
+(257, 2, 'Ingreso de usuario: profesor', '2023-10-04 07:24:43'),
+(258, 2, 'Cambio en la transaccion n* 20', '2023-10-04 07:26:04'),
+(259, 2, 'Ingreso de usuario: profesor', '2023-10-04 07:37:59'),
+(260, 2, 'Ingreso de usuario: profesor', '2023-10-04 07:43:00'),
+(261, 2, 'Ingreso de usuario: profesor', '2023-10-05 07:23:23'),
+(262, 1, 'Ingreso de usuario: admin', '2023-10-05 08:44:19'),
+(263, 1, 'Ingreso de usuario: admin', '2023-10-12 06:32:03'),
+(264, 1, 'Cambio en la transaccion n* 18', '2023-10-12 06:32:55'),
+(265, 1, 'Cambio en la transaccion n* 18', '2023-10-12 06:35:29'),
+(266, 1, 'Cambio en la transaccion n* 17', '2023-10-12 06:35:46'),
+(267, 1, 'Cambio en la transaccion n* 21', '2023-10-12 06:35:58'),
+(268, 1, 'Cambio en la transaccion n* 16', '2023-10-12 06:36:10'),
+(269, 1, 'Cambio en la transaccion n* 15', '2023-10-12 06:36:32'),
+(270, 1, 'Eliminacion de la transaccion n* 1', '2023-10-12 06:36:57'),
+(271, 1, 'Eliminacion de la transaccion n* 6', '2023-10-12 06:37:02'),
+(272, 1, 'Cambio en la transaccion n* 4', '2023-10-12 06:37:34'),
+(273, 1, 'Cambio en la transaccion n* 4', '2023-10-12 06:37:44'),
+(274, 1, 'Eliminacion de la transaccion n* 10', '2023-10-12 06:37:48'),
+(275, 1, 'Eliminacion de la transaccion n* 23', '2023-10-12 06:37:53'),
+(276, 1, 'Eliminacion de la transaccion n* 22', '2023-10-12 06:37:57'),
+(277, 1, 'Cambio en la transaccion n* 13', '2023-10-12 06:38:24'),
+(278, 1, 'Cambio en la transaccion n* 20', '2023-10-12 06:38:43'),
+(279, 1, 'Actualizacion de meta: Comprar petros en binance', '2023-10-12 06:39:23'),
+(280, 1, 'Actualizacion de meta: Comprar carro', '2023-10-12 06:39:42'),
+(281, 1, 'Actualizacion de meta: Paga del trabajo', '2023-10-12 06:40:06'),
+(282, 1, 'Actualizacion de meta: Pago de hipoteca', '2023-10-12 06:40:26'),
+(283, 1, 'Actualizacion de evento para el 2023-05-05', '2023-10-12 06:41:45'),
+(284, 1, 'Eliminacion de evento n* 7', '2023-10-12 06:41:50'),
+(285, 1, 'Eliminacion de evento n* 8', '2023-10-12 06:41:53'),
+(286, 1, 'Eliminacion de evento n* 13', '2023-10-12 06:41:57'),
+(287, 1, 'Actualizacion de evento para el 2023-10-13', '2023-10-12 06:42:14'),
+(288, 1, 'Eliminacion de evento n* 10', '2023-10-12 06:42:18'),
+(289, 1, 'Actualizacion de evento para el 2023-10-25', '2023-10-12 06:42:39'),
+(290, 1, 'Actualizacion de evento para el 2023-11-23', '2023-10-12 06:43:10'),
+(291, 1, 'Eliminacion de meta n* 9', '2023-10-12 09:30:02'),
+(292, 1, 'Cambio en la transaccion n* 21', '2023-10-14 05:35:08');
 
 -- --------------------------------------------------------
 
@@ -381,7 +418,8 @@ INSERT INTO `date` (`id_date`, `date`) VALUES
 (19, '2023-09-21'),
 (20, '2023-10-18'),
 (21, '2023-10-13'),
-(22, '2023-10-25');
+(22, '2023-10-25'),
+(23, '2023-10-12');
 
 -- --------------------------------------------------------
 
@@ -405,13 +443,10 @@ CREATE TABLE `diary` (
 --
 
 INSERT INTO `diary` (`id_diary`, `id_user`, `id_badge`, `id_date`, `description`, `amount`, `type`, `state_register`) VALUES
-(1, 1, 1, 5, 'hola', 50, 1, 0),
-(2, 1, 2, 6, 'holi', 123, 1, 0),
-(7, 1, 1, 17, 'dsasda', 123, 1, 0),
-(8, 1, 2, 18, 'dsasda', 12, 1, 0),
-(10, 2, 1, 20, 'me pagan un cambur', 700, 1, 1),
-(11, 2, 1, 21, 'la vaina', 500, 1, 1),
-(12, 2, 3, 22, 'deuda con el we', 2, 0, 1);
+(1, 1, 1, 5, 'Comprar regalo de cumple', 50, 1, 0),
+(2, 1, 2, 6, 'Cobro del cliente', 10.5, 1, 0),
+(11, 2, 1, 21, 'Pagar fiado del chino', 500, 1, 0),
+(12, 2, 3, 22, 'Pagar la gasolina a Jorge', 2, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -436,10 +471,9 @@ CREATE TABLE `goal` (
 --
 
 INSERT INTO `goal` (`id_goal`, `id_user`, `id_badge`, `name_goal`, `description`, `amount`, `complete`, `type`, `state_register`) VALUES
-(2, 1, 3, 'Comprar petroleo', 'crudo', 12, 1, 0, 1),
-(3, 1, 2, 'Carro', 'pa anda en la calle', 2000, 1, 1, 1),
-(8, 1, 1, 'paga', 'plataaaaa', 90, 1, 1, 1),
-(9, 2, 2, 'pago de hipoteca', 'quiero tener la casa', 1000, 0, 1, 1);
+(2, 1, 3, 'Comprar petros en binance', 'suficiente para comprar crudo', 12, 1, 0, 1),
+(3, 1, 2, 'Comprar carro', 'quiero ir a la playa', 2000, 0, 1, 1),
+(8, 1, 1, 'Paga del trabajo', 'Dia de salario', 90, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -461,7 +495,11 @@ INSERT INTO `reason` (`id_reason`, `name_reason`) VALUES
 (2, 'Alquiler'),
 (3, 'Mensualidad'),
 (4, 'otro'),
-(5, 'Completar meta');
+(5, 'Completar meta'),
+(6, 'Pequeño gasto'),
+(7, 'Venta'),
+(8, 'Compra'),
+(9, 'Trabajo');
 
 -- --------------------------------------------------------
 
@@ -486,20 +524,15 @@ CREATE TABLE `transaction` (
 --
 
 INSERT INTO `transaction` (`id_transaction`, `id_account`, `id_badge`, `id_reason`, `description`, `amount`, `date`, `type`, `state_register`) VALUES
-(1, 2, 3, 2, 'qwerty', 5, '2023-09-15', 1, 1),
-(4, 5, 1, 3, 'hola mundo', 450, '2023-09-10', 0, 1),
-(6, 4, 1, 1, 'fdfsdfds', 1000, '2023-09-16', 0, 1),
-(10, 5, 1, 2, 'vava', 600, '2023-09-20', 1, 1),
+(4, 5, 1, 2, 'Departamento de septiembre', 450, '2023-09-10', 0, 1),
 (12, 11, 1, 2, 'carro alquilado', 150, '2023-09-21', 1, 1),
-(13, 2, 2, 5, 'asdf', 200, '2023-09-28', 1, 1),
-(15, 4, 1, 5, '23456', 90, '2023-09-28', 1, 1),
-(16, 2, 1, 3, 'tranferencia1', 500, '2023-09-29', 0, 1),
-(17, 5, 1, 3, 'tranferencia1', 500, '2023-09-29', 1, 1),
-(18, 41, 1, 4, 'Coasas que pagar', 500, '2023-09-30', 1, 1),
-(20, 40, 1, 1, 'weqrqrw', 700, '2023-09-27', 0, 1),
-(21, 41, 2, 3, 'dsafsfdasfda', 1000, '2023-09-29', 1, 1),
-(22, 41, 2, 4, 'dsadssdda', 2000, '2023-09-28', 0, 1),
-(23, 39, 2, 4, 'dsaffsafsd', 25, '2023-09-25', 1, 1);
+(13, 2, 2, 5, 'Suficiente compra', 200, '2023-09-28', 1, 1),
+(15, 4, 1, 5, 'Objetivo completado', 90, '2023-09-28', 1, 1),
+(16, 2, 1, 3, 'transferencia 98753', 500, '2023-09-29', 0, 1),
+(17, 5, 1, 3, 'tranferencia 14523', 500, '2023-09-29', 1, 1),
+(18, 41, 1, 1, 'Compra de viveres', 500, '2023-09-30', 1, 1),
+(20, 40, 1, 1, 'Cooperativa 14586 154795', 700, '2023-09-27', 0, 1),
+(21, 41, 2, 3, 'transferencia 789546', 200, '2023-09-29', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -615,19 +648,19 @@ ALTER TABLE `badge`
 -- AUTO_INCREMENT de la tabla `binnacle`
 --
 ALTER TABLE `binnacle`
-  MODIFY `id_binnacle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=256;
+  MODIFY `id_binnacle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=293;
 
 --
 -- AUTO_INCREMENT de la tabla `date`
 --
 ALTER TABLE `date`
-  MODIFY `id_date` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_date` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `diary`
 --
 ALTER TABLE `diary`
-  MODIFY `id_diary` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_diary` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `goal`
@@ -639,7 +672,7 @@ ALTER TABLE `goal`
 -- AUTO_INCREMENT de la tabla `reason`
 --
 ALTER TABLE `reason`
-  MODIFY `id_reason` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_reason` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `transaction`

@@ -1,5 +1,5 @@
 <?php
-require("/xampp/htdocs/accountly/server/session/session.php");
+require_once("../session/session.php");
 require_once("../db/db.php");
 require_once("../models/class_rest.php");
 
@@ -88,6 +88,10 @@ if (isset($_POST)) {
             $output['chart'] = Rest::getTotals($id_user_where, $cuentaC, $divisa);
 
             echo json_encode($output, JSON_UNESCAPED_UNICODE);
+            break;
+        case "total_pdf":
+            $_SESSION['report'] = $user['report'];
+            echo json_encode($_SESSION['report']);
             break;
         default:
             echo json_encode('hola');

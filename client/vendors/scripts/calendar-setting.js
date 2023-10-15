@@ -24,6 +24,7 @@ fetch("/accountly/server/controllers/controllerDiary.php", {
     console.log(dat);
     events=dat;
   });
+  
 (function () {
   "use strict";
   // ------------------------------------------------------- //
