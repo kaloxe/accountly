@@ -1,7 +1,7 @@
 <?php
-require("/xampp/htdocs/accountly/server/session/session.php");
-require_once("/xampp/htdocs/accountly/server/models/class_rest.php");
-require_once("/xampp/htdocs/accountly/server/models/class_user.php");
+require_once("../session/session.php");
+require_once("../models/class_rest.php");
+require_once("../models/class_user.php");
 
 if (isset($_POST)) {
     $data = file_get_contents("php://input");

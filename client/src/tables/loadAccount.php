@@ -44,13 +44,13 @@ if ($num_rows > 0) {
     while ($row = $resultado->fetch_assoc()) {
         $output['data'] .= '<tr>';
         ($type_user=="administrador") ? ($output['data'] .= '<td class="table-plus">' . $row['nickname'] . '</td>') : ($output['data'] .='');
-        $output['data'] .= '<td class="table-plus">' . $row['name_account'] . '</td>';
+        $output['data'] .= '<td>' . $row['name_account'] . '</td>';
         $output['data'] .= '<td>' . getBadges($row['id_account']) . '</td>';
         $output['data'] .= '
         <td>
             <div class="table-actions">
-                <a href="#" data-color="#265ed7" id="editar_' . $row['id_account'] . '" name="editar" onclick="openUpdateModal(' . $row['id_account'] . ')" data-toggle="modal" data-target="#modal_update"><i class="icon-copy dw dw-edit2"></i></a>
-                <a href="#" data-color="#e95959" id="eliminar_' . $row['id_account'] . '" name="eliminar" onclick="openDeleteModal(' . $row['id_account'] . ')" data-toggle="modal" data-target="#modal_delete"><i class="icon-copy dw dw-delete-3"></i></a>
+                <a href="#" id="editar_' . $row['id_account'] . '" name="editar" onclick="openUpdateModal(' . $row['id_account'] . ')" data-toggle="modal" data-target="#modal_update"><i class="icon-copy dw dw-edit2 blue-icon"></i></a>
+                <a href="#" id="eliminar_' . $row['id_account'] . '" name="eliminar" onclick="openDeleteModal(' . $row['id_account'] . ')" data-toggle="modal" data-target="#modal_delete"><i class="icon-copy dw dw-delete-3 red-icon"></i></a>
             </div>
         </td>';
         $output['data'] .= '</tr>';

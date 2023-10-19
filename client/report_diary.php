@@ -1,8 +1,8 @@
 <?php
-require('/xampp/htdocs/accountly/server/db/db.php');
+//require('/xampp/htdocs/accountly/server/db/db.php');
 require('./src/views/head.php');
-require('./src/views/loader.php');
 require("/xampp/htdocs/accountly/server/session/session.php");
+require('./src/views/loader.php');
 require('./src/views/header.php');
 require('./src/views/right-sidebar.php');
 require('./src/views/left-sidebar.php');
@@ -30,7 +30,7 @@ require('./src/views/left-sidebar.php');
                         </nav>
                     </div>
                     <div class="col-md-6 col-sm-6 text-right">
-                        <button type="button" class="btn btn-secondary" data-color="#ffffff">
+                        <button type="button" class="btn btn-secondary" data-color="#ffffff" id="print">
                             <i class="fa fa-print"></i>
                         </button>
                     </div>
@@ -96,9 +96,9 @@ require('./src/views/left-sidebar.php');
                     </form>
                     <table class="data-table table nowrap">
                         <thead>
-                            <tr>
+                            <tr id="cabeza">
                                 <?php echo ($type_user == "administrador") ? "<th>Usuario</th>" : ""; ?>
-                                <th class="table-plus">Fecha</th>
+                                <th>Fecha</th>
                                 <th>Descripcion</th>
                                 <th>Divisa</th>
                                 <th>Cantidad</th>
@@ -139,6 +139,34 @@ require('./src/views/left-sidebar.php');
 </div>
 
 <script>
+    const print = document.getElementById("print");
+    print.addEventListener("click", (e) => {
+        e.preventDefault();
+        let cabeza = document.getElementById("cabeza").innerHTML;
+        let cuerpo = document.getElementById("content").innerHTML;
+        let data = {
+            action: "total_pdf",
+            report: {
+                title: "Reporte de eventos",
+                thead: cabeza,
+                tbody: cuerpo
+            }
+        };
+        console.log(data)
+        fetch("/accountly/server/controllers/controllerReportTotal.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                },
+                body: JSON.stringify(data),
+            })
+            .then((res) => res.json())
+            .then((dat) => {
+                console.log(dat);
+                window.open("/accountly/client/TCPDF/reports/report.php", "_blank");
+            });
+    });
+
     /* Llamando a la función getData() */
     getData()
 
@@ -177,7 +205,7 @@ require('./src/views/left-sidebar.php');
 
 <script src="./src/js/validate-report-diary.js"></script>
 <?php require('./src/views/scripts.php'); ?>
-<script src="src/plugins/apexcharts/apexcharts.min.js"></script>
+<!-- <script src="src/plugins/apexcharts/apexcharts.min.js"></script> -->
 <script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
 <script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
 <script src="src/plugins/datatables/js/dataTables.responsive.min.js"></script>

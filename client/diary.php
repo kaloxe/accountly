@@ -1,8 +1,8 @@
 <?php
 require('/xampp/htdocs/accountly/server/db/db.php');
 require('./src/views/head.php');
-require('./src/views/loader.php');
 require("/xampp/htdocs/accountly/server/session/session.php");
+require('./src/views/loader.php');
 require('./src/views/header.php');
 require('./src/views/right-sidebar.php');
 require('./src/views/left-sidebar.php');

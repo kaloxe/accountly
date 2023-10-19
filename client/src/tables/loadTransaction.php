@@ -35,7 +35,7 @@ if ($num_rows > 0) {
     while ($row = $resultado->fetch_assoc()) {
         $output['data'] .= '<tr>';
         // $output['data'] .= '<td>' . $row['id_account'] . '</td>';
-        ($type_user=="administrador") ? ($output['data'] .= '<td class="table-plus">' . $row['nickname'] . '</td>') : ($output['data'] .='');
+        ($type_user=="administrador") ? ($output['data'] .= '<td>' . $row['nickname'] . '</td>') : ($output['data'] .='');
         $output['data'] .= '<td>' . $row['name_badge'] . '</td>';
         $output['data'] .= '<td class="count' . $row['type'] . '">' . $row['amount'] . '</td>';
         $output['data'] .= '<td>' . $row['name_reason'] . '</td>';
@@ -46,8 +46,8 @@ if ($num_rows > 0) {
         $output['data'] .= '
         <td>
             <div class="table-actions">
-                <a href="#" data-color="#265ed7" id="editar_' . $row['id_transaction'] . '" name="editar" onclick="openUpdateModal(' . $row['id_transaction'] . ')" data-toggle="modal" data-target="#modal_update"><i class="icon-copy dw dw-edit2"></i></a>
-                <a href="#" data-color="#e95959" id="eliminar_' . $row['id_transaction'] . '" name="eliminar" onclick="openDeleteModal(' . $row['id_transaction'] . ')" data-toggle="modal" data-target="#modal_delete"><i class="icon-copy dw dw-delete-3"></i></a>
+                <a href="#" id="editar_' . $row['id_transaction'] . '" name="editar" onclick="openUpdateModal(' . $row['id_transaction'] . ')" data-toggle="modal" data-target="#modal_update"><i class="icon-copy dw dw-edit2 blue-icon"></i></a>
+                <a href="#" id="eliminar_' . $row['id_transaction'] . '" name="eliminar" onclick="openDeleteModal(' . $row['id_transaction'] . ')" data-toggle="modal" data-target="#modal_delete"><i class="icon-copy dw dw-delete-3 red-icon"></i></a>
             </div>
         </td>';
         $output['data'] .= '</tr>';

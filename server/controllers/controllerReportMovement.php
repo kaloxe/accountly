@@ -1,5 +1,5 @@
 <?php
-require("/xampp/htdocs/accountly/server/session/session.php");
+require_once("../session/session.php");
 require_once("../db/db.php");
 require_once("../models/class_rest.php");
 
@@ -23,7 +23,7 @@ if (isset($_POST)) {
                     $tiempo = "1 YEAR";
                     break;
                 default:
-                    $tiempo = "1 DAY";
+                    $tiempo = "1 WEEK";
             }
             $columns = ['id_transaction', 'transaction.type', 'reason.name_reason', 'transaction.id_account', 'badge.name_badge', 'account.name_account', 'account.id_user', 'transaction.amount', 'date', 'description', 'nickname'];
 
@@ -54,7 +54,6 @@ if (isset($_POST)) {
                     $output['data'] .= '<td>' . $row['name_badge'] . '</td>';
                     $output['data'] .= '<td class="count' . $row['type'] . '">' . $row['amount'] . '</td>';
                     $output['data'] .= '<td>' . $row['name_reason'] . '</td>';
-                    $output['data'] .= '<td>' . $row['description'] . '</td>';
                     $output['data'] .= '<td>' . $row['name_account'] . '</td>';
                     $output['data'] .= '<td>' . (date("d/m/Y", strtotime($row['date']))) . '</td>';
                     $output['data'] .= '</tr>';

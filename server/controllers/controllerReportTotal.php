@@ -38,10 +38,16 @@ if (isset($_POST)) {
                 //$sqlTotal = "SELECT name_badge, (ifnull((SELECT SUM(transaction.amount) FROM transaction WHERE  badge.id_badge=transaction.id_badge and transaction.type=1),0)- ifnull((SELECT SUM(transaction.amount) FROM transaction WHERE badge.id_badge=transaction.id_badge and transaction.type=0),0)) as subtotal FROM account INNER JOIN transaction on account.id_account=transaction.id_account INNER JOIN badge on transaction.id_badge=badge.id_badge WHERE 1 GROUP BY badge.id_badge";
                 $total = $conn->query($sqlTotal);
                 $num_rowsTotal = $total->num_rows;
+                $fila = 0;
                 $outputTotal = '';
                 if ($num_rowsTotal > 0) {
                     while (($rowTotal = $total->fetch_assoc())) {
-                        $outputTotal .= '' . $rowTotal['name_badge'] .  ' ' . $rowTotal['subtotal'] . '<br>';
+                        $fila = $fila + 1;
+                        if ($fila == $num_rowsTotal) {
+                            $outputTotal .= '' . $rowTotal['name_badge'] .  ' ' . $rowTotal['subtotal'] . '';
+                        } else {
+                            $outputTotal .= '' . $rowTotal['name_badge'] .  ' ' . $rowTotal['subtotal'] . '<br>';
+                        }
                     }
                 }
                 return $outputTotal;
@@ -55,10 +61,16 @@ if (isset($_POST)) {
                 //$sql1 = "SELECT name_badge, (ifnull((SELECT SUM(transaction.amount) FROM transaction WHERE transaction.id_account=$id and badge.id_badge=transaction.id_badge and transaction.type=1),0)- ifnull((SELECT SUM(transaction.amount) FROM transaction WHERE transaction.id_account=$id and badge.id_badge=transaction.id_badge and transaction.type=0),0)) as subtotal FROM account INNER JOIN transaction on account.id_account=transaction.id_account INNER JOIN badge on transaction.id_badge=badge.id_badge WHERE transaction.id_account=$id GROUP BY badge.id_badge";
                 $resultado1 = $conn->query($sql1);
                 $num_rows1 = $resultado1->num_rows;
+                $fila = 0;
                 $output1 = '';
                 if ($num_rows1 > 0) {
                     while (($row1 = $resultado1->fetch_assoc())) {
-                        $output1 .= '' . $row1['name_badge'] .  ' ' . $row1['subtotal'] . '<br>';
+                        $fila = $fila + 1;
+                        if ($fila == $num_rows1) {
+                            $output1 .= '' . $row1['name_badge'] .  ' ' . $row1['subtotal'] . '';
+                        } else {
+                            $output1 .= '' . $row1['name_badge'] .  ' ' . $row1['subtotal'] . '<br>';
+                        }
                     }
                 }
                 return $output1;
@@ -72,7 +84,7 @@ if (isset($_POST)) {
                 while ($row = $resultado->fetch_assoc()) {
                     $output['data'] .= '<tr>';
                     ($type_user == "administrador") ? ($output['data'] .= '<td class="table-plus">' . $row['nickname'] . '</td>') : ($output['data'] .= '');
-                    $output['data'] .= '<td scope="row" class="table-plus">' . $row['name_account'] . '</td>';
+                    $output['data'] .= '<td>' . $row['name_account'] . '</td>';
                     $output['data'] .= '<td>' . getBadges($row['id_account'], $divisa) . '</td>';
                     $output['data'] .= '</tr>';
                 }

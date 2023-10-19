@@ -1,6 +1,6 @@
 <?php require('./src/views/head.php'); ?>
-<?php require('./src/views/loader.php'); ?>
 <?php require("/xampp/htdocs/accountly/server/session/session.php"); ?>
+<?php require('./src/views/loader.php'); ?>
 <?php require('./src/views/header.php'); ?>
 <?php require('./src/views/right-sidebar.php'); ?>
 <?php require('./src/views/left-sidebar.php'); ?>
@@ -63,7 +63,7 @@
                         </div>
                         <table class="table table-striped">
                             <thead>
-                                <tr>
+                                <tr id="cabeza">
                                     <?php echo ($type_user == "administrador") ? "<th>Usuario</th>" : ""; ?>
                                     <th>Cuenta</th>
                                     <th>Saldo</th>
@@ -92,18 +92,21 @@
 </div>
 
 <script>
-    const print = document.getElementById("print");
 
+    const print = document.getElementById("print");
     print.addEventListener("click", (e) => {
         e.preventDefault();
+        let cabeza = document.getElementById("cabeza").innerHTML;
+        let cuerpo = document.getElementById("content").innerHTML;
         let data = {
             action: "total_pdf",
             report: {
-                title: "Prueba de reportes de totales",
-
+                title: "Reporte de totales",
+                thead: cabeza,
+                tbody: cuerpo
             }
         };
-        
+        console.log(data)
         //location.href = "consulta.php";
         //$.post('/accountly/client/TCPDF/reports/example_001.php', {titulo:data.title})
         //window.location = `/accountly/client/TCPDF/reports/example_001.php?titulo=${data.title}`;
@@ -117,9 +120,8 @@
             .then((res) => res.json())
             .then((dat) => {
                 console.log(dat);
-                window.open("/accountly/client/TCPDF/reports/example_001.php", "_blank");
+                window.open("/accountly/client/TCPDF/reports/report.php", "_blank");
             });
-
     });
 
     // getData()

@@ -26,7 +26,7 @@
   <link rel="stylesheet" type="text/css" href="src/styles/validations.css" />
 
   <!-- Actualizar datos de la aplicacion por carlos sanchez -->
-  <script src="./src/js/update-data.js"></script>
+  <!-- <script src="./src/js/update-data.js"></script> -->
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GBZ3SGGX85"></script>
@@ -59,5 +59,3 @@
   </script>
   <!-- End Google Tag Manager -->
 </head>
-
-<body>

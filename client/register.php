@@ -1,5 +1,5 @@
 <?php require('./src/views/head.php'); ?>
-
+<?php require('./src/views/loader.php'); ?>
 <body class="login-page">
     <div class="login-header box-shadow">
         <div class="container-fluid d-flex justify-content-between align-items-center">
@@ -20,8 +20,6 @@
 						<img src="vendors/images/login-page-img.png" alt="" />
 					</div> -->
 
-
-
                 <div class="login-box col-12">
 
                     <div class="formulario__mensaje p-1 text-center mb-2 pb-5" id="formulario__mensaje">
@@ -34,11 +32,11 @@
                         <p><i class="micon bi bi-check-circle"></i> <b>Mensaje:</b> Usuario creado. </p>
                     </div>
 
-
                     <div class="login-box bg-white box-shadow border-radius-10">
                         <div class="login-title">
                             <h2 class="text-center text-primary">Registrar usuario</h2>
                         </div>
+
                         <form id="formulario">
 
                             <div class="form-group row">
@@ -47,15 +45,13 @@
                                     <input type="email" class="form-control formulario__grupo-input formulario__input" name="correo" id="correo" />
                                     <p class="formulario__input-error">Ingrese un correo valido.</p>
                                 </div>
-
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-4 col-form-label">Nombre de usuario*</label>
                                 <div class="col-sm-8" id="grupo__usuario">
                                     <input type="text" class="form-control formulario__grupo-input formulario__input" name="usuario" id="usuario" />
-                                    <p class="formulario__input-error">El usuario debe tener de 4 a 25 caracteres alfanumericos.</p>
+                                    <p class="formulario__input-error">El nombre debe tener de 4 a 25 caracteres alfanumericos sin espacios.</p>
                                 </div>
-
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-4 col-form-label">Contraseña*</label>
@@ -78,6 +74,7 @@
                                     </div>
                                 </div>
                             </div>
+                            
                         </form>
                     </div>
                 </div>
@@ -85,4 +82,5 @@
         </div>
     </div>
     <script src="./src/js/validate-sign-up.js"></script>
+    <?php require('./src/views/scripts.php'); ?>
     <?php require('./src/views/footer.php'); ?>

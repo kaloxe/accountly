@@ -104,12 +104,14 @@ submit.addEventListener("click", (e) => {
             document
               .getElementById("formulario__mensaje-exito")
               .classList.remove("formulario__mensaje-exito-activo");
-          }, 5000);
+              window.location.href = "/accountly/client/login.php";
+          }, 3000);
           campos.usuario = false;
           campos.correo = false;
           campos.password = false;
           campos.password2 = false;
           formulario.reset();
+          
         } else {
           document
             .getElementById("formulario__mensaje_validacion")

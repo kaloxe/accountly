@@ -1,8 +1,8 @@
 <?php
-require('/xampp/htdocs/accountly/server/db/db.php');
+// require('/xampp/htdocs/accountly/server/db/db.php');
 require('./src/views/head.php');
-require('./src/views/loader.php');
 require("/xampp/htdocs/accountly/server/session/session.php");
+require('./src/views/loader.php');
 require('./src/views/header.php');
 require('./src/views/right-sidebar.php');
 require('./src/views/left-sidebar.php');
@@ -29,34 +29,12 @@ require('./src/views/left-sidebar.php');
                         </nav>
                     </div>
                     <div class="col-md-6 col-sm-6 text-right">
-                        <button type="button" class="btn btn-secondary" data-color="#ffffff">
+                        <button type="button" class="btn btn-secondary" data-color="#ffffff" id="print">
                             <i class="fa fa-print"></i>
                         </button>
                     </div>
                 </div>
             </div>
-            <!-- multiple select row Datatable start -->
-            <!-- <div class="card-box mb-30">
-                <div class="pd-20">
-                    <h4 class="text-blue h4">Transacciones</h4>
-                </div>
-                <div class="pb-20">
-                    <table class="data-table table stripe hover nowrap">
-                        <thead>
-                            <tr>
-                                <th class="sort asc">Divisa</th>
-                                <th class="sort asc">Monto</th>
-                                <th class="sort asc">Descripcion</th>
-                                <th class="sort asc">Razon</th>
-                                <th class="sort asc">Cuenta</th>
-                                <th class="sort asc">Fecha</th>
-                            </tr>
-                        </thead>
-                        <tbody id="">
-                        </tbody>
-                    </table>
-                </div>
-            </div> -->
             <div class="card-box mb-30  height-100-p">
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
@@ -121,14 +99,14 @@ require('./src/views/left-sidebar.php');
 
                 <table class="table table-striped">
                     <thead>
-                        <tr>
+                        <tr id="cabeza">
                             <?php echo ($type_user == "administrador") ? "<th>Usuario</th>" : ""; ?>
-                            <th scope="col">Divisa</th>
-                            <th scope="col">Monto</th>
-                            <th scope="col">Descripcion</th>
-                            <th scope="col">Razon</th>
-                            <th scope="col">Cuenta</th>
-                            <th scope="col">Fecha</th>
+                            <th>Divisa</th>
+                            <th>Monto</th>
+                            <th>Descripcion</th>
+                            <th>Razon</th>
+                            <th>Cuenta</th>
+                            <th>Fecha</th>
                         </tr>
                     </thead>
                     <tbody id="content">
@@ -146,6 +124,34 @@ require('./src/views/left-sidebar.php');
 </div>
 
 <script>
+    const print = document.getElementById("print");
+    print.addEventListener("click", (e) => {
+        e.preventDefault();
+        let cabeza = document.getElementById("cabeza").innerHTML;
+        let cuerpo = document.getElementById("content").innerHTML;
+        let data = {
+            action: "total_pdf",
+            report: {
+                title: "Reporte de transacciones",
+                thead: cabeza,
+                tbody: cuerpo
+            }
+        };
+        console.log(data)
+        fetch("/accountly/server/controllers/controllerReportTotal.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                },
+                body: JSON.stringify(data),
+            })
+            .then((res) => res.json())
+            .then((dat) => {
+                console.log(dat);
+                window.open("/accountly/client/TCPDF/reports/report.php", "_blank");
+            });
+    });
+
     /* Llamando a la función getData() */
     getData()
 

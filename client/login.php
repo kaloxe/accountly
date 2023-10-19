@@ -1,5 +1,5 @@
 <?php require('./src/views/head.php'); ?>
-
+<?php require('./src/views/loader.php'); ?>
 <body class="login-page">
     <div class="login-header box-shadow">
         <div class="container-fluid d-flex justify-content-between align-items-center">
@@ -19,7 +19,6 @@
                 <!-- <div class="col-md-6 col-lg-7">
 						<img src="vendors/images/login-page-img.png" alt="" />
 					</div> -->
-
                 <div class="login-box col-12">
 
                     <div class="formulario__mensaje p-1 text-center mb-2 pb-5" id="formulario__mensaje">
@@ -87,4 +86,5 @@
         </div>
     </div>
     <script src="./src/js/validate-sign-in.js"></script>
+    <?php require('./src/views/scripts.php'); ?>
     <?php require('./src/views/footer.php'); ?>

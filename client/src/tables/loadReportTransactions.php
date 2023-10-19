@@ -27,7 +27,7 @@ $output['data'] = '';
 if ($num_rows > 0) {
     while ($row = $resultado->fetch_assoc()) {
         $output['data'] .= '<tr>';
-        ($type_user == "administrador") ? ($output['data'] .= '<td class="table-plus">' . $row['nickname'] . '</td>') : ($output['data'] .= '');
+        ($type_user == "administrador") ? ($output['data'] .= '<td>' . $row['nickname'] . '</td>') : ($output['data'] .= '');
         // $output['data'] .= '<td>' . $row['id_account'] . '</td>';
         $output['data'] .= '<td>' . $row['name_badge'] . '</td>';
         $output['data'] .= '<td class="count' . $row['type'] . '">' . $row['amount'] . '</td>';

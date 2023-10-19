@@ -1,8 +1,8 @@
 <?php
-require('/xampp/htdocs/accountly/server/db/db.php');
+//require('/xampp/htdocs/accountly/server/db/db.php');
 require('./src/views/head.php');
-require('./src/views/loader.php');
 require("/xampp/htdocs/accountly/server/session/session.php");
+require('./src/views/loader.php');
 require('./src/views/header.php');
 require('./src/views/right-sidebar.php');
 require('./src/views/left-sidebar.php');
@@ -42,7 +42,7 @@ require('./src/views/left-sidebar.php');
                                     <p class="formulario__input-error">El campo debe tener de 4 a 40 caracteres, solo se aceptan letras y numeros.</p>
                                 </div>
                                 <input type="button" class="btn btn-primary mr-2" id="filter" value="Filtrar">
-                                <button type="button" class="btn btn-secondary mr-3" data-color="#ffffff">
+                                <button type="button" class="btn btn-secondary mr-3" data-color="#ffffff" id="print">
                                     <i class="fa fa-print"></i>
                                 </button>
                             </div>
@@ -58,14 +58,13 @@ require('./src/views/left-sidebar.php');
                 </div>
                 <table class="table table-striped">
                     <thead>
-                        <tr>
+                        <tr id="cabeza">
                             <?php echo ($type_user == "administrador") ? "<th>Usuario</th>" : ""; ?>
-                            <th scope="col">Divisa</th>
-                            <th scope="col">Monto</th>
-                            <th scope="col">Descripcion</th>
-                            <th scope="col">Razon</th>
-                            <th scope="col">Cuenta</th>
-                            <th scope="col">Fecha</th>
+                            <th>Divisa</th>
+                            <th>Monto</th>
+                            <th>Razon</th>
+                            <th>Cuenta</th>
+                            <th>Fecha</th>
                         </tr>
                     </thead>
                     <tbody id="content">
@@ -88,23 +87,33 @@ require('./src/views/left-sidebar.php');
 </div>
 
 <script>
-    /* Llamando a la función getData() */
-    // getData()
-
-    // /* Peticion AJAX */
-    // function getData() {
-    //     let content = document.getElementById("content")
-
-    //     let url = "src/tables/loadReportMovements.php"
-    //     let formaData = new FormData()
-    //     fetch(url, {
-    //             method: "POST",
-    //             body: formaData
-    //         }).then(response => response.json())
-    //         .then(data => {
-    //             content.innerHTML = data.data
-    //         }).catch(err => console.log(err))
-    // }
+    const print = document.getElementById("print");
+    print.addEventListener("click", (e) => {
+        e.preventDefault();
+        let cabeza = document.getElementById("cabeza").innerHTML;
+        let cuerpo = document.getElementById("content").innerHTML;
+        let data = {
+            action: "total_pdf",
+            report: {
+                title: "Reporte de movimientos",
+                thead: cabeza,
+                tbody: cuerpo
+            }
+        };
+        console.log(data)
+        fetch("/accountly/server/controllers/controllerReportTotal.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                },
+                body: JSON.stringify(data),
+            })
+            .then((res) => res.json())
+            .then((dat) => {
+                console.log(dat);
+                window.open("/accountly/client/TCPDF/reports/report.php", "_blank");
+            });
+    });
 </script>
 
 <script src="./src/js/validate-report-movement.js"></script>
