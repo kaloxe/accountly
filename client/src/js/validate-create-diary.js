@@ -32,6 +32,7 @@ const expresiones = {
   descripcion: /^[0-9a-zA-ZÀ-ÿ\s]{4,45}$/, // Letras y espacios, pueden llevar acentos.
   divisa: /^[0-9a-zA-ZÀ-ÿ\s]{1,10}$/,
   fecha: /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/,
+  cuenta: /^[0-9a-zA-ZÀ-ÿ\s]{1,10}$/, // Letras y espacios, pueden llevar acentos.
 };
 
 const campos_create = {

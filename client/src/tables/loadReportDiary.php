@@ -1,7 +1,7 @@
 <?php
 
-require("/xampp/htdocs/accountly/server/session/session.php");
-require("/xampp/htdocs/accountly/server/db/db.php");
+require_once("../../../server/session/session.php");
+require_once("../../../server/models/class_database.php");
 
 /* Un arreglo de las columnas a mostrar en la tabla */
 $columns = ['id_diary', 'diary.id_user', 'diary.description', 'badge.name_badge', 'date.date', 'diary.amount', 'diary.type', 'diary.state_register', 'nickname'];
@@ -19,7 +19,8 @@ $where = 'WHERE ' . $id_user_where . ' AND 1';
 $sql = "SELECT SQL_CALC_FOUND_ROWS " . implode(", ", $columns) . "
 FROM $table INNER JOIN badge on badge.id_badge=diary.id_badge INNER JOIN date on date.id_date=diary.id_date INNER JOIN user on user.id_user=diary.id_user
 $where ORDER BY date ASC";
-$resultado = $conn->query($sql);
+$conn = new database();
+$resultado = $conn->openSQL()->query($sql);
 $num_rows = $resultado->num_rows;
 
 /* Mostrado resultados */

@@ -1,5 +1,5 @@
-<?php require('./src/views/head.php'); ?>
-<?php require('./src/views/loader.php'); ?>
+<?php require_once('./src/views/head.php'); ?>
+<?php require_once('./src/views/loader.php'); ?>
 <body class="login-page">
     <div class="login-header box-shadow">
         <div class="container-fluid d-flex justify-content-between align-items-center">
@@ -82,5 +82,5 @@
         </div>
     </div>
     <script src="./src/js/validate-sign-up.js"></script>
-    <?php require('./src/views/scripts.php'); ?>
-    <?php require('./src/views/footer.php'); ?>
+    <?php require_once('./src/views/scripts.php'); ?>
+    <?php require_once('./src/views/footer.php'); ?>

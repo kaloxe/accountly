@@ -40,14 +40,13 @@
                                 <p class="formulario__input-error">Solo valores numericos.</p>
                             </div>
                         </div>
-
                         <div class="form-group formulario__grupo-input" id="grupo__meta_create">
                             <label>Meta</label>
                             <input type="text" class="form-control formulario__input" name="meta_create" id="meta_create" />
                             <p class="formulario__input-error">El campo debe tener 4 a 25 caracteres alfanumericos.</p>
                         </div>
                         <div class="form-group formulario__grupo-input" id="grupo__descripcion_create">
-                            <label>Descripcion</label>
+                            <label>Descripcion (opcional)</label>
                             <input type="text" class="form-control formulario__input" name="descripcion_create" id="descripcion_create" />
                             <p class="formulario__input-error">El campo debe tener 4 a 45 caracteres alfanumericos.</p>
                         </div>

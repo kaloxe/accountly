@@ -1,6 +1,5 @@
 <?php
 require_once("../session/session.php");
-require_once("../db/db.php");
 require_once("../models/class_rest.php");
 
 if (isset($_POST)) {
@@ -27,7 +26,8 @@ if (isset($_POST)) {
 
             /* Consulta */
             $sql = "SELECT SQL_CALC_FOUND_ROWS " . implode(", ", $columns) . " FROM $table INNER JOIN user on user.id_user=binnacle.id_user $where order by datetime desc";
-            $resultado = $conn->query($sql);
+            $conn = new database();
+            $resultado = $conn->openSQL()->query($sql);
             $num_rows = $resultado->num_rows;
 
             /* Mostrado resultados */

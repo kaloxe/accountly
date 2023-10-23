@@ -1,6 +1,2 @@
-Hacer que los reportes impriman
-Mejorar las vistas de los modulos
-Hacer el calendario dinamico
 Arreglar las datatables para que los numeros sean tambien dinamicos
-Implementar modo oscuro y modo claro
 Desplegar aplicacion en la nube

@@ -111,6 +111,32 @@ class Rest extends database
     }
   }
 
+  public static function convertBadge($sql)
+  {
+    try {
+      $conn = new database();
+      $result = $conn->openSQL()->query($sql);
+      $badges = [];
+
+      while ($row = $result->fetch_assoc()) {
+        array_push($badges, array(
+          'state' => true,
+          'id_badge' => $row["id_badge"],
+          'name_badge' => $row["name_badge"],
+          'value' => $row["value"]
+        ));
+      }
+      return json_encode($badges);
+    } catch (Exception $e) {
+      $errorMessage = 'Ha habido una excepción: ' . $e->getMessage() . '';
+      $array = array(
+        'state' => false,
+        'name_account' => $errorMessage
+      );
+      return json_encode($array);
+    }
+  }
+
   public static function readTransaction($sql)
   {
     try {
@@ -193,6 +219,7 @@ class Rest extends database
       $amount = $tran["amount"];
       $date = $tran["date"];
       $description = $tran["description"];
+      $state_register = $tran["state_register"];
 
       $array = array(
         'state' => true,
@@ -201,7 +228,8 @@ class Rest extends database
         'id_badge' => $id_badge,
         'amount' => $amount,
         'date' => $date,
-        'description' => $description
+        'description' => $description,
+        'state_register' => $state_register
       );
       return json_encode($array);
     } catch (Exception $e) {

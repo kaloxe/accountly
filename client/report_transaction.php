@@ -1,11 +1,10 @@
 <?php
-// require('/xampp/htdocs/accountly/server/db/db.php');
-require('./src/views/head.php');
-require("/xampp/htdocs/accountly/server/session/session.php");
-require('./src/views/loader.php');
-require('./src/views/header.php');
-require('./src/views/right-sidebar.php');
-require('./src/views/left-sidebar.php');
+require_once('./src/views/head.php');
+require_once("../server/session/session.php");
+require_once('./src/views/loader.php');
+require_once('./src/views/header.php');
+require_once('./src/views/right-sidebar.php');
+require_once('./src/views/left-sidebar.php');
 ?>
 
 <div class="main-container">
@@ -189,7 +188,7 @@ require('./src/views/left-sidebar.php');
 </script>
 
 <script src="./src/js/validate-report-transaction.js"></script>
-<?php require('./src/views/scripts.php'); ?>
+<?php require_once('./src/views/scripts.php'); ?>
 <script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
 <script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
 <script src="src/plugins/datatables/js/dataTables.responsive.min.js"></script>
@@ -204,4 +203,4 @@ require('./src/views/left-sidebar.php');
 <script src="src/plugins/datatables/js/vfs_fonts.js"></script>
 <!-- Datatable Setting js -->
 <script src="vendors/scripts/datatable-setting.js"></script>
-<?php require('./src/views/footer.php'); ?>
+<?php require_once('./src/views/footer.php'); ?>

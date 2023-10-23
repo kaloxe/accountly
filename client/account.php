@@ -1,9 +1,9 @@
-<?php require('./src/views/head.php'); ?>
-<?php require("/xampp/htdocs/accountly/server/session/session.php"); ?>
-<?php require('./src/views/loader.php'); ?>
-<?php require('./src/views/header.php'); ?>
-<?php require('./src/views/right-sidebar.php'); ?>
-<?php require('./src/views/left-sidebar.php'); ?>
+<?php require_once('./src/views/head.php'); ?>
+<?php require_once("../server/session/session.php"); ?>
+<?php require_once('./src/views/loader.php'); ?>
+<?php require_once('./src/views/header.php'); ?>
+<?php require_once('./src/views/right-sidebar.php'); ?>
+<?php require_once('./src/views/left-sidebar.php'); ?>
 
 <div class="main-container">
     <div class="pd-ltr-20 xs-pd-20-10">
@@ -39,11 +39,11 @@
                     <h4 class="text-blue h4">Cuentas</h4>
                 </div>
                 <div class="pb-20">
-                    <table class="data-table table stripe hover nowrap">
+                    <table class="data-table table hover nowrap">
                         <thead>
                             <tr>
-                                <?php echo ($type_user=="administrador") ? "<th>Usuario</th>": ""; ?>
-                                <th class="table-plus">Cuenta</th>
+                                <?php echo ($type_user == "administrador") ? "<th>Usuario</th>" : ""; ?>
+                                <th>Cuenta</th>
                                 <th>Saldo</th>
                                 <th class="datatable-nosort">Action</th>
                             </tr>
@@ -55,13 +55,13 @@
             </div>
 
             <!-- Create modal -->
-            <?php require('./src/modals/account/create-modal.php') ?>
+            <?php require_once('./src/modals/account/create-modal.php') ?>
 
             <!-- Edit modal -->
-            <?php require('./src/modals/account/update-modal.php') ?>
+            <?php require_once('./src/modals/account/update-modal.php') ?>
 
             <!-- Delete modal -->
-            <?php require('./src/modals/account/delete-modal.php') ?>
+            <?php require_once('./src/modals/account/delete-modal.php') ?>
 
         </div>
 
@@ -77,6 +77,12 @@
 
     function openDeleteModal(id) {
         index_delete = id;
+        document
+            .getElementById("formulario__mensaje-exito")
+            .classList.remove("formulario__mensaje-exito-activo");
+        document
+            .getElementById("formulario__mensaje_validacion_delete")
+            .classList.remove("formulario__mensaje-activo");
     }
     const eliminar = document.getElementById("eliminar");
     eliminar.addEventListener("click", (e) => {
@@ -100,21 +106,10 @@
                     document
                         .getElementById("formulario__mensaje-exito")
                         .classList.add("formulario__mensaje-exito-activo");
-                    setTimeout(() => {
-                        document
-                            .getElementById("formulario__mensaje-exito")
-                            .classList.remove("formulario__mensaje-exito-activo");
-                    }, 5000);
-                    getData();
                 } else {
                     document
                         .getElementById("formulario__mensaje_validacion_delete")
                         .classList.add("formulario__mensaje-activo");
-                    setTimeout(() => {
-                        document
-                            .getElementById("formulario__mensaje_validacion_delete")
-                            .classList.remove("formulario__mensaje-activo");
-                    }, 5000);
                 }
             });
     });
@@ -124,7 +119,7 @@
 
     /* Peticion AJAX */
     function getData() {
-        
+
         let content = document.getElementById("content")
 
         let url = "src/tables/loadAccount.php"
@@ -141,19 +136,22 @@
 
 <script src="./src/js/validate-create-account.js"></script>
 <script src="./src/js/validate-edit-account.js"></script>
-<?php require('./src/views/scripts.php'); ?>
+
+<?php require_once('./src/views/scripts.php'); ?>
 <script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
 <script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
 <script src="src/plugins/datatables/js/dataTables.responsive.min.js"></script>
 <script src="src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
+
 <!-- buttons for Export datatable -->
-<script src="src/plugins/datatables/js/dataTables.buttons.min.js"></script>
+<!-- <script src="src/plugins/datatables/js/dataTables.buttons.min.js"></script>
 <script src="src/plugins/datatables/js/buttons.bootstrap4.min.js"></script>
 <script src="src/plugins/datatables/js/buttons.print.min.js"></script>
 <script src="src/plugins/datatables/js/buttons.html5.min.js"></script>
 <script src="src/plugins/datatables/js/buttons.flash.min.js"></script>
 <script src="src/plugins/datatables/js/pdfmake.min.js"></script>
-<script src="src/plugins/datatables/js/vfs_fonts.js"></script>
+<script src="src/plugins/datatables/js/vfs_fonts.js"></script> -->
+
 <!-- Datatable Setting js -->
 <script src="vendors/scripts/datatable-setting.js"></script>
-<?php require('./src/views/footer.php'); ?>
+<?php require_once('./src/views/footer.php'); ?>

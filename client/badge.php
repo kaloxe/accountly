@@ -1,10 +1,9 @@
-<?php require('./src/views/head.php'); ?>
-<?php require("/xampp/htdocs/accountly/server/session/session.php"); ?>
-<?php require_once("../server/session/authenticator.php"); ?>
-<?php require('./src/views/loader.php'); ?>
-<?php require('./src/views/header.php'); ?>
-<?php require('./src/views/right-sidebar.php'); ?>
-<?php require('./src/views/left-sidebar.php'); ?>
+<?php require_once('./src/views/head.php'); ?>
+<?php require_once("../server/session/session.php"); ?>
+<?php require_once('./src/views/loader.php'); ?>
+<?php require_once('./src/views/header.php'); ?>
+<?php require_once('./src/views/right-sidebar.php'); ?>
+<?php require_once('./src/views/left-sidebar.php'); ?>
 
 <div class="main-container">
     <div class="pd-ltr-20 xs-pd-20-10">
@@ -27,41 +26,96 @@
                         </nav>
                     </div>
                     <div class="col-md-6 col-sm-6 text-right">
+                        <!-- <a class="btn btn-success" href="#" role="button" data-toggle="modal" data-target="#modal-convert" type="button">
+                            Convertir
+                        </a> -->
+                        <?php echo ($type_user == "administrador") ? '
                         <a class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#modal_create" type="button">
                             Registrar
-                        </a>
+                        </a>' : ""; ?>
                     </div>
                 </div>
             </div>
 
             <!-- multiple select row Datatable start -->
-            <div class="card-box mb-30">
-                <div class="pd-20">
-                    <h4 class="text-blue h4">Divisas</h4>
+            <div class="row-badge">
+                <div class="card-box mb-30 col-6">
+                    <div class="pd-20">
+                        <h4 class="text-blue h4">Divisas</h4>
+                    </div>
+                    <div class="pb-20">
+                        <table class="table hover nowrap">
+                            <thead>
+                                <tr>
+                                    <th>Divisa</th>
+                                    <th>Valor</th>
+                                    <?php echo ($type_user == "administrador") ? '<th class="datatable-nosort">Accion</th>' : ""; ?>
+                                </tr>
+                            </thead>
+                            <tbody id="content">
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div class="pb-20">
-                    <table class="data-table table stripe hover nowrap">
-                        <thead>
-                            <tr>
-                                <th class="table-plus">Divisa</th>
-                                <th>Valor</th>
-                                <th class="datatable-nosort">Accion</th>
-                            </tr>
-                        </thead>
-                        <tbody id="content">
-                        </tbody>
-                    </table>
+                <div class="col-6 pl-4">
+                    <div class="card-box mb-30">
+                        <div class="pd-20">
+                            <h4 class="text-blue h4">Conversor de divisas</h4>
+                        </div>
+                        <div class="pb-20">
+
+                            <form class="mx-4" id="formulario_convert">
+                                <div class="row">
+                                    <div class="form-group formulario__grupo-input col-5 px-3" id="grupo__divisa_1">
+                                        <label>Divisa</label>
+                                        <select class="form-control formulario__input" name="divisa_1" id="divisa_1">
+                                            <!-- select generado con php por fetch en js -->
+                                        </select>
+                                        <p class="formulario__input-error">Seleccione una divisa.</p>
+                                    </div>
+                                    <div class="form-group formulario__grupo-input col-7 pr-3" id="grupo__monto_1">
+                                        <label><br></label>
+                                        <input type="text" class="form-control formulario__input" name="monto_1" id="monto_1" />
+                                        <p class="formulario__input-error">Solo valores numericos.</p>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center my-1">
+                                    <img src="./vendors/images/convert.png" width="50" height="50">
+                                </div>
+                                <div class="row">
+                                    <div class="form-group formulario__grupo-input col-5 px-3" id="grupo__divisa_2">
+                                        <label>Divisa</label>
+                                        <select class="form-control formulario__input" name="divisa_2" id="divisa_2">
+                                            <!-- select generado con php por fetch en js -->
+                                        </select>
+                                        <p class="formulario__input-error">Seleccione una divisa.</p>
+                                    </div>
+                                    <div class="form-group formulario__grupo-input col-7 pr-3" id="grupo__monto_2">
+                                        <label><br></label>
+                                        <input type="text" class="form-control formulario__input" name="monto_2" id="monto_2" readonly />
+                                        <p class="formulario__input-error">Solo valores numericos.</p>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <input type="button" class="btn btn-primary" id="convert" value="Convertir">
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
                 </div>
+
             </div>
 
             <!-- Create modal -->
-            <?php require('./src/modals/badge/create-modal.php') ?>
+            <?php require_once('./src/modals/badge/create-modal.php') ?>
 
             <!-- Edit modal -->
-            <?php require('./src/modals/badge/update-modal.php') ?>
+            <?php require_once('./src/modals/badge/update-modal.php') ?>
 
             <!-- Delete modal -->
-            <?php require('./src/modals/badge/delete-modal.php') ?>
+            <?php require_once('./src/modals/badge/delete-modal.php') ?>
 
         </div>
 
@@ -77,6 +131,12 @@
 
     function openDeleteModal(id) {
         index_delete = id;
+        document
+            .getElementById("formulario__mensaje-exito")
+            .classList.remove("formulario__mensaje-exito-activo");
+        document
+            .getElementById("formulario__mensaje_validacion")
+            .classList.remove("formulario__mensaje-activo");
     }
     const eliminar = document.getElementById("eliminar");
     eliminar.addEventListener("click", (e) => {
@@ -101,18 +161,14 @@
                         .getElementById("formulario__mensaje-exito")
                         .classList.add("formulario__mensaje-exito-activo");
                     setTimeout(() => {
-                        document
-                            .getElementById("formulario__mensaje-exito")
-                            .classList.remove("formulario__mensaje-exito-activo");
+
                     }, 5000);
                 } else {
                     document
                         .getElementById("formulario__mensaje_validacion")
                         .classList.add("formulario__mensaje-activo");
                     setTimeout(() => {
-                        document
-                            .getElementById("formulario__mensaje_validacion")
-                            .classList.remove("formulario__mensaje-activo");
+
                     }, 5000);
                 }
             });
@@ -135,11 +191,27 @@
                 content.innerHTML = data.data
             }).catch(err => console.log(err))
     }
-</script>
 
+    getSelects()
+
+    function getSelects() {
+        let url = "src/php/selects.php"
+        let formaData = new FormData()
+        fetch(url, {
+                method: "POST",
+                body: formaData
+            }).then(response => response.json())
+            .then(data => {
+                divisa_1.innerHTML = data.badges
+                divisa_2.innerHTML = data.badges
+            }).catch(err => console.log(err))
+    }
+</script>
 <script src="./src/js/validate-create-badge.js"></script>
 <script src="./src/js/validate-edit-badge.js"></script>
-<?php require('./src/views/scripts.php'); ?>
+<script src="./src/js/convert-badge.js"></script>
+<?php require_once('./src/views/scripts.php'); ?>
+<script src="src/plugins/apexcharts/apexcharts.min.js"></script>
 <script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
 <script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
 <script src="src/plugins/datatables/js/dataTables.responsive.min.js"></script>
@@ -154,4 +226,5 @@
 <script src="src/plugins/datatables/js/vfs_fonts.js"></script>
 <!-- Datatable Setting js -->
 <script src="vendors/scripts/datatable-setting.js"></script>
-<?php require('./src/views/footer.php'); ?>
+<!-- Datatable Setting js -->
+<?php require_once('./src/views/footer.php'); ?>

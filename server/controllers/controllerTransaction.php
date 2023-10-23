@@ -1,6 +1,5 @@
 <?php
-require("../session/session.php");
-require_once("../db/db.php");
+require_once("../session/session.php");
 require_once("../models/class_rest.php");
 
 if (isset($_POST)) {

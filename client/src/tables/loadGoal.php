@@ -1,6 +1,6 @@
 <?php
-require("/xampp/htdocs/accountly/server/session/session.php");
-require("/xampp/htdocs/accountly/server/db/db.php");
+require_once("../../../server/session/session.php");
+require_once("../../../server/models/class_database.php");
 
 /* Un arreglo de las columnas a mostrar en la tabla */
 $columns = ['id_goal', 'goal.id_user', 'badge.id_badge', 'badge.name_badge', 'name_goal', 'description', 'amount', 'complete', 'type', 'state_register'];
@@ -18,7 +18,8 @@ $where = 'WHERE ' . $id_user_where . '';
 $sql = "SELECT SQL_CALC_FOUND_ROWS " . implode(", ", $columns) . "
 FROM $table INNER JOIN badge on goal.id_badge=badge.id_badge INNER JOIN user on user.id_user=goal.id_user
 $where";
-$resultado = $conn->query($sql);
+$conn = new database();
+$resultado = $conn->openSQL()->query($sql);
 $num_rows = $resultado->num_rows;
 
 /* Mostrado resultados */
@@ -48,15 +49,28 @@ if ($num_rows > 0) {
             $output['data'] .= '<button class="btn btn-secondary" onclick="openCompleteModal(' . $row['id_goal'] . ')" data-toggle="modal" data-target="#modal_complete">Completar</button>';
         }
 
+        if ($row['complete']) {
+            $output['data'] .= '
+            <button
+                type="button"
+                class="btn btn-info"
+                data-color="#ffffff"
+                id="editar_' . $row['id_goal'] . '" name="editar"
+            >
+                <i class="fa fa-pencil"></i>
+            </button>';
+        } else {
+            $output['data'] .= '
+            <button
+                type="button"
+                class="btn btn-info"
+                data-color="#ffffff"
+                id="editar_' . $row['id_goal'] . '" name="editar" onclick="openUpdateModal(' . $row['id_goal'] . ')" data-toggle="modal" data-target="#modal_update"
+            >
+                <i class="fa fa-pencil"></i>
+            </button>';
+        }
         $output['data'] .= '
-                    <button
-                        type="button"
-                        class="btn btn-info"
-                        data-color="#ffffff"
-                        id="editar_' . $row['id_goal'] . '" name="editar" onclick="openUpdateModal(' . $row['id_goal'] . ')" data-toggle="modal" data-target="#modal_update"
-                    >
-                        <i class="fa fa-pencil"></i>
-                    </button>
                     <button
                         type="button"
                         class="btn btn-danger pull-right"

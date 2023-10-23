@@ -1,4 +1,6 @@
+const formulario_update_name = document.getElementById("formulario_update_name");
 const update_user = document.getElementById("update_user");
+const inputs_update_name = document.querySelectorAll("#formulario_update_name input");
 
 getuser();
 function getuser() {
@@ -57,7 +59,7 @@ const validarCampoUpdate = (expresion, input, campo) => {
   }
 };
 
-inputs_update.forEach((input) => {
+inputs_update_name.forEach((input) => {
   input.addEventListener("keyup", validarFormularioUpdate);
   input.addEventListener("blur", validarFormularioUpdate);
   input.addEventListener("change", validarFormularioUpdate);

@@ -13,7 +13,7 @@ const expresiones = {
   movimiento: /^[0-9a-zA-ZÀ-ÿ\s]{1,10}$/, // Letras, numeros, guion y guion_bajo
   monto: /^[0-9]+([\,\.][0-9]+){0,10}?$/, // 7 a 14 numeros.
   meta: /^[0-9a-zA-ZÀ-ÿ\s]{4,25}$/, // Letras y espacios, pueden llevar acentos.
-  descripcion: /^[0-9a-zA-ZÀ-ÿ\s]{4,45}$/, // Letras y espacios, pueden llevar acentos.
+  descripcion: /^[0-9a-zA-ZÀ-ÿ\s]{0,45}$/, // Letras y espacios, pueden llevar acentos.
   divisa: /^[0-9a-zA-ZÀ-ÿ\s]{1,10}$/,
   cuenta: /^[0-9a-zA-ZÀ-ÿ\s]{1,10}$/, // Letras y espacios, pueden llevar acentos.
 };
@@ -22,7 +22,7 @@ const campos_create = {
   movimiento_create: false,
   monto_create: false,
   meta_create: false,
-  descripcion_create: false,
+  descripcion_create: true,
   divisa_create: false,
 };
 
@@ -123,7 +123,7 @@ create.addEventListener("click", (e) => {
           }, 5000);
           campos_create.movimiento_create = false;
           campos_create.monto_create = false;
-          campos_create.descripcion_create = false;
+          campos_create.descripcion_create = true;
           campos_create.divisa_create = false;
           campos_create.meta_create = false;
           formulario_create.reset();
@@ -138,15 +138,6 @@ create.addEventListener("click", (e) => {
           }, 5000);
         }
       });
-
-    document
-      .getElementById("formulario__mensaje-exito_create")
-      .classList.add("formulario__mensaje-exito-activo");
-    setTimeout(() => {
-      document
-        .getElementById("formulario__mensaje-exito_create")
-        .classList.remove("formulario__mensaje-exito-activo");
-    }, 5000);
   } else {
     Object.keys(campos_create).forEach((campo) => {
       if (!campos_create[campo]) {

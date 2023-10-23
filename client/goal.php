@@ -1,9 +1,9 @@
-<?php require('./src/views/head.php'); ?>
-<?php require('./src/views/loader.php'); ?>
-<?php require("/xampp/htdocs/accountly/server/session/session.php"); ?>
-<?php require('./src/views/header.php'); ?>
-<?php require('./src/views/right-sidebar.php'); ?>
-<?php require('./src/views/left-sidebar.php'); ?>
+<?php require_once('./src/views/head.php'); ?>
+<?php require_once('./src/views/loader.php'); ?>
+<?php require_once("../server/session/session.php"); ?>
+<?php require_once('./src/views/header.php'); ?>
+<?php require_once('./src/views/right-sidebar.php'); ?>
+<?php require_once('./src/views/left-sidebar.php'); ?>
 
 <div class="main-container">
     <div class="pd-ltr-20 xs-pd-20-10">
@@ -36,16 +36,16 @@
             </div>
 
             <!-- Create modal -->
-            <?php require('./src/modals/goal/create-modal.php') ?>
+            <?php require_once('./src/modals/goal/create-modal.php') ?>
 
             <!-- Edit modal -->
-            <?php require('./src/modals/goal/update-modal.php') ?>
+            <?php require_once('./src/modals/goal/update-modal.php') ?>
 
             <!-- Delete modal -->
-            <?php require('./src/modals/goal/delete-modal.php') ?>
+            <?php require_once('./src/modals/goal/delete-modal.php') ?>
 
             <!-- Complete modal-->
-            <?php require('./src/modals/goal/complete-modal.php') ?>
+            <?php require_once('./src/modals/goal/complete-modal.php') ?>
 
 
         </div>
@@ -61,6 +61,12 @@
 
     function openDeleteModal(id) {
         index_delete = id;
+        document
+            .getElementById("formulario__mensaje_validacion")
+            .classList.remove("formulario__mensaje-activo");
+        document
+            .getElementById("formulario__mensaje-exito")
+            .classList.remove("formulario__mensaje-exito-activo");
     }
 
     const eliminar = document.getElementById("eliminar");
@@ -85,24 +91,13 @@
                     document
                         .getElementById("formulario__mensaje-exito")
                         .classList.add("formulario__mensaje-exito-activo");
-                    setTimeout(() => {
-                        document
-                            .getElementById("formulario__mensaje-exito")
-                            .classList.remove("formulario__mensaje-exito-activo");
-                    }, 5000);
                 } else {
                     document
                         .getElementById("formulario__mensaje_validacion")
                         .classList.add("formulario__mensaje-activo");
-                    setTimeout(() => {
-                        document
-                            .getElementById("formulario__mensaje_validacion")
-                            .classList.remove("formulario__mensaje-activo");
-                    }, 5000);
                 }
             });
     });
-
 
     /* Llamando a la función getData() para obtener contenido de la tabla */
     getData()
@@ -143,5 +138,5 @@
 <script src="./src/js/validate-create-goal.js"></script>
 <script src="./src/js/validate-edit-goal.js"></script>
 
-<?php require('./src/views/scripts.php'); ?>
-<?php require('./src/views/footer.php'); ?>
+<?php require_once('./src/views/scripts.php'); ?>
+<?php require_once('./src/views/footer.php'); ?>

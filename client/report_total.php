@@ -1,9 +1,9 @@
-<?php require('./src/views/head.php'); ?>
-<?php require("/xampp/htdocs/accountly/server/session/session.php"); ?>
-<?php require('./src/views/loader.php'); ?>
-<?php require('./src/views/header.php'); ?>
-<?php require('./src/views/right-sidebar.php'); ?>
-<?php require('./src/views/left-sidebar.php'); ?>
+<?php require_once('./src/views/head.php'); ?>
+<?php require_once("../server/session/session.php"); ?>
+<?php require_once('./src/views/loader.php'); ?>
+<?php require_once('./src/views/header.php'); ?>
+<?php require_once('./src/views/right-sidebar.php'); ?>
+<?php require_once('./src/views/left-sidebar.php'); ?>
 
 <div class="main-container">
     <div class="pd-ltr-20 xs-pd-20-10">
@@ -157,8 +157,8 @@
     }
 </script>
 <script src="./src/js/validate-report-total.js"></script>
-<?php require('./src/views/scripts.php'); ?>
+<?php require_once('./src/views/scripts.php'); ?>
 <!-- ApexChart -->
 <script src="src/plugins/apexcharts/apexcharts.min.js"></script>
 <script src="./src/js/report-total-chart.js"></script>
-<?php require('./src/views/footer.php'); ?>
+<?php require_once('./src/views/footer.php'); ?>

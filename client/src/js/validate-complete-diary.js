@@ -70,13 +70,13 @@ complete.addEventListener("click", (e) => {
     const cuenta = document.getElementById("cuenta_complete").value;
 
     let data = {
-      action: "complete_goal",
+      action: "complete_event",
       id: indexGoal,
       descripcion: descripcion,
       cuenta: cuenta,
     };
     console.log(data);
-    fetch("/accountly/server/controllers/controllerGoal.php", {
+    fetch("/accountly/server/controllers/controllerDiary.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json; charset=utf-8",
@@ -94,11 +94,6 @@ complete.addEventListener("click", (e) => {
           document
             .getElementById("formulario__mensaje-exito_complete")
             .classList.add("formulario__mensaje-exito-activo");
-          // setTimeout(() => {
-          //   document
-          //     .getElementById("formulario__mensaje-exito_complete")
-          //     .classList.remove("formulario__mensaje-exito-activo");
-          // }, 5000);
           campos_complete.descripcion_complete = false;
           campos_complete.cuenta_complete = false;
           formulario_complete.reset();

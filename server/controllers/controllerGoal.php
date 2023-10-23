@@ -1,6 +1,5 @@
 <?php
 require_once("../session/session.php");
-require_once("../db/db.php");
 require_once("../models/class_rest.php");
 
 if (isset($_POST)) {
@@ -50,12 +49,10 @@ if (isset($_POST)) {
                 $razon = 5;
                 $sql1 = "INSERT INTO `transaction`(`id_account`, `id_badge`, `id_reason`, `type`, `amount`, `date`, `description`, `state_register`) VALUES ($cuenta, $divisa, $razon, $movimiento, $monto, '$fecha', '$descripcion', 1)";
                 Rest::execute($sql1);
-                //$goal = (Rest::readGoalComplete($sqlData) ? 0 : 1);
                 $sql2 = "UPDATE `goal` SET `complete`=1 WHERE `id_goal`=$id";
                 //Rest::binnacle($id_user, "Se completo meta de meta: $id");
                 echo Rest::execute($sql2);
             }
-
             break;
         case "delete_goal":
             $id = $user['id'];

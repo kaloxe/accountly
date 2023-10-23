@@ -600,6 +600,13 @@ pre code {
   margin-right: -15px;
   margin-left: -15px;
 }
+.row-badge {
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
 .card > hr,
 .no-gutters {
   margin-right: 0;

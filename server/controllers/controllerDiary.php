@@ -1,6 +1,5 @@
 <?php
 require_once("../session/session.php");
-require_once("../db/db.php");
 require_once("../models/class_rest.php");
 
 if (isset($_POST)) {
@@ -21,7 +20,7 @@ if (isset($_POST)) {
             break;
         case "read_diary":
             $id = $user['id'];
-            $sql = "SELECT `id_diary`, `type`, `id_badge`, `amount`, `date`, `description` FROM `diary` INNER JOIN `date` on `date`.`id_date`=`diary`.`id_date` WHERE `id_diary`=$id";
+            $sql = "SELECT `id_diary`, `type`, `id_badge`, `amount`, `date`, `description`, `state_register` FROM `diary` INNER JOIN `date` on `date`.`id_date`=`diary`.`id_date` WHERE `id_diary`=$id";
             echo Rest::readDiary($sql);
             break;
         case "get_events":
@@ -39,6 +38,27 @@ if (isset($_POST)) {
             Rest::binnacle($id_user, "Actualizacion de evento para el $fecha");
             Rest::execute($sql);
             echo Rest::execute($sql1);
+            break;
+        case "complete_event":
+            $id = $user["id"];
+            $sqlData = "SELECT `id_diary`, `type`, `id_badge`, `amount`, `date`, `description`, `state_register` FROM `diary` INNER JOIN `date` on `date`.`id_date`=`diary`.`id_date` WHERE `id_diary`=$id";
+            $eventData = json_decode((Rest::readDiary($sqlData)), true);
+            if ($eventData["state_register"]) {
+                $cuenta = $user["cuenta"];
+                $descripcion = $user["descripcion"];
+                $divisa = $eventData["id_badge"];
+                $movimiento = $eventData["type"];
+                $monto = $eventData["amount"];
+                $fecha = date('y-m-d');
+                $razon = 5;
+                $sql1 = "INSERT INTO `transaction`(`id_account`, `id_badge`, `id_reason`, `type`, `amount`, `date`, `description`, `state_register`) VALUES ($cuenta, $divisa, $razon, $movimiento, $monto, '$fecha', '$descripcion', 1)";
+                Rest::execute($sql1);
+                $sql2 = "UPDATE `diary` SET `state_register`=0 WHERE `id_diary`=$id";
+                //Rest::binnacle($id_user, "Se completo meta de meta: $id");
+                echo Rest::execute($sql2);
+            } else {
+                echo json_encode(array('state' => false));
+            }
             break;
         case "delete_diary":
             $id = $user['id'];

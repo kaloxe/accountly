@@ -1,6 +1,5 @@
 <?php
 require_once("../session/session.php");
-require_once("../db/db.php");
 require_once("../models/class_rest.php");
 
 if (isset($_POST)) {
@@ -25,7 +24,8 @@ if (isset($_POST)) {
 
             /* Consulta */
             $sql = "SELECT SQL_CALC_FOUND_ROWS " . implode(", ", $columns) . " FROM $table INNER JOIN badge on badge.id_badge=diary.id_badge INNER JOIN date on date.id_date=diary.id_date INNER JOIN user on user.id_user=diary.id_user $where ORDER BY date ASC";
-            $resultado = $conn->query($sql);
+            $conn = new database();
+            $resultado = $conn->openSQL()->query($sql);
             $num_rows = $resultado->num_rows;
 
             /* Mostrado resultados */

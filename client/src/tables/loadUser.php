@@ -1,12 +1,6 @@
 <?php
-/*
-* Script: Cargar datos de lado del servidor con PHP y MySQL
-* Autor: Marco Robles
-* Team: Códigos de Programación
-*/
-
-require("/xampp/htdocs/accountly/server/session/session.php");
-require("/xampp/htdocs/accountly/server/db/db.php");
+require_once("../../../server/session/session.php");
+require_once("../../../server/models/class_database.php");
 
 /* Un arreglo de las columnas a mostrar en la tabla */
 $columns = ['id_user', 'nickname', 'password', 'email', 'type_user'];
@@ -19,12 +13,12 @@ $id = 'id_user';
 /* Filtrado */
 $where = 'WHERE 1';
 
-
 /* Consulta */
 $sql = "SELECT SQL_CALC_FOUND_ROWS " . implode(", ", $columns) . "
 FROM $table
 $where";
-$resultado = $conn->query($sql);
+$conn = new database();
+$resultado = $conn->openSQL()->query($sql);
 $num_rows = $resultado->num_rows;
 
 /* Mostrado resultados */

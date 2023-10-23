@@ -1,9 +1,9 @@
-<?php require('./src/views/head.php'); ?>
-<?php require("/xampp/htdocs/accountly/server/session/session.php"); ?>
-<?php require('./src/views/loader.php'); ?>
-<?php require('./src/views/header.php'); ?>
-<?php require('./src/views/right-sidebar.php'); ?>
-<?php require('./src/views/left-sidebar.php'); ?>
+<?php require_once('./src/views/head.php'); ?>
+<?php require_once("../server/session/session.php"); ?>
+<?php require_once('./src/views/loader.php'); ?>
+<?php require_once('./src/views/header.php'); ?>
+<?php require_once('./src/views/right-sidebar.php'); ?>
+<?php require_once('./src/views/left-sidebar.php'); ?>
 
 <div class="main-container">
     <div class="pd-ltr-20 xs-pd-20-10">
@@ -27,9 +27,10 @@
                         </nav>
                     </div>
                     <div class="col-md-6 col-sm-6 text-right">
-                        <a type="button" class="btn btn-warning" data-color="#ffffff" data-toggle="modal" data-target="#modal_database" type="button">
+                        <?php echo (($type_user=="administrador") ? ('<a type="button" class="btn btn-warning" data-color="#ffffff" data-toggle="modal" data-target="#modal_database" type="button">
                             <i class="fa fa-server"></i>
-                        </a>
+                        </a>') : ('')); ?>
+                        
                     </div>
                 </div>
             </div>
@@ -90,13 +91,13 @@
             </div>
 
             <!-- Edit modal name -->
-            <?php require('./src/modals/settings/update-modal-name.php') ?>
+            <?php require_once('./src/modals/settings/update-modal-name.php') ?>
 
             <!-- database modal -->
-            <?php require('./src/modals/settings/database-modal.php') ?>
+            <?php require_once('./src/modals/settings/database-modal.php') ?>
 
             <!-- Edit modal password -->
-            <?php require('./src/modals/settings/update-modal-password.php') ?>
+            <?php require_once('./src/modals/settings/update-modal-password.php') ?>
 
         </div>
         
@@ -109,6 +110,6 @@
 <script src="./src/js/validate-edit-password-settings.js"></script>
 <script src="./src/js/validate-edit-name-settings.js"></script>
 <!-- <script src="./src/js/validate-user-settings.js"></script> -->
-<?php require('./src/views/scripts.php'); ?>
+<?php require_once('./src/views/scripts.php'); ?>
 <!-- Datatable Setting js -->
-<?php require('./src/views/footer.php'); ?>
+<?php require_once('./src/views/footer.php'); ?>

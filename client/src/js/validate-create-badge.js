@@ -3,8 +3,9 @@ const create = document.getElementById("create");
 const inputs_create = document.querySelectorAll("#formulario_create input");
 
 const expresiones = {
-  divisa: /^[0-9a-zA-ZÀ-ÿ\s]{4,25}$/, // Letras, numeros, guion y guion_bajo
+  divisa: /^[0-9a-zA-ZÀ-ÿ\s]{1,25}$/, // Letras, numeros, guion y guion_bajo
   valor: /^[0-9]+([\,\.][0-9]+){0,10}?$/, // 7 a 14 numeros.
+  monto: /^[0-9]+([\,\.][0-9]+){0,10}?$/, // 7 a 14 numeros.
 };
 
 const campos_create = {

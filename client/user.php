@@ -1,12 +1,11 @@
 <?php
-//require('/xampp/htdocs/accountly/server/db/db.php');
-require('./src/views/head.php');
-require("/xampp/htdocs/accountly/server/session/session.php");
+require_once('./src/views/head.php');
+require_once("../server/session/session.php");
 require_once("../server/session/authenticator.php");
-require('./src/views/loader.php');
-require('./src/views/header.php');
-require('./src/views/right-sidebar.php');
-require('./src/views/left-sidebar.php');
+require_once('./src/views/loader.php');
+require_once('./src/views/header.php');
+require_once('./src/views/right-sidebar.php');
+require_once('./src/views/left-sidebar.php');
 ?>
 
 <div class="main-container">
@@ -43,14 +42,14 @@ require('./src/views/left-sidebar.php');
                     <h4 class="text-blue h4">Usuarios</h4>
                 </div>
                 <div class="pb-20">
-                    <table class="data-table table stripe hover nowrap">
+                    <table class="data-table table hover nowrap">
                         <thead>
                             <tr>
-                                <th class="sort asc">Tipo</th>
-                                <th class="sort asc">Nombre</th>
-                                <th class="sort asc">Correo</th>
-                                <th class="sort asc">Contraseña</th>
-                                <th class="datatable-nosort">Action</th>
+                                <th>Tipo</th>
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                <th>Contraseña</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody id="content">
@@ -60,13 +59,13 @@ require('./src/views/left-sidebar.php');
             </div>
 
             <!-- Create modal -->
-            <?php require('./src/modals/user/create-modal.php') ?>
+            <?php require_once('./src/modals/user/create-modal.php') ?>
 
             <!-- Edit modal -->
-            <?php require('./src/modals/user/update-modal.php') ?>
+            <?php require_once('./src/modals/user/update-modal.php') ?>
 
             <!-- Delete modal -->
-            <?php require('./src/modals/user/delete-modal.php') ?>
+            <?php require_once('./src/modals/user/delete-modal.php') ?>
 
         </div>
 
@@ -82,6 +81,13 @@ require('./src/views/left-sidebar.php');
 
     function openDeleteModal(id) {
         index_delete = id;
+        document
+            .getElementById("formulario__mensaje-exito")
+            .classList.remove("formulario__mensaje-exito-activo");
+        document
+            .getElementById("formulario__mensaje_validacion")
+            .classList.remove("formulario__mensaje-activo");
+
     }
     const eliminar = document.getElementById("eliminar");
     eliminar.addEventListener("click", (e) => {
@@ -105,20 +111,10 @@ require('./src/views/left-sidebar.php');
                     document
                         .getElementById("formulario__mensaje-exito")
                         .classList.add("formulario__mensaje-exito-activo");
-                    setTimeout(() => {
-                        document
-                            .getElementById("formulario__mensaje-exito")
-                            .classList.remove("formulario__mensaje-exito-activo");
-                    }, 5000);
                 } else {
                     document
                         .getElementById("formulario__mensaje_validacion")
                         .classList.add("formulario__mensaje-activo");
-                    setTimeout(() => {
-                        document
-                            .getElementById("formulario__mensaje_validacion")
-                            .classList.remove("formulario__mensaje-activo");
-                    }, 5000);
                 }
             });
     });
@@ -145,7 +141,7 @@ require('./src/views/left-sidebar.php');
 
 <script src="./src/js/validate-create-user.js"></script>
 <script src="./src/js/validate-edit-user.js"></script>
-<?php require('./src/views/scripts.php'); ?>
+<?php require_once('./src/views/scripts.php'); ?>
 <script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
 <script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
 <script src="src/plugins/datatables/js/dataTables.responsive.min.js"></script>
@@ -160,4 +156,4 @@ require('./src/views/left-sidebar.php');
 <script src="src/plugins/datatables/js/vfs_fonts.js"></script>
 <!-- Datatable Setting js -->
 <script src="vendors/scripts/datatable-setting.js"></script>
-<?php require('./src/views/footer.php'); ?>
+<?php require_once('./src/views/footer.php'); ?>

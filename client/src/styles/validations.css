@@ -14,6 +14,10 @@
   color: #e95959;
 }
 
+.next-event {
+  background-color: #455a64;
+}
+
 .form-control-error {
   color: #757575;
   background-color: #fff;

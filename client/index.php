@@ -1,10 +1,10 @@
-<?php require('./src/views/head.php'); ?>
-<?php require("/xampp/htdocs/accountly/server/session/session.php"); ?>
-<?php require("/xampp/htdocs/accountly/server/session/authenticatorAdmin.php"); ?>
-<?php require('./src/views/loader.php'); ?>
-<?php require('./src/views/header.php'); ?>
-<?php require('./src/views/right-sidebar.php'); ?>
-<?php require('./src/views/left-sidebar.php'); ?>
+<?php require_once('./src/views/head.php'); ?>
+<?php require_once("../server/session/session.php"); ?>
+<?php require_once("../server/session/authenticatorAdmin.php"); ?>
+<?php require_once('./src/views/loader.php'); ?>
+<?php require_once('./src/views/header.php'); ?>
+<?php require_once('./src/views/right-sidebar.php'); ?>
+<?php require_once('./src/views/left-sidebar.php'); ?>
 <?php
 include('/xampp/htdocs/accountly/server/simplehtmldom/simple_html_dom.php');
 // Carga la página web que deseas analizar
@@ -32,9 +32,8 @@ $valorDolar = $html->find('.iedv tbody tr td', 2)->plaintext;
             </div>
 
             <div class="col-md-4 mb-20">
-                <div class="card-box min-height-150px pd-20 mb-20" data-bgcolor="#455a64" id="next-event">
-                    
-                </div>
+                <div id="next-event"></div>
+                
                 <div class="card-box min-height-150px pd-20" data-bgcolor="#265ed7">
                     <div class="d-flex justify-content-between pb-20 text-white">
                         <div class="icon h1 text-white">
@@ -54,33 +53,6 @@ $valorDolar = $html->find('.iedv tbody tr td', 2)->plaintext;
                 </div>
             </div>
         </div>
-
-        <!-- <div class="card-box pb-10 mb-20">
-            <div class="h5 pd-20 mb-0">Ultimas transacciones</div>
-            <table class="data-table table nowrap">
-                <thead>
-                    <tr>
-                        <th class="table-plus">Divisa</th>
-                        <th>Monto</th>
-                        <th>Cuenta</th>
-                        <th>Razon</th>
-                        <th>Fecha</th>
-                    </tr>
-                </thead>
-                <tbody id="content">
-                    <tr>
-                        <td class="table-plus">
-                            Bolibar
-                        </td>
-                        <td>Monto</td>
-                        <td>Cuenta</td>
-                        <td>Razon</td>
-                        <td>Descripcion</td>
-                        <td>Fecha</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div> -->
 
         <!-- Striped table start -->
         <div class="card-box mb-30">
@@ -141,7 +113,7 @@ $valorDolar = $html->find('.iedv tbody tr td', 2)->plaintext;
             }).catch(err => console.log(err))
     }
 </script>
-<?php require('./src/views/scripts.php'); ?>
+<?php require_once('./src/views/scripts.php'); ?>
 <script src="src/plugins/apexcharts/apexcharts.min.js"></script>
 <script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
 <script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
@@ -149,4 +121,4 @@ $valorDolar = $html->find('.iedv tbody tr td', 2)->plaintext;
 <script src="src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
 <!-- <script src="vendors/scripts/dashboard3.js"></script> -->
 <script src="./src/js/index-chart.js"></script>
-<?php require('./src/views/footer.php'); ?>
+<?php require_once('./src/views/footer.php'); ?>

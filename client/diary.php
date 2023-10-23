@@ -1,11 +1,10 @@
 <?php
-require('/xampp/htdocs/accountly/server/db/db.php');
-require('./src/views/head.php');
-require("/xampp/htdocs/accountly/server/session/session.php");
-require('./src/views/loader.php');
-require('./src/views/header.php');
-require('./src/views/right-sidebar.php');
-require('./src/views/left-sidebar.php');
+require_once('./src/views/head.php');
+require_once("../server/session/session.php");
+require_once('./src/views/loader.php');
+require_once('./src/views/header.php');
+require_once('./src/views/right-sidebar.php');
+require_once('./src/views/left-sidebar.php');
 ?>
 
 <div class="main-container">
@@ -42,15 +41,17 @@ require('./src/views/left-sidebar.php');
                 </div>
             </div>
 
-            <div class="pd-20 card-box mb-30">
+            <div class="pb-20 card-box mb-30">
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="event_tap" role="tabpanel">
-                        <div class="h5 pd-20 mb-0">Eventos</div>
-                        <table class="data-table table nowrap">
+                        <div class="pd-20">
+                            <h4 class="text-blue h4">Eventos</h4>
+                        </div>
+                        <table class="data-table table hover nowrap">
                             <thead>
                                 <tr>
-                                    <?php echo ($type_user=="administrador") ? "<th>Usuario</th>": ""; ?>
-                                    <th class="table-plus">Fecha</th>
+                                    <?php echo ($type_user == "administrador") ? "<th>Usuario</th>" : ""; ?>
+                                    <th>Fecha</th>
                                     <th>Descripcion</th>
                                     <th>Divisa</th>
                                     <th>Cantidad</th>
@@ -60,6 +61,7 @@ require('./src/views/left-sidebar.php');
                             </thead>
                             <tbody id="content">
                             </tbody>
+                            
                         </table>
                     </div>
                     <div class="tab-pane fade" id="calendar_tab" role="tabpanel">
@@ -89,13 +91,16 @@ require('./src/views/left-sidebar.php');
                 </div>
 
                 <!-- Create modal -->
-                <?php require('./src/modals/diary/create-modal.php') ?>
+                <?php require_once('./src/modals/diary/create-modal.php') ?>
 
                 <!-- Edit modal -->
-                <?php require('./src/modals/diary/update-modal.php') ?>
+                <?php require_once('./src/modals/diary/update-modal.php') ?>
+
+                <!-- Create modal -->
+                <?php require_once('./src/modals/diary/complete-modal.php') ?>
 
                 <!-- Delete modal -->
-                <?php require('./src/modals/diary/delete-modal.php') ?>
+                <?php require_once('./src/modals/diary/delete-modal.php') ?>
 
             </div>
         </div>
@@ -111,6 +116,12 @@ require('./src/views/left-sidebar.php');
 
     function openDeleteModal(id) {
         index_delete = id;
+        document
+            .getElementById("formulario__mensaje-exito")
+            .classList.remove("formulario__mensaje-exito-activo");
+        document
+            .getElementById("formulario__mensaje_validacion")
+            .classList.remove("formulario__mensaje-activo");
     }
     const eliminar = document.getElementById("eliminar");
     eliminar.addEventListener("click", (e) => {
@@ -134,20 +145,10 @@ require('./src/views/left-sidebar.php');
                     document
                         .getElementById("formulario__mensaje-exito")
                         .classList.add("formulario__mensaje-exito-activo");
-                    setTimeout(() => {
-                        document
-                            .getElementById("formulario__mensaje-exito")
-                            .classList.remove("formulario__mensaje-exito-activo");
-                    }, 5000);
                 } else {
                     document
                         .getElementById("formulario__mensaje_validacion")
                         .classList.add("formulario__mensaje-activo");
-                    setTimeout(() => {
-                        document
-                            .getElementById("formulario__mensaje_validacion")
-                            .classList.remove("formulario__mensaje-activo");
-                    }, 5000);
                 }
             });
     });
@@ -158,7 +159,6 @@ require('./src/views/left-sidebar.php');
     /* Peticion AJAX */
     function getData() {
         let content = document.getElementById("content")
-
         let url = "src/tables/loadDiary.php"
         let formaData = new FormData()
         fetch(url, {
@@ -184,19 +184,29 @@ require('./src/views/left-sidebar.php');
             .then(data => {
                 divisa_create.innerHTML = data.badges
                 divisa_update.innerHTML = data.badges
+                cuenta_complete.innerHTML = data.accounts
             }).catch(err => console.log(err))
     }
 </script>
-
+<script src="./src/js/validate-complete-diary.js"></script>
 <script src="./src/js/validate-create-diary.js"></script>
 <script src="./src/js/validate-edit-diary.js"></script>
-<?php require('./src/views/scripts.php'); ?>
+<?php require_once('./src/views/scripts.php'); ?>
 <script src="src/plugins/apexcharts/apexcharts.min.js"></script>
 <script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
 <script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
 <script src="src/plugins/datatables/js/dataTables.responsive.min.js"></script>
 <script src="src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
-<script src="vendors/scripts/dashboard3-datatable.js"></script>
+<!-- buttons for Export datatable -->
+<script src="src/plugins/datatables/js/dataTables.buttons.min.js"></script>
+<script src="src/plugins/datatables/js/buttons.bootstrap4.min.js"></script>
+<script src="src/plugins/datatables/js/buttons.print.min.js"></script>
+<script src="src/plugins/datatables/js/buttons.html5.min.js"></script>
+<script src="src/plugins/datatables/js/buttons.flash.min.js"></script>
+<script src="src/plugins/datatables/js/pdfmake.min.js"></script>
+<script src="src/plugins/datatables/js/vfs_fonts.js"></script>
+<!-- Datatable Setting js -->
+<script src="vendors/scripts/datatable-setting.js"></script>
 <script src="src/plugins/fullcalendar/fullcalendar.min.js"></script>
 <script src="vendors/scripts/calendar-setting.js"></script>
-<?php require('./src/views/footer.php'); ?>
+<?php require_once('./src/views/footer.php'); ?>

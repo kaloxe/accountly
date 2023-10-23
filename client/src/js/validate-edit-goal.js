@@ -48,7 +48,6 @@ const validarFormularioUpdate = (e) => {
     case "meta_update":
       validarCampoUpdate(expresiones.meta, e.target, "meta_update");
       break;
-
     case "descripcion_update":
       validarCampoUpdate(
         expresiones.descripcion,

@@ -1,8 +1,7 @@
 <?php
 
-require("/xampp/htdocs/accountly/server/session/session.php");
-require("/xampp/htdocs/accountly/server/models/class_rest.php");
-require("/xampp/htdocs/accountly/server/db/db.php");
+require("../../../server/session/session.php");
+require("../../../server/models/class_rest.php");
 
 $dataAccounts = Rest::readAccounts($id_user_where);
 $dataBadges = Rest::readBadges();

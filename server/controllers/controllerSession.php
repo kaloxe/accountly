@@ -39,21 +39,6 @@ if (isset($_POST)) {
                     echo json_encode($result);
                 }
                 break;
-                // case "change_password":
-                //     $id = $_SESSION['id_user'];
-                //     $usuario = $_SESSION['nickname'];
-                //     $password = $user['password'];
-                //     $newPassword = $user['newPassword'];
-                //     $sql = "SELECT * FROM `user` WHERE `nickname`='$usuario' AND `password`='$password'";
-                //     $result = User::validUser($sql);
-                //     if ($result["state"]) {
-                //         $sql = "UPDATE `user` SET `password`='$newPassword' WHERE `id_user`='$id'";
-                //         Rest::binnacle($id_user, "Cambio de contraseña de usuario: $usuario");
-                //         echo Rest::execute($sql);
-                //     } else {
-                //         echo json_encode($result);
-                //     }
-                //     break;
             default:
                 echo json_encode('hola');
         }

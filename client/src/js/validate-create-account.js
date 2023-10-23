@@ -3,7 +3,7 @@ const create = document.getElementById("create");
 const inputs_create = document.querySelectorAll("#formulario_create input");
 
 const expresiones = {
-  nombre: /^[0-9a-zA-ZÀ-ÿ\s]{4,25}$/, // Letras, numeros, guion y guion_bajo
+  nombre: /^[0-9a-zA-ZÀ-ÿ\s]{3,25}$/, // Letras, numeros, guion y guion_bajo
 };
 
 const campos_create = {

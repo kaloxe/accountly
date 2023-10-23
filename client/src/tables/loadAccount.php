@@ -1,6 +1,6 @@
 <?php
-require("/xampp/htdocs/accountly/server/session/session.php");
-require("/xampp/htdocs/accountly/server/db/db.php");
+require_once("../../../server/session/session.php");
+require_once("../../../server/models/class_database.php");
 
 /* Un arreglo de las columnas a mostrar en la tabla */
 $columns = ['id_account', 'account.id_user', 'name_account', 'nickname'];
@@ -13,19 +13,20 @@ $id = 'id_account';
 /* Filtrado */
 $where = 'WHERE ' . $id_user_where . '';
 
-
 /* Consulta */
 $sql = "SELECT SQL_CALC_FOUND_ROWS " . implode(", ", $columns) . "
 FROM $table INNER JOIN user on user.id_user=account.id_user
 $where";
-$resultado = $conn->query($sql);
+$conn = new database();
+$resultado = $conn->openSQL()->query($sql);
 $num_rows = $resultado->num_rows;
 
 function getBadges($id)
 {
-    require("/xampp/htdocs/accountly/server/db/db.php");
+    require_once("/xampp/htdocs/accountly/server/models/class_database.php");
     $sql1 = "SELECT name_badge, (ifnull((SELECT SUM(transaction.amount) FROM transaction WHERE transaction.id_account=$id and badge.id_badge=transaction.id_badge and transaction.type=1),0)- ifnull((SELECT SUM(transaction.amount) FROM transaction WHERE transaction.id_account=$id and badge.id_badge=transaction.id_badge and transaction.type=0),0)) as subtotal FROM account INNER JOIN transaction on account.id_account=transaction.id_account INNER JOIN badge on transaction.id_badge=badge.id_badge WHERE account.id_account=$id GROUP BY badge.id_badge";
-    $resultado1 = $conn->query($sql1);
+    $conn = new database();
+    $resultado1 = $conn->openSQL()->query($sql1);
     $num_rows1 = $resultado1->num_rows;
     $output1 = '';
     if ($num_rows1 > 0) {

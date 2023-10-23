@@ -1,5 +1,4 @@
 <?php
-
 require_once("class_database.php");
 class User extends database
 {

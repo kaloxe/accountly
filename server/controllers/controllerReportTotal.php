@@ -1,6 +1,5 @@
 <?php
 require_once("../session/session.php");
-require_once("../db/db.php");
 require_once("../models/class_rest.php");
 
 if (isset($_POST)) {
@@ -26,17 +25,19 @@ if (isset($_POST)) {
             /* Consulta */
             $sql = "SELECT SQL_CALC_FOUND_ROWS " . implode(", ", $columns) . " 
             FROM $table INNER JOIN user on user.id_user=account.id_user $where";
-            $resultado = $conn->query($sql);
+            $conn = new database();
+            $resultado = $conn->openSQL()->query($sql);
             $num_rows = $resultado->num_rows;
 
             // totales
             function getTotal($type_user, $id_user, $badge)
             {
-                require("/xampp/htdocs/accountly/server/db/db.php");
+                require_once("../models/class_rest.php");
                 $user_where = $type_user == "administrador" ? 1 : "account.id_user=$id_user";
                 $sqlTotal = "SELECT name_badge, value, (ifnull((SELECT SUM(transaction.amount) FROM transaction INNER JOIN account on account.id_account=transaction.id_account WHERE $user_where and badge.id_badge=transaction.id_badge and transaction.type=1),0)-ifnull((SELECT SUM(transaction.amount) FROM transaction INNER JOIN account on account.id_account=transaction.id_account WHERE $user_where and badge.id_badge=transaction.id_badge and transaction.type=0),0)) as subtotal FROM transaction INNER JOIN account on account.id_account=transaction.id_account INNER JOIN user on user.id_user=account.id_user INNER JOIN badge on transaction.id_badge=badge.id_badge WHERE $user_where and $badge GROUP BY badge.id_badge";
                 //$sqlTotal = "SELECT name_badge, (ifnull((SELECT SUM(transaction.amount) FROM transaction WHERE  badge.id_badge=transaction.id_badge and transaction.type=1),0)- ifnull((SELECT SUM(transaction.amount) FROM transaction WHERE badge.id_badge=transaction.id_badge and transaction.type=0),0)) as subtotal FROM account INNER JOIN transaction on account.id_account=transaction.id_account INNER JOIN badge on transaction.id_badge=badge.id_badge WHERE 1 GROUP BY badge.id_badge";
-                $total = $conn->query($sqlTotal);
+                $conn = new database();
+                $total = $conn->openSQL()->query($sqlTotal);
                 $num_rowsTotal = $total->num_rows;
                 $fila = 0;
                 $outputTotal = '';
@@ -56,10 +57,11 @@ if (isset($_POST)) {
             // obtener los saldos por divisa de una cuenta
             function getBadges($id, $badge)
             {
-                require("/xampp/htdocs/accountly/server/db/db.php");
+                require_once("../models/class_rest.php");
                 $sql1 = "SELECT name_account, name_badge, value, (ifnull((SELECT SUM(transaction.amount) FROM transaction INNER JOIN account on account.id_account=transaction.id_account WHERE transaction.id_account=$id and badge.id_badge=transaction.id_badge and transaction.type=1 and 1 and 1),0) - ifnull((SELECT SUM(transaction.amount) FROM transaction INNER JOIN account on account.id_account=transaction.id_account WHERE transaction.id_account=$id and badge.id_badge=transaction.id_badge and transaction.type=0 and 1 and 1),0)) as subtotal FROM transaction INNER JOIN account on account.id_account=transaction.id_account INNER JOIN user on user.id_user=account.id_user INNER JOIN badge on transaction.id_badge=badge.id_badge WHERE $badge and transaction.id_account=$id GROUP BY badge.id_badge";
                 //$sql1 = "SELECT name_badge, (ifnull((SELECT SUM(transaction.amount) FROM transaction WHERE transaction.id_account=$id and badge.id_badge=transaction.id_badge and transaction.type=1),0)- ifnull((SELECT SUM(transaction.amount) FROM transaction WHERE transaction.id_account=$id and badge.id_badge=transaction.id_badge and transaction.type=0),0)) as subtotal FROM account INNER JOIN transaction on account.id_account=transaction.id_account INNER JOIN badge on transaction.id_badge=badge.id_badge WHERE transaction.id_account=$id GROUP BY badge.id_badge";
-                $resultado1 = $conn->query($sql1);
+                $conn = new database();
+                $resultado1 = $conn->openSQL()->query($sql1);
                 $num_rows1 = $resultado1->num_rows;
                 $fila = 0;
                 $output1 = '';

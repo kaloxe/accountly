@@ -1,7 +1,7 @@
 <div class="left-side-bar">
     <div class="brand-logo">
         <a class="align-items-center" href="#">
-            <span class="mtext col-12">Accountly</span>
+            <span class="mtext col-12 text-center"><b>Accountly</b></span>
             <!-- <img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo" />
             <img src="vendors/images/deskapp-logo-white.svg" alt="" class="light-logo" /> -->
         </a>
@@ -15,22 +15,22 @@
                 <?php
                 switch ($type_user) {
                     case "administrador":
-                        ?>
+                ?>
                         <li>
                             <a href="user.php" class="dropdown-toggle no-arrow">
                                 <span class="micon bi bi-people"></span><span class="mtext">Usuarios</span>
                             </a>
                         </li>
-                        <?php
+                    <?php
                         break;
                     case "usuario":
-                        ?>
+                    ?>
                         <li>
                             <a href="index.php" class="dropdown-toggle no-arrow">
                                 <span class="micon bi bi-house"></span><span class="mtext">Principal</span>
                             </a>
                         </li>
-                        <?php
+                <?php
                         break;
                     default:
                         echo "Permisologia no permitida";
@@ -55,30 +55,11 @@
                         <span class="micon bi bi-flag"></span><span class="mtext">Metas</span>
                     </a>
                 </li>
-                <?php
-                switch ($type_user) {
-                    case "administrador":
-                        ?>
-                        <li>
-                            <a href="badge.php" class="dropdown-toggle no-arrow">
-                                <span class="micon bi bi-cash-coin"></span><span class="mtext">Divisas</span>
-                            </a>
-                        </li>
-                        <?php
-                        break;
-                    case "usuario":
-                        ?>
-                        <li>
-                            <a href="#" class="dropdown-toggle no-arrow">
-                                <span class="micon bi bi-cash-coin"></span><span class="mtext">Divisas</span>
-                            </a>
-                        </li>
-                        <?php
-                        break;
-                    default:
-                        echo "Permisologia no permitida";
-                } ?>
-                
+                <li>
+                    <a href="badge.php" class="dropdown-toggle no-arrow">
+                        <span class="micon bi bi-cash-coin"></span><span class="mtext">Divisas</span>
+                    </a>
+                </li>
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
                         <span class="micon bi bi-pie-chart"></span><span class="mtext">Reportes</span>
@@ -91,9 +72,9 @@
                         <?php
                         switch ($type_user) {
                             case "administrador":
-                                ?>
+                        ?>
                                 <li><a href="report_user.php">Reporte de Usuarios</a></li>
-                                <?php
+                        <?php
                                 break;
                             case "usuario":
                                 break;

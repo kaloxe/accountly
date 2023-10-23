@@ -19,6 +19,12 @@ if (isset($_POST)) {
             $sql = "SELECT `id_badge`, `name_badge`, `value` FROM `badge` WHERE `id_badge`=$id";
             echo Rest::readBadge($sql);
             break;
+        case "convert_badge":
+            $divisa1 = $user['divisa1'];
+            $divisa2 = $user['divisa2'];
+            $sql = "SELECT * FROM `badge` WHERE id_badge=$divisa1 UNION SELECT * FROM `badge` WHERE id_badge=$divisa2";
+            echo Rest::convertBadge($sql);
+            break;
         case "update_badge":
             $id = $user["id"];
             $divisa = $user['divisa'];
