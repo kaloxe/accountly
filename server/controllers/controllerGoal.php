@@ -46,7 +46,7 @@ if (isset($_POST)) {
                 $movimiento = $goalData["type"];
                 $monto = $goalData["amount"];
                 $fecha = date('y-m-d');
-                $razon = 5;
+                $razon = 8;
                 $sql1 = "INSERT INTO `transaction`(`id_account`, `id_badge`, `id_reason`, `type`, `amount`, `date`, `description`, `state_register`) VALUES ($cuenta, $divisa, $razon, $movimiento, $monto, '$fecha', '$descripcion', 1)";
                 Rest::execute($sql1);
                 $sql2 = "UPDATE `goal` SET `complete`=1 WHERE `id_goal`=$id";

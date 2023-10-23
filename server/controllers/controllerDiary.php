@@ -50,7 +50,7 @@ if (isset($_POST)) {
                 $movimiento = $eventData["type"];
                 $monto = $eventData["amount"];
                 $fecha = date('y-m-d');
-                $razon = 5;
+                $razon = 7;
                 $sql1 = "INSERT INTO `transaction`(`id_account`, `id_badge`, `id_reason`, `type`, `amount`, `date`, `description`, `state_register`) VALUES ($cuenta, $divisa, $razon, $movimiento, $monto, '$fecha', '$descripcion', 1)";
                 Rest::execute($sql1);
                 $sql2 = "UPDATE `diary` SET `state_register`=0 WHERE `id_diary`=$id";
