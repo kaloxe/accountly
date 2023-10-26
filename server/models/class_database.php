@@ -1,7 +1,7 @@
 <?php
 class database
 {
-    public $conn; // conexion
+    public $conn;
     public $servidor;
     public $usuario;
     public $clave;
@@ -28,7 +28,6 @@ class database
                 PDO::ATTR_EMULATE_PREPARES   => false,
             ];
             $this->pdo = new PDO($this->conn, $this->usuario, $this->clave, $options);
-            // print_r('conexion exitosa');
         } catch (PDOException $e) {
             print_r('Error connection: ' . $e->getMessage());
         }
@@ -47,7 +46,6 @@ class database
     function cerrar()
     {
         try {
-            // Ya se ha terminado; se cierra
             $this->pdo = null;
         } catch (Exception $e) {
             return 0;

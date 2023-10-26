@@ -22,9 +22,9 @@ fetch("/accountly/server/controllers/controllerDiary.php", {
   .then((res) => res.json())
   .then((dat) => {
     console.log(dat);
-    events=dat;
+    events = dat;
   });
-  
+
 (function () {
   "use strict";
   // ------------------------------------------------------- //
@@ -32,34 +32,38 @@ fetch("/accountly/server/controllers/controllerDiary.php", {
   // ------------------------------------------------------ //
   jQuery(function () {
     // page is ready
-    jQuery("#calendar").fullCalendar({
-      themeSystem: "bootstrap4",
+    setTimeout(() => {
+      jQuery("#calendar").fullCalendar({
+        themeSystem: "bootstrap4",
 
-      // emphasizes business hours
-      businessHours: false,
-      defaultView: "month",
+        // emphasizes business hours
+        businessHours: false,
+        defaultView: "month",
 
-      // event dragging & resizing
-      editable: false,
-      //editable: true,
-      // header
-      header: {
-        left: "title",
-        center: "month,agendaWeek,agendaDay",
-        right: "today prev,next",
-      },
+        // event dragging & resizing
+        editable: false,
+        //editable: true,
+        // header
+        header: {
+          left: "title",
+          center: "month,agendaWeek,agendaDay",
+          right: "today prev,next",
+        },
 
-      events: events,
-      dayClick: function () {
-        jQuery("#modal-view-event-add").modal();
-      },
-      eventClick: function (event, jsEvent, view) {
-        jQuery(".event-icon").html("<i class='fa fa-" + event.icon + "'></i>");
-        jQuery(".event-title").html(event.title);
-        jQuery(".event-body").html(event.description);
-        jQuery(".eventUrl").attr("href", event.url);
-        jQuery("#modal-view-event").modal();
-      },
-    });
+        events: events,
+        dayClick: function () {
+          jQuery("#modal-view-event-add").modal();
+        },
+        eventClick: function (event, jsEvent, view) {
+          jQuery(".event-icon").html(
+            "<i class='fa fa-" + event.icon + "'></i>"
+          );
+          jQuery(".event-title").html(event.title);
+          jQuery(".event-body").html(event.description);
+          jQuery(".eventUrl").attr("href", event.url);
+          jQuery("#modal-view-event").modal();
+        },
+      });
+    }, 100);
   });
 })(jQuery);

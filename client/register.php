@@ -16,10 +16,6 @@
     <div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
         <div class="container">
             <div class="row align-items-center">
-                <!-- <div class="col-md-6 col-lg-7">
-						<img src="vendors/images/login-page-img.png" alt="" />
-					</div> -->
-
                 <div class="login-box col-12">
 
                     <div class="formulario__mensaje p-1 text-center mb-2 pb-5" id="formulario__mensaje">
@@ -74,7 +70,6 @@
                                     </div>
                                 </div>
                             </div>
-                            
                         </form>
                     </div>
                 </div>

@@ -49,7 +49,7 @@ require_once('./src/views/left-sidebar.php');
                                 <th>Nombre</th>
                                 <th>Correo</th>
                                 <th>Contraseña</th>
-                                <th>Action</th>
+                                <th class="datatable-nosort">Acción</th>
                             </tr>
                         </thead>
                         <tbody id="content">

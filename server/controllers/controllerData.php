@@ -20,7 +20,6 @@ if (isset($_POST)) {
             } else {
                 echo json_encode(array('state' => false));
             }
-
             break;
         case "get_notifications":
             $notifications = Rest::getNotifications($id_user);

@@ -56,17 +56,19 @@ require_once('./src/views/left-sidebar.php');
                                     <th>Divisa</th>
                                     <th>Cantidad</th>
                                     <th>Estado</th>
-                                    <th class="datatable-nosort">Acciones</th>
+                                    <th class="datatable-nosort">Acción</th>
                                 </tr>
                             </thead>
                             <tbody id="content">
                             </tbody>
-                            
+
                         </table>
                     </div>
                     <div class="tab-pane fade" id="calendar_tab" role="tabpanel">
-                        <div class="calendar-wrap">
-                            <div id="calendar"></div>
+                        <div class="pd-20">
+                            <div class="calendar-wrap">
+                                <div id="calendar"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -96,7 +98,7 @@ require_once('./src/views/left-sidebar.php');
                 <!-- Edit modal -->
                 <?php require_once('./src/modals/diary/update-modal.php') ?>
 
-                <!-- Create modal -->
+                <!-- Complete modal -->
                 <?php require_once('./src/modals/diary/complete-modal.php') ?>
 
                 <!-- Delete modal -->

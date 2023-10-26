@@ -1,3 +1,0 @@
-SELECT SUM(amount) FROM transaction INNER JOIN account ON account.id_account=transaction.id_account WHERE (date='2023-09-15' AND account.id_user=2 AND transaction.type=1)
-
-SELECT name_badge, (ifnull((SELECT SUM(transaction.amount) FROM transaction WHERE transaction.id_account=$id and badge.id_badge=transaction.id_badge and transaction.type=1),0)- ifnull((SELECT SUM(transaction.amount) FROM transaction WHERE transaction.id_account=$id and badge.id_badge=transaction.id_badge and transaction.type=0),0)) as subtotal FROM account INNER JOIN transaction on account.id_account=transaction.id_account INNER JOIN badge on transaction.id_badge=badge.id_badge WHERE account.id_account=$id GROUP BY badge.id_badge

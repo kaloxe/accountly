@@ -107,9 +107,6 @@
             }
         };
         console.log(data)
-        //location.href = "consulta.php";
-        //$.post('/accountly/client/TCPDF/reports/example_001.php', {titulo:data.title})
-        //window.location = `/accountly/client/TCPDF/reports/example_001.php?titulo=${data.title}`;
         fetch("/accountly/server/controllers/controllerReportTotal.php", {
                 method: "POST",
                 headers: {
@@ -123,23 +120,6 @@
                 window.open("/accountly/client/TCPDF/reports/report.php", "_blank");
             });
     });
-
-    // getData()
-    // /* Peticion AJAX */
-    // function getData() {
-    //     let content = document.getElementById("content")
-
-    //     let url = "src/tables/loadReportTotal.php"
-    //     let formaData = new FormData()
-    //     fetch(url, {
-    //             method: "POST",
-    //             body: formaData
-    //         }).then(response => response.json())
-    //         .then(dat => {
-    //             console.log(dat);
-    //             content.innerHTML = dat.data;
-    //         }).catch(err => console.log(err))
-    // }
 
     getSelects()
 

@@ -45,7 +45,7 @@
                                 <?php echo ($type_user == "administrador") ? "<th>Usuario</th>" : ""; ?>
                                 <th>Cuenta</th>
                                 <th>Saldo</th>
-                                <th class="datatable-nosort">Action</th>
+                                <th class="datatable-nosort">Acción</th>
                             </tr>
                         </thead>
                         <tbody id="content">

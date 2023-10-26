@@ -49,7 +49,7 @@
                                 <tr>
                                     <th>Divisa</th>
                                     <th>Valor</th>
-                                    <?php echo ($type_user == "administrador") ? '<th class="datatable-nosort">Accion</th>' : ""; ?>
+                                    <?php echo ($type_user == "administrador") ? '<th class="datatable-nosort">Acción</th>' : ""; ?>
                                 </tr>
                             </thead>
                             <tbody id="content">

@@ -16,9 +16,6 @@
     <div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
         <div class="container">
             <div class="row align-items-center">
-                <!-- <div class="col-md-6 col-lg-7">
-						<img src="vendors/images/login-page-img.png" alt="" />
-					</div> -->
                 <div class="login-box col-12">
 
                     <div class="formulario__mensaje p-1 text-center mb-2 pb-5" id="formulario__mensaje">
@@ -48,27 +45,9 @@
                                 <!-- <p class="formulario__input-error">Ingrese correctamente la contraseña.</p> -->
 
                             </div>
-                            <!-- <div class="row pb-30">
-                                <div class="col-6">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck1" />
-                                        <label class="custom-control-label" for="customCheck1">Remember</label>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="forgot-password">
-                                        <a href="forgot-password.html">Forgot Password</a>
-                                    </div>
-                                </div>
-                            </div> -->
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="input-group formulario__grupo formulario__grupo-btn-enviar mb-0">
-                                        <!--
-											use code for form submit
-											<input class="btn btn-primary btn-lg btn-block" type="submit" value="Sign In">
-										-->
-                                        <!-- <a class="btn btn-primary btn-lg btn-block" href="index.html">Sign In</a> -->
                                         <input type="button" class="btn btn-primary btn-lg btn-block" id="submit" value="Ingresar">
                                     </div>
                                     <div class="font-16 weight-600 pt-10 pb-10 text-center" data-color="#707373">

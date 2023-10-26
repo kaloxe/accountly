@@ -1,2 +1,0 @@
-Arreglar las datatables para que los numeros sean tambien dinamicos
-Desplegar aplicacion en la nube

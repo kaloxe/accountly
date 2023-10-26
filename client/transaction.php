@@ -54,7 +54,7 @@ require_once('./src/views/left-sidebar.php');
                                 <th>Descripcion</th>
                                 <th>Cuenta</th>
                                 <th>Fecha</th>
-                                <th class="datatable-nosort">Action</th>
+                                <th class="datatable-nosort">Acción</th>
                             </tr>
                         </thead>
                         <tbody id="content">
