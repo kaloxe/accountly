@@ -9,11 +9,11 @@
     <div class="pd-ltr-20 xs-pd-20-10">
         <div class="min-height-200px">
             <div class="page-header">
-                
+
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
                         <div class="title">
-                            <h4>Configuracion</h4>
+                            <h4>Configuración</h4>
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
@@ -21,16 +21,16 @@
                                     <a href="index.php">Principal</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    Configuracion
+                                    Configuración
                                 </li>
                             </ol>
                         </nav>
                     </div>
                     <div class="col-md-6 col-sm-6 text-right">
-                        <?php echo (($type_user=="administrador") ? ('<a type="button" class="btn btn-warning" data-color="#ffffff" data-toggle="modal" data-target="#modal_database" type="button">
+                        <?php echo (($type_user == "administrador") ? ('<a type="button" class="btn btn-warning" data-color="#ffffff" data-toggle="modal" data-target="#modal_database" type="button">
                             <i class="fa fa-server"></i>
                         </a>') : ('')); ?>
-                        
+
                     </div>
                 </div>
             </div>
@@ -100,11 +100,9 @@
             <?php require_once('./src/modals/settings/update-modal-password.php') ?>
 
         </div>
-        
-        <div class="footer-wrap pd-20 mb-20 card-box">
-            Accountly - Aplicacion creada por
-            <a href="https://github.com/kaloxe" target="_blank">Carlos Sanchez</a>
-        </div>
+
+        <?php require_once('./src/views/footer-wrap.php') ?>
+
     </div>
 </div>
 <script src="./src/js/validate-edit-password-settings.js"></script>

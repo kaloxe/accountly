@@ -100,7 +100,7 @@ update_user.addEventListener("click", (e) => {
             document
               .getElementById("formulario__mensaje-exito_update_usuario")
               .classList.remove("formulario__mensaje-exito-activo");
-          }, 5000);
+          }, 2500);
         } else {
           document
             .getElementById("formulario__mensaje_validacion_update_usuario")
@@ -109,7 +109,7 @@ update_user.addEventListener("click", (e) => {
             document
               .getElementById("formulario__mensaje_validacion_update_usuario")
               .classList.remove("formulario__mensaje-activo");
-          }, 5000);
+          }, 2500);
         }
       });
   } else {
@@ -128,6 +128,6 @@ update_user.addEventListener("click", (e) => {
       document
         .getElementById("formulario__mensaje_update_usuario")
         .classList.remove("formulario__mensaje-activo");
-    }, 5000);
+    }, 2500);
   }
 });

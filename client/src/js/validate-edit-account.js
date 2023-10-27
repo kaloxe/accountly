@@ -88,7 +88,7 @@ update.addEventListener("click", (e) => {
             document
               .getElementById("formulario__mensaje-exito_update")
               .classList.remove("formulario__mensaje-exito-activo");
-          }, 5000);
+          }, 2500);
         } else {
           document
             .getElementById("formulario__mensaje_validacion_update")
@@ -97,7 +97,7 @@ update.addEventListener("click", (e) => {
             document
               .getElementById("formulario__mensaje_validacion_update")
               .classList.remove("formulario__mensaje-activo");
-          }, 5000);
+          }, 2500);
         }
       });
   } else {
@@ -116,6 +116,6 @@ update.addEventListener("click", (e) => {
       document
         .getElementById("formulario__mensaje_update")
         .classList.remove("formulario__mensaje-activo");
-    }, 5000);
+    }, 2500);
   }
 });

@@ -61,7 +61,7 @@ require_once('./src/views/left-sidebar.php');
                             <?php echo ($type_user == "administrador") ? "<th>Usuario</th>" : ""; ?>
                             <th>Divisa</th>
                             <th>Monto</th>
-                            <th>Razon</th>
+                            <th>Razón</th>
                             <th>Cuenta</th>
                             <th>Fecha</th>
                         </tr>
@@ -73,15 +73,12 @@ require_once('./src/views/left-sidebar.php');
             </div>
 
             <div class="bg-white pd-20 card-box mb-30">
-                <div class="h4 text-blue">Grafica</div>
+                <div class="h4 text-blue">Gráfica</div>
                 <div id="chart2"></div>
             </div>
         </div>
 
-        <div class="footer-wrap pd-20 mb-20 card-box">
-            Accountly - Aplicacion creada por
-            <a href="https://github.com/kaloxe" target="_blank">Carlos Sanchez</a>
-        </div>
+        <?php require_once('./src/views/footer-wrap.php') ?>
     </div>
 </div>
 

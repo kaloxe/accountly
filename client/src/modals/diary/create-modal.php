@@ -5,10 +5,10 @@
                 <p><i class="micon bi bi-exclamation-triangle"></i> <b>Error:</b> Rellene el formulario correctamente. </p>
             </div>
             <div class="formulario__mensaje p-1 text-center mb-2 pb-5" id="formulario__mensaje_validacion_create">
-                <p><i class="micon bi bi-exclamation-triangle"></i> <b>Error:</b> Operacion fallida. </p>
+                <p><i class="micon bi bi-exclamation-triangle"></i> <b>Error:</b> Operación fallida. </p>
             </div>
             <div class="formulario__mensaje-exito p-1 text-center mb-2 pb-5" id="formulario__mensaje-exito_create">
-                <p><i class="micon bi bi-check-circle"></i> <b>Mensaje:</b> Operacion realizada satisfactoriamente. </p>
+                <p><i class="micon bi bi-check-circle"></i> <b>Mensaje:</b> Operación realizada satisfactoriamente. </p>
             </div>
 
             <div class="modal-content">
@@ -49,7 +49,7 @@
                         </div>
 
                         <div class="form-group formulario__grupo-input" id="grupo__descripcion_create">
-                            <label>Descripcion</label>
+                            <label>Descripción</label>
                             <input type="text" class="form-control formulario__input" name="descripcion_create" id="descripcion_create" />
                             <p class="formulario__input-error">El campo debe tener 4 a 45 caracteres alfanumericos.</p>
                         </div>

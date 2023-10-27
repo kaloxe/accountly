@@ -77,17 +77,14 @@
                 <div class="col-md-6 mb-30">
                     <!-- <div class="pd-20 card-box height-100-p"> -->
                     <div class="pd-20 card-box">
-                        <h4 class="h4 text-blue">Grafica</h4>
+                        <h4 class="h4 text-blue">Gráfica</h4>
                         <div id="chartTotal"></div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="footer-wrap pd-20 mb-20 card-box">
-            Accountly - Aplicacion creada por
-            <a href="https://github.com/kaloxe" target="_blank">Carlos Sanchez</a>
-        </div>
+        <?php require_once('./src/views/footer-wrap.php') ?>
     </div>
 </div>
 

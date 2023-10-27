@@ -75,7 +75,7 @@ create.addEventListener("click", (e) => {
             document
               .getElementById("formulario__mensaje-exito_create")
               .classList.remove("formulario__mensaje-exito-activo");
-          }, 5000);
+          }, 2500);
           campos_create.divisa_create = false;
           campos_create.valor_create = false;
           formulario_create.reset();
@@ -87,7 +87,7 @@ create.addEventListener("click", (e) => {
             document
               .getElementById("formulario__mensaje_validacion_create")
               .classList.remove("formulario__mensaje-activo");
-          }, 5000);
+          }, 2500);
         }
       });
   } else {
@@ -106,6 +106,6 @@ create.addEventListener("click", (e) => {
       document
         .getElementById("formulario__mensaje_create")
         .classList.remove("formulario__mensaje-activo");
-    }, 5000);
+    }, 2500);
   }
 });

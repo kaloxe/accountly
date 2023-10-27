@@ -88,21 +88,21 @@
                 </li>
                 <li>
                     <a href="settings.php" class="dropdown-toggle no-arrow">
-                        <span class="micon bi bi-gear"></span><span class="mtext">Configuracion</span>
+                        <span class="micon bi bi-gear"></span><span class="mtext">Configuración</span>
                     </a>
                 </li>
                 <li>
                     <a href="javascript:;" class="dropdown-toggle">
-                        <span class="micon bi bi-info-circle"></span><span class="mtext">Documentacion</span>
+                        <span class="micon bi bi-info-circle"></span><span class="mtext">Documentación</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="">Manual de usuario</a></li>
-                        <li><a href="https://github.com/kaloxe/accountly">Codigo libre</a></li>
+                        <li><a href="./../documentation/Manual de usuario.pdf" target="_blank">Manual de usuario</a></li>
+                        <li><a href="https://github.com/kaloxe/accountly"  target="_blank">Codigo libre</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="binnacle.php" class="dropdown-toggle no-arrow">
-                        <span class="micon bi bi-clock-history"></span><span class="mtext">Bitacora</span>
+                        <span class="micon bi bi-clock-history"></span><span class="mtext">Bitácora</span>
                     </a>
                 </li>
             </ul>

@@ -10,13 +10,13 @@ $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8',
 
 // set document information
 $pdf->setCreator(PDF_CREATOR);
-$pdf->setAuthor('Nicola Asuni');
-$pdf->setTitle('TCPDF Example 001');
-$pdf->setSubject('TCPDF Tutorial');
+$pdf->setAuthor($_SESSION['nickname']);
+$pdf->setTitle($report['title']);
+$pdf->setSubject($report['title']);
 $pdf->setKeywords('TCPDF, PDF, example, test, guide');
 
 // set default header data
-$pdf->setHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, $report['title'], "Aplicacion de gestion de finanzas - Accountly\npor $nickname desde www.accountly.com", array(0,0,0), array(0,0,0));
+$pdf->setHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, $report['title'], "Aplicación de gestión de finanzas - Accountly\npor $nickname desde www.accountly.com", array(0,0,0), array(0,0,0));
 $pdf->setFooterData(array(0,0,0), array(0,0,0));
 
 // set header and footer fonts

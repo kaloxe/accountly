@@ -88,7 +88,7 @@ submit.addEventListener("click", (e) => {
             document
               .getElementById("formulario__mensaje_validacion")
               .classList.remove("formulario__mensaje-activo");
-          }, 5000);
+          }, 2500);
         }
       });
     campos.usuario = false;
@@ -110,6 +110,6 @@ submit.addEventListener("click", (e) => {
       document
         .getElementById("formulario__mensaje")
         .classList.remove("formulario__mensaje-activo");
-    }, 5000);
+    }, 2500);
   }
 });

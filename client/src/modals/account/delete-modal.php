@@ -26,7 +26,7 @@
                 <p><i class="micon bi bi-exclamation-triangle"></i> <b>Error:</b> La cuenta tiene registros asociados.</p>
             </div>
             <div class="formulario__mensaje-exito p-1 text-center pb-5 px-4" id="formulario__mensaje-exito">
-                <p><i class="micon bi bi-check-circle"></i> <b>Mensaje:</b> Operacion realizada satisfactoriamente. </p>
+                <p><i class="micon bi bi-check-circle"></i> <b>Mensaje:</b> Operación realizada satisfactoriamente. </p>
             </div>
         </div>
     </div>

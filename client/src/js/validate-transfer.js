@@ -126,7 +126,7 @@ transfer.addEventListener("click", (e) => {
             document
               .getElementById("formulario__mensaje-exito_transfer")
               .classList.remove("formulario__mensaje-exito-activo");
-          }, 5000);
+          }, 2500);
           campos_transfer.monto_transfer = false;
           campos_transfer.descripcion_transfer = false;
           campos_transfer.cuenta1_transfer = false;
@@ -143,7 +143,7 @@ transfer.addEventListener("click", (e) => {
             document
               .getElementById("formulario__mensaje_validacion_transfer")
               .classList.remove("formulario__mensaje-activo");
-          }, 5000);
+          }, 2500);
         }
       });
   } else {
@@ -162,6 +162,6 @@ transfer.addEventListener("click", (e) => {
       document
         .getElementById("formulario__mensaje_transfer")
         .classList.remove("formulario__mensaje-activo");
-    }, 5000);
+    }, 2500);
   }
 });

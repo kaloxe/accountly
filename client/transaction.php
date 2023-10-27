@@ -14,7 +14,7 @@ require_once('./src/views/left-sidebar.php');
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
                         <div class="title">
-                            <h4>Transaccion</h4>
+                            <h4>Transacción</h4>
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
@@ -22,7 +22,7 @@ require_once('./src/views/left-sidebar.php');
                                     <a href="index.php">Principal</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    Transaccion
+                                    Transacción
                                 </li>
                             </ol>
                         </nav>
@@ -50,8 +50,8 @@ require_once('./src/views/left-sidebar.php');
                                 <?php echo ($type_user == "administrador") ? "<th>Usuario</th>" : ""; ?>
                                 <th>Divisa</th>
                                 <th>Monto</th>
-                                <th>Razon</th>
-                                <th>Descripcion</th>
+                                <th>Razón</th>
+                                <th>Descripción</th>
                                 <th>Cuenta</th>
                                 <th>Fecha</th>
                                 <th class="datatable-nosort">Acción</th>
@@ -77,10 +77,7 @@ require_once('./src/views/left-sidebar.php');
 
         </div>
 
-        <div class="footer-wrap pd-20 mb-20 card-box">
-            Accountly - Aplicacion creada por
-            <a href="https://github.com/kaloxe" target="_blank">Carlos Sanchez</a>
-        </div>
+        <?php require_once('./src/views/footer-wrap.php') ?>
     </div>
 </div>
 

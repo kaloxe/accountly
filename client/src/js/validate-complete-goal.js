@@ -110,7 +110,7 @@ complete.addEventListener("click", (e) => {
             document
               .getElementById("formulario__mensaje_validacion_complete")
               .classList.remove("formulario__mensaje-activo");
-          }, 5000);
+          }, 2500);
         }
       });
   } else {
@@ -129,6 +129,6 @@ complete.addEventListener("click", (e) => {
       document
         .getElementById("formulario__mensaje_complete")
         .classList.remove("formulario__mensaje-activo");
-    }, 5000);
+    }, 2500);
   }
 });

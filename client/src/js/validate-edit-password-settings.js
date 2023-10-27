@@ -113,7 +113,7 @@ update_password.addEventListener("click", (e) => {
             document
               .getElementById("formulario__mensaje-exito_update_password")
               .classList.remove("formulario__mensaje-exito-activo");
-          }, 5000);
+          }, 2500);
         } else {
           document
             .getElementById("formulario__mensaje_validacion_update_password")
@@ -122,7 +122,7 @@ update_password.addEventListener("click", (e) => {
             document
               .getElementById("formulario__mensaje_validacion_update_password")
               .classList.remove("formulario__mensaje-activo");
-          }, 5000);
+          }, 2500);
         }
       });
   } else {
@@ -141,6 +141,6 @@ update_password.addEventListener("click", (e) => {
       document
         .getElementById("formulario__mensaje")
         .classList.remove("formulario__mensaje-activo");
-    }, 5000);
+    }, 2500);
   }
 });

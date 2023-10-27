@@ -8,7 +8,7 @@
                 <p><i class="micon bi bi-exclamation-triangle"></i> <b>Error:</b> La evento ya fue completada. </p>
             </div>
             <div class="formulario__mensaje-exito p-1 text-center mb-2 pb-5" id="formulario__mensaje-exito_complete">
-                <p><i class="micon bi bi-check-circle"></i> <b>Mensaje:</b> Operacion realizada satisfactoriamente. </p>
+                <p><i class="micon bi bi-check-circle"></i> <b>Mensaje:</b> Operación realizada satisfactoriamente. </p>
             </div>
 
             <div class="modal-content">
@@ -25,7 +25,7 @@
                         </div>
 
                         <div class="form-group formulario__grupo-input" id="grupo__descripcion_complete">
-                            <label>Descripcion</label>
+                            <label>Descripción</label>
                             <input type="text" class="form-control formulario__input" name="descripcion_complete" id="descripcion_complete" />
                             <p class="formulario__input-error">El campo debe tener de 4 a 45 caracteres alfanumericos.</p>
                         </div>

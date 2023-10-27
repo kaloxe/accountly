@@ -29,8 +29,8 @@ $output['data'] = '';
 if ($num_rows > 0) {
     while ($row = $resultado->fetch_assoc()) {
         $output['data'] .= '<tr>';
-        $output['data'] .= '<td>' . $row['type_user'] . '</td>';
-        $output['data'] .= '<td>' . $row['nickname'] . '</td>';
+        ($type_user == "administrador") ? ($output['data'] .= '<td class="table-plus">' . $row['type_user'] . '</td>') : ($output['data'] .= '');
+        ($type_user == "administrador") ? ($output['data'] .= '<td class="table-plus">' . $row['nickname'] . '</td>') : ($output['data'] .= '');
         $output['data'] .= '<td>' . $row['movement'] . '</td>';
         $output['data'] .= '<td>' . (date("d/m/Y H:i:s", strtotime($row['datetime']))) . '</td>';
         $output['data'] .= '</tr>';

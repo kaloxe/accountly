@@ -20,10 +20,10 @@ require_once('./src/views/left-sidebar.php');
                     <table class="data-table table stripe hover nowrap">
                         <thead>
                             <tr>
-                                <th class="sort asc">Usuario</th>
-                                <th class="sort asc">Nombre</th>
-                                <th class="sort asc">Movimiento</th>
-                                <th class="sort asc">Fecha</th>
+                                <?php echo ($type_user == "administrador") ? "<th>Usuario</th>" : ""; ?>
+                                <?php echo ($type_user == "administrador") ? "<th>Nombre</th>" : ""; ?>
+                                <th>Movimiento</th>
+                                <th>Fecha</th>
                             </tr>
                         </thead>
                         <tbody id="content">
@@ -34,10 +34,7 @@ require_once('./src/views/left-sidebar.php');
 
         </div>
 
-        <div class="footer-wrap pd-20 mb-20 card-box">
-            Accountly - Aplicacion creada por
-            <a href="https://github.com/kaloxe" target="_blank">Carlos Sanchez</a>
-        </div>
+        <?php require_once('./src/views/footer-wrap.php') ?>
     </div>
 </div>
 

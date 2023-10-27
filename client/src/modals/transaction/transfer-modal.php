@@ -5,10 +5,10 @@
                 <p><i class="micon bi bi-exclamation-triangle"></i> <b>Error:</b> Rellene el formulario correctamente. </p>
             </div>
             <div class="formulario__mensaje p-1 text-center mb-2 pb-5" id="formulario__mensaje_validacion_transfer">
-                <p><i class="micon bi bi-exclamation-triangle"></i> <b>Error:</b> Operacion fallida. </p>
+                <p><i class="micon bi bi-exclamation-triangle"></i> <b>Error:</b> Operación fallida. </p>
             </div>
             <div class="formulario__mensaje-exito p-1 text-center mb-2 pb-5" id="formulario__mensaje-exito_transfer">
-                <p><i class="micon bi bi-check-circle"></i> <b>Mensaje:</b> Operacion realizada satisfactoriamente. </p>
+                <p><i class="micon bi bi-check-circle"></i> <b>Mensaje:</b> Operación realizada satisfactoriamente. </p>
             </div>
 
             <div class="modal-content">
@@ -56,15 +56,15 @@
                         </div>
 
                         <div class="form-group formulario__grupo-input" id="grupo__razon_transfer">
-                            <label>Razon</label>
+                            <label>Razón</label>
                             <select class="form-control formulario__input" name="razon_transfer" id="razon_transfer">
                                 <!-- select generado con php por fetch en js -->
                             </select>
-                            <p class="formulario__input-error">Seleccione una razon.</p>
+                            <p class="formulario__input-error">Seleccione una razón.</p>
                         </div>
 
                         <div class="form-group formulario__grupo-input" id="grupo__descripcion_transfer">
-                            <label>Descripcion</label>
+                            <label>Descripción</label>
                             <input type="text" class="form-control formulario__input" name="descripcion_transfer" id="descripcion_transfer" />
                             <p class="formulario__input-error">El campo debe tener de 4 a 45 caracteres alfanumericos.</p>
                         </div>

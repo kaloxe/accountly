@@ -452,12 +452,22 @@ class Rest extends database
           $num_rows2 = $result2->num_rows;
           $amount = 0;
           array_unshift($accounts, $row1['name_account']);
+          if ($cuentaC != 1) {
+            $accounts = [];
+          }
           if ($num_rows2 > 0) {
             while (($row2 = $result2->fetch_assoc())) {
-              $amount += $row2["subtotal"] * $row2["value"];
+              if ($cuentaC == 1) {
+                $amount += $row2["subtotal"] * $row2["value"];
+              } else {
+                array_unshift($accounts, $row2['name_badge']);
+                array_unshift($amounts, round(($row2["subtotal"] * $row2["value"]), 2));
+              }
             }
           }
-          array_unshift($amounts, round(($amount), 2));
+          if ($cuentaC == 1) {
+            array_unshift($amounts, round(($amount), 2));
+          }
         }
       }
 

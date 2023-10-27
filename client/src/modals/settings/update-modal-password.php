@@ -1,6 +1,3 @@
-<!-- <div class="col-md-4 col-sm-12 mb-30">
-    <div class="pd-20 card-box height-100-p">
-        <h5 class="h4">Medium modal</h5> -->
 <div class="modal fade" id="modal_update_password" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -30,7 +27,7 @@
                 <p><i class="micon bi bi-exclamation-triangle"></i> <b>Error:</b> Contraseña ingresada incorrecta. </p>
             </div>
             <div class="formulario__mensaje-exito p-1 text-center pb-5 px-4" id="formulario__mensaje-exito_update_password">
-                <p><i class="micon bi bi-check-circle"></i> <b>Mensaje:</b> Operacion realizada satisfactoriamente. </p>
+                <p><i class="micon bi bi-check-circle"></i> <b>Mensaje:</b> Operación realizada satisfactoriamente. </p>
             </div>
         </div>
     </div>

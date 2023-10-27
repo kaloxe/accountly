@@ -120,7 +120,7 @@ create.addEventListener("click", (e) => {
             document
               .getElementById("formulario__mensaje-exito_create")
               .classList.remove("formulario__mensaje-exito-activo");
-          }, 5000);
+          }, 2500);
           campos_create.movimiento_create = false;
           campos_create.monto_create = false;
           campos_create.descripcion_create = true;
@@ -135,7 +135,7 @@ create.addEventListener("click", (e) => {
             document
               .getElementById("formulario__mensaje_validacion_create")
               .classList.remove("formulario__mensaje-activo");
-          }, 5000);
+          }, 2500);
         }
       });
   } else {
@@ -154,6 +154,6 @@ create.addEventListener("click", (e) => {
       document
         .getElementById("formulario__mensaje_create")
         .classList.remove("formulario__mensaje-activo");
-    }, 5000);
+    }, 2500);
   }
 });
