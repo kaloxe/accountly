@@ -31,7 +31,7 @@ function getBadges($id)
     $output1 = '';
     if ($num_rows1 > 0) {
         while (($row1 = $resultado1->fetch_assoc())) {
-            $output1 .= '' . $row1['name_badge'] .  ' ' . $row1['subtotal'] . '<br>';
+            $output1 .= '' . $row1['name_badge'] .  ' ' . number_format($row1['subtotal'],2) . '<br>';
         }
     }
     return $output1;
